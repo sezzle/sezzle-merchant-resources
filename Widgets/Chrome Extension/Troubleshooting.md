@@ -17,9 +17,9 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
 [Issue 9](#issue-9): My widget is in a different font from my webpage.<br/>
 [Issue 10](#issue-10): My widget translation is not consistent with the webpage.<br/>
 [Issue 11](#issue-11): My widget's modal window isn't opening, isn't closing, or has frozen my page from scrolling.<br/>
-[Issue 12](#issue-12): The chrome extension is stuck on the loading screen.<br/>
+[Issue 12](#issue-12): The Chrome Extension is stuck on the loading screen.<br/>
 [Issue 13](#issue-13): My issue is listed in the Troubleshooting Guide, but the solution did not work.<br/>
-[Issue 14](#issue-14): I am getting an error message when trying to log in to the chrome extension.<br/>
+[Issue 14](#issue-14): I am getting an error message when trying to log in to the Chrome Extension.<br/>
 [Issue 15](#issue-15): I am getting an error message when trying to save my widget settings.<br/>
 [Issue 16](#issue-16): I have a special request.<br/>
 
@@ -150,7 +150,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 1: Your site is linked to an older version of the widget, and the issue has been resolved in later versions.
     - Reach out to Sezzle for assistance.
 
-### <a id="issue-12"></a>Issue 12: The chrome extension is stuck on the loading screen.
+### <a id="issue-12"></a>Issue 12: The Chrome Extension is stuck on the loading screen.
  * Reason 1: This is possibly due to heavy activity on our end or internet connection strength on your end.
     - Try refreshing the page, clearing your cache, closing the browser and re-opening, restarting your computer, and/or checking your internet connection.
     - Try again later.
@@ -163,7 +163,7 @@ If you need standard widget assistance and have not completed the Setup Checklis
 ### <a id="issue-13"></a>Issue 13: My issue is listed in the Troubleshooting Guide, but the solution did not work.
 Reach out to Sezzle with the applicable issue description(s) from above, the website URL and a screenshot of the issue or a sample URL of the product page experiencing the issue, and any additional notes regarding the issue. Including the "Reason" description is not necessary, but you may include it if you know which is causing the issue.
 
-### <a id="issue-14"></a>Issue 14: I am getting an error message when trying to log in to the chrome extension.
+### <a id="issue-14"></a>Issue 14: I am getting an error message when trying to log in to the Chrome Extension.
 Reach out to Sezzle with the error message, the website URL, and the email address you used to sign in.
 
 ### <a id="issue-15"></a>Issue 15: I am getting an error message when trying to save my widget settings.
@@ -194,7 +194,7 @@ Sezzle offers the following special features by request. Reach out to Sezzle wit
     - Price thresholds should take into account the price of products and pre-Sezzle AOV.
     - Hiding the widgets outside of the price threshold does not prevent the customer from selecting Sezzle at checkout. Please reach out to Merchant Support to request a <i>gateway</i> minimum.
  * I want to test the widget on an unpublished theme.
-    - The chrome extension provides a preview of the widget appearance. However, if you wish to test the widget performance across the entire site, the process is as follows:
+    - The Chrome Extension provides a preview of the widget appearance. However, if you wish to test the widget performance across the entire site, the process is as follows:
       1) If widgets are already on the site, the config will need to be added locally to the theme code.
          a. Right-click on the page and select `Inspect`.
          b. On the `Sources` tab, open the folder `widget.sezzle.com`

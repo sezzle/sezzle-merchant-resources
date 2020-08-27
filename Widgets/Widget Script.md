@@ -10,7 +10,7 @@ The most important config options are `targetXPath` and `renderToPath`.
     - `renderToPath` tells the widget where to appear in relation to the price element. If the `renderToPath` is incorrect, the widget may be hidden or will not render at all.
 
 Widget Script installation is the simplest product to implement, but the process varies slightly depending on the site's platform and extensions:
-    - <a href="https://vimeo.com/399997792/7884c5984c" target="_blank">Shopify</a>: The Sezzle Shopify App allows the Widget team or Sezzle widget chrome extension to inject the script remotely, or to download the theme and add the script manually if there are additional custom product templates. Skip to configuration section below.
+    - <a href="https://vimeo.com/399997792/7884c5984c" target="_blank">Shopify</a>: The Sezzle Shopify App allows the Widget team or Sezzle widget Chrome Extension to inject the script remotely, or to download the theme and add the script manually if there are additional custom product templates. Skip to configuration section below.
         - If opting for local configuration, copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the product.liquid and cart.liquid files within Edit Code.
     - Shopify Buy + non-Shopify storefront: The widget script will only work on the Shopify site. Please reference the Static Widget section below
     - WooCommerce (no pagebuilders): Check the "Show Sezzle widget" box in the extension.

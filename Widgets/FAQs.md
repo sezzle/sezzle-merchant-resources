@@ -19,7 +19,7 @@ The official turnaround time for widget implementation or update requests is wit
 Yes, you can test the widget on your staging site before publishing it on your live storefront using the local config and widget script. If there is a config on the server for your live storefront, it will need to be added locally to the live theme and removed from the server before you begin testing on the unpublished theme.
 
 ## I change my theme frequently - can I have full control of the widget integration to prevent downtime?
-When the theme is changed, the Sezzle widget script will need to be re-added to the applicable files in the new theme. The config will also need to be updated to correspond to the new theme. If the config is on the Sezzle widget-server, it can be updated any time using the chrome extension. If the config is local, it will also need to be added to the new theme above the widget script and the `targetXPath` updated, at minimum. Please note, if there is a config on the server, any local config will be disregarded.
+When the theme is changed, the Sezzle widget script will need to be re-added to the applicable files in the new theme. The config will also need to be updated to correspond to the new theme. If the config is on the Sezzle widget-server, it can be updated any time using the Chrome Extension. If the config is local, it will also need to be added to the new theme above the widget script and the `targetXPath` updated, at minimum. Please note, if there is a config on the server, any local config will be disregarded.
 
 ## I am using a <a href="https://www.shopify.com/partners/blog/development-workflow" target="_blank">CI/CD workflow</a> or <a href="https://www.shopify.com/plus/solutions/headless-commerce" target="_blank">headless CMS</a> - can I still use Sezzle?
 Yes, in this case, you will simply need to add the widget script manually to the master theme code.
@@ -52,7 +52,7 @@ Yes, you can update the logo to coordinate and contrast with the background colo
 Yes, there are two modal versions available: color or grayscale. No other changes are supported at this time.
 
 ## Can I customize the verbiage in the widget?
-Yes, the verbiage in the widget can be customized. Some branding-approved options are available in the chrome extension, but we can make a custom template by special request, such as adding “on orders above $X”.
+Yes, the verbiage in the widget can be customized. Some branding-approved options are available in the Chrome Extension, but we can make a custom template by special request, such as adding “on orders above $X”.
 
 ## Can the Sezzle widget be combined with another Buy Now Pay Later option?
 Yes, there are dual widget options available for merchants with Afterpay, QuadPay, or Affirm.
@@ -67,13 +67,13 @@ Yes, we can disable the widget for particular products, such as subscriptions, g
 Yes, we can set minimum and maximum thresholds for displaying the widgets. When setting a threshold, please keep in mind your product prices and AOV. It is advisable to instead show the widgets on all prices but update the language to state the threshold. A widget minimum or maximum does not prevent a customer from checking out with Sezzle outside of the approved range. Please specify if a gateway minimum is also needed.
 
 ## Can I hide/show the widgets by country?
-Yes, the chrome extension has options for US, CA, or both. We can also add additional countries to your widget white-list upon request.
+Yes, the Chrome Extension has options for US, CA, or both. We can also add additional countries to your widget white-list upon request.
 
 ## Can I hide the widget based on selected currency?
 Yes, we can hide the widget based on the selected currency by adding a custom function that listens for changes and updates the widget's display settings accordingly.
 
 ## Can the widgets be disabled?
-Yes, you can disable the widget at any time, or enable them again as needed through the chrome extension.
+Yes, you can disable the widget at any time, or enable them again as needed through the Chrome Extension.
 
 ## How do I know the correct Sezzle script is installed on my website?
 You can easily verify whether the correct Sezzle script is present in the website by going to Inspect Elements and/or View Page Source and search for `widget.sezzle` then verify whether it is reflecting the correct Merchant ID for this website URL, which can be found in the <a href="https://dashboard.sezzle.com/merchant/settings/business" target="_blank">Business Settings</a> of your Sezzle Merchant Dashboard. To add or edit the widget script, see the code snippet and instructions in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a> of your Sezzle Merchant Dashboard.
@@ -83,7 +83,7 @@ Example: <script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=
 After installing the widget, the extension will show a confirmation message that your configuration has been saved. Alternatively, go to a product page and click Inspect. Under the Sources tab, open the `widget.sezzle.com` folder. One of these files will reflect the config. Otherwise, type `document.sezzleConfig` into the Console.
 
 ## Is there a way to contact the Sezzle support team?
-The Contact Us button in the Sezzle chrome extension will open a contact form to `merchantsupport@sezzle.com` where the user can draft a description of the issue they are facing. The Contact Us form creates an incident in our centralized ticketing software, which is then routed to Merchant Support. It may be further passed on to Merchant Success or Sales if applicable.
+The Contact Us button in the Sezzle Chrome Extension will open a contact form to `merchantsupport@sezzle.com` where the user can draft a description of the issue they are facing. The Contact Us form creates an incident in our centralized ticketing software, which is then routed to Merchant Support. It may be further passed on to Merchant Success or Sales if applicable.
 
 ## How can I follow up on a widget-related ticket ?
 Tickets are often addressed within 1-2 business days. If your ticket has not been addressed within 7 days, you may inquire by calling Sezzle Support at 888-540-1867 or reaching out to your Sezzle account manager.
