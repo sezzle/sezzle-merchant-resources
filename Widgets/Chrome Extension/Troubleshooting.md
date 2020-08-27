@@ -44,7 +44,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 9: The price is rendered after the widget script has run.
     - Ensure the widget script is at the bottom of the applicable file.
  * Reason 10: You are using Shopify Buy with a non-Shopify storefront.
-    - Shopify Buy adds the Shopify product details into the non-Shopify storefront within an iframe, which the Sezzle widget script cannot read. For this reason, we offer a special <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-shopify-buy-static-widget/sezzle-shopify-buy-static-widget.html" target="_blank">lite static widget</a> product specifically for Shopify Buy.
+    - Shopify Buy adds the Shopify product details into the non-Shopify storefront within an iframe, which the Sezzle widget script cannot read. For this reason, we offer a special <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-shopify-buy-static-widget/sezzle-shopify-buy-static-widget.html" target="_blank">static widget lite</a> product specifically for Shopify Buy.
 
 ### <a id="issue-2"></a>Issue 2: My widget is appearing twice on the webpage.
  * Reason 1: The targeted price element exists twice on the webpage. This is commonly due to sale price vs regular price, or Recommended/Related Products.

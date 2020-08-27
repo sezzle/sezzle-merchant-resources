@@ -36,7 +36,7 @@
     - `Color` can be updated to change the color of the widget text. Enter the desired color in any format (CSS color name, #hexcode, or RGB value).
 
 * Once satisfied with the position and styling of the widget, click `Continue`.
-    - `URL Word to Match` can be selected to apply these settings to a specific page type. The selection should be a specific word appearing in the url of pages where these widget settings should be applied. Choose between shop, collections, product, cart, checkout, or (none).
+    - `URL Word to Match` can be selected to apply these settings to a specific page type. The selection should be a specific word appearing in the url of pages where these widget settings should be applied. Choose between collections, product, cart, checkout, or (none).
     - `Language Settings` can be selected to handle widget translations. Choose between Match Browser Preferences, Match Page Language, English, and French.
     - `Supported Countries` can be selected to restrict Sezzle advertising to certain regions based on visitor's IP address location. Choose between, US and Canada, US only, Canada only, or All countries.
  * Click `Install Widget` to save these settings.
