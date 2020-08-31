@@ -14,7 +14,7 @@ The most important config options are `targetXPath` and `renderToPath`.
 Widget Script installation is the simplest product to implement, but the process varies slightly depending on the site's platform and extensions:
 - <a href="https://vimeo.com/399997792/7884c5984c" target="_blank">Shopify</a>: The Sezzle Shopify App allows the Widget team or Sezzle widget Chrome Extension to inject the script remotely, or to download the theme and add the script manually if there are additional custom product templates. Skip to configuration section below.
     - If opting for local configuration, copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the product.liquid and cart.liquid files within Edit Code.
-- Shopify Buy + non-Shopify storefront: The widget script will only work on the Shopify site. Please reference the Static Widget section below
+- Shopify Buy + non-Shopify storefront: The widget script will only work on the Shopify site. Please reference the <a href="./Static Widgets.md">Static Widgets</a> document.
 - WooCommerce (no pagebuilders): Check the "Show Sezzle widget" box in the extension.
 - <a href="https://vimeo.com/399937363/4349d4c7e2" target="_blank">WooCommerce + pagebuilder app</a>: Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the Theme Footer file within Theme Editor.
 - <a href="https://vimeo.com/399935603/1b71ce2a45" target="_blank">BigCommerce</a> - Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the cart.html and product.html files within Edit Theme Files (file names may vary).
@@ -31,4 +31,4 @@ Once the widget script has been added, a configuration must also be put in place
     - Disadvantages: Wait time (usually within 1-2 business days).
 - Option 3: Create a <a href="https://docs.sezzle.com/#sezzlejs" target="_blank">local configuration</a> within the theme files.
     - Advantages: Fully customizable, quick access and full visibility for updates, no wait time.
-    - Disadvantages: Difficult. Does not work if a config is saved in widget-server.
+    - Disadvantages: Tricky implementation. Does not work if a config is saved in widget-server.
