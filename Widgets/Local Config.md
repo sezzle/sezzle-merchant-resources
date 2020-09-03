@@ -13,6 +13,7 @@ These two options are also the most difficult to identify correctly. For both, t
  * Tag names need to be followed by the applicable index. The format of a tagname is as follows: tagName-Index (e.g. `SPAN-2`). The indexes are zero-based, such that the first element of the specified type within the parent element is at index 0.
  * The path may contain multiple subpaths. All subpaths need to be separated by the ’/’ character.
 
+
 ## targetXPath
 
 The `targetXPath` tells the widget where to find the current price. Its value is interpreted as follows: The first ID or all occurrences of the first class are found on the page, then that element(s) is checked for all occurrences of the next given subpath. Every element found on the page where all levels of the ID, classes, and tag+index can be applied in order will be given a `data-sezzleindex` attribute. If the `renderToPath` is found relative to that element, a widget will be created on the page.
@@ -100,7 +101,6 @@ RIGHT: If `targetXPath: document.querySelector('#productPrice-product-template')
 
 ## renderToPath
 
-
 The `renderToPath` tells the widget to appear after a certain element relative to the `targetXPath`. Its value is interpreted as follows: The path targets the price element with `.` or the parent container with `..`. `..` can be used to travel through multiple parent levels. It can then descend more exactly into child elements using ID, class, or tagName-index as before. It will also accept pseudo-elements such as `::first-child`
 
 To illustrate `renderToPath`, below is the product price area from the Shopify theme Lorenza:
@@ -153,3 +153,83 @@ If `renderToPath: '../../../../../FORM-0/::last-child'` is applied, the widget w
     Note: `renderToPath: '../../../../../.shopify-product-form/.row'` works the same in this scenario, but technically the widget is inserted after the end of the `.row` container. This distinction is important if there is innerText not contained inside an element.
 
 If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget will be inserted as the first child of the `.shopify-product-form` container, appearing between the price container and the variant options (not shown).
+
+
+## Content
+
+`theme` controls the Sezzle logo version that appears inside the widget. 
+* `'light'` renders a color logo with purple text for light-colored backgrounds.
+* `'dark'` renders a color logo with white text for dark-colored backgrounds.
+* `'grayscale'` renders a black gradient logo with black text for medium- or light-colored backgrounds.
+* `'white'` renders a white gradient logo with white text for medium- or dark-colored backgrounds.
+* `'black-flat'` renders a black monochrome logo with black text for medium- or light-colored backgrounds.
+* `'white-flat'` renders a white monochrome logo with white text for medium- or dark-colored backgrounds.
+
+<div style="background: white; color: #392558; width: fit-content;">
+<span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
+<span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
+<span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
+</div>
+<div style="background: black; color: white; padding: 10px; width: fit-content;">
+<span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
+<span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
+<span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
+</div>
+<br/>
+
+`splitPriceElementsOn` splits the `targetXPath` inner text on the provided character(s) and renders both prices' installment amounts in the widget text. When using this feature, target the parent element containing both prices and the character(s) on which to split.
+* Note: The given value must match the inner text exactly, for example &mdash; and &ndash; are not the same.
+
+`ignoredPriceElements` disregards the provided child elements of the `targetXPath` when rendering the price in the widget. It will accept ID, class, tag, or an array. If a tag is provided without an index, it will be assumed at index 0. If an array is provided, note that the function may fail to apply to multiple identifier types on the same page. Ex: `ignoredPriceElements:['.visually-hidden', 'SPAN-1']` or `ignoredPriceElements: ['.from','DEL', '.base-price']`
+
+`ignoredFormattedPriceText` can be used for non-price text that cannot be targeted by `ignoredPriceElements` due to being 1) not contained in a child element, 2) is not a direct child of the `targetXPath` element, or 3) is otherwise failing to be hidden by `ignoredPriceElements`. It will accept text such as `'Regular price'` or an array of text strings such as `['Regular price', 'Sale price']`.
+* Note: The given value must match the inner text exactly, including capitalization, spacing, and punctuation.
+
+`altVersionTemplate` determines the text content of the widget. It will accept a string for one-language sites, or an object with `en` and `fr` keys for multi-lingual sites. Specific placeholder templates are available to insert non-text content within the text: 
+* `%%price%%` inserts the calculated installment price.
+* `%%logo%%` inserts the Sezzle logo per the specified theme. <strong>Required.</strong>
+* `%%info%%` inserts an &#9432; icon that opens the Sezzle modal window.
+* `%%question-mark%%` inserts a <span style="border: 1px solid; border-radius: 100px; padding: 0px 3px; font-size: 11px;">&#63;</span> icon that opens the Sezzle modal window.
+* `%%link%%` inserts a 'Learn more' text link that opens the Sezzle modal window.
+* `%%line-break%%` inserts a line-break.
+
+`language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the user's default browser language. It can accept `'en'` or `'fr'` for one-language sites, or a function or query to identify the in-page translation, for example: `document.querySelector('html).lang.substring(0,2).toLowerCase()`
+
+
+## Style
+
+`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.
+
+`fontSize` overrides the inherited text font applied to the widget text. It accepts numbers and assumes the unit px.
+
+`fontWeight` overrides the inherited boldness applied to the widget text. It accepts any CSS font-weight values.
+
+`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.
+
+
+## Position
+
+`alignment` overrides the inherited alignment applied to the widget. It accepts `'left'`, `'center'`, and `'right'`.
+
+`alignmentSwitchMinWidth` determines the smallest screen width at which to apply `alignment` instead of `alignmentSwitchType`. For example, if `alignment: 'left', alignmentSwitchMinWidth: 768, alignmentSwitchType: 'center'` is applied, the widget will align left for screen widths >= 768 or more, and will align center for screen widths < 768.
+
+`alignmentSwitchType` sets the widget alignment for smaller devices, if different from larger devices. It accepts `'left'`, `'center'`, and `'right'`.
+
+`maxWidth` overrides the maximum width of the widget. The value defaults to `400` and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
+
+`marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
+
+`logoSize` scales the logo image to respond to a change in font size, to override local style being applied in error, or to otherwise adjust the logo size. The format is such that a value of `1.0` is equivalent to 100%.
+
+`logoStyle` overrides the inherited style of the logo image to accompany changes to `logoSize` or to override local style being applied in error. This is intended solely for positioning purposes - per <a href="https://media.sezzle.com/branding/2.0/merchant/sezzle-co-branding-guidelines.pdf" target="_blank">Sezzle's Brand Guidelines</a>, please do not alter or distort the logo image in any way.
+
+`lineHeight` overrides the inherited line height occupied by the widget. It accepts any CSS line-height values.
+
+
+## Other Conditions
+
+`urlMatch`
+`supportedCountryCodes`
+`forcedShow`
+`hideClasses`
+`relatedElementActions`
