@@ -13,7 +13,6 @@ These two options are also the most difficult to identify correctly. For both, t
  * Tag names need to be followed by the applicable index. The format of a tagname is as follows: tagName-Index (e.g. `SPAN-2`). The indexes are zero-based, such that the first element of the specified type within the parent element is at index 0.
  * The path may contain multiple subpaths. All subpaths need to be separated by the ’/’ character.
 
-
 ## targetXPath
 
 The `targetXPath` tells the widget where to find the current price. Its value is interpreted as follows: The first ID or all occurrences of the first class are found on the page, then that element(s) is checked for all occurrences of the next given subpath. Every element found on the page where all levels of the ID, classes, and tag+index can be applied in order will be given a `data-sezzleindex` attribute. If the `renderToPath` is found relative to that element, a widget will be created on the page.
@@ -200,9 +199,9 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 `color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.
 
-`fontSize` overrides the inherited text font applied to the widget text. It accepts numbers and assumes the unit px.
+`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.
 
-`fontWeight` overrides the inherited boldness applied to the widget text. It accepts any CSS font-weight values.
+`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.
 
 `fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.
 
@@ -211,13 +210,13 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 `alignment` overrides the inherited alignment applied to the widget. It accepts `'left'`, `'center'`, and `'right'`.
 
-`alignmentSwitchMinWidth` determines the smallest screen width at which to apply `alignment` instead of `alignmentSwitchType`. For example, if `alignment: 'left', alignmentSwitchMinWidth: 768, alignmentSwitchType: 'center'` is applied, the widget will align left for screen widths >= 768 or more, and will align center for screen widths < 768.
+`alignmentSwitchMinWidth` determines the smallest screen width (assuming px) at which to apply `alignment` instead of `alignmentSwitchType`. For example, if `alignment: 'left', alignmentSwitchMinWidth: 768, alignmentSwitchType: 'center'` is applied, the widget will align left for screen widths >= 768 or more, and will align center for screen widths < 768.
 
 `alignmentSwitchType` sets the widget alignment for smaller devices, if different from larger devices. It accepts `'left'`, `'center'`, and `'right'`.
 
-`maxWidth` overrides the maximum width of the widget. The value defaults to `400` and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
+`maxWidth` overrides the maximum width of the widget. The value defaults to `400`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
 
-`marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
+`marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget in px to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
 
 `logoSize` scales the logo image to respond to a change in font size, to override local style being applied in error, or to otherwise adjust the logo size. The format is such that a value of `1.0` is equivalent to 100%.
 
@@ -228,8 +227,158 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 ## Other Conditions
 
-`urlMatch`
-`supportedCountryCodes`
-`forcedShow`
-`hideClasses`
-`relatedElementActions`
+`urlMatch` restricts the application of a config group to pages where the URL contains the provided text string. For example: `urlMatch: 'cart'` will only apply that config group to the cart page, or `urlMatch: 'shirt'` will only apply that config group to products where the word 'shirt' is present in the URL.
+
+`supportedCountryCodes` controls which countries in which to show the widget based on IP address. By default, the value is `['US', 'CA', 'IN']`. However, country codes can be added or removed as desired. Alternatively, `forcedShow: true` allows the widget to show for all visitors, regardless of IP address.
+
+`hideClasses` allows the Sezzle widget script to hide other elements on the same page, such as an old custom Sezzle widget or an old BNPL provider's widget. Values should be given as a class or array of classes.
+
+`relatedElementActions` runs a custom function for each `targetXPath`. The value is an array of objects, each object accepting `relatedElement` and `initialAction`<!-- or `action` -->.
+* `relatedPath` accepts a value like `renderToPath` to target an element relative to the `targetXPath` element.
+* `initialAction` accepts a function with two parameters. The first parameter indicates the `relatedPath` element, and the second parameter indicates the corresponding widget. Beyond this, the content of the function is fully customizable.
+<!-- * `action` accepts a function with two parameters. The first parameter indicates the mutation type for which to watch on the `relatedPath` element. The second parameter indicates the corresponding widget. When the event occurs, the widget price will update automatically. -->
+
+
+## Writing the Configuration
+
+The `targetXPath` is the only required widget configuration option, since the value varies by theme. All other options have a default value. So let's look at a "best case scenario" configuration:
+
+```html
+<!-- The below example is based on the Shopify theme Simple -->
+<script type="text/javascript">
+document.sezzleConfig = {
+    "configGroups": [
+        {
+            "targetXPath": "#ProductPrice"
+        },
+        {
+            "targetXPath": ".cart__subtotal"
+        }
+    ]
+}
+</script>
+```
+
+This configuration is written so the same code can be placed anywhere a widget is needed. However, if the code is being placed in the product and cart page files specifically instead of the theme/index or footer file, only the applicable config group object would be necessary. `urlMatch` is not required on this theme, because the `targetXPath` for the cart total does not appear on the product page, and vice versa.
+
+Now let's look at a "worst case scenario" configuration:
+
+```html
+<!-- The below example is loosely based on WooCommerce -->
+<script type="text/javascript">
+document.sezzleConfig = {
+    "configGroups": [
+        {
+            "targetXPath": ".summary/.price",
+            "renderToPath": ".",
+            "splitPriceElementsOn": " – ",
+            "ignoredPriceElements": ["DEL"],
+            "ignoredFormattedPriceText": ["From: "],
+            "theme": "dark",
+            "altVersionTemplate": "or 4 installments of %%price%% with %%logo%% %%info%%",
+            "color": "white",
+            "fontSize": 16,
+            "fontWeight": 100,
+            "fontFamily": "Helvetica Neue, sans-serif",
+            "alignment": "left",
+            "alignmentSwitchMinWidth": 768,
+            "alignmentSwitchType": "center",
+            "maxWidth": 280,
+            "marginTop": -15,
+            "marginBottom": 5,
+            "marginRight": 5,
+            "marginLeft": 5,
+            "logoSize": 1.16,
+            "logoStyle": {"margin": "3px 5px 0px 7px","transformOrigin": "center top"},
+            "lineHeight": "20px",
+            "hideClasses": ["#processors"],
+            "relatedElementActions": [
+                "relatedPath": ".",
+                "initialAction": function(r,w){
+                    if(r.classList.contains("product-form__options__recurring")){
+                        w.style.display = "none"
+                    } else {
+                        w.style.display = "block"
+                    }
+                }
+            ]
+        },
+        {
+            "targetXPath": ".order-total/TD-0/STRONG-0/.woocommerce-Price-amount",
+            "renderToPath": "../../../../..",
+            "urlMatch": "cart",
+            "theme": "dark",
+            "altVersionTemplate": "Buy now, pay later with %%logo%% %%info%%",
+            "color": "white",
+            "fontSize": 16,
+            "fontWeight": 100,
+            "fontFamily": "Helvetica Neue, sans-serif",
+            "alignment": "right",
+            "alignmentSwitchMinWidth": 576,
+            "alignmentSwitchType": "center",
+            "maxWidth": 320,
+            "logoSize": 1.16,
+            "logoStyle": {"margin": "3px 5px 0px 7px","transformOrigin": "center top"},
+            "relatedElementActions": [
+                "relatedPath": "../../../../../../../../../FORM-0/TABLE-0",
+                "initialAction": function(r,w){
+                    if(r.innerText.indexOf("subscription") > -1){
+                        w.style.display = "none"
+                    } else {
+                        w.style.display = "block"
+                    }
+                }
+            ]
+        }
+    ],
+    "language": document.querySelector("html").lang.substring(0,2).toLowerCase(),
+    "supportedCountryCodes": [
+        "US",
+        "IN"
+    ]
+}
+</script>
+```
+
+In reality, WooCommerce typically only needs `targetXPath`, `renderToPath`, `splitPriceElementsOn`, and `ignoredPriceElements`, but this configuration has been dramatized for illustrative purposes. Note the `language` and `supportedCountryCodes`/`forcedShow` settings are outside of the config groups, but all position, content, and style options are provided per config group.
+
+Finally, let's see what the configuration defaults looks like. These are the values that are applied if none are given in the config group:
+
+```js
+document.sezzleConfig = {
+    configGroups: [
+        {
+            "targetXPath": "", // required
+            "renderToPath": "..",
+            "theme": "light",
+            "splitPriceElementsOn": "",
+            "ignoredPriceElements": [],
+            "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
+            "altVersionTemplate": { 
+                "en": "or 4 interest-free payments of %%price%% with %%logo%% %%info%%", 
+                "fr": "ou 4 paiement de %%price%% sans intérêts avec %%logo%% %%info%%"
+            },
+            "color": "inherit",
+            "fontSize": 12,
+            "fontWeight": 300,
+            "fontFamily": "inherit",
+            "alignment": "inherit",
+            "alignmentSwitchMinWidth": 0,
+            "alignmentSwitchType": "inherit",
+            "maxWidth": 400,
+            "marginTop": -0,
+            "marginBottom": 0,
+            "marginRight": 0,
+            "marginLeft": 0,
+            "logoSize": 1.0,
+            "logoStyle": {},
+            "lineHeight": "13px",
+            "hideClasses": [],
+            "relatedElementActions": []
+            "urlMatch": ""
+        }
+    ],
+    "supportedCountryCodes": ["US","CA","IN"],
+    "language": navigator.language.substring(0,2).toLowerCase() || 'en'
+}
+```
