@@ -100,7 +100,6 @@ RIGHT: If `targetXPath: document.querySelector('#productPrice-product-template')
 
 ## renderToPath
 
-
 The `renderToPath` tells the widget to appear after a certain element relative to the `targetXPath`. Its value is interpreted as follows: The path targets the price element with `.` or the parent container with `..`. `..` can be used to travel through multiple parent levels. It can then descend more exactly into child elements using ID, class, or tagName-index as before. It will also accept pseudo-elements such as `::first-child`
 
 To illustrate `renderToPath`, below is the product price area from the Shopify theme Lorenza:
@@ -153,3 +152,233 @@ If `renderToPath: '../../../../../FORM-0/::last-child'` is applied, the widget w
     Note: `renderToPath: '../../../../../.shopify-product-form/.row'` works the same in this scenario, but technically the widget is inserted after the end of the `.row` container. This distinction is important if there is innerText not contained inside an element.
 
 If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget will be inserted as the first child of the `.shopify-product-form` container, appearing between the price container and the variant options (not shown).
+
+
+## Content
+
+`theme` controls the Sezzle logo version that appears inside the widget. 
+* `'light'` renders a color logo with purple text for light-colored backgrounds.
+* `'dark'` renders a color logo with white text for dark-colored backgrounds.
+* `'grayscale'` renders a black gradient logo with black text for medium- or light-colored backgrounds.
+* `'white'` renders a white gradient logo with white text for medium- or dark-colored backgrounds.
+* `'black-flat'` renders a black monochrome logo with black text for medium- or light-colored backgrounds.
+* `'white-flat'` renders a white monochrome logo with white text for medium- or dark-colored backgrounds.
+
+<div style="background: white; color: #392558; width: fit-content;">
+<span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
+<span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
+<span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
+</div>
+<div style="background: black; color: white; padding: 10px; width: fit-content;">
+<span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
+<span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
+<span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
+</div>
+<br/>
+
+`splitPriceElementsOn` splits the `targetXPath` inner text on the provided character(s) and renders both prices' installment amounts in the widget text. When using this feature, target the parent element containing both prices and the character(s) on which to split.
+* Note: The given value must match the inner text exactly, for example &mdash; and &ndash; are not the same.
+
+`ignoredPriceElements` disregards the provided child elements of the `targetXPath` when rendering the price in the widget. It will accept ID, class, tag, or an array. If a tag is provided without an index, it will be assumed at index 0. If an array is provided, note that the function may fail to apply to multiple identifier types on the same page. Ex: `ignoredPriceElements:['.visually-hidden', 'SPAN-1']` or `ignoredPriceElements: ['.from','DEL', '.base-price']`
+
+`ignoredFormattedPriceText` can be used for non-price text that cannot be targeted by `ignoredPriceElements` due to being 1) not contained in a child element, 2) is not a direct child of the `targetXPath` element, or 3) is otherwise failing to be hidden by `ignoredPriceElements`. It will accept text such as `'Regular price'` or an array of text strings such as `['Regular price', 'Sale price']`.
+* Note: The given value must match the inner text exactly, including capitalization, spacing, and punctuation.
+
+`altVersionTemplate` determines the text content of the widget. It will accept a string for one-language sites, or an object with `en` and `fr` keys for multi-lingual sites. Specific placeholder templates are available to insert non-text content within the text: 
+* `%%price%%` inserts the calculated installment price.
+* `%%logo%%` inserts the Sezzle logo per the specified theme. <strong>Required.</strong>
+* `%%info%%` inserts an &#9432; icon that opens the Sezzle modal window.
+* `%%question-mark%%` inserts a <span style="border: 1px solid; border-radius: 100px; padding: 0px 3px; font-size: 11px;">&#63;</span> icon that opens the Sezzle modal window.
+* `%%link%%` inserts a 'Learn more' text link that opens the Sezzle modal window.
+* `%%line-break%%` inserts a line-break.
+
+`language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the user's default browser language. It can accept `'en'` or `'fr'` for one-language sites, or a function or query to identify the in-page translation, for example: `document.querySelector('html).lang.substring(0,2).toLowerCase()`
+
+
+## Style
+
+`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.
+
+`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.
+
+`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.
+
+`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.
+
+
+## Position
+
+`alignment` overrides the inherited alignment applied to the widget. It accepts `'left'`, `'center'`, and `'right'`.
+
+`alignmentSwitchMinWidth` determines the smallest screen width (assuming px) at which to apply `alignment` instead of `alignmentSwitchType`. For example, if `alignment: 'left', alignmentSwitchMinWidth: 768, alignmentSwitchType: 'center'` is applied, the widget will align left for screen widths >= 768 or more, and will align center for screen widths < 768.
+
+`alignmentSwitchType` sets the widget alignment for smaller devices, if different from larger devices. It accepts `'left'`, `'center'`, and `'right'`.
+
+`maxWidth` overrides the maximum width of the widget. The value defaults to `400`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
+
+`marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget in px to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
+
+`logoSize` scales the logo image to respond to a change in font size, to override local style being applied in error, or to otherwise adjust the logo size. The format is such that a value of `1.0` is equivalent to 100%.
+
+`logoStyle` overrides the inherited style of the logo image to accompany changes to `logoSize` or to override local style being applied in error. This is intended solely for positioning purposes - per <a href="https://media.sezzle.com/branding/2.0/merchant/sezzle-co-branding-guidelines.pdf" target="_blank">Sezzle's Brand Guidelines</a>, please do not alter or distort the logo image in any way.
+
+`lineHeight` overrides the inherited line height occupied by the widget. It accepts any CSS line-height values.
+
+
+## Other Conditions
+
+`urlMatch` restricts the application of a config group to pages where the URL contains the provided text string. For example: `urlMatch: 'cart'` will only apply that config group to the cart page, or `urlMatch: 'shirt'` will only apply that config group to products where the word 'shirt' is present in the URL.
+
+`supportedCountryCodes` controls which countries in which to show the widget based on IP address. By default, the value is `['US', 'CA', 'IN']`. However, country codes can be added or removed as desired. Alternatively, `forcedShow: true` allows the widget to show for all visitors, regardless of IP address.
+
+`hideClasses` allows the Sezzle widget script to hide other elements on the same page, such as an old custom Sezzle widget or an old BNPL provider's widget. Values should be given as a class or array of classes.
+
+`relatedElementActions` runs a custom function for each `targetXPath`. The value is an array of objects, each object accepting `relatedElement` and `initialAction`<!-- or `action` -->.
+* `relatedPath` accepts a value like `renderToPath` to target an element relative to the `targetXPath` element.
+* `initialAction` accepts a function with two parameters. The first parameter indicates the `relatedPath` element, and the second parameter indicates the corresponding widget. Beyond this, the content of the function is fully customizable.
+<!-- * `action` accepts a function with two parameters. The first parameter indicates the mutation type for which to watch on the `relatedPath` element. The second parameter indicates the corresponding widget. When the event occurs, the widget price will update automatically. -->
+
+
+## Writing the Configuration
+
+The `targetXPath` is the only required widget configuration option, since the value varies by theme. All other options have a default value. So let's look at a "best case scenario" configuration:
+
+```html
+<!-- The below example is based on the Shopify theme Simple -->
+<script type="text/javascript">
+document.sezzleConfig = {
+    "configGroups": [
+        {
+            "targetXPath": "#ProductPrice"
+        },
+        {
+            "targetXPath": ".cart__subtotal"
+        }
+    ]
+}
+</script>
+```
+
+This configuration is written so the same code can be placed anywhere a widget is needed. However, if the code is being placed in the product and cart page files specifically instead of the theme/index or footer file, only the applicable config group object would be necessary. `urlMatch` is not required on this theme, because the `targetXPath` for the cart total does not appear on the product page, and vice versa.
+
+Now let's look at a "worst case scenario" configuration:
+
+```html
+<!-- The below example is loosely based on WooCommerce -->
+<script type="text/javascript">
+document.sezzleConfig = {
+    "configGroups": [
+        {
+            "targetXPath": ".summary/.price",
+            "renderToPath": ".",
+            "splitPriceElementsOn": " – ",
+            "ignoredPriceElements": ["DEL"],
+            "ignoredFormattedPriceText": ["From: "],
+            "theme": "dark",
+            "altVersionTemplate": "or 4 installments of %%price%% with %%logo%% %%info%%",
+            "color": "white",
+            "fontSize": 16,
+            "fontWeight": 100,
+            "fontFamily": "Helvetica Neue, sans-serif",
+            "alignment": "left",
+            "alignmentSwitchMinWidth": 768,
+            "alignmentSwitchType": "center",
+            "maxWidth": 280,
+            "marginTop": -15,
+            "marginBottom": 5,
+            "marginRight": 5,
+            "marginLeft": 5,
+            "logoSize": 1.16,
+            "logoStyle": {"margin": "3px 5px 0px 7px","transformOrigin": "center top"},
+            "lineHeight": "20px",
+            "hideClasses": ["#processors"],
+            "relatedElementActions": [
+                "relatedPath": ".",
+                "initialAction": function(r,w){
+                    if(r.classList.contains("product-form__options__recurring")){
+                        w.style.display = "none"
+                    } else {
+                        w.style.display = "block"
+                    }
+                }
+            ]
+        },
+        {
+            "targetXPath": ".order-total/TD-0/STRONG-0/.woocommerce-Price-amount",
+            "renderToPath": "../../../../..",
+            "urlMatch": "cart",
+            "theme": "dark",
+            "altVersionTemplate": "Buy now, pay later with %%logo%% %%info%%",
+            "color": "white",
+            "fontSize": 16,
+            "fontWeight": 100,
+            "fontFamily": "Helvetica Neue, sans-serif",
+            "alignment": "right",
+            "alignmentSwitchMinWidth": 576,
+            "alignmentSwitchType": "center",
+            "maxWidth": 320,
+            "logoSize": 1.16,
+            "logoStyle": {"margin": "3px 5px 0px 7px","transformOrigin": "center top"},
+            "relatedElementActions": [
+                "relatedPath": "../../../../../../../../../FORM-0/TABLE-0",
+                "initialAction": function(r,w){
+                    if(r.innerText.indexOf("subscription") > -1){
+                        w.style.display = "none"
+                    } else {
+                        w.style.display = "block"
+                    }
+                }
+            ]
+        }
+    ],
+    "language": document.querySelector("html").lang.substring(0,2).toLowerCase(),
+    "supportedCountryCodes": [
+        "US",
+        "IN"
+    ]
+}
+</script>
+```
+
+In reality, WooCommerce typically only needs `targetXPath`, `renderToPath`, `splitPriceElementsOn`, and `ignoredPriceElements`, but this configuration has been dramatized for illustrative purposes. Note the `language` and `supportedCountryCodes`/`forcedShow` settings are outside of the config groups, but all position, content, and style options are provided per config group.
+
+Finally, let's see what the configuration defaults looks like. These are the values that are applied if none are given in the config group:
+
+```js
+document.sezzleConfig = {
+    configGroups: [
+        {
+            "targetXPath": "", // required
+            "renderToPath": "..",
+            "theme": "light",
+            "splitPriceElementsOn": "",
+            "ignoredPriceElements": [],
+            "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
+            "altVersionTemplate": { 
+                "en": "or 4 interest-free payments of %%price%% with %%logo%% %%info%%", 
+                "fr": "ou 4 paiement de %%price%% sans intérêts avec %%logo%% %%info%%"
+            },
+            "color": "inherit",
+            "fontSize": 12,
+            "fontWeight": 300,
+            "fontFamily": "inherit",
+            "alignment": "inherit",
+            "alignmentSwitchMinWidth": 0,
+            "alignmentSwitchType": "inherit",
+            "maxWidth": 400,
+            "marginTop": -0,
+            "marginBottom": 0,
+            "marginRight": 0,
+            "marginLeft": 0,
+            "logoSize": 1.0,
+            "logoStyle": {},
+            "lineHeight": "13px",
+            "hideClasses": [],
+            "relatedElementActions": []
+            "urlMatch": ""
+        }
+    ],
+    "supportedCountryCodes": ["US","CA","IN"],
+    "language": navigator.language.substring(0,2).toLowerCase() || 'en'
+}
+```
