@@ -382,3 +382,26 @@ document.sezzleConfig = {
     "language": navigator.language.substring(0,2).toLowerCase() || 'en'
 }
 ```
+
+## Troubleshooting
+
+* options.configGroups must have at least one config object
+    - Widget script is added, but no configuration was found for the applicable merchant ID. Confirm the widget script is reflecting the correct 36-character merchant ID for the store URL, then complete the configuration or request widget help from Sezzle.
+
+* Unexpected end of input
+    - Configuration does not have the correct number of opening and closing brackets. Review all bracket sets, updating brackets where needed.
+
+* element.getElementById is not a function
+    - ID is in `targetXPath` but does not begin the string. Remove all parent levels before the ID, or replace the ID with the class or tagName-index of that element.
+
+* Uncaught SyntaxError: Unexpected string
+    - One or more options is missing a comma separator. Review each config option to ensure it is followed by a comma. Commas are not required for the last option in each object.
+
+* Uncaught SyntaxError: Unexpected token
+    - Configuration contains at least one invalid or duplicate punctuation mark. Find the specified symbol and remove or replace it as applicable.
+
+* Uncaught SyntaxError: Invalid or unexpected token
+    - One or more quotation sets is missing or mismatched. Review all quotation sets to ensure opening closing marks are present and matching (`'`single or `"` double quotes), updating quotations where needed.
+
+* Uncaught DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+    - The `ignoredPriceElement` is not a direct child of the `targetXPath`. Either update the `targetXPath` or the `ignoredPriceElement`, or use `ignoredFormattedPriceText`.
