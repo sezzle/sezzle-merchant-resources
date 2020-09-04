@@ -1,6 +1,6 @@
 # Merchant Widget Chrome Extension Troubleshooting Guide
 
-The Sezzle Widget Chrome Extension is designed for simplicity. Some basic issues can be resolved using the Chrome Extension, as outlined below. If you are unable to resolve all widget issues on your site by following these steps, please select `Request Addition of Widgets` in the Merchant Dashboard Setup Checklist, or click the [Contact Us](#request-help) button in the Help Center menu and tell us more about the issue you are experiencing.
+The Sezzle Widget Chrome Extension is designed for simplicity. Some basic issues can be resolved using the Chrome Extension, as outlined below. If you are unable to resolve all widget issues on your site by following these steps, please select `Request Addition of Widgets` in the Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>, or click the [Contact Us](#request-help) button in the Help Center menu and tell us more about the issue you are experiencing.
 
 Please note: If your site uses cookies, be sure to clear your cache after attempting to fix the widget to ensure you are able to see updates.
 
@@ -38,7 +38,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 6: The user is viewing the page from an unsupported country.
     - Try to update the Supported Countries to `All Countries`.
  * Reason 7: The widget script is missing or incorrect on this webpage.
-    - Add/update the widget script manually to your theme. The code snippet and instructions can be found in the Add Widgets step of your Sezzle Merchant Dashboard Setup Checklist.
+    - Add/update the widget script manually to your theme. The code snippet and instructions can be found in the Add Widgets step of your Sezzle Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>.
  * Reason 8: The widget is disabled for this site.
     - On the Main Menu, click `Enable Widget`.
  * Reason 9: The price is rendered after the widget script has run.
@@ -158,7 +158,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
 
 ## <a id="request-help"></a>Reaching out to Sezzle
 
-If you need standard widget assistance and have not completed the Setup Checklist in your Sezzle Merchant Dashboard, please click `Request Addition of Widgets` within the setup checklist. Otherwise, follow the below guidelines when reaching out to Sezzle.
+If you need standard widget assistance and have not completed the Setup Checklist in your Sezzle Merchant Dashboard, please click `Request Addition of Widgets` within the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>. Otherwise, follow the below guidelines when reaching out to Sezzle.
 
 ### <a id="issue-13"></a>Issue 13: My issue is listed in the Troubleshooting Guide, but the solution did not work.
 Reach out to Sezzle with the applicable issue description(s) from above, the website URL and a screenshot of the issue or a sample URL of the product page experiencing the issue, and any additional notes regarding the issue. Including the "Reason" description is not necessary, but you may include it if you know which is causing the issue.
