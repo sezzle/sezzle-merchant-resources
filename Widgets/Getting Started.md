@@ -27,7 +27,7 @@ The documentation contained in this folder refers solely to widgets and the stat
      * <a href="https://github.com/sezzle/sezzle-js" target="_blank">Dynamic Widgets</a> - the Sezzle script that retrieves the Javascript from Sezzle's widget server and renders the widget according to the configuration either also saved in the widget server or provided locally.
      * <a href="https://github.com/sezzle/static-widgets" target="_blank">Static Widgets</a> - the Sezzle Javascript and accompanying configuration added to the store's theme files.
 
- * Modal - the Sezzle information window that opens when the widget is clicked.
+ * Modal - the Sezzle information window that opens when the widget is clicked. Available in <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.0" target="_blank">Color</a> or <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.1" target="_blank">Grayscale</a>.
 
  * <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">Static Checkout Button</a> - a Sezzle button that redirects to the Shopify native checkout when the regular checkout button uses a third-party app (Bold, Carthook, Zipify, UpSell).
 

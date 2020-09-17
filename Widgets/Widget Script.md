@@ -18,7 +18,7 @@ Widget Script installation is the simplest product to implement, but the process
 
 ## Configuration
 Once the widget script has been added, a configuration must also be put in place.
-- Option 1: Install the Sezzle Widget Chrome Extension from the <a href="" target="_blank">Chrome App Store</a>, then visit the product page and follow the prompts in the extension window. The extension will create the configuration for the website and save it to Sezzle's widget-server.
+- Option 1: <b style="text-transform: uppercase; color: #ff7f6e;">(Unavailable - release pending)</b> Install the Sezzle Widget Chrome Extension from the <a href="" target="_blank">Chrome App Store</a>, then visit the product page and follow the prompts in the extension window. The extension will create the configuration for the website and save it to Sezzle's widget-server.
     - Advantage: No wait time, can preview changes and update as needed, basic customization.
     - Disadvantages: No advanced troubleshooting, some customizations not supported.
 - Option 2: Click "Request Addition of Widgets" in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a>. The Widget team will create the configuration for the website and save it to Sezzle's widget-server. 
