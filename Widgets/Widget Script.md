@@ -5,6 +5,14 @@ When the page loads, the script will reach out to the widget-server to obtain th
 
 If the script has been added, but there is no config in place, an error will appear in the console: `options.configGroups must have at least one config object`
 
+## The Script
+
+The following is a <strong>template</strong> of the widget script. When using the template to add the widget script to your site, you must replace the 36-character UUID in the template with the Sezzle ID for this site, as found in the <a href="https://dashboard.sezzle.com/merchant/settings/business" target="_blank">Business Settings</a> of your Sezzle Merchant Dashboard.
+
+```html 
+<script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=12a34bc5-6de7-890f-g123-4hi5678jk901"></script>
+```
+
 ## Adding the Script
 Widget Script installation is the simplest product to implement, but the process varies slightly depending on the site's platform and extensions:
 - <a href="https://vimeo.com/399997792/7884c5984c" target="_blank">Shopify</a>: The Sezzle Shopify App allows the Widget team or Sezzle widget Chrome Extension to inject the script remotely, or to download the theme and add the script manually if there are additional custom product templates. Skip to configuration section below.
