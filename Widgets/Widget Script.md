@@ -5,6 +5,14 @@ When the page loads, the script will reach out to the widget-server to obtain th
 
 If the script has been added, but there is no config in place, an error will appear in the console: `options.configGroups must have at least one config object`
 
+## The Script
+
+The following is a <strong>template</strong> of the widget script. When using the template to add the widget script to your site, you must replace the 36-character UUID in the template with the Sezzle ID for this site, as found in the <a href="https://dashboard.sezzle.com/merchant/settings/business" target="_blank">Business Settings</a> of your Sezzle Merchant Dashboard.
+
+```html 
+<script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=12a34bc5-6de7-890f-g123-4hi5678jk901"></script>
+```
+
 ## Adding the Script
 Widget Script installation is the simplest product to implement, but the process varies slightly depending on the site's platform and extensions:
 - <a href="https://vimeo.com/399997792/7884c5984c" target="_blank">Shopify</a>: The Sezzle Shopify App allows the Widget team or Sezzle widget Chrome Extension to inject the script remotely, or to download the theme and add the script manually if there are additional custom product templates. Skip to configuration section below.
@@ -15,10 +23,6 @@ Widget Script installation is the simplest product to implement, but the process
 - <a href="https://vimeo.com/399935603/1b71ce2a45" target="_blank">BigCommerce</a> - Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the cart.html and product.html files within Edit Theme Files (file names may vary).
 - <a href="https://vimeo.com/399929679/aa0791f4d9" target="_blank">3DCart</a> - Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the product_items.html files within Edit Template (file name may vary).
 - Custom/Other Platforms - Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the code files for the product and cart pages.
-    - Example: 
-```html 
-<script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=12a34bc5-6de7-890f-g123-4hi5678jk901"></script>
-```
 
 ## Configuration
 Once the widget script has been added, a configuration must also be put in place.
