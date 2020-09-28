@@ -405,3 +405,6 @@ document.sezzleConfig = {
 
 * Uncaught DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
     - The `ignoredPriceElement` is not a direct child of the `targetXPath`. Either update the `targetXPath` or the `ignoredPriceElement`, or use `ignoredFormattedPriceText`.
+
+* Cannot read property 'parentNode' of undefined.
+    - The `renderToPath` is attempting to target a child element that doesn't exist within the applicable parent container. Try adding another `../` to the `renderToPath`, or change the child element target identifier.
