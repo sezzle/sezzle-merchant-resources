@@ -107,7 +107,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 1: The widget is in a parent element that is narrower than the widget width, breaking the widget contents into multiple lines.
     - Try to update the Widget Position.
     - Try to update the Right and Left Margin values. Higher margin values move the widget farther from the adjacent element, and negative margin values move the widget closer to the adjacent element in the applicable direction.
- * Reason 2: The widget is in the correct position, but the selected Widget Text exceeds the widget's default maximum width.
+ * Reason 2: The widget is in the correct position, but the selected Widget Message exceeds the widget's default maximum width.
     - Try to update the Maximum Width values. 
 
 ### <a id="issue-7"></a>Issue 7: My widget does not contrast well with the theme of the webpage.
@@ -138,16 +138,18 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 3: The widget cannot access the custom font used on the webpage.
     - Try to update the Font Family to a complementary font to the rest of the webpage.
 
-### <a id="issue-10"></a>Issue 10: My widget translation is not consistent with the webpage.
+### <a id="issue-10"></a>Issue 10: My widget and/or modal translation is not consistent with the webpage.
  * Reason 1: User's default browser language is not set to French, but the page is translated to French.
-    - Try to update the Language Settings to `Match Page Language`.
+    - Try to update the Language Settings to `Match HTML Language`.
  * Reason 2: User's default browser language is not set to French, but the page is only available in French.
     - Try to update the Language Settings to `French`.
  * Reason 3: User's default browser language is set to French, but the page is only available in English.
     - Try to update the Language Settings to `English`.
+ * Reason 4: Widget text is translating correctly, but modal is not translating.
+    - The applicable language is not listed as an available modal language for this site. Please contact Sezzle Support.
 
 ### <a id="issue-11"></a>Issue 11: My widget's modal window isn't opening, isn't closing, or has frozen my page from scrolling.
- * Reason 1: Your site is linked to an older version of the widget, and the issue has been resolved in later versions.
+ * Reason 1: Your site is linked to an older version of the widget and/or modal, and the issue has been resolved in later versions.
     - Reach out to Sezzle for assistance.
 
 ### <a id="issue-12"></a>Issue 12: The Chrome Extension is stuck on the loading screen.
@@ -164,7 +166,7 @@ If you need standard widget assistance and have not completed the Setup Checklis
 Reach out to Sezzle with the applicable issue description(s) from above, the website URL and a screenshot of the issue or a sample URL of the product page experiencing the issue, and any additional notes regarding the issue. Including the "Reason" description is not necessary, but you may include it if you know which is causing the issue.
 
 ### <a id="issue-14"></a>Issue 14: I am getting an error message when trying to log in to the Chrome Extension.
-Reach out to Sezzle with the error message, the website URL, and the email address you used to sign in.
+Reach out to Sezzle with the error message, the website URL, and the email address you used to sign into the Merchant Dashboard.
 
 ### <a id="issue-15"></a>Issue 15: I am getting an error message when trying to save my widget settings.
 Reach out to Sezzle with the website URL and a screenshot of the error message.
@@ -177,9 +179,9 @@ Sezzle offers the following special features by request. Reach out to Sezzle wit
  * I want to change the widget text content.
     - The Sezzle logo image must remain present. The installment price is highly recommended, as it is proven to drive AOV lift.
  * I want to combine the Sezzle widget with a competitor's widget.
-    - We currently offer dual install with Afterpay, Quadpay, and Affirm.
+    - We currently offer dual install with Afterpay, Quadpay, Affirm, and Klarna.
  * I am switching to Sezzle from a competitor and need the competitor widget removed.
-    - We can hide the competitor widget, but there may be a delay since the Sezzle widget loads last. It is recommended to remove the competitor's code from your theme.
+    - We can typically hide the competitor widget, but there may be a delay since the Sezzle widget loads last. It is recommended to remove the competitor's code from your theme.
  * I want to add widgets to the quick cart.
  * I want to add widgets to the product preview page.
  * I want to add widgets to the collections page.
@@ -188,10 +190,9 @@ Sezzle offers the following special features by request. Reach out to Sezzle wit
     - We can hide the widgets on certain products, but it does not prevent the customer from checking out with Sezzle.
  * I want to hide widgets when a certain variant is selected.
     - If a customer attempts to checkout with Sezzle when purchasing a subscription item, they will be charged for the initial transaction, but Sezzle will not auto-charge the customer for each subsequent issuance.
- * I want to hide widgets below a certain price.
- * I want to hide widgets above a certain price.
-    - It is recommended to update the widget text to reflect "on orders over X" instead of hiding the widgets. Not only does this provide transparency to the customer, but it may motivate upsell. 
-    - Price thresholds should take into account the price of products and pre-Sezzle AOV.
+ * I want to hide widgets below and/or above a certain price.
+    - It is recommended to update the widget text to reflect "on orders over X" instead of hiding the widgets. Not only does this provide transparency to the customer and prevent confusion, but it may motivate upsell. 
+    - Price thresholds should take into account the price of products, pre-Sezzle AOV, and Sezzle credit limits.
     - Hiding the widgets outside of the price threshold does not prevent the customer from selecting Sezzle at checkout. Please reach out to Merchant Support to request a <i>gateway</i> minimum.
  * I want to test the widget on an unpublished theme.
     - The Chrome Extension provides a preview of the widget appearance. However, if you wish to test the widget performance across the entire site, the process is as follows:
@@ -201,11 +202,11 @@ Sezzle offers the following special features by request. Reach out to Sezzle wit
          c. Find the file with the object `document.sezzleConfig`. Copy this object. Note: If it is <i>inside</i> an if/else conditional statement, copy the entire if/else statement.
          d. In your theme code, create a `<script type="text/javascript"></script>` above the existing widget.sezzle script, then paste the `document.sezzleConfig` between the `><`.
          e. Reach out to Sezzle to delete the config from the widget-server. The server-side config will override the local one, and therefore must be removed to test local configs.
-         f. In the unpublished theme, copy+paste the two scripts (`document.sezzleConfig` and `widget.sezzle`) from the live theme into the applicable files, then make updates as needed. Complete documentation can be found <a href="https://docs.sezzle.com/#sezzlejs" target="_blank">here</a>.
+         f. In the unpublished theme, copy+paste the two scripts (`document.sezzleConfig` and `widget.sezzle`) from the live theme into the applicable files, then make updates as needed. Complete documentation can be found <a href="../4-Local Config.md" target="_blank">here</a>.
  * I am concerned about the loading speed of the widget.
     - The widget is designed to load after all other page content has been rendered and usually takes mere milliseconds. This ensures all the necessary data is present to render the widget correctly and safeguards against the widget causing issues or delays to your site. You can review your site performance using <a href="https://gtmetrix.com/" target="_blank">GTMetrics</a> to confirm the true cause of the delay.
     - We offer an alternative <a href="https://github.com/sezzle/static-widgets" target="_blank">static widget</a> product that lives entirely within the theme code. It removes the need to reach out to Sezzle's widget server and provides a different level of control over the widget's performance. The downside is that Sezzle is unable to monitor performance or make changes, increasing the effort required from the merchant when maintenance is needed.
  * I want to offer Sezzle but I am using a third-party checkout.
-    - We offer an additional <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">static checkout</a> button product that can be added directly to the theme code and the appearance customized to complement the cart page design. This button directs the user to the native Shopify checkout instead of the third-party checkout.
+    - We offer an additional <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">static checkout button</a> product that can be added directly to the theme code and the appearance customized to complement the cart page design. This button directs the user to the native Shopify checkout instead of the third-party checkout.
 
 If you have a special request that is not listed above, please reach out to Sezzle with your request description. We will review and get back to you to determine if your request can be fulfilled.

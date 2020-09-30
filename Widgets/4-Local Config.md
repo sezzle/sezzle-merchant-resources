@@ -21,7 +21,7 @@ To identify the `targetXPath`, complete the following steps:
  * Right-click on the current price element and select Inspect.
     - If the element has an ID or class, enter this as your `targetXPath` and test the results.
         - If this is creating widgets in multiple locations on the page, find the ID or class of this element's parent and place it in front of the current `targetXPath`. Example: `targetXPath: '.parent-class/.price-element-class'`
-        - Repeat these steps up as many parent elements as necessary to get to a unique value, adding each parent identifier before the previous value. This is usually only 1-3 levels.
+        - Repeat these steps up as many parent elements as necessary to get to a unique value, adding each parent identifier before the previous value, separated by a `/`. This is usually only 1-3 levels.
     - If the element does not have an ID or class, enter the parent element's ID or class as the `targetXPath` and test the results.
         - If this is creating multiple widgets or contains non-price text, place the original price element's tag-name after the previous value and count the number of elements with that same tag-name that exist under the same parent <i>before</i> the desired price element, including children of sibling elements. This number will be the index.
 
@@ -29,9 +29,10 @@ The `targetXPath` value should meet the following criteria:
  * Appears exactly once on the given page.
     - You can check the uniqueness of each identifier by copying+pasting the following snippet into the Console area and enter the #ID or .class name between the quotations: `document.querySelectorAll('').length`
  * Contains only the current price.
-    - You can check the text content of the `targetXPath` by inserting the ID or class closest to the current price element between the quotations of the following snippet: `document.querySelectorAll('')[0].innerText`
+    - You can check the text content of the `targetXPath` by inserting the ID or class closest to the current price element between the quotations of the following snippet: `document.querySelectorAll('')[0].textContent`
  * Is always present on the applicable page type.
     - It is advisable to open a regular-priced product and a sale-priced product in separate tabs to check both variations of the page.
+    - If a `targetXPath` cannot be identified that is always on the page and indicating the <i>current</i> price, it is also permissible to create two configurations for the same page type if the two `targetXPath`s do not appear on the page at the same time.
 
 To illustrate `targetXPath`, below is the product price area from the Shopify theme Prestige:
 
@@ -100,7 +101,7 @@ RIGHT: If `targetXPath: document.querySelector('#productPrice-product-template')
 
 ## renderToPath
 
-The `renderToPath` tells the widget to appear after a certain element relative to the `targetXPath`. Its value is interpreted as follows: The path targets the price element with `.` or the parent container with `..`. `..` can be used to travel through multiple parent levels. It can then descend more exactly into child elements using ID, class, or tagName-index as before. It will also accept pseudo-elements such as `::first-child`
+The `renderToPath` tells the widget to appear after a certain element relative to the `targetXPath`. Its value is interpreted as follows: The path targets the price element with `.` or the parent container with `..`. `..` can be used to travel through multiple parent levels. It can then descend more exactly into child elements using ID, class, or tagName-index as before. Unlike `targetXPath`, it will also accept pseudo-elements such as `::first-child`.
 
 To illustrate `renderToPath`, below is the product price area from the Shopify theme Lorenza:
 
@@ -176,21 +177,21 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 </div>
 <br/>
 
-`splitPriceElementsOn` splits the `targetXPath` inner text on the provided character(s) and renders both prices' installment amounts in the widget text. When using this feature, target the parent element containing both prices and the character(s) on which to split.
-* Note: The given value must match the inner text exactly, for example &mdash; and &ndash; are not the same.
+`splitPriceElementsOn` splits the `targetXPath` text content on the provided character(s) and renders both prices' installment amounts in the widget text, separated by the same character(s). When using this feature, target the parent element containing both prices and the character(s) on which to split.
+* Note: The given value must match the text content character(s) exactly, for example &mdash; and &ndash; are not the same.
 
 `ignoredPriceElements` disregards the provided child elements of the `targetXPath` when rendering the price in the widget. It will accept ID, class, tag, or an array. If a tag is provided without an index, it will be assumed at index 0. If an array is provided, note that the function may fail to apply to multiple identifier types on the same page. Ex: `ignoredPriceElements:['.visually-hidden', 'SPAN-1']` or `ignoredPriceElements: ['.from','DEL', '.base-price']`
 
 `ignoredFormattedPriceText` can be used for non-price text that cannot be targeted by `ignoredPriceElements` due to being 1) not contained in a child element, 2) is not a direct child of the `targetXPath` element, or 3) is otherwise failing to be hidden by `ignoredPriceElements`. It will accept text such as `'Regular price'` or an array of text strings such as `['Regular price', 'Sale price']`.
-* Note: The given value must match the inner text exactly, including capitalization, spacing, and punctuation.
+* Note: The given value must match the text content substring exactly, including capitalization, spacing, and punctuation.
 
-`altVersionTemplate` determines the text content of the widget. It will accept a string for one-language sites, or an object with `en` and `fr` keys for multi-lingual sites. Specific placeholder templates are available to insert non-text content within the text: 
-* `%%price%%` inserts the calculated installment price.
+`altVersionTemplate` determines the text content of the widget. It will accept a string for single-language sites, or an object with `en`, `fr`, and `de` keys for multi-lingual sites. Specific placeholder templates are available to insert non-text content within the text: 
+* `%%price%%` inserts the calculated installment price. <strong>Recommended.</strong>
 * `%%logo%%` inserts the Sezzle logo per the specified theme. <strong>Required.</strong>
-* `%%info%%` inserts an &#9432; icon that opens the Sezzle modal window.
+* `%%info%%` inserts an &#9432; icon that opens the Sezzle modal window.<strong>Recommended.</strong>
 * `%%question-mark%%` inserts a <span style="border: 1px solid; border-radius: 100px; padding: 0px 3px; font-size: 11px;">&#63;</span> icon that opens the Sezzle modal window.
-* `%%link%%` inserts a 'Learn more' text link that opens the Sezzle modal window.
-* `%%line-break%%` inserts a line-break.
+* `%%link%%` inserts a <u>'Learn more'</u> text link that opens the Sezzle modal window.
+* `%%line-break%%` inserts a `<br/>` line-break element.
 
 `language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the user's default browser language. It can accept `'en'` or `'fr'` for one-language sites, or a function or query to identify the in-page translation, for example: `document.querySelector('html).lang.substring(0,2).toLowerCase()`
 
@@ -340,7 +341,7 @@ document.sezzleConfig = {
 </script>
 ```
 
-In reality, WooCommerce typically only needs `targetXPath`, `renderToPath`, `splitPriceElementsOn`, and `ignoredPriceElements`, but this configuration has been dramatized for illustrative purposes. Note the `language` and `supportedCountryCodes`/`forcedShow` settings are outside of the config groups, but all position, content, and style options are provided per config group.
+In reality, WooCommerce typically only needs `targetXPath`, `renderToPath`, `splitPriceElementsOn`, and `ignoredPriceElements`, but this configuration has been dramatized for illustrative purposes. Note the `language` and `supportedCountryCodes`/`forcedShow` settings are outside of the config groups since they apply site-wide, but all position, content, and style options are provided per config group so they are applied per page type.
 
 Finally, let's see what the configuration defaults looks like. These are the values that are applied if none are given in the config group:
 
@@ -356,7 +357,8 @@ document.sezzleConfig = {
             "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
             "altVersionTemplate": { 
                 "en": "or 4 interest-free payments of %%price%% with %%logo%% %%info%%", 
-                "fr": "ou 4 paiement de %%price%% sans intérêts avec %%logo%% %%info%%"
+                "fr": "ou 4 paiement de %%price%% sans intérêts avec %%logo%% %%info%%",
+                "de": "oder 4 zinslose Zahlungen von je %%price%% mit %%logo%% %%info%%"
             },
             "color": "inherit",
             "fontSize": 12,
@@ -406,5 +408,5 @@ document.sezzleConfig = {
 * Uncaught DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
     - The `ignoredPriceElement` is not a direct child of the `targetXPath`. Either update the `targetXPath` or the `ignoredPriceElement`, or use `ignoredFormattedPriceText`.
 
-* Cannot read property 'parentNode' of undefined.
+* Cannot read property 'parentNode' of undefined
     - The `renderToPath` is attempting to target a child element that doesn't exist within the applicable parent container. Try adding another `../` to the `renderToPath`, or change the child element target identifier.

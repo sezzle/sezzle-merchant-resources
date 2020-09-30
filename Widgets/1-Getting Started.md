@@ -6,7 +6,7 @@
  * What are the benefits of having widgets?
 
  - Higher AOV and fewer abandoned carts - Customers are not only aware that Sezzle is available at checkout, but they are encouraged by seeing the per-installment price to complete checkout and buy more per order.
- - Co-branding highlights - Widgets are a prerequisite to being promoted in Sezzle's marketing campaigns and merchant highlights.
+ - Co-branding highlights - Widgets are a prerequisite to being promoted in Sezzle's social media marketing campaigns and being a featured merchant on the Sezzle store directory.
 
 ## Widget Customization and Product Options Overview
 
@@ -15,6 +15,7 @@
  - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present, which is why we offer 6 logo variations.
 
  - The <a href="https://github.com/sezzle/sezzle-js" target="_blank">Widget Script</a> is the simplest to implement, maintain, and track for maintenance purposes.
+    - The widget script is accompanied by a configuration, which can be implemented by Sezzle and stored on our server, or can be manually implemented by the merchant directly within the store's theme.
  - The <a href="https://github.com/sezzle/static-widgets" target="_blank">Static Widget</a> is a bundled JavaScript file that is added to the theme and called into the product and cart pages. Some customizations are supported through a local configuration. This eliminates the need to communicate with Sezzle's widget-server and removes the guess-work used by the widget script to calculate the price and place the widget. It is more tedious to implement, harder to track, and requires either the merchant's development team to maintain or more effort to coordinate maintenance with the Widget team.
  - The <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-shopify-buy-static-widget/sezzle-shopify-buy-static-widget.html" target="_blank">Static Widget Lite</a> is a concise HTML snippet with one script to handle the installment price calculations. It was developed particularly for Shopify Buy, which could not retrieve JavaScript from the widget-server or from a separate file within the theme.
  - The React Widget is a script built in ReactJS for use in asynchronous sites.
@@ -41,7 +42,7 @@ The documentation contained in this folder refers solely to widgets and the stat
 
 ## Escalation Matrix
 
-During the onboarding process, inquiries can be directed to your Sezzle account manager (Sales or Merchant Success). After the initial setup, please direct inquiries to <a href="https://sezzle.com/contact-us/merchant-support" target="_blank">Merchant Support</a>.
+During the onboarding process, inquiries can be directed to your Sezzle account manager (Sales or Merchant Success). After the initial setup, please direct inquiries to <a href="https://sezzle.com/contact-us/merchant-support" target="_blank">Merchant Support</a>. If another team needs to be consulted, Support will contact the applicable group.
 
  * Sales - benefits of choosing Sezzle, contract management
 
