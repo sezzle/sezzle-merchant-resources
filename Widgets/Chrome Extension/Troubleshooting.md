@@ -1,6 +1,6 @@
 # Merchant Widget Chrome Extension Troubleshooting Guide
 
-The Sezzle Widget Chrome Extension is designed for simplicity. Some basic issues can be resolved using the Chrome Extension, as outlined below. If you are unable to resolve all widget issues on your site by following these steps, please select `Request Addition of Widgets` in the Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>, or click the [Contact Us](#request-help) button in the Help Center menu and tell us more about the issue you are experiencing.
+The Sezzle Widget Chrome Extension is designed for simplicity. Some basic issues can be resolved using the Chrome Extension, as outlined below. If you are unable to resolve all widget issues on your site by following these steps, please select `Request Addition of Widgets` in the Merchant Dashboard Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>, or click the [Contact Us](#request-help) button in the Help Center menu and tell us more about the issue you are experiencing.
 
 Please note: If your site uses cookies, be sure to clear your cache after attempting to fix the widget to ensure you are able to see updates.
 
@@ -38,7 +38,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 6: The user is viewing the page from an unsupported country.
     - Try to update the Supported Countries to `All Countries`.
  * Reason 7: The widget script is missing or incorrect on this webpage.
-    - Add/update the widget script manually to your theme. The code snippet and instructions can be found in the Add Widgets step of your Sezzle Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>.
+    - Add/update the widget script manually to your theme. The code snippet and instructions can be found in the Add Widgets step of your Sezzle Merchant Dashboard Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>.
  * Reason 8: The widget is disabled for this site.
     - On the Main Menu, click `Enable Widget`.
  * Reason 9: The price is rendered after the widget script has run.
@@ -93,10 +93,10 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
     - Try to update the Widget Position.
     - Try to update the Desktop Alignment.
  * Reason 2: The price element's alignment is different on desktop vs mobile.
-    - Try to update the Desktop Alignment, Desktop Minimum Width, and Mobile Alignment. The Desktop Minimum Width can be found as follows:   
+    - Try to update the Desktop Alignment, Desktop Minimum Width, and Mobile Alignment. The Desktop Minimum Width can be found as follows:
         1) Right-click on the webpage, then select Inspect.
-        2) In the toolbar, click the Devices icon (looks like a phone and a tablet). 
-        3) In the Device dropdown, select Responsive. Click and drag the window width until the layout changes. 
+        2) In the toolbar, click the Devices icon (looks like a phone and a tablet).
+        3) In the Device dropdown, select Responsive. Click and drag the window width until the layout changes.
         4) With the window at the width just wider than the change point, note the first number value next to the device type dropdown.
         5) Select the closest value available in the Desktop Minimum Width dropdown of the Sezzle Widget Chrome Extension, then set Desktop and Mobile alignments as applicable.
  * Reason 3: The widget's alignment is correct, but the parent element's settings are shifting the widget laterally.
@@ -108,7 +108,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
     - Try to update the Widget Position.
     - Try to update the Right and Left Margin values. Higher margin values move the widget farther from the adjacent element, and negative margin values move the widget closer to the adjacent element in the applicable direction.
  * Reason 2: The widget is in the correct position, but the selected Widget Message exceeds the widget's default maximum width.
-    - Try to update the Maximum Width values. 
+    - Try to update the Maximum Width values.
 
 ### <a id="issue-7"></a>Issue 7: My widget does not contrast well with the theme of the webpage.
  * Reason 1: The site theme is a dark-mode aesthetic.
@@ -160,7 +160,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
 
 ## <a id="request-help"></a>Reaching out to Sezzle
 
-If you need standard widget assistance and have not completed the Setup Checklist in your Sezzle Merchant Dashboard, please click `Request Addition of Widgets` within the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>. Otherwise, follow the below guidelines when reaching out to Sezzle.
+If you need standard widget assistance and have not completed the Setup Checklist in your Sezzle Merchant Dashboard, please click `Request Addition of Widgets` within the Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>. Otherwise, follow the below guidelines when reaching out to Sezzle.
 
 ### <a id="issue-13"></a>Issue 13: My issue is listed in the Troubleshooting Guide, but the solution did not work.
 Reach out to Sezzle with the applicable issue description(s) from above, the website URL and a screenshot of the issue or a sample URL of the product page experiencing the issue, and any additional notes regarding the issue. Including the "Reason" description is not necessary, but you may include it if you know which is causing the issue.
@@ -185,24 +185,24 @@ Sezzle offers the following special features by request. Reach out to Sezzle wit
  * I want to add widgets to the quick cart.
  * I want to add widgets to the product preview page.
  * I want to add widgets to the collections page.
-    - The more widgets on a page, the more difficult it is to ensure quality performance. 
+    - The more widgets on a page, the more difficult it is to ensure quality performance.
  * I want to hide widgets for certain products or collections.
     - We can hide the widgets on certain products, but it does not prevent the customer from checking out with Sezzle.
  * I want to hide widgets when a certain variant is selected.
     - If a customer attempts to checkout with Sezzle when purchasing a subscription item, they will be charged for the initial transaction, but Sezzle will not auto-charge the customer for each subsequent issuance.
  * I want to hide widgets below and/or above a certain price.
-    - It is recommended to update the widget text to reflect "on orders over X" instead of hiding the widgets. Not only does this provide transparency to the customer and prevent confusion, but it may motivate upsell. 
+    - It is recommended to update the widget text to reflect "on orders over X" instead of hiding the widgets. Not only does this provide transparency to the customer and prevent confusion, but it may motivate upsell.
     - Price thresholds should take into account the price of products, pre-Sezzle AOV, and Sezzle credit limits.
     - Hiding the widgets outside of the price threshold does not prevent the customer from selecting Sezzle at checkout. Please reach out to Merchant Support to request a <i>gateway</i> minimum.
  * I want to test the widget on an unpublished theme.
     - The Chrome Extension provides a preview of the widget appearance. However, if you wish to test the widget performance across the entire site, the process is as follows:
       1) If widgets are already on the site, the config will need to be added locally to the theme code.
          a. Right-click on the page and select `Inspect`.
-         b. On the `Sources` tab, open the folder `widget.sezzle.com`
+         b. On the `Sources` tab, open the folder `widget.sezzle` (North America) or `widget.eu.sezzle` (EU)
          c. Find the file with the object `document.sezzleConfig`. Copy this object. Note: If it is <i>inside</i> an if/else conditional statement, copy the entire if/else statement.
          d. In your theme code, create a `<script type="text/javascript"></script>` above the existing widget.sezzle script, then paste the `document.sezzleConfig` between the `><`.
          e. Reach out to Sezzle to delete the config from the widget-server. The server-side config will override the local one, and therefore must be removed to test local configs.
-         f. In the unpublished theme, copy+paste the two scripts (`document.sezzleConfig` and `widget.sezzle`) from the live theme into the applicable files, then make updates as needed. Complete documentation can be found <a href="../4-Local Config.md" target="_blank">here</a>.
+         f. In the unpublished theme, copy+paste the two scripts [`document.sezzleConfig` and `widget.sezzle` (North America) or `widget.eu.sezzle` (EU) ] from the live theme into the applicable files, then make updates as needed. Complete documentation can be found <a href="../4-Local Config.md" target="_blank">here</a>.
  * I am concerned about the loading speed of the widget.
     - The widget is designed to load after all other page content has been rendered and usually takes mere milliseconds. This ensures all the necessary data is present to render the widget correctly and safeguards against the widget causing issues or delays to your site. You can review your site performance using <a href="https://gtmetrix.com/" target="_blank">GTMetrics</a> to confirm the true cause of the delay.
     - We offer an alternative <a href="https://github.com/sezzle/static-widgets" target="_blank">static widget</a> product that lives entirely within the theme code. It removes the need to reach out to Sezzle's widget server and provides a different level of control over the widget's performance. The downside is that Sezzle is unable to monitor performance or make changes, increasing the effort required from the merchant when maintenance is needed.

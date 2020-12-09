@@ -1,5 +1,5 @@
 
-# Widget Integration FAQs  
+# Widget Integration FAQs
 
 ## What are the benefits of adding widgets to my site?
 The Sezzle widget calculates and displays the bi-weekly installment amount based on the product price or cart total. Displaying the Sezzle widget on product and cart pages has been shown to increase AOV and overall conversion rates. Widget opt-in is also a prerequisite to being featured in Sezzle promotions and the Sezzle store directory.
@@ -8,7 +8,7 @@ The Sezzle widget calculates and displays the bi-weekly installment amount based
 Once your merchant application has been approved, please ensure that the Sezzle gateway is installed properly. If your website is on a platform other than Shopify, please ensure the Sezzle script is added to the product and/or cart page.
 
 ## What are my options for installing the widget? How does the process work?
-Our standard product is the Sezzle widget script, which can be customized via a configuration either saved in the Sezzle widget-server or added locally to the site's theme. When a page loads, the script reaches out to the Sezzle server for the Javascript and config saved to the applicable merchant ID and renders the widget. 
+Our standard product is the Sezzle widget script, which can be customized via a configuration either saved in the Sezzle widget-server or added locally to the site's theme. When a page loads, the script reaches out to the Sezzle server for the Javascript and config saved to the applicable merchant ID and renders the widget.
 
 Alternatively, we offer a static widget, which stores all of the configuration and accompanying Javascript entirely in the theme. While both the widget script with local config and the static widget have their advantages, the widget script with server config allows the Sezzle widget team to monitor performance and provide timely support.
 
@@ -22,12 +22,12 @@ Yes, you can test the widget on your staging site before publishing it on your l
 When the theme is changed, the Sezzle widget script will need to be re-added to the applicable files in the new theme. The config will also need to be updated to correspond to the new theme. If the config is on the Sezzle widget-server, it can be updated any time upon request or through the Chrome Extension. If the config is local, it will need to be copied to the new theme above the widget script and, at minimum, the `targetXPath` updated. Please note, if there is a config on the server, any local config will be disregarded.
 
 ## I am using a <a href="https://www.shopify.com/partners/blog/development-workflow" target="_blank">CI/CD workflow</a> or <a href="https://www.shopify.com/plus/solutions/headless-commerce" target="_blank">headless CMS</a> - can I still use Sezzle?
-Yes, in this case, you will simply need to add the widget script manually to the master theme code. The configuration options typically remain unchanged. 
+Yes, in this case, you will simply need to add the widget script manually to the master theme code. The configuration options typically remain unchanged.
 
 However, if multiple sites are managed from the same master code, the static widget is recommended, as the dynamic widget script can only be tied to one merchant ID.
 
 ## I am using Shopify Buy with a non-Shopify storefront - can I still use Sezzle?
-Yes, in this case, you will need to <a href="https://vimeo.com/399997582/12360671e9" target="_blank">add the gateway to Shopify</a>, and the <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-shopify-buy-static-widget/sezzle-shopify-buy-static-widget.html" target="_blank">static widget lite</a> using the instructions provided. 
+Yes, in this case, you will need to <a href="https://vimeo.com/399997582/12360671e9" target="_blank">add the gateway to Shopify</a>, and the <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-shopify-buy-static-widget/sezzle-shopify-buy-static-widget.html" target="_blank">static widget lite</a> using the instructions provided.
 
 Product details flow from Shopify into an iframe on the non-Shopify storefront. However, neither the widget script nor the regular static widget can interact with the iframe. The static widget lite is therefore added <i>inside</i> the Shopify product details.
 
@@ -41,13 +41,13 @@ Yes, the widget script is designed to listen for mutations to the price element 
 Yes, the widget is designed on Chrome but should be compatible with all browsers, such as IE11 or Firefox. If you are on a non-Chrome browser and experience an issue, please contact Sezzle Support.
 
 ## Will the widget affect my site’s load performance?
-No, the widget does not affect the rest of your website’s load performance, as it is designed to load last. However, for this reason, there may be a slight delay before the widget appears. If there are any doubts your site's performance, you may view a full report on <a href="https://gtmetrix.com/" target="_blank">GTMetrix.com</a>. 
+No, the widget does not affect the rest of your website’s load performance, as it is designed to load last. However, for this reason, there may be a slight delay before the widget appears. If there are any doubts your site's performance, you may view a full report on <a href="https://gtmetrix.com/" target="_blank">GTMetrix.com</a>.
 
 ## I am using a page-builder app - can I still use Sezzle?
-Yes, you will need to add the Sezzle wiget script manually to at least one file. For Shopify sites where only a few custom templates are created, add the script to each custom template. For non-Shopify or if there are a lot of custom templates, the script can alternatively be added to either the footer file or the primary index/theme file. File names vary by platform and theme, but general instructions for adding the script can be found in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a> of your Sezzle Merchant Dashboard.
+Yes, you will need to add the Sezzle wiget script manually to at least one file. For Shopify sites where only a few custom templates are created, add the script to each custom template. For non-Shopify or if there are a lot of custom templates, the script can alternatively be added to either the footer file or the primary index/theme file. File names vary by platform and theme, but general instructions for adding the script can be found in the Setup Checklist <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>of your Sezzle Merchant Dashboard.
 
 ## Can the widgets be displayed on the homepage and any other page besides product and cart pages?
-Yes, it is possible to make widgets visible on additional pages. The Sezzle widget script will need to be added to the applicable code file, and a config group created for the additional page type. General instructions for adding the script can be found in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a> of your Sezzle Merchant Dashboard. Configuring a page with multiple price targets can be tricky, so adding widgets to the collections page or product previews is not recommended.
+Yes, it is possible to make widgets visible on additional pages. The Sezzle widget script will need to be added to the applicable code file, and a config group created for the additional page type. General instructions for adding the script can be found in the Setup Checklist <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a> of your Sezzle Merchant Dashboard. Configuring a page with multiple price targets can be tricky, so adding widgets to the collections page or product previews is not recommended.
 
 ## Does the widget support multiple languages?
 Yes, the widget and modal have built-in translations in French and German for multilingual websites. By default, translation occurs based on the user's default browser language. Update the Language Settings in the Chrome Extension based on how the translation should occur. If the widget is translating but not the modal, please reach out to Sezzle Support. No other languages are supported at this time.
@@ -96,15 +96,20 @@ Yes, we can hide the widget based on the selected currency by adding a custom fu
 Yes, you can disable the widget at any time, or enable them again as needed through the Chrome Extension or upon request.
 
 ## How do I know the correct Sezzle script is installed on my website?
-You can easily verify whether the correct Sezzle script is present in the website by going to Inspect Elements and/or View Page Source and search for `widget.sezzle` then verify whether it is reflecting the correct Merchant ID for this website URL, which can be found in the <a href="https://dashboard.sezzle.com/merchant/settings/business" target="_blank">Business Settings</a> of your Sezzle Merchant Dashboard. To add or edit the widget script, see the code snippet and instructions in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a> of your Sezzle Merchant Dashboard.
+You can easily verify whether the correct Sezzle script is present in the website by going to Inspect Elements and/or View Page Source and search for `widget.sezzle` (North America) or `widget.eu.sezzle` (EU) then verify whether it is reflecting the correct Merchant ID for this website URL, which can be found in the Business Settings <a href="https://dashboard.sezzle.com/merchant/settings/business" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/settings/business" target="_blank">(EU)</a> of your Sezzle Merchant Dashboard. To add or edit the widget script, see the code snippet and instructions in the Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a> of your Sezzle Merchant Dashboard.
 
-Example: 
-```html 
+US Example:
+```html
 <script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=12a34bc5-6de7-890f-g123-4hi5678jk901"></script>
 ```
 
+EU Example:
+```html
+<script src="https://widget.eu.sezzle.com/v1/javascript/price-widget?uuid=12a34bc5-6de7-890f-g123-4hi5678jk901"></script>
+```
+
 ## How can I confirm what widget configuration is being applied to my site?
-After installing the widget, the extension will show a confirmation message that your configuration has been saved. Alternatively, go to a product page and click Inspect. Under the Sources tab, open the `widget.sezzle.com` folder. One of these files will reflect the config being applied. Alternatively, type `document.sezzleConfig` into the Console.
+After installing the widget, the extension will show a confirmation message that your configuration has been saved. Alternatively, go to a product page and click Inspect. Under the Sources tab, open the `widget.sezzle` (North America) or `widget.eu.sezzle` (EU) folder. One of these files will reflect the config being applied. Alternatively, type `document.sezzleConfig` into the Console.
 
 ## Is there a way to contact the Sezzle support team?
 The Contact Us button in the Sezzle Chrome Extension will open a contact form to `merchantsupport@sezzle.com` where the user can draft a description of the issue they are facing. The Contact Us form creates an incident in our centralized ticketing software, which is then routed to Merchant Support. It may then be re-assigned to a more appropriate team if applicable.

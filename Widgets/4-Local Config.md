@@ -1,5 +1,5 @@
 # Local Config
-The most important config options are `targetXPath` and `renderToPath`. 
+The most important config options are `targetXPath` and `renderToPath`.
 - `targetXPath` tells the widget where to find and extract the product price to calculate the installment price correctly. If the `targetXPath` is incorrect, it may cause one or more of the following issues:
     - No widgets
     - Duplicate widgets
@@ -9,7 +9,7 @@ The most important config options are `targetXPath` and `renderToPath`.
 These two options are also the most difficult to identify correctly. For both, the following conditions apply:
 
  * ID names need to be preceded by a `#` character. If used in `targetXPath`, an ID can only be in the first position of the string.
- * Class names need to be preceded by a `.` character. 
+ * Class names need to be preceded by a `.` character.
  * Tag names need to be followed by the applicable index. The format of a tagname is as follows: tagName-Index (e.g. `SPAN-2`). The indexes are zero-based, such that the first element of the specified type within the parent element is at index 0.
  * The path may contain multiple subpaths. All subpaths need to be separated by the ’/’ character.
 
@@ -54,7 +54,7 @@ RIGHT: If `targetXPath: 'ProductMeta__PriceList/SPAN-0'` is applied, the widget 
 RIGHT: Alternatively, `targetXPath: 'ProductMeta__PriceList'` can be used with `ignoredPriceElements: ['.Price--compareAt']` to accomplish the same result.
 
 
-Let's look at another, more complicated, example. Below is the product price area from the Shopify theme Supply: 
+Let's look at another, more complicated, example. Below is the product price area from the Shopify theme Supply:
 
 ```html
 <ul class="inline-list product-meta">
@@ -90,7 +90,7 @@ WRONG: If `targetXPath: '.product-meta/#productPrice-product-template'` is appli
 WRONG: If `targetXPath: '#productPrice-product-template'` is applied, one widget is created, but the widget text will reflect all the inner text content in the installment price.
 
 WRONG: If `targetXPath: '#productPrice-product-template/SPAN-0'` is applied, the installment price will be incorrect since the price text does not have a period separating dollars from cents.
-    Note: This <i>can</i> work if the theme is modified to add the period delimiter. 
+    Note: This <i>can</i> work if the theme is modified to add the period delimiter.
 
 WRONG: If `targetXPath: '#productPrice-product-template/.visually-hidden'` is applied, two widgets will be created, since that class appears twice within the parent container specified by the ID. Also the widget text will reflect the non-price text in the installment price.
 
@@ -157,7 +157,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 ## Content
 
-`theme` controls the Sezzle logo version that appears inside the widget. 
+`theme` controls the Sezzle logo version that appears inside the widget.
 * `'light'` renders a color logo with purple text for light-colored backgrounds.
 * `'dark'` renders a color logo with white text for dark-colored backgrounds.
 * `'grayscale'` renders a black gradient logo with black text for medium- or light-colored backgrounds.
@@ -185,7 +185,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 `ignoredFormattedPriceText` can be used for non-price text that cannot be targeted by `ignoredPriceElements` due to being 1) not contained in a child element, 2) is not a direct child of the `targetXPath` element, or 3) is otherwise failing to be hidden by `ignoredPriceElements`. It will accept text such as `'Regular price'` or an array of text strings such as `['Regular price', 'Sale price']`.
 * Note: The given value must match the text content substring exactly, including capitalization, spacing, and punctuation.
 
-`altVersionTemplate` determines the text content of the widget. It will accept a string for single-language sites, or an object with `en`, `fr`, and `de` keys for multi-lingual sites. Specific placeholder templates are available to insert non-text content within the text: 
+`altVersionTemplate` determines the text content of the widget. It will accept a string for single-language sites, or an object with `en`, `fr`, and `de` keys for multi-lingual sites. Specific placeholder templates are available to insert non-text content within the text:
 * `%%price%%` inserts the calculated installment price. <strong>Recommended.</strong>
 * `%%logo%%` inserts the Sezzle logo per the specified theme. <strong>Required.</strong>
 * `%%info%%` inserts an &#9432; icon that opens the Sezzle modal window.<strong>Recommended.</strong>
@@ -355,8 +355,8 @@ document.sezzleConfig = {
             "splitPriceElementsOn": "",
             "ignoredPriceElements": [],
             "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
-            "altVersionTemplate": { 
-                "en": "or 4 interest-free payments of %%price%% with %%logo%% %%info%%", 
+            "altVersionTemplate": {
+                "en": "or 4 interest-free payments of %%price%% with %%logo%% %%info%%",
                 "fr": "ou 4 paiement de %%price%% sans intérêts avec %%logo%% %%info%%",
                 "de": "oder 4 zinslose Zahlungen von je %%price%% mit %%logo%% %%info%%"
             },
@@ -410,3 +410,6 @@ document.sezzleConfig = {
 
 * Cannot read property 'parentNode' of undefined
     - The `renderToPath` is attempting to target a child element that doesn't exist within the applicable parent container. Try adding another `../` to the `renderToPath`, or change the child element target identifier.
+
+* renderToPath must be of type string
+	- TBD
