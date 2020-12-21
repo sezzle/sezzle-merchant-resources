@@ -4,6 +4,7 @@
 
 ## Main Menu
  * Log into the Sezzle Merchant Dashboard
+	- If you have multiple sites registered with Sezzle, you must have the applicable profile selected for the site you wish to edit.
  * Go to the website, and open any product page (sale item recommended).
  * Click the Sezzle Chrome Extension to begin.
 
