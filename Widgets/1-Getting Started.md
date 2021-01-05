@@ -30,7 +30,11 @@ The documentation contained in this folder refers solely to widgets and the stat
 
  * Modal - the Sezzle information window that opens when the widget is clicked. Available in <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.0" target="_blank">Color</a> or <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.1" target="_blank">Grayscale</a>.
 
- * <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">Static Checkout Button</a> - a Sezzle button that redirects to the Shopify native checkout when the regular checkout button uses a third-party app (Bold, Carthook, Zipify, UpSell).
+ * <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">Static Checkout Button</a> - a Sezzle button that appears below the regular checkout button on the cart page and redirects to the Shopify native checkout when the regular checkout button uses a third-party app (Bold, Carthook, Zipify, UpSell) or when the customer is a Shop Pay user. Available for Shopify merchants only.
+
+ * <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-express-alt-banner/sezzle-express-alt-banner.html" >Express Alternative Banner</a> - a Sezzle banner that appears below the Express checkout buttons on the checkout page and informs the customers that Sezzle is available on the Payments tab. Available for Shopify Plus merchants only.
+
+ * <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-checkout-installment-widget/sezzle-checkout-installment-widget.js" >Checkout Installment Widget</a> - a Sezzle box that appears below the payment method on the checkout page, detailing the customer's payment schedule and installment amounts.
 
  * <a href="https://docs.sezzle.com/" target="_blank">Gateway</a> - the Sezzle payment method listed at Checkout.
 
