@@ -16,7 +16,7 @@ Alternatively, we offer a static widget, which stores all of the configuration a
 The official turnaround time for widget implementation or update requests is within 1 week. However most requests are completed within 1-2 business days.
 
 ## Can I test the widget on my staging site before publishing it on my live storefront?
-Yes, you can test the widget on your staging site before publishing it on your live storefront using the local config and widget script. If there is a config on the server for your live storefront, it will need to be added locally to the live theme and removed from the server before you begin testing on the unpublished theme.
+Yes, you can test the widget on your staging site before publishing it on your live storefront using the local config and widget script. If there is a config on the server for your live storefront, it will need to be added locally to the live theme and removed from the server before you begin testing on the unpublished theme. If you need assistance with this process, set up Sezzle as an admin user, or reach out to Sezzle to request <a href="https://help.shopify.com/en/partners/dashboard/managing-stores/request-access" target="_blank">Collaborator access</a> (Shopify only).
 
 ## I change my theme frequently - can I have full control of the widget integration to prevent downtime?
 When the theme is changed, the Sezzle widget script will need to be re-added to the applicable files in the new theme. The config will also need to be updated to correspond to the new theme. If the config is on the Sezzle widget-server, it can be updated any time upon request or through the Chrome Extension. If the config is local, it will need to be copied to the new theme above the widget script and, at minimum, the `targetXPath` updated. Please note, if there is a config on the server, any local config will be disregarded.
@@ -35,10 +35,10 @@ Product details flow from Shopify into an iframe on the non-Shopify storefront. 
 Yes, but you will need to add the Sezzle <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-checkout-button-html/sezzle-checkout-button.html" target="_blank">static checkout button</a>. When the regular checkout button is clicked, the user is taken to the third-party checkout, with which Sezzle does not offer a direct integration. However, when the Sezzle static checkout button is clicked, the user is redirected to the Shopify native checkout.
 
 ## My site pages load asynchronously - can I still use Sezzle?
-Yes, the widget script is designed to listen for mutations to the price element and update accordingly. However, if it is unable to observe the changes to the price element, the <a href="https://github.com/sezzle/static-widgets" target="_blank">static widget</a> can be used. We also have a React widget version available upon request, or custom event listeners can be set up within the config for the widget script.
+Yes, the widget script is designed to listen for mutations to the price element and update accordingly. However, if it is unable to observe the changes to the price element, the <a href="https://github.com/sezzle/static-widgets" target="_blank">static widget</a> can be used. We also have a React widget version available through <a href="https://www.npmjs.com/package/sezzle-react-widget" target="_blank">NPM</a>, or custom event listeners can be set up within the config for the widget script.
 
 ## Is the widget compatible with all browsers?
-Yes, the widget is designed on Chrome but should be compatible with all browsers, such as IE11 or Firefox. If you are on a non-Chrome browser and experience an issue, please contact Sezzle Support.
+Yes, the widget is designed on Chrome but should be compatible with all browsers, such as IE11 or Firefox. If you are on a non-Chrome browser and experience an issue, please reach out to Sezzle Support.
 
 ## Will the widget affect my site’s load performance?
 No, the widget does not affect the rest of your website’s load performance, as it is designed to load last. However, for this reason, there may be a slight delay before the widget appears. If there are any doubts your site's performance, you may view a full report on <a href="https://gtmetrix.com/" target="_blank">GTMetrix.com</a>.
@@ -50,24 +50,26 @@ Yes, you will need to add the Sezzle wiget script manually to at least one file.
 Yes, it is possible to make widgets visible on additional pages. The Sezzle widget script will need to be added to the applicable code file, and a config group created for the additional page type. General instructions for adding the script can be found in the Setup Checklist <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a> of your Sezzle Merchant Dashboard. Configuring a page with multiple price targets can be tricky, so adding widgets to the collections page or product previews is not recommended.
 
 ## Does the widget support multiple languages?
-Yes, the widget and modal have built-in translations in French and German for multilingual websites. By default, translation occurs based on the user's default browser language. Update the Language Settings in the Chrome Extension based on how the translation should occur. If the widget is translating but not the modal, please reach out to Sezzle Support. No other languages are supported at this time.
+Yes, the widget and modal have built-in translations in French, German, and Spanish for multilingual websites. By default, translation occurs based on the user's default browser language. Update the Language Settings in the Chrome Extension based on how the translation should occur. If the widget is translating but not the modal, please reach out to Sezzle Support. No other languages are supported at this time.
 
 ## Can the color of the Sezzle logo be changed?
-Yes, you can update the logo to coordinate and contrast with the background color of your website. The Sezzle logo `theme` options available are `dark`, `light`, `grayscale`, `black-flat`, `white`, `white-flat`. However, it is against our branding guidelines to otherwise customize the logo color.
+Yes, you can update the logo to coordinate and contrast with the background color of your website. The Sezzle logo `theme` options available are `dark`, `light`, `grayscale`, `black-flat`, `white`, `white-flat`, `purple-pill`, or `white-pill`. However, it is against our branding guidelines to otherwise customize the logo color.
 
 <div style="background: white; color: #392558; width: fit-content;">
 <span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
 <span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
 <span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
+<span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_PurplePill.svg' alt='purple pill Sezzle logo'></span>
 </div>
 <div style="background: black; color: white; padding: 10px; width: fit-content;">
 <span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
 <span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
 <span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
+<span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhitePill.svg' alt='white pill Sezzle logo'></span>
 </div>
 
 ## Can we change the color of the modal?
-Yes, there are two modal versions available: `color` or `grayscale`. No other changes are supported at this time.
+Yes, there are two modal versions available: `color` or `grayscale`. Alternatively, custom HTML and CSS can be introduced to replace our default modals.
 
 ## Can I customize the verbiage in the widget?
 Yes, the verbiage in the widget can be customized. Some branding-approved options are available in the Chrome Extension, but we can make a custom template by special request.
@@ -87,7 +89,7 @@ Yes, we can disable the widget for particular products. Commonly requested items
 Yes, we can set minimum and maximum thresholds for displaying the widgets. When setting a threshold, please keep in mind your product prices and AOV and Sezzle's credit limits. It is advisable to instead show the widgets on all prices but update the language to state the threshold. A widget minimum or maximum does not prevent a customer from checking out with Sezzle outside of the approved range. Please specify if a gateway minimum is also needed, or if you simply do not wish to advertise Sezzle outside of the threshold.
 
 ## Can I hide/show the widgets by country?
-Yes, the Chrome Extension has options for US, CA, or both. Widgets are also visible in India by default, as that is the location of most of Sezzle's widget engineers. We can also add additional countries to your widget white-list upon request.
+Yes, the Chrome Extension has options for US (including territories), CA, or both. Widgets are also visible in India by default, as that is the location of most of Sezzle's widget engineers. We can also add additional countries to your widget white-list upon request.
 
 ## Can I hide the widget based on selected currency?
 Yes, we can hide the widget based on the selected currency by adding a custom function that listens for changes and updates the widget's display settings accordingly.

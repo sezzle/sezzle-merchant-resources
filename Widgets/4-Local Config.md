@@ -164,16 +164,20 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 * `'white'` renders a white gradient logo with white text for medium- or dark-colored backgrounds.
 * `'black-flat'` renders a black monochrome logo with black text for medium- or light-colored backgrounds.
 * `'white-flat'` renders a white monochrome logo with white text for medium- or dark-colored backgrounds.
+* `'purple-pill'` renders a color logo with white text on a purple background for medium- or light-colored backgrounds.
+* `'white-pill'` renders a color logo with purple text on a white background for medium- or dark-colored backgrounds.
 
 <div style="background: white; color: #392558; width: fit-content;">
 <span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
 <span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
 <span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
+<span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_PurplePill.svg' alt='purple pill Sezzle logo'></span>
 </div>
 <div style="background: black; color: white; padding: 10px; width: fit-content;">
 <span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
 <span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
 <span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
+<span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhitePill.svg' alt='white pill Sezzle logo'></span>
 </div>
 <br/>
 
@@ -193,7 +197,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 * `%%link%%` inserts a <u>'Learn more'</u> text link that opens the Sezzle modal window.
 * `%%line-break%%` inserts a `<br/>` line-break element.
 
-`language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the user's default browser language. It can accept `'en'` or `'fr'` for one-language sites, or a function or query to identify the in-page translation, for example: `document.querySelector('html).lang.substring(0,2).toLowerCase()`
+`language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the user's default browser language. It can accept `'en'`, `'fr'`, `'de'`,  or `'es'` for one-language sites, or a function or query to identify the in-page translation, for example: `document.querySelector('html).lang.substring(0,2).toLowerCase()`
 
 
 ## Style
@@ -230,7 +234,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 `urlMatch` restricts the application of a config group to pages where the URL contains the provided text string. For example: `urlMatch: 'cart'` will only apply that config group to the cart page, or `urlMatch: 'shirt'` will only apply that config group to products where the word 'shirt' is present in the URL.
 
-`supportedCountryCodes` controls which countries in which to show the widget based on IP address. By default, the value is `['US', 'CA', 'IN']`. However, country codes can be added or removed as desired. Alternatively, `forcedShow: true` allows the widget to show for all visitors, regardless of IP address.
+`supportedCountryCodes` controls which countries in which to show the widget based on IP address. By default, the value is `['US', 'CA', 'IN', 'PR', 'GU', 'MP', 'AS', 'VI']`. However, country codes can be added or removed as desired. Alternatively, `forcedShow: true` allows the widget to show for all visitors, regardless of IP address.
 
 `hideClasses` allows the Sezzle widget script to hide other elements on the same page, such as an old custom Sezzle widget or an old BNPL provider's widget. Values should be given as a class or array of classes.
 
@@ -358,7 +362,8 @@ document.sezzleConfig = {
             "altVersionTemplate": {
                 "en": "or 4 interest-free payments of %%price%% with %%logo%% %%info%%",
                 "fr": "ou 4 paiement de %%price%% sans intérêts avec %%logo%% %%info%%",
-                "de": "oder 4 zinslose Zahlungen von je %%price%% mit %%logo%% %%info%%"
+                "de": "oder 4 zinslose Zahlungen von je %%price%% mit %%logo%% %%info%%",
+				"es": "o 4 pagos sin intereses de %%price%% con %%logo%% %%info%%"
             },
             "color": "inherit",
             "fontSize": 12,
@@ -380,8 +385,8 @@ document.sezzleConfig = {
             "urlMatch": ""
         }
     ],
-    "supportedCountryCodes": ["US","CA","IN"],
-    "language": navigator.language.substring(0,2).toLowerCase() || 'en'
+    "supportedCountryCodes": ["US", "CA", "IN", "PR", "GU", "MP", "AS", "VI"],
+    "language": navigator.language.substring(0,2).toLowerCase() || "en"
 }
 ```
 

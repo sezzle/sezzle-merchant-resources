@@ -12,20 +12,20 @@
 
 * What are my customization options for widgets, and what is the installation process?
 
- - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present, which is why we offer 6 logo variations.
+ - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present, which is why we offer 8 logo variations.
 
  - The <a href="https://github.com/sezzle/sezzle-js" target="_blank">Widget Script</a> is the simplest to implement, maintain, and track for maintenance purposes.
     - The widget script is accompanied by a configuration, which can be implemented by Sezzle and stored on our server, or can be manually implemented by the merchant directly within the store's theme.
- - The <a href="https://github.com/sezzle/static-widgets" target="_blank">Static Widget</a> is a bundled JavaScript file that is added to the theme and called into the product and cart pages. Some customizations are supported through a local configuration. This eliminates the need to communicate with Sezzle's widget-server and removes the guess-work used by the widget script to calculate the price and place the widget. It is more tedious to implement, harder to track, and requires either the merchant's development team to maintain or more effort to coordinate maintenance with the Widget team.
+ - The <a href="https://github.com/sezzle/static-widgets" target="_blank">Static Widget</a> is a bundled JavaScript file that is added to the theme and renders on the product and cart pages. Some customizations are supported through a local configuration. This eliminates the need to communicate with Sezzle's widget-server and removes the guess-work used by the widget script to calculate the price and place the widget. It is more tedious to implement, harder to track, and requires either the merchant's development team to maintain or more effort to coordinate maintenance with the Widget team.
  - The <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-shopify-buy-static-widget/sezzle-shopify-buy-static-widget.html" target="_blank">Static Widget Lite</a> is a concise HTML snippet with one script to handle the installment price calculations. It was developed particularly for Shopify Buy, which could not retrieve JavaScript from the widget-server or from a separate file within the theme.
  - The React Widget is a script built in ReactJS for use in asynchronous sites.
 
 ## Product Disambiguation
 
-The documentation contained in this folder refers solely to widgets and the static checkout button. To clarify whether this is the correct document for your needs, we have provided a brief overview of Sezzle products that are sometimes mistakenly directed to the Widget team.
+The documentation contained in this folder refers solely to the widgets that appear on the product and cart pages. To clarify whether this is the correct document for your needs, we have provided a brief overview of Sezzle products that are sometimes confused with the widgets, though many of these products are also managed by the Widget Team.
 
  * Widgets - the Sezzle promotional asset that appears below the price on a product or cart page, notifying the user that Sezzle is available at checkout.
-     * <a href="https://github.com/sezzle/sezzle-js" target="_blank">Dynamic Widgets</a> - the Sezzle script that retrieves the Javascript from Sezzle's widget server and renders the widget according to the configuration either also saved in the widget server or provided locally.
+     * <a href="https://github.com/sezzle/sezzle-js" target="_blank">Dynamic Widgets</a> - the Sezzle script that retrieves the Javascript from Sezzle's widget server and renders the widget according to the configuration either also saved in the widget server or provided locally within the theme.
      * <a href="https://github.com/sezzle/static-widgets" target="_blank">Static Widgets</a> - the Sezzle Javascript and accompanying configuration added to the store's theme files.
 
  * Modal - the Sezzle information window that opens when the widget is clicked. Available in <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.0" target="_blank">Color</a> or <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.1" target="_blank">Grayscale</a>.
@@ -56,6 +56,6 @@ During the onboarding process, inquiries can be directed to your Sezzle account 
 
  * Platform Integration - gateway implementation (direct integration apps and open API)
 
- * Widget Integration - widget implementation and static checkout button
+ * Widget Integration - widget implementation and other static products
 
  * Marketing - promoting Sezzle on websites, emails, and social media
