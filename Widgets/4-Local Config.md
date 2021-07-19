@@ -166,18 +166,23 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 * `'white-flat'` renders a white monochrome logo with white text for medium- or dark-colored backgrounds.
 * `'purple-pill'` renders a color logo with white text on a purple background for medium- or light-colored backgrounds.
 * `'white-pill'` renders a color logo with purple text on a white background for medium- or dark-colored backgrounds.
+* `'pride-pill'` renders a color logo with purple text on a purple background for medium- or light-colored backgrounds.
+* `'pride-whitepill'` renders a color logo with purple text on a white background for medium- or dark-colored backgrounds.
+
 
 <div style="background: white; color: #392558; width: fit-content;">
 <span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
 <span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
 <span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
 <span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_PurplePill.svg' alt='purple pill Sezzle logo'></span>
+<span>Pride-Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_PurplePill.svg' alt='pride purple pill Sezzle logo'></span>
 </div>
 <div style="background: black; color: white; padding: 10px; width: fit-content;">
 <span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
 <span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
 <span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
 <span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhitePill.svg' alt='white pill Sezzle logo'></span>
+<span>Pride-White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_WhitePill.svg' alt='pride white pill Sezzle logo'></span>
 </div>
 <br/>
 
