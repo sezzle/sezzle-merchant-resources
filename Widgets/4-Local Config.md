@@ -207,13 +207,13 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 ## Style
 
-`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.
+`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.The value defaults to `inherit`.The inherit value, when used, means that the value of the property is set to the value of the same property of the parent element.
 
-`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.
+`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.The value defaults to `14`
 
-`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.
+`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.The value defaults to `500`.
 
-`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.
+`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.The value defaults to `inherit`.The inherit value, when used, means that the value of the property is set to the value of the same property of the parent element.
 
 
 ## Position
@@ -224,7 +224,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 `alignmentSwitchType` sets the widget alignment for smaller devices, if different from larger devices. It accepts `'left'`, `'center'`, and `'right'`.
 
-`maxWidth` overrides the maximum width of the widget. The value defaults to `400`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
+`maxWidth` overrides the maximum width of the widget. The value defaults to `485`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
 
 `marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget in px to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
 
