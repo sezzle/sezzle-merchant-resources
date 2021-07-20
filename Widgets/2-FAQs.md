@@ -53,21 +53,21 @@ Yes, it is possible to make widgets visible on additional pages. The Sezzle widg
 Yes, the widget and modal have built-in translations in French, German, and Spanish for multilingual websites. By default, translation occurs based on the user's default browser language. Update the Language Settings in the Chrome Extension based on how the translation should occur. If the widget is translating but not the modal, please reach out to Sezzle Support. No other languages are supported at this time.
 
 ## Can the color of the Sezzle logo be changed?
-Yes, you can update the logo to coordinate and contrast with the background color of your website. The Sezzle logo `theme` options available are `dark`, `light`, `grayscale`, `black-flat`, `white`, `white-flat`, `purple-pill`, `pride-white-pill`,`pride-purple-pill`,`white-pill`. However, it is against our branding guidelines to otherwise customize the logo color.
+Yes, you can update the logo to coordinate and contrast with the background color of your website. The Sezzle logo `theme` options available are `dark`, `light`, `grayscale`, `black-flat`, `white`, `white-flat`, `purple-pill`, `white-pill`, `pride-pill` or `pride-whitepill`. However, it is against our branding guidelines to otherwise customize the logo color.
 
 <div style="background: white; color: #392558; width: fit-content;">
 <span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
 <span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
 <span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
 <span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_PurplePill.svg' alt='purple pill Sezzle logo'></span>
-<span>Pride-Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_PurplePill.svg' alt='pride purple pill Sezzle logo'></span>
+<span>Pride-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_PurplePill.svg' alt='pride pill Sezzle logo'></span>
 </div>
 <div style="background: black; color: white; padding: 10px; width: fit-content;">
 <span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
 <span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
 <span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
 <span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhitePill.svg' alt='white pill Sezzle logo'></span>
-<span>Pride-White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_WhitePill.svg' alt='pride white pill Sezzle logo'></span>
+<span>Pride-WhitePill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_WhitePill.svg' alt='pride whitepill Sezzle logo'></span>
 </div>
 
 ## Can we change the color of the modal?
