@@ -360,7 +360,7 @@ document.sezzleConfig = {
         {
             "targetXPath": "", // required
             "renderToPath": "..",
-            "theme": "light",
+            "theme": "auto",
             "splitPriceElementsOn": "",
             "ignoredPriceElements": [],
             "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
@@ -371,14 +371,14 @@ document.sezzleConfig = {
 				"es": "o 4 pagos sin intereses de %%price%% con %%logo%% %%info%%"
             },
             "color": "inherit",
-            "fontSize": 12,
-            "fontWeight": 300,
+            "fontSize": 14,
+            "fontWeight": 500,
             "fontFamily": "inherit",
             "alignment": "inherit",
             "alignmentSwitchMinWidth": 0,
             "alignmentSwitchType": "inherit",
-            "maxWidth": 400,
-            "marginTop": -0,
+            "maxWidth": 485,
+            "marginTop": 0,
             "marginBottom": 0,
             "marginRight": 0,
             "marginLeft": 0,
