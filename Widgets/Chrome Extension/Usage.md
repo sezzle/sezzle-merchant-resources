@@ -21,7 +21,7 @@
     - `Mobile Alignment` overrides the inherited widget alignment or desktop alignment if the window size is below the minimum width. Choose between auto, center, left, or right.
 
  * Click on the `Style` tab to change the widget styles.
-    - `Sezzle Theme` can be selected to change the Sezzle logo color to suit the website's theme. Choose between light, dark, grayscale, white, black-flat, or white-flat.
+    - `Sezzle Theme` can be selected to change the Sezzle logo color to suit the website's theme. Choose between light, dark, grayscale, white, black-flat, white-flat, purple-pill, white-pill, pride-pill, pride-whitepill.
     - `Widget Message` can be selected to change the widget content. Choose between approved message templates. Installment price and logo image will be inserted accordingly.
     - `Maximum Width` in pixels can be updated to force or prevent the widget breaking into multiple lines. Click the arrows to increment up or down.
     - `Font Size` in pixels can be updated to change the size of the widget text. Click the arrows to increment up or down.

@@ -12,7 +12,7 @@
 
 * What are my customization options for widgets, and what is the installation process?
 
- - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present, which is why we offer 8 logo variations.
+ - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present, which is why we offer 10 logo variations.
 
  - The <a href="https://github.com/sezzle/sezzle-js" target="_blank">Widget Script</a> is the simplest to implement, maintain, and track for maintenance purposes.
     - The widget script is accompanied by a configuration, which can be implemented by Sezzle and stored on our server, or can be manually implemented by the merchant directly within the store's theme.

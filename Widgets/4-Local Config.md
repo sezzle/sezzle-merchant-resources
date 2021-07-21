@@ -166,18 +166,23 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 * `'white-flat'` renders a white monochrome logo with white text for medium- or dark-colored backgrounds.
 * `'purple-pill'` renders a color logo with white text on a purple background for medium- or light-colored backgrounds.
 * `'white-pill'` renders a color logo with purple text on a white background for medium- or dark-colored backgrounds.
+* `'pride-pill'` renders a color logo with rainbow text on a purple background for medium- or light-colored backgrounds.
+* `'pride-whitepill'` renders a color logo with rainbow text on a white background with rainbow border for medium- or dark-colored backgrounds.
+
 
 <div style="background: white; color: #392558; width: fit-content;">
 <span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
 <span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
 <span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
 <span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_PurplePill.svg' alt='purple pill Sezzle logo'></span>
+<span>Pride-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_PurplePill.svg' alt='pride pill Sezzle logo'></span>
 </div>
 <div style="background: black; color: white; padding: 10px; width: fit-content;">
 <span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
 <span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
 <span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
 <span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhitePill.svg' alt='white pill Sezzle logo'></span>
+<span>Pride-WhitePill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_WhitePill.svg' alt='pride whitepill Sezzle logo'></span>
 </div>
 <br/>
 
@@ -202,13 +207,13 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 ## Style
 
-`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.
+`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.The value defaults to `inherit`.The inherit value, when used, means that the value of the property is set to the value of the same property of the parent element.
 
-`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.
+`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.The value defaults to `14`
 
-`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.
+`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.The value defaults to `500`.
 
-`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.
+`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.The value defaults to `inherit`.The inherit value, when used, means that the value of the property is set to the value of the same property of the parent element.
 
 
 ## Position
@@ -219,7 +224,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 `alignmentSwitchType` sets the widget alignment for smaller devices, if different from larger devices. It accepts `'left'`, `'center'`, and `'right'`.
 
-`maxWidth` overrides the maximum width of the widget. The value defaults to `400`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
+`maxWidth` overrides the maximum width of the widget. The value defaults to `485`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
 
 `marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget in px to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
 
@@ -355,7 +360,7 @@ document.sezzleConfig = {
         {
             "targetXPath": "", // required
             "renderToPath": "..",
-            "theme": "light",
+            "theme": "auto",
             "splitPriceElementsOn": "",
             "ignoredPriceElements": [],
             "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
@@ -366,14 +371,14 @@ document.sezzleConfig = {
 				"es": "o 4 pagos sin intereses de %%price%% con %%logo%% %%info%%"
             },
             "color": "inherit",
-            "fontSize": 12,
-            "fontWeight": 300,
+            "fontSize": 14,
+            "fontWeight": 500,
             "fontFamily": "inherit",
             "alignment": "inherit",
             "alignmentSwitchMinWidth": 0,
             "alignmentSwitchType": "inherit",
-            "maxWidth": 400,
-            "marginTop": -0,
+            "maxWidth": 485,
+            "marginTop": 0,
             "marginBottom": 0,
             "marginRight": 0,
             "marginLeft": 0,
