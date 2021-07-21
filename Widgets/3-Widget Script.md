@@ -32,7 +32,9 @@ Widget Script installation is the simplest product to implement, but the process
 - <a href="https://vimeo.com/399935603/1b71ce2a45" target="_blank">BigCommerce</a> - Copy the code snippet from the Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a> and paste it into the bottom of the `cart.html` and `product.html` files (file names may vary) within Edit Theme Files page of your BigCommerce admin.
 - <a href="https://vimeo.com/399929679/aa0791f4d9" target="_blank">3DCart</a> - Copy the code snippet from the Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a> and paste it into the bottom of the `product_items.html` files (file name may vary) within the Edit Template page of your 3DCart admin.
 - CommentSold - toggle the "Display on Product Page" switch to the "Enabled" position in Payment Gateways Setup after installing the Sezzle plug-in.
-- Wix - Enable the widgets in Editor mode on the Product Page Settings.
+- Wix - Enable the widgets in Editor mode on the Product Page Settings
+- Magento - Set Enable Static Widget Module to Yes to load the Sezzle Widget from your server, or No to load it from the Sezzle server.Set Enable Widget in PDP to Yes when adding the widget script in the Product Display Page, helping to enable the Sezzle Widget Modal in PDP.Set Enable Widget in Cart Page to Yes when adding the widget script in the Cart Page, helping to enable Sezzle Widget Modal in the Cart Page.Save the configuration and clear the cache.
+- BigCommerce - Check the Add Sezzle Widget checkbox to inject Widget Script in the PDP & Cart Page.
 - BuyItLive - Widgets are enabled automatically.
 - PrestaShop - toggle the "Enable Widgets" switch to the "On" position in the Sezzle plug-in.
 	- Note: This feature adds the script only - please proceed to the configuration step.
