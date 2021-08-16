@@ -59,14 +59,14 @@ Yes, you can update the logo to coordinate and contrast with the background colo
 <span>Light: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg' alt=' default color Sezzle logo with dark text'></span>
 <span>Grayscale: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Black.svg' alt='black gradient Sezzle logo'></span>
 <span>Black-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_BlackAlt.svg' alt='black flat Sezzle logo'></span>
-<span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_PurplePill.svg' alt='purple pill Sezzle logo'></span>
+<span>Purple-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_PurplePill_1120px.svg' alt='purple pill Sezzle logo'></span>
 <span>Pride-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_PurplePill.svg' alt='pride pill Sezzle logo'></span>
 </div>
 <div style="background: black; color: white; padding: 10px; width: fit-content;">
 <span>Dark: <img style="height: 18px; padding: 5px;" src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg' alt='color Sezzle logo with light text for darkmode'></span>
 <span>White: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_White.svg' alt='white gradient Sezzle logo'></span>
 <span>White-Flat: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhiteAlt.svg' alt='white flat Sezzle logo'></span>
-<span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_WhitePill.svg' alt='white pill Sezzle logo'></span>
+<span>White-Pill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_WhitePill_1120px.svg' alt='white pill Sezzle logo'></span>
 <span>Pride-WhitePill: <img style="height: 18px; padding: 5px; " src='https://media.sezzle.com/branding/2.0/Sezzle_Logo_Pride_WhitePill.svg' alt='pride whitepill Sezzle logo'></span>
 </div>
 
