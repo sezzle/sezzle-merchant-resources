@@ -210,8 +210,6 @@ Reach out to Sezzle with the applicable request description(s) from below with t
  * I am concerned about the loading speed of the widget.
     - The widget is designed to load after all other page content has been rendered and usually takes mere milliseconds. This ensures all the necessary data is present to render the widget correctly and safeguards against the widget causing issues or delays to your site. You can review your site performance using <a href="https://gtmetrix.com/" target="_blank">GTMetrics</a> to confirm the true cause of the delay.
     - We offer an alternative <a href="https://github.com/sezzle/static-widgets" target="_blank">static widget</a> product that lives entirely within the theme code. It removes the need to reach out to Sezzle's widget server and provides a different level of control over the widget's performance. The downside is that Sezzle is unable to monitor performance or make changes remotely, increasing the effort required from the merchant when maintenance is needed.
- * The Sezzle widget is conflicting with my instance of Google Tag Manager.
-	 - Reach out to Sezzle to update the widget to a version without a tracking iframe and/or to disable tracking entirely.
  * I want to offer Sezzle but I am using a third-party checkout.
     - We offer an additional <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button" target="_blank">static checkout button</a> product that can be added directly to the theme code and the appearance customized to complement the cart page design. This button directs the user to the native Shopify checkout instead of the third-party checkout.
 
