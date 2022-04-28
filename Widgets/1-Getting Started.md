@@ -12,7 +12,7 @@
 
 * What are my customization options for widgets, and what is the installation process?
 
- - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present, which is why we offer 10 logo variations.
+ - Widget content and appearance has a wide range of customization options (position, style, content). The only requirement is that the Sezzle logo is present.
 
  - The <a href="https://github.com/sezzle/sezzle-js" target="_blank">Widget Script</a> is the simplest to implement, maintain, and track for maintenance purposes.
     - The widget script is accompanied by a configuration, which can be implemented by Sezzle and stored on our server, or can be manually implemented by the merchant directly within the store's theme.
@@ -28,13 +28,13 @@ The documentation contained in this folder refers solely to the widgets that app
      * <a href="https://github.com/sezzle/sezzle-js" target="_blank">Dynamic Widgets</a> - the Sezzle script that retrieves the Javascript from Sezzle's widget server and renders the widget according to the configuration either also saved in the widget server or provided locally within the theme.
      * <a href="https://github.com/sezzle/static-widgets" target="_blank">Static Widgets</a> - the Sezzle Javascript and accompanying configuration added to the store's theme files.
 
- * Modal - the Sezzle information window that opens when the widget is clicked. Available in <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.0" target="_blank">Color</a> or <a href="https://github.com/sezzle/sezzle-js/tree/master/modals/modals-2.0.1" target="_blank">Grayscale</a>.
+ * Modal - the Sezzle information window that opens when the widget is clicked.
 
- * <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">Static Checkout Button</a> - a Sezzle button that appears below the regular checkout button on the cart page and redirects to the Shopify native checkout when the regular checkout button uses a third-party app (Bold, Carthook, Zipify, UpSell) or when the customer is a Shop Pay user. Available for Shopify merchants only.
+ * <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button" target="_blank">Static Checkout Button</a> - a Sezzle button that appears below the regular checkout button on the cart page and redirects to the Shopify native checkout when the regular checkout button uses a third-party app (Bold, Carthook, Zipify, UpSell) or when the customer is a Shop Pay user. Available for Shopify merchants only. Not an express checkout.
 
  * <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-express-alt-banner/sezzle-express-alt-banner.html" >Express Alternative Banner</a> - a Sezzle banner that appears below the Express checkout buttons on the checkout page and informs the customers that Sezzle is available on the Payments tab. Available for Shopify Plus merchants only.
 
- * <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-checkout-installment-widget/sezzle-checkout-installment-widget.js" >Checkout Installment Widget</a> - a Sezzle box that appears below the payment method on the checkout page, detailing the customer's payment schedule and installment amounts.
+ * <a href="https://github.com/sezzle/static-widgets/blob/production/src/sezzle-checkout-installment-widget/sezzle-checkout-installment-widget.js" >Checkout Installment Widget</a> - a Sezzle box that appears below the payment method on the checkout page, detailing the customer's payment schedule and installment amounts. Available for merchants on Shopify Plus, WooCommerce, or Magento.
 
  * <a href="https://docs.sezzle.com/" target="_blank">Gateway</a> - the Sezzle payment method listed at Checkout.
 
