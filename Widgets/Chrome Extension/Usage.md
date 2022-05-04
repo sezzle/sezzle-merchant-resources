@@ -21,8 +21,7 @@
     - `Mobile Alignment` overrides the inherited widget alignment or desktop alignment if the window size is below the minimum width. Choose between auto, center, left, or right.
 
  * Click on the `Style` tab to change the widget styles.
-    - `Sezzle Theme` can be selected to change the Sezzle logo color to suit the website's theme. Choose between light, dark, grayscale, white, black-flat, white-flat, purple-pill, white-pill, pride-pill, pride-whitepill.
-    - `Widget Message` can be selected to change the widget content. Choose between approved message templates. Installment price and logo image will be inserted accordingly.
+    - `Sezzle Theme` can be selected to change the Sezzle logo color to suit the website's theme. Choose between light, dark, black-flat, or white-flat.
     - `Maximum Width` in pixels can be updated to force or prevent the widget breaking into multiple lines. Click the arrows to increment up or down.
     - `Font Size` in pixels can be updated to change the size of the widget text. Click the arrows to increment up or down.
     - `Boldness` can be selected to make the widget text thinner or heavier. Choose between light, regular, bold, or extra-bold.
@@ -31,9 +30,7 @@
 
 * Once satisfied with the position and styling of the widget, click `Continue`.
     - `URL Word to Match` can be selected to apply these settings to a specific page type. The selection should be a specific word appearing in the url of pages where these widget settings should be applied. Choose between collections, product, cart, checkout, or (none).
-    - `Language Settings` can be selected to handle widget translations. Choose between Match Browser Preferences, English, French, and German.
-    - `Supported Countries` can be selected to restrict Sezzle advertising to certain regions based on visitor's IP address location. Choose between, US and Canada, US, Canada, Germany or Show in all countries.
-    - `Modal Theme` can be selected to change the color scheme of the modal window. Choose between color and grayscale.
+    - `Language Settings` can be selected to handle widget translations. Choose between Match Browser Preferences, English, French, and Spanish.
  * Click `Install Widget` to save these settings.
 
 ## Disable Widget

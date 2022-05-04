@@ -1,6 +1,6 @@
 # Merchant Widget Chrome Extension Troubleshooting Guide
 
-The Sezzle Widget Chrome Extension is designed for simplicity. Some basic issues can be resolved using the Chrome Extension, as outlined below. If you are unable to resolve all widget issues on your site by following these steps, please select `Request Addition of Widgets` in the Merchant Dashboard Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>, or click the [Contact Us](#request-help) button in the Help Center menu and tell us more about the issue you are experiencing.
+The Sezzle Widget Chrome Extension is designed for simplicity. Some basic issues can be resolved using the Chrome Extension, as outlined below. If you are unable to resolve all widget issues on your site by following these steps, please select `Request Addition of Widgets` in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard Setup Checklist</a>, or click the [Contact Us](#request-help) button in the Help Center menu and tell us more about the issue you are experiencing.
 
 Please note: If your site uses cookies, be sure to clear your cache after attempting to fix the widget to ensure you are able to see updates.
 
@@ -38,9 +38,9 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 5: The selected URL Word to Match is not present in the URL of this page.
     - Try to update the URL Word to Match. If you are unsure, select (none).
  * Reason 6: The user is viewing the page from an unsupported country.
-    - Try to view the page in a test environment or VPN with an applicable IP country code, or update the Supported Countries to `Show in All Countries`.
+    - Try to view the page in a test environment or VPN with an applicable IP country code.
  * Reason 7: The widget script is missing or incorrect on this webpage.
-    - Add/update the widget script manually within the admin page for your site. The code snippet and instructions can be found in the Add Widgets step of your Sezzle Merchant Dashboard Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>.
+    - Add/update the widget script manually within the admin page for your site. The code snippet and instructions can be found in the Add Widgets step of your Sezzle Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>.
  * Reason 8: The widget is disabled for this site.
     - On the Main Menu, click `Enable Widget`.
  * Reason 9: The price is rendered after the widget script has run.
@@ -55,7 +55,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 2: The targeted price element re-rendered with a new price. This is commonly due to selecting product variants or asynchronous loading.
     - Try to update the Price Position target.
  * Reason 3: There are two scripts with conflicting merchant IDs present.
-       - Compare the UUIDs against the merchant ID in the Business Settings of your Sezzle Merchant Dashboard Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a> and remove the incorrect script.
+       - Compare the UUIDs against the merchant ID in the Business Settings of your Sezzle Merchant Dashboard <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a> and remove the incorrect script.
  * Reason 4: There are two configurations applied to this page with different Price Position targets.
      - Reach out to Sezzle for assistance.
 
@@ -112,16 +112,16 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
  * Reason 1: The widget is in a parent element that is narrower than the widget width, breaking the widget contents into multiple lines.
     - Try to update the Widget Position.
     - Try to update the Right and Left Margin values. Higher margin values move the widget farther from the adjacent element, and negative margin values move the widget closer to the adjacent element in the applicable direction.
- * Reason 2: The widget is in the correct position, but the selected Widget Message exceeds the widget's default maximum width.
+ * Reason 2: The widget is in the correct position, but the widget text exceeds the widget's default maximum width.
     - Try to update the Maximum Width values.
 	 - Try to update the Font Size.
 
 ### <a id="issue-7"></a>Issue 7: My widget does not contrast well with the theme of the webpage.
  * Reason 1: The site theme is a dark-mode aesthetic.
-    - Try to update the Sezzle Theme to `dark`, `white`, or `white-flat`.
+    - Try to update the Sezzle Theme to `dark` or `white-flat`.
     - Try to update the Font Color to white or a light color present on your theme.
  * Reason 2: The site theme is a colored aesthetic.
-    - Try to update the Sezzle Theme to `grayscale`, `black-flat`, `white`, or `white-flat`.
+    - Try to update the Sezzle Theme to `black-flat`, or `white-flat`.
     - Try to update the Font Color to white or black or a high-contrast color present on your theme.
  * Reason 3: The widget's inherited font color is different from the price element's font color.
     - Try to update the Font Color to the same color as  the price text or another high-contrast color present on your theme. Use the wheel in the color picker tool to select the color format and transcribe your font color.
@@ -165,7 +165,7 @@ Please note: If your site uses cookies, be sure to clear your cache after attemp
 
 ## <a id="request-help"></a>Reaching out to Sezzle
 
-If you need standard widget assistance and have not completed the Setup Checklist in your Sezzle Merchant Dashboard, please click `Request Addition of Widgets` within the Setup Checklist<a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">(US)</a> <a href="https://dashboard.eu.sezzle.com/merchant/checklist" target="_blank">(EU)</a>. Otherwise, follow the below guidelines when reaching out to Sezzle.
+If you need standard widget assistance and have not completed the Setup Checklist in your Sezzle Merchant Dashboard, please click `Request Addition of Widgets` within the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Setup Checklist</a>. Otherwise, follow the below guidelines when reaching out to Sezzle.
 
 ### <a id="issue-13"></a>Issue 13: My issue is listed in the Troubleshooting Guide, but the solution did not work.
 Reach out to Sezzle with the applicable issue description(s) from above, the website URL and a screenshot of the issue or a sample URL of the product page experiencing the issue, and any additional notes regarding the issue. Including the "Reason" description is not necessary, but you may include it if you know which is causing the issue.
@@ -180,13 +180,8 @@ Reach out to Sezzle with the website URL and a screenshot or transcription of th
 Sezzle offers the following special features by request. If your request type is not listed below, we may still be able to accommodate the request.
 
 Reach out to Sezzle with the applicable request description(s) from below with the desired accompanying value(s). We may reach out to discuss further before fulfilling your request:
- * I want to change the widget's logo size.
-    - Logo size must still be legible.
- * I want to show widgets in at least one additional country.
- * I want to change the widget text content.
-    - The Sezzle logo image must remain present. The installment price is highly recommended, as it is proven to drive AOV lift and conversions.
  * I want to combine the Sezzle widget with a competitor's widget.
-    - We currently offer dual install with Afterpay, Quadpay, Affirm, and Klarna.
+    - We currently offer dual install with Afterpay.
  * I am switching to Sezzle from a competitor and need the competitor widget removed.
     - We can typically hide the competitor widget, but the competitor widget may flash on the screen briefly since the Sezzle widget loads after the rest of the webpage. It is recommended to remove the competitor's code from your theme.
  * I want to add widgets to the quick cart.
@@ -199,25 +194,23 @@ Reach out to Sezzle with the applicable request description(s) from below with t
  * I want to hide widgets when a certain variant is selected.
     - If a customer attempts to checkout with Sezzle when purchasing a subscription item, they will be charged for the initial transaction, but Sezzle will not auto-charge the customer for each subsequent issuance. However, if you are using a third-party checkout for subscriptions, Sezzle will not be available as a payment option within the third-party.
  * I want to hide widgets below and/or above a certain price.
-    - It is recommended to update the widget text to reflect "on orders over X" instead of hiding the widgets. Not only does this provide transparency to the customer and prevent confusion, but it may motivate upsell.
-    - Price thresholds should take into account the price of products, pre-Sezzle AOV, and Sezzle transaction limits.
+    - We can set a maximum threshold, above which the widget will not appear. Maximum price thresholds should take into account the price of products, pre-Sezzle AOV, and Sezzle transaction limits.
+    - For minimum threshold, we can update the widget text to reflect "for orders over X" instead of hiding the widgets. Not only does this provide transparency to the customer and prevent confusion, but it may motivate upsell.
     - Hiding the widgets outside of the price threshold does not prevent the customer from selecting Sezzle at checkout. Please reach out to Merchant Support to request a <i>gateway</i> minimum as well.
  * I want to test the widget on an unpublished theme.
     - The Chrome Extension provides a preview of the widget appearance. However, if you wish to test the widget performance across the entire site, the process is as follows:
       1) If widgets are already on the site, the config will need to be added locally to the theme code.
          a. Right-click on the page and select `Inspect`.
-         b. On the `Sources` tab, open the folder `widget.sezzle` (North America) or `widget.eu.sezzle` (EU)
+         b. On the `Sources` tab, open the folder `widget.sezzle`
          c. Find the file with the object `document.sezzleConfig`. Copy this object. Note: If it is <i>inside</i> an if/else conditional statement, copy the entire if/else statement.
          d. In your theme code, create a `<script type="text/javascript"></script>` above the existing widget.sezzle script, then paste the `document.sezzleConfig` between the `><`.
          e. Reach out to Sezzle to delete the config from the widget-server. The server-side config will override the local one, and therefore must be removed to test local configs.
-         f. In the unpublished theme, copy+paste the two scripts [`document.sezzleConfig` and `widget.sezzle` (North America) or `widget.eu.sezzle` (EU) ] from the live theme into the applicable files, then make updates as needed. Complete documentation can be found <a href="../4-Local Config.md" target="_blank">here</a>.
+         f. In the unpublished theme, copy+paste the two scripts [`document.sezzleConfig` and `widget.sezzle`] from the live theme into the applicable files, then make updates as needed. Complete documentation can be found <a href="../4-Local Config.md" target="_blank">here</a>.
 			g. If you need assistance with this process, set up Sezzle as an Admin user, or reach out to Sezzle and we will submit a Collaborator Account request (Shopify only).
  * I am concerned about the loading speed of the widget.
     - The widget is designed to load after all other page content has been rendered and usually takes mere milliseconds. This ensures all the necessary data is present to render the widget correctly and safeguards against the widget causing issues or delays to your site. You can review your site performance using <a href="https://gtmetrix.com/" target="_blank">GTMetrics</a> to confirm the true cause of the delay.
     - We offer an alternative <a href="https://github.com/sezzle/static-widgets" target="_blank">static widget</a> product that lives entirely within the theme code. It removes the need to reach out to Sezzle's widget server and provides a different level of control over the widget's performance. The downside is that Sezzle is unable to monitor performance or make changes remotely, increasing the effort required from the merchant when maintenance is needed.
- * The Sezzle widget is conflicting with my instance of Google Tag Manager.
-	 - Reach out to Sezzle to update the widget to a version without a tracking iframe and/or to disable tracking entirely.
  * I want to offer Sezzle but I am using a third-party checkout.
-    - We offer an additional <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button-html" target="_blank">static checkout button</a> product that can be added directly to the theme code and the appearance customized to complement the cart page design. This button directs the user to the native Shopify checkout instead of the third-party checkout.
+    - We offer an additional <a href="https://github.com/sezzle/static-widgets/tree/production/src/sezzle-checkout-button" target="_blank">static checkout button</a> product that can be added directly to the theme code and the appearance customized to complement the cart page design. This button directs the user to the native Shopify checkout instead of the third-party checkout.
 
 If you have a special request that is not listed above, please reach out to Sezzle with your request description. We will review and get back to you to determine if your request can be fulfilled.
