@@ -19,7 +19,7 @@ Widget Script installation is the simplest product to implement, but the process
 - <a href="https://vimeo.com/399997792/7884c5984c" target="_blank">Shopify</a>: The Sezzle Shopify App allows the Merchant to add and remove widgets at the click of a button. This will add the script and a default configuration to the product and cart pages of the published theme.
     - Once the default config is added, you can customize the widget by following the Local Config documentation.
 	- If you have custom product templates, copy the code snippet from the `product.liquid` or `cart.liquid` file within the Edit Code page of your Shopify admin, and paste the snippet either into each custom product template or at the bottom of `layout/theme.liquid`.
-	- Alternatively, the app also gives permissiong to the Widget team to inject the script remotely, or to download the theme and add the script manually if there are additional custom product templates. Skip to configuration section below.
+	- Alternatively, the app also gives permission to the Widget team to inject the script remotely if there are additional custom product templates. Skip to configuration section below.
 - Shopify Buy + non-Shopify storefront: The widget script will only work on the Shopify site. Please reference the <a href="./5-Static Widgets.md">Static Widgets</a> document for a recommended alternative.
 - WooCommerce (no pagebuilders): Check the "Show Sezzle widget" box in the Sezzle plug-in.
 	- Note: This feature adds the script only - please proceed to the configuration step.

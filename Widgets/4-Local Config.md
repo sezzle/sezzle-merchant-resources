@@ -178,18 +178,20 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 `ignoredFormattedPriceText` can be used for non-price text that cannot be targeted by `ignoredPriceElements` due to being 1) not contained in a child element, 2) is not a direct child of the `targetXPath` element, or 3) is otherwise failing to be hidden by `ignoredPriceElements`. It will accept text such as `'Regular price'` or an array of text strings such as `['Regular price', 'Sale price']`.
 * Note: The given value must match the text content substring exactly, including capitalization, spacing, and punctuation.
 
-`language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the user's default browser language. It can accept `'en'`, `'fr'`, or `'es'` for one-language sites, or a function or query to identify the in-page translation, for example: `document.querySelector('html).lang.substring(0,2).toLowerCase()`
+`language` determines the language or translation parameters of the widget and modal text. By default the widget and modal will translate automatically to match the page language based on the value of `document.querySelector('html).lang`. It can accept `'en'`, `'fr'`, or `'es'` for one-language sites, or a function or query to identify the in-page translation if the lang attribute does not work properly.
+
+`apDualInstall` adds `or Afterpay` to the end of the widget text, featuring the Afterpay black on mint pill logo and an info icon to open the Afterpay modal.
+
+`minPrice` adds `for orders over ${amount in local currency}` to the end of the widget text. Give the value as the price in cents, for example: `"minPrice": 3500` will result in the widget reflecting `for orders over $35.00`
 
 
 ## Style
 
-`color` overrides the inherited text color applied to the widget text. It accepts any CSS color values.The value defaults to `inherit`.The inherit value, when used, means that the value of the property is set to the value of the same property of the parent element.
+`containerStyle` overrides the overall dimensions of the widget, particularly margins.
 
-`fontSize` overrides the default text font applied to the widget text. It accepts numbers and assumes the unit px.The value defaults to `14`
+`textStyle` overrides the text area of the widget, such as font-size, font-family, and color.
 
-`fontWeight` overrides the default boldness applied to the widget text. It accepts any CSS font-weight values.The value defaults to `500`.
-
-`fontFamily` overrides the inherited font type applied to the widget text. It accepts any CSS font-family values.The value defaults to `inherit`.The inherit value, when used, means that the value of the property is set to the value of the same property of the parent element.
+`logoStyle` overrides the inherited style of the logo image to accompany changes to `logoSize` or to override local style being applied in error. This is intended solely for positioning purposes - per <a href="https://media.sezzle.com/branding/2.0/merchant/sezzle-co-branding-guidelines.pdf" target="_blank">Sezzle's Brand Guidelines</a>, please do not alter or distort the logo image in any way.
 
 
 ## Position
@@ -200,15 +202,7 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 
 `alignmentSwitchType` sets the widget alignment for smaller devices, if different from larger devices. It accepts `'left'`, `'center'`, and `'right'`.
 
-`maxWidth` overrides the maximum width of the widget. The value defaults to `485`, assuming px, and can be decreased to force line breaks or increased if customizations such as the fontSize or altVersionTemplate are causing the widget to break into multiple lines.
-
-`marginTop`, `marginBottom`, `marginLeft`, and `marginRight` controls the proximity of the widget in px to other elements on the page. Each value can be increased to move the widget away from another element, or it can be decreased to allow the widget to overflow beyond the area of its parent element.
-
-`logoSize` scales the logo image to respond to a change in font size, to override local style being applied in error, or to otherwise adjust the logo size. The format is such that a value of `1.0` is equivalent to 100%.
-
 `logoStyle` overrides the inherited style of the logo image to accompany changes to `logoSize` or to override local style being applied in error. This is intended solely for positioning purposes - per <a href="https://media.sezzle.com/branding/2.0/merchant/sezzle-co-branding-guidelines.pdf" target="_blank">Sezzle's Brand Guidelines</a>, please do not alter or distort the logo image in any way.
-
-`lineHeight` overrides the inherited line height occupied by the widget. It accepts any CSS line-height values.
 
 
 ## Other Conditions
@@ -221,6 +215,10 @@ If `renderToPath: '../../../../../FORM-0/::first-child'`is applied, the widget w
 * `relatedPath` accepts a value like `renderToPath` to target an element relative to the `targetXPath` element.
 * `initialAction` accepts a function with two parameters. The first parameter indicates the `relatedPath` element, and the second parameter indicates the corresponding widget. Beyond this, the content of the function is fully customizable.
 <!-- * `action` accepts a function with two parameters. The first parameter indicates the mutation type for which to watch on the `relatedPath` element. The second parameter indicates the corresponding widget. When the event occurs, the widget price will update automatically. -->
+
+`maxPrice` will prevent the widget from rendering above a certain price. Give the value in cents, for example `"maxPrice": 100000` will not display a widget for products exceeding $1000.
+
+`observeElements` can be used to apply an event listener to an element on the page to trigger the re-initialization of the widget. Give the value as an array of objects with keys `eventType` and `element` - the element can be specified by class or ID. For example: `"observeElements": [{"element": ".language-selector","eventType": "click"}]`
 
 
 ## Writing the Configuration
@@ -258,20 +256,28 @@ document.sezzleConfig = {
             "ignoredPriceElements": ["DEL"],
             "ignoredFormattedPriceText": ["From: "],
             "theme": "dark",
-            "color": "white",
-            "fontSize": 16,
-            "fontWeight": 100,
-            "fontFamily": "Helvetica Neue, sans-serif",
             "alignment": "left",
             "alignmentSwitchMinWidth": 768,
             "alignmentSwitchType": "center",
-            "maxWidth": 280,
-            "marginTop": -15,
-            "marginBottom": 5,
-            "marginRight": 5,
-            "marginLeft": 5,
-            "logoStyle": {"margin": "3px 5px 0px 7px","transformOrigin": "center top"},
-            "lineHeight": "20px",
+			"containerStyle": {
+				"marginTop": "-15px",
+				"marginBottom": "5px",
+				"marginRight": "5px",
+				"marginLeft": "5px"
+			},
+			"textStyle": {
+				"fontWeight": 100,
+				"maxWidth": "280px",
+				"lineHeight": "20px",
+				"fontSize": "16px",
+				"fontFamily": "Helvetica Neue, sans-serif",
+				"color": "white"
+			},
+            "logoStyle": {
+				"transform": "scale(1.2)",
+				"transformOrigin": "center top",
+				"margin": "3px 5px 0px 7px"
+			},
             "hideClasses": ["#processors"],
             "relatedElementActions": [
                 "relatedPath": ".",
@@ -289,15 +295,20 @@ document.sezzleConfig = {
             "renderToPath": "../../../../..",
             "urlMatch": "cart",
             "theme": "dark",
-            "color": "white",
-            "fontSize": 16,
-            "fontWeight": 100,
-            "fontFamily": "Helvetica Neue, sans-serif",
             "alignment": "right",
             "alignmentSwitchMinWidth": 576,
             "alignmentSwitchType": "center",
-            "maxWidth": 320,
-            "logoStyle": {"margin": "3px 5px 0px 7px","transformOrigin": "center top"},
+			"textStyle": {
+				"color": "white",
+				"fontSize": "16px",
+				"fontWeight": 100,
+				"fontFamily": "Helvetica Neue, sans-serif",
+				"maxWidth": "320px",
+			},
+            "logoStyle": {
+				"margin": "3px 5px 0px 7px",
+				"transformOrigin": "center top"
+			},
             "relatedElementActions": [
                 "relatedPath": "../../../../../../../../../FORM-0/TABLE-0",
                 "initialAction": function(r,w){
@@ -310,7 +321,7 @@ document.sezzleConfig = {
             ]
         }
     ],
-    "language": document.querySelector("html").lang.substring(0,2).toLowerCase()
+    "language": document.querySelector("html").lang === "fc" ? "fr" : "en"
 }
 </script>
 ```
@@ -329,25 +340,42 @@ document.sezzleConfig = {
             "theme": "auto",
             "ignoredPriceElements": [],
             "ignoredFormattedPriceText": ["Subtotal", "Total:", "Sold Out"],
-            "color": "inherit",
-            "fontSize": 14,
-            "fontWeight": 500,
-            "fontFamily": "inherit",
             "alignment": "inherit",
             "alignmentSwitchMinWidth": 0,
             "alignmentSwitchType": "inherit",
-            "maxWidth": 485,
-            "marginTop": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "marginLeft": 0,
-            "logoStyle": {},
-            "lineHeight": "13px",
+			"containerStyle": {
+				"marginTop": "0px",
+				"marginBottom": "0px",
+				"marginRight": "0px",
+				"marginLeft": "0px"
+			},
+			"textStyle": {
+				"color": "inherit"
+				"fontFamily": "inherit",
+				"fontSize": "14px",
+				"fontWeight": 500,
+				"lineHeight": "13px",
+				"maxWidth": "480px"
+			},
+            "logoStyle": {
+				"transform": "scale(1)",
+				"transformOrigin": "center",
+				"margin": "0px"
+			},
             "hideClasses": [],
             "relatedElementActions": []
         }
     ],
-    "language": navigator.language.substring(0,2).toLowerCase() || "en"
+    "language": document.querySelector("html").lang || "en",
+    "apDualInstall": false,
+    "minPrice": 0,
+    "maxPrice": 250000,
+    "observeElements": [
+        {
+            "eventType": "",
+            "element": ""
+        }
+    ]
 }
 ```
 

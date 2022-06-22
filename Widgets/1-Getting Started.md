@@ -54,8 +54,6 @@ During the onboarding process, inquiries can be directed to your Sezzle account 
 
  * Merchant Support - account and payment management
 
- * Platform Integration - gateway implementation (direct integration apps and open API)
-
- * Widget Integration - widget implementation and other static products
+ * Merchant Integration - gateway implementation (direct integration apps and open API), widget implementation and other static products
 
  * Marketing - promoting Sezzle on websites, emails, and social media
