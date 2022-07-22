@@ -9,8 +9,7 @@
  * Click the Sezzle Chrome Extension to begin.
 
 ## Add/Edit Widget Menu
- * Click the `Add/Edit Widget` button.
-      - Button will be labeled `Add Widget` if no config is found, or `Edit Widget` if a config is already saved.
+ * Click the `Edit Widget` button.
  * In the merchant's website, click the current product price on the product page or cart page.
  * Click on the Sezzle Chrome Extension again to view the `Position` tab and customize the widget position.
     - `Price Position` changes the selected price element. Click the arrows to shift up or down.
@@ -22,7 +21,6 @@
 
  * Click on the `Style` tab to change the widget styles.
     - `Sezzle Theme` can be selected to change the Sezzle logo color to suit the website's theme. Choose between light, dark, black-flat, or white-flat.
-    - `Maximum Width` in pixels can be updated to force or prevent the widget breaking into multiple lines. Click the arrows to increment up or down.
     - `Font Size` in pixels can be updated to change the size of the widget text. Click the arrows to increment up or down.
     - `Boldness` can be selected to make the widget text thinner or heavier. Choose between light, regular, bold, or extra-bold.
     - `Font Family` can be updated to change the font type of the widget text. Enter the desired font name(s).
@@ -31,7 +29,7 @@
 * Once satisfied with the position and styling of the widget, click `Continue`.
     - `URL Word to Match` can be selected to apply these settings to a specific page type. The selection should be a specific word appearing in the url of pages where these widget settings should be applied. Choose between collections, product, cart, checkout, or (none).
     - `Language Settings` can be selected to handle widget translations. Choose between Match Browser Preferences, English, French, and Spanish.
- * Click `Install Widget` to save these settings.
+ * Click `Add Configuration` to save these settings.
 
 ## Disable Widget
  * Click on `Disable Widget` if you want to remove widgets from the merchant website.
