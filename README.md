@@ -7,13 +7,13 @@ https://merchant-help.sezzle.com/hc/en-us/articles/360041531132-How-do-I-make-an
 To add the page to the main menu navigation:
 
 1. Go to `Sales channels` > `Navigation`
-2. Click `Main menu`
-3. Click `Add menu item`
-4. In the `Name` field, enter the link title, e.g., `How Sezzle Works`
-5. Click in the `Link` field, and click `Pages` then `How Sezzle Works` (or whatever you titled the page)
-6. Click Add
-7. Re-arrage the menu item as desired by clicking & dragging on the dots icon
-8. Click `Save menu`
+1. Click `Main menu`
+1. Click `Add menu item`
+1. In the `Name` field, enter the link title, e.g., `How Sezzle Works`
+1. Click in the `Link` field, and click `Pages` then `How Sezzle Works` (or whatever you titled the page)
+1. Click Add
+1. Re-arrage the menu item as desired by clicking & dragging on the dots icon
+1. Click `Save menu`
 
 Alternatively, you can also navigate this way:
 
