@@ -3,7 +3,7 @@ include:
     ref: "v2.0.3"
     file:
       - ".compile/default.yml"
-      - ".deploy/cloudfront.yaml"
+      - ".deploy/cloudfront.yml"
 
 variables:
   cf_dist_production: "EFV0KW59BE883"
