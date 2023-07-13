@@ -21,4 +21,4 @@ Alternatively, you can also navigate this way:
 1. Click `Customize`
 1. In the left toolbar, click `Header`
 1. In the right toolbar, find the `Menu` section and click the `Open in new tab` icon next to `Main menu`
-1. Follow steps 3-8 as above.
+1. Follow steps 3-8 as above
