@@ -26,5 +26,4 @@ deploy_cloudfront:production:
     CF_DIST: "EFV0KW59BE883"
   rules:
     - !reference [.deploy_default_rules]
-    - !reference [.deploy_us_rules]
     - !reference [.deploy_production_rules]
