@@ -4,6 +4,9 @@ include:
     file:
       - ".compile/default.yml"
 
+variables:
+  JIRA_PROJECT_NAME: "MINT"
+
 .before_script: |
   mkdir -p ./build
   cp -v light-theme.html ./build/
