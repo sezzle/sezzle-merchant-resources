@@ -2,6 +2,8 @@
 
 How Sezzle Works is a dedicated page that merchants can add to their website to further promote Sezzle. Follow the below instructions to implement.
 
+**_Note:_** Whenever the below instructions are updated, make sure to update the [merchants docs](https://merchant-help.sezzle.com/hc/en-us/articles/360041531132-How-do-I-make-an-About-Sezzle-page-) as well
+
 ## Shopify Process
 
 To set up the page on Shopify, follow the steps below.
