@@ -11,7 +11,7 @@ To set up the page on Shopify, follow the steps below.
 1. Log in to your Shopify Store
 1. Navigate to "Online Store" "Themes"
 1. On the theme you want to edit, select "Actions" and then "Edit Code"
-1. Under the "Templates" folder, click "Add New Template," select 1. template for "Page," template type "liquid", and name the page "Sezzle", then click Create Template
+1. Under the "Templates" folder, click "Add New Template", select template for "Page", template type "liquid", and name the page "Sezzle", then click Create Template
 1. Select the theme that best fits your store from the tabs listed.
 1. Copy the appropriate code and paste it under {{page.content}} on the Shopify page.
    - [Light Theme (English)](#light-theme-english)
