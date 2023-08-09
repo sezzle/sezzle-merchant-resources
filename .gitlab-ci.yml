@@ -13,7 +13,7 @@ variables:
   cp -v light-theme-french.html ./build/
   cp -v dark-theme.html ./build/
   cp -v dark-theme-french.html ./build/
-  cp -v script.js ./build/
+  cp -v eventLogger.js ./build/
 
 deploy_cloudfront:production:
   environment: "${env_production}"
