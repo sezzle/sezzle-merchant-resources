@@ -1,9 +1,8 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-      "config:base",
-      "preview:dockerCompose",
-      "preview:dockerVersions"
-    ]
-  }
-  
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "preview:dockerCompose",
+    "preview:dockerVersions"
+  ]
+}
