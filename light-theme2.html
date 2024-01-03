@@ -45,7 +45,7 @@
 }
 
 
-.sezzle-container .text-wrapper {
+.sezzle-container .sezzle-header {
 	position: absolute;
 	width: 610px;
 	top: 273px;
@@ -60,7 +60,7 @@
 	word-wrap: break-word;
 }
 
-.sezzle-container .text-wrapper-2 {
+.sezzle-container .how-it-works {
 	position: absolute;
 	width: 610px;
 	top: 744px;
@@ -75,7 +75,7 @@
 	white-space: nowrap;
 }
 
-.sezzle-container .text-wrapper-3 {
+.sezzle-container .faq {
 	position: absolute;
 	width: 610px;
 	top: 1660px;
@@ -90,7 +90,7 @@
 	white-space: nowrap;
 }
 
-.sezzle-container .sezzle-row {
+.sezzle-container .sezzle-description {
 	position: absolute;
 	width: 588px;
 	top: 470px;
@@ -106,7 +106,7 @@
 
 .sezzle-container .pay-in-payment {
 	position: absolute;
-	width: 946px;
+	width: 950px;
 	top: 2037px;
 	left: 247px;
 	font-family: "Satoshi-Regular", Helvetica;
@@ -898,7 +898,14 @@
 
 .sezzle-container .button-alternate .search
 {
-	flex: 1 1 0; text-align: center; color: white; font-size: 16px; font-family: Arial; font-weight: 700; line-height: 16px; word-wrap: break-word;
+	flex: 1 1 0;
+	text-align: center;
+	color: white;
+	font-size: 16px;
+	font-family: Arial;
+	font-weight: 700;
+	line-height: 16px;
+	word-wrap: break-word;
 }
 
 .sezzle-container .div16d
@@ -913,10 +920,7 @@
 
 @media screen and (max-width: 767px)
 {
-	.sezzle-container .sezzle-logo {
-	}
-
-	.sezzle-container .text-wrapper {
+	.sezzle-container .sezzle-header {
 		margin: 50px 0;
 		position: absolute;
 		width: 316px;
@@ -930,7 +934,7 @@
 		letter-spacing: 0;
 		line-height: 64px;
 	}
-	.sezzle-container .sezzle-row {
+	.sezzle-container .sezzle-description {
 		position: absolute;
 		width: 326px;
 		top: 373px;
@@ -943,7 +947,7 @@
 		letter-spacing: 0;
 		line-height: 34px;
 	}
-	.sezzle-container .text-wrapper-2 {
+	.sezzle-container .how-it-works {
 		position: absolute;
 		width: 390px;
 		top: 700px;
@@ -957,7 +961,7 @@
 		line-height: 46px;
 		white-space: nowrap;
 	}
-	.sezzle-container .text-wrapper-3 {
+	.sezzle-container .faq {
 		position: absolute;
 		width: 390px;
 		top: 2331px;
@@ -1024,6 +1028,7 @@
 		border-radius: 20.08px/20.7px;
 		border: 1.46px solid;
 	}
+
 	.sezzle-container .overlap {
 		position: absolute;
 		width: 54px;
@@ -1031,6 +1036,7 @@
 		top: 47px;
 		left: 240px;
 	}
+
 	.sezzle-container .text-wrapper-5 {
 		position: absolute;
 		top: 0;
@@ -1328,7 +1334,13 @@
 
 	.sezzle-container .button-alternate .search {
 		flex: 1 1 0;
-		text-align: center; color: white; font-size: 16px; font-family: Arial; font-weight: 700; line-height: 16px; word-wrap: break-word;
+		text-align: center;
+		color: white;
+		font-size: 16px;
+		font-family: Arial;
+		font-weight: 700;
+		line-height: 16px;
+		word-wrap: break-word;
 	}
 
 	.sezzle-container .line-4 {
@@ -1339,6 +1351,7 @@
 		position: absolute;
 		height: 1px;
 	}
+
 	.sezzle-container .line-5 {
 		width: 390px;
 		top: 2644px;
@@ -1347,6 +1360,7 @@
 		position: absolute;
 		height: 1px;
 	}
+
 	.sezzle-container .line-6 {
 		width: 390px;
 		top: 2556px;
@@ -1355,6 +1369,7 @@
 		position: absolute;
 		height: 1px;
 	}
+
 	.sezzle-container .line-7 {
 		width: 390px;
 		top: 2736px;
@@ -1363,6 +1378,7 @@
 		position: absolute;
 		height: 1px;
 	}
+
 	.sezzle-container .text-wrapper-12 {
 		position: absolute;
 		width: 334px;
@@ -1404,6 +1420,7 @@
 		letter-spacing: 0;
 		line-height: 26px;
 	}
+
 	.sezzle-container .text-wrapper-15 {
 		top: 2658px;
 		position: absolute;
@@ -1431,10 +1448,11 @@
 		letter-spacing: 0;
 		line-height: 15px;
 	}
-:root {
-	--ui-colorswhite: rgba(255, 255, 255, 1);
-	--brand-colorsdark-purple: rgba(56, 39, 87, 1);
-}
+
+	:root {
+	    --ui-colorswhite: rgba(255, 255, 255, 1);
+		--brand-colorsdark-purple: rgba(56, 39, 87, 1);
+    }
 }
 </style>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -1500,10 +1518,10 @@
 					</linearGradient>
 				</defs>
 			</svg></div>
-	<p class="text-wrapper">Flexible Payments with No Interest</p>
-		<div class="text-wrapper-2">How it Works</div>
-		<div class="text-wrapper-3">FAQs</div>
-		<p class="sezzle-row">
+	<p class="sezzle-header">Flexible Payments with No Interest</p>
+		<div class="how-it-works">How it Works</div>
+		<div class="faq">FAQs</div>
+		<p class="sezzle-description">
 			Select Sezzle at checkout and split your entire order into 4 payments over 6 weeks with no interest<sup>1</sup>.
 		</p>
 
@@ -1596,7 +1614,7 @@
 							<div class="div6b" ></div>
 							<div class="div6c" ></div>
 						</div>
-						<div class="div7"><img src="img/Group-2131.svg" />
+						<div class="div7"><img src="img/Group-2131.svg"  alt=""/>
 						</div>
 					</div>
 				</div>
@@ -1616,10 +1634,10 @@
 			</div>
 		</div>
 		<div class="div13"  >
-			<div class="div13a" ></div>
-			<div class="div13b" >
-				<div class="div13c" >
-					<img src="img/Group-2003.svg" />
+			<div class="div13a"></div>
+			<div class="div13b">
+				<div class="div13c">
+					<img src="img/Group-2003.svg"/>
 				</div>
 				<div class="div15a" ><span class="span15a" >Elizabeth E</span><span class="span15aa" > - posted on 7.11.23</span></div>
 				<div class="div15b" ><span class="span15b" >Love Sezzle<br/></span><span class="span15bb" >Love Sezzle it helps when your doing a project and need that extra time to pay.</span></div>
@@ -1631,7 +1649,7 @@
 		<div class="button-alternate" >
 			<div class="search">download the app</div>
 		</div>
-		<div class="div16d" ></div>
+		<div class="div16d"></div>
 	</div>
 
 
