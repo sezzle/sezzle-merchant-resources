@@ -13,7 +13,7 @@
 		--font-purple: #382757;
 		--font-violet: #7D25CB;
 		--font-magenta: #8E24AC;
-		--breakpoint-mobile: 316px;
+		--breakpoint-mobile: 375px;
 	}
 
 	.sezzle-container {
@@ -120,6 +120,8 @@
 				rgb(254, 165, 0) 33.85%,
 				rgb(255, 86, 103) 67.19%,
 				rgb(131, 51, 212) 100%) 1;
+		display: flex;
+		flex-direction: row-reverse;
 	}
 
 	.cta-main {
@@ -249,6 +251,22 @@
 		.sezzle-header {
 			font-size: 44px;
 			line-height: 54px;
+		}
+
+		.payment-pie-area {
+			gap: 6px;
+		}
+
+		.section-separator {
+			display: none;
+		}
+
+		.card-area {
+			flex-direction: column;
+		}
+
+		.cta-area {
+			flex-direction: column;
 		}
 	}
 </style>
