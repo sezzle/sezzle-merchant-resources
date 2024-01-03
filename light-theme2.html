@@ -1,1666 +1,214 @@
 <script type="text/javascript" src="https://media.sezzle.com/how-sezzle-works/eventLogger.js"></script>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
 <style>
-:root {
-		--ui-colorswhite: rgba(255, 255, 255, 1);
-		--brand-colorsdark-purple: rgba(56, 39, 87, 1);
-}
-
-@media screen and (min-width: 1200px) {
+	@import url('https://fonts.cdnfonts.com/css/satoshi');
+	:root {
+		--font-family: Satoshi, "Open Sans", sans-serif;
+		--font-black: #353535;
+		--font-grey: #737373;
+		--font-white: #FFF;
+		--font-purple: #382757;
+		--font-violet: #7D25CB;
+    	--font-magenta: #8E24AC;
+	}
 	.sezzle-container {
-		width: 1170px;
-	}
-}
-
-@media screen and (min-width: 992px) {
-	.sezzle-container {
-		width: 970px;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.sezzle-container {
-		width: 200px;
-	}
-}
-
-.sezzle-container {
-	background-color: #ffffff;
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-.sezzle-container .sezzle-logo svg {
-	width: 350px;
-	height: auto;
-}
-
-.sezzle-container .sezzle-logo {
-	position: absolute;
-	width: 296px;
-	height: 94px;
-	top: 100px;
-	left: 562px;
-}
-
-
-.sezzle-container .sezzle-header {
-	position: absolute;
-	width: 610px;
-	top: 273px;
-	left: 415px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: black;
-	font-size: 64px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 64px;
-	word-wrap: break-word;
-}
-
-.sezzle-container .how-it-works {
-	position: absolute;
-	width: 610px;
-	top: 744px;
-	left: 415px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 36px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 46px;
-	white-space: nowrap;
-}
-
-.sezzle-container .faq {
-	position: absolute;
-	width: 610px;
-	top: 1660px;
-	left: 415px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 36px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 46px;
-	white-space: nowrap;
-}
-
-.sezzle-container .sezzle-description {
-	position: absolute;
-	width: 588px;
-	top: 470px;
-	left: 426px;
-	font-family: "Satoshi-Regular", Helvetica;
-	font-weight: 400;
-	color: #353535;
-	font-size: 24px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 34px;
-}
-
-.sezzle-container .pay-in-payment {
-	position: absolute;
-	width: 950px;
-	top: 2037px;
-	left: 247px;
-	font-family: "Satoshi-Regular", Helvetica;
-	font-weight: 400;
-	color: #353535;
-	font-size: 12px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 15px;
-}
-
-.sezzle-container .text-wrapper-4 {
-	position: absolute;
-	width: 588px;
-	top: 802px;
-	left: 425px;
-	font-family: "Satoshi-Regular", Helvetica;
-	font-weight: 300;
-	color: #353535;
-	font-size: 24px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 34px;
-}
-
-.sezzle-container .group-2 {
-	position: absolute;
-	width: 310px;
-	height: 93px;
-	top: 582px;
-	left: 572px;
-}
-
-.sezzle-container .line {
-	width: 20px;
-	top: 20px;
-	left: 51px;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-2 {
-	width: 20px;
-	top: 20px;
-	left: 133px;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-3 {
-	width: 20px;
-	top: 20px;
-	left: 216px;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .ellipse {
-	position: absolute;
-	width: 40px;
-	height: 41px;
-	top: 0;
-	left: 247px;
-	background-color: #382757;
-	border-radius: 20.08px/20.7px;
-	border: 1.46px solid;
-}
-
-.sezzle-container .overlap {
-	position: absolute;
-	width: 54px;
-	height: 46px;
-	top: 47px;
-	left: 240px;
-}
-
-.sezzle-container .text-wrapper-5 {
-	position: absolute;
-	top: 0;
-	left: 7px;
-	font-family: "Satoshi-Bold", Helvetica;
-	font-weight: 700;
-	color: #353535;
-	font-size: 20.5px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26.3px;
-	white-space: nowrap;
-}
-
-.sezzle-container .text-wrapper-6 {
-	position: absolute;
-	top: 25px;
-	left: 0;
-	font-family: "Satoshi-Medium", Helvetica;
-	font-weight: 500;
-	color: #737373;
-	font-size: 14.6px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 20.5px;
-	white-space: nowrap;
-}
-
-.sezzle-container .overlap-group-wrapper {
-	position: absolute;
-	width: 40px;
-	height: 41px;
-	top: 1px;
-	left: 167px;
-}
-
-.sezzle-container .overlap-group {
-	position: relative;
-	height: 41px;
-}
-
-.sezzle-container .ellipse-2 {
-	position: absolute;
-	width: 41px;
-	height: 40px;
-	top: 1px;
-	left: -1px;
-	background-color: #ffffff;
-	border-radius: 20.5px/19.89px;
-	border: 1.46px solid;
-	border-color: #382757;
-	transform: rotate(-90deg);
-}
-
-.sezzle-container .ellipse-3 {
-	position: absolute;
-	width: 43px;
-	height: 44px;
-	top: 0;
-	left: -1px;
-}
-
-.sezzle-container .overlap-2 {
-	position: absolute;
-	width: 55px;
-	height: 46px;
-	top: 47px;
-	left: 159px;
-}
-
-.sezzle-container .text-wrapper-7 {
-	left: 6px;
-	position: absolute;
-	top: 0;
-	font-family: "Satoshi-Bold", Helvetica;
-	font-weight: 700;
-	color: #353535;
-	font-size: 20.5px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26.3px;
-	white-space: nowrap;
-}
-
-.sezzle-container .text-wrapper-8 {
-	height: 21px;
-	position: absolute;
-	top: 25px;
-	left: 0;
-	font-family: "Satoshi-Medium", Helvetica;
-	font-weight: 500;
-	color: #737373;
-	font-size: 14.6px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 20.5px;
-	white-space: nowrap;
-}
-
-.sezzle-container .overlap-wrapper {
-	position: absolute;
-	width: 40px;
-	height: 41px;
-	top: 1px;
-	left: 83px;
-}
-
-.sezzle-container .ellipse-4 {
-	position: absolute;
-	width: 43px;
-	height: 44px;
-	top: 0;
-	left: -1px;
-}
-
-.sezzle-container .overlap-3 {
-	position: absolute;
-	width: 54px;
-	height: 46px;
-	top: 47px;
-	left: 75px;
-}
-
-.sezzle-container .div-wrapper {
-	position: absolute;
-	width: 40px;
-	height: 41px;
-	top: 1px;
-	left: 0;
-}
-
-.sezzle-container .ellipse-5 {
-	position: absolute;
-	width: 43px;
-	height: 44px;
-	top: 0;
-	left: -1px;
-}
-
-.sezzle-container .overlap-4 {
-	position: absolute;
-	width: 44px;
-	height: 46px;
-	top: 47px;
-	left: 0;
-}
-
-.sezzle-container .text-wrapper-9 {
-	left: 0;
-	position: absolute;
-	top: 0;
-	font-family: "Satoshi-Bold", Helvetica;
-	font-weight: 700;
-	color: #353535;
-	font-size: 20.5px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26.3px;
-	white-space: nowrap;
-}
-
-.sezzle-container .group-3 {
-	position: absolute;
-	width: 297px;
-	height: 236px;
-	top: 976px;
-	left: 257px;
-}
-
-.sezzle-container .overlap-5 {
-	position: relative;
-	width: 295px;
-	height: 236px;
-	background-color: #eeeeee;
-	border-radius: 10px;
-}
-
-.sezzle-container .shopping-cart {
-	position: absolute;
-	width: 68px;
-	height: 68px;
-	top: 42px;
-	left: 113px;
-}
-
-.sezzle-container .text-wrapper-10 {
-	position: absolute;
-	width: 235px;
-	top: 134px;
-	left: 30px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26px;
-}
-
-.sezzle-container .line-4 {
-	width: 927px;
-	top: 720px;
-	left: 256px;
-	object-fit: cover;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-5 {
-	width: 927px;
-	top: 1788px;
-	left: 256px;
-	object-fit: cover;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-6 {
-	width: 927px;
-	top: 1912px;
-	left: 256px;
-	object-fit: cover;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-7 {
-	width: 927px;
-	top: 1850px;
-	left: 256px;
-	object-fit: cover;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-8 {
-	width: 927px;
-	top: 1974px;
-	left: 256px;
-	object-fit: cover;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .line-9 {
-	width: 927px;
-	top: 1262px;
-	left: 256px;
-	object-fit: cover;
-	position: absolute;
-	height: 1px;
-}
-
-.sezzle-container .group-4 {
-	position: absolute;
-	width: 297px;
-	height: 236px;
-	top: 976px;
-	left: 573px;
-}
-
-.sezzle-container .text-wrapper-11 {
-	position: absolute;
-	width: 255px;
-	top: 134px;
-	left: 20px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26px;
-}
-
-.sezzle-container .group-wrapper {
-	position: absolute;
-	width: 95px;
-	height: 59px;
-	top: 46px;
-	left: 100px;
-	background-color: #382757;
-	border-radius: 5px;
-}
-
-.sezzle-container .group-5 {
-	position: absolute;
-	width: 34px;
-	height: 41px;
-	top: 10px;
-	left: 32px;
-}
-
-.sezzle-container .text-wrapper-12 {
-	position: absolute;
-	width: 925px;
-	top: 1740px;
-	left: 258px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26px;
-}
-
-.sezzle-container .text-wrapper-13 {
-	top: 1864px;
-	position: absolute;
-	width: 925px;
-	left: 258px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26px;
-}
-
-.sezzle-container .text-wrapper-14 {
-	top: 1802px;
-	position: absolute;
-	width: 925px;
-	left: 258px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26px;
-}
-
-.sezzle-container .text-wrapper-15 {
-	top: 1926px;
-	position: absolute;
-	width: 925px;
-	left: 258px;
-	font-family: "Satoshi-Black", Helvetica;
-	font-weight: 900;
-	color: #353535;
-	font-size: 16px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 26px;
-}
-
-.sezzle-container .group-6 {
-	position: absolute;
-	width: 297px;
-	height: 236px;
-	top: 976px;
-	left: 888px;
-}
-
-.sezzle-container .deployed-code {
-	position: absolute;
-	width: 61px;
-	height: 70px;
-	top: 44px;
-	left: 117px;
-}
-
-.sezzle-container .imgreview2 {
-	width: 196px; height: 296px; left: 0px; top: 4px; position: absolute;
-}
-
-
-.sezzle-container .label .manage-your-orders {
-	position: absolute;
-	width: 431px;
-	top: 0;
-	left: 0;
-	font-family: "Satoshi-Bold", Helvetica;
-	font-weight: 400;
-	color: #382757;
-	font-size: 25px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: 25px;
-}
-
-.sezzle-container section {
-	margin: 50px 0;
-}
-
-.sezzle-container .div1 {
-		width: 926px;
-		height: 314.73px;
-		left: 257px;
-		top: 1296px;
-		position: absolute;
-	}
-
-.sezzle-container .div2 {
-		width: 926px;
-		height: 297.73px;
-		left: 0px;
-		top: 17px;
-		position: absolute;
-}
-
-.sezzle-container .div3
-{
-	width: 926px; height: 246px; left: 0px; top: 51.73px; position: absolute;
-}
-
-@media screen and (min-width: 768px) {
-
-	.sezzle-container .div3a {
-		width: 926px;
-		height: 246px;
-		left: 0px;
-		top: 0px;
-		position: absolute;
-		background: #F8F8F8;
-		border-radius: 5px;
-	}
-
-	.sezzle-container .div3b {
-		width: 926px;
-		height: 246px;
-		left: 0px;
-		top: 0px;
-		position: absolute;
-		border-radius: 5px;
-		border: 2px #29D3A2 solid;
-		border-image: linear-gradient(
-				to bottom,
-				rgb(41, 211, 162),
-				rgb(254, 165, 0) 33.85%,
-				rgb(255, 86, 103) 67.19%,
-				rgb(131, 51, 212) 100%
-		) 1;
-	}
-
-}
-
-.sezzle-container .div4
-{
-	width: 283px; height: 296px; left: 133px; top: 0px; position: absolute;
-}
-
-.sezzle-container .div5
-{
-	width: 211px; height: 69px; left: 72px; top: 226px; position: absolute;
-}
-
-.sezzle-container .div5a
-{
-	width: 211px; height: 50px; left: 0px; top: 20px; position: absolute;
-	border: 2px #29D3A2 solid;
-	border-image: linear-gradient(
-		to bottom,
-		rgb(41, 211, 162),
-		rgb(254, 165, 0) 33.85%,
-		rgb(255, 86, 103) 67.19%,
-		rgb(131, 51, 212) 100%
-)
-1;
-}
-
-.sezzle-container .div5b
-{
-	width: 163.92px; height: 84.55px; left: 30px; top: 40px; position: absolute;
-}
-
-
-.sezzle-container .div6
-{
-	width: 45.58px; height: 11.22px; left: 0px; top: 0px; position: absolute;
-}
-
-.sezzle-container .div6a
-{
-	width: 33.61px; height: 7.25px; left: 11.97px; top: 3.98px; position: absolute; background: black;
-}
-
-.sezzle-container .div6b
-{
-	width: 10.91px; height: 10.41px; left: 0px; top: 0px; position: absolute; background: #00B67A;
-}
-
-
-.sezzle-container .div6c
-{
-	width: 2.37px; height: 1.52px; left: 5.46px; top: 6.43px; position: absolute; background: #005128;
-}
-
-
-.sezzle-container .div7
-{
-	width: 63px; height: 11.57px; left: 98.55px; top: 0px; position: absolute;
-}
-
-.sezzle-container .div8
-{
-	width: 182px; height: 117.04px; left: 82px; top: 110px; position: absolute;
-}
-
-.sezzle-container .div9
-{
-	width: 182px; height: 117.04px; left: 0px; top: 0px; position: absolute; background: white; border-top-left-radius: 2.93px; border-top-right-radius: 2.93px; border-bottom-left-radius: 2.93px; border: 1.20px #29D3A2 solid;border-image: linear-gradient(
-		to bottom,
-		rgb(41, 211, 162),
-		rgb(254, 165, 0) 33.85%,
-		rgb(255, 86, 103) 67.19%,
-		rgb(131, 51, 212) 100%
-)
-1;
-	border-bottom-right-radius: 17.04px;
-}
-
-.sezzle-container .div10
-{
-	width: 152.88px; height: 78.40px; left: 17.42px; top: 19.26px; position: absolute;
-}
-
-.sezzle-container .div11
-{
-	width: 42.51px; height: 10.47px; left: 0px; top: 0px; position: absolute;
-}
-
-.sezzle-container .div12a
-{
-	left: 0px; top: 71.40px; position: absolute;
-}
-
-.sezzle-container .span12a
-{
-	color: #382757; font-size: 7.50px; font-family: Satoshi; font-weight: 700; line-height: 6.97px; word-wrap: break-word;
-}
-
-.sezzle-container .span12b
-{
-	color: #382757; font-size: 7.50px; font-family: Satoshi; font-weight: 400; line-height: 6.97px; word-wrap: break-word;
-}
-
-.sezzle-container .div12b
-{
-	width: 152.74px; left: 0.14px; top: 21.07px; position: absolute;
-}
-
-
-.sezzle-container .div12c
-{
-	width: 57.11px; height: 10.79px; left: 93.77px; top: 0px; position: absolute;
-}
-
-
-.sezzle-container .div13
-{
-	width: 182.72px; height: 117.50px; left: 193px; top: 0px; position: absolute;
-}
-
-
-.sezzle-container .div13a
-{
-	width: 182.72px; height: 117.50px; left: 0px; top: 0px; position: absolute; background: white; border-top-left-radius: 2.94px; border-top-right-radius: 2.94px; border-bottom-right-radius: 17.63px; border-bottom-left-radius: 2.94px;
-	border: 1.26px #29D3A2 solid;
-
-
-}
-
-.sezzle-container .div13b
-{
-	width: 153.48px; height: 82.68px; left: 17.49px; top: 17.63px; position: absolute;
-}
-
-.sezzle-container .div13c
-{
-	width: 42.67px; height: 10.51px; left: 0px; top: 0px; position: absolute;
-}
-
-.sezzle-container .span13a
-{
-	color: #382757; font-size: 11.67px; font-family: Satoshi; font-weight: 700; line-height: 12.92px; word-wrap: break-word;
-
-}
-
-.sezzle-container .span13b
-{
-	color: #382757; font-size: 8.75px; font-family: Satoshi; font-weight: 400; line-height: 12.92px; word-wrap: break-word;
-}
-
-.sezzle-container .div15a
-{
-	left: 0px; top: 71.68px; position: absolute;
-}
-
-.sezzle-container .span15a
-{
-	color: #382757; font-size: 7.53px; font-family: Satoshi; font-weight: 700; line-height: 10.04px; word-wrap: break-word;
-}
-
-.sezzle-container .span15aa
-{
-	color: #382757; font-size: 7.53px; font-family: Satoshi; font-weight: 400; line-height: 10.04px; word-wrap: break-word;
-}
-
-.sezzle-container .span15b
-{
-	color: #382757; font-size: 11.72px; font-family: Satoshi; font-weight: 700; line-height: 12.97px; word-wrap: break-word;
-}
-
-.sezzle-container .span15bb
-{
-	color: #382757; font-size: 8.79px; font-family: Satoshi; font-weight: 400; line-height: 12.97px; word-wrap: break-word;
-}
-
-.sezzle-container .div15b
-{
-	width: 153.34px; left: 0.14px; top: 21.15px; position: absolute;
-}
-
-.sezzle-container .div15c
-{
-	width: 57.33px; height: 10.83px; left: 94.14px; top: 0px; position: absolute;
-}
-
-.sezzle-container .div16a
-{
-	width: 431px;
-	height: 91px;
-	left: 437px;
-	top: 118px;
-	position: absolute;
-	text-align: center;
-}
-
-.sezzle-container .manage-your-orders
-{
-	color: #382757;
-	font-size: 25px;
-	font-family: Satoshi;
-	font-weight: 400;
-	line-height: 26px;
-	word-wrap: break-word
-}
-
-@media screen and (max-width: 767px) {
-
-	.sezzle-container .sezzle-logo svg {
-		width: 350px;
-		height: auto;
-	}
-
-	.sezzle-container .div9
-	{
-		width: 192px; height: 117.04px; left: -10px; top: 0px; position: absolute; background: white; border-top-left-radius: 2.93px; border-top-right-radius: 2.93px; border-bottom-left-radius: 2.93px; border: 1.20px #29D3A2 solid;border-image: linear-gradient(
-			to bottom,
-			rgb(41, 211, 162),
-			rgb(254, 165, 0) 33.85%,
-			rgb(255, 86, 103) 67.19%,
-			rgb(131, 51, 212) 100%
-	)
-	1;
-		border-bottom-right-radius: 17.04px;
-	}
-
-	.sezzle-container .div5a
-	{
-		width: 211px; height: 69px; left: 0px; top: 0px; position: absolute;
-		border: 2px #29D3A2 solid;
-		border-image: linear-gradient(
-				to bottom,
-				rgb(41, 211, 162),
-				rgb(254, 165, 0) 33.85%,
-				rgb(255, 86, 103) 67.19%,
-				rgb(131, 51, 212) 100%
-		)
-		1;
-	}
-
-	.sezzle-container .div16a
-	{
-		width: 257px; height: 91px; left: 36px; top: 46px; position: absolute; text-align: center;
-	}
-	.sezzle-container .div13
-	{
-		width: 182.72px; height: 117.50px; left: 111px; top: 243px; position: absolute;
-	}
-}
-
-.sezzle-container .span16b
-{
-	color: #382757;
-	font-weight:300;
-	font-family: "Satoshi-Regular", Helvetica;
-	font-size: 14px;
-	line-height: 29.8px;
-
-}
-
-.sezzle-container .button-alternate
-{
-	width: 168px;
-	padding: 12px;
-	left: 554px;
-	top: 205px;
-	position: absolute;
-	background: #382757;
-	border-radius: 100px;
-	border: 1px black solid;
-	justify-content: flex-start;
-	align-items: flex-start;
-	gap: 10px;
-	display: inline-flex;
-
-}
-
-.sezzle-container .button-alternate .search
-{
-	flex: 1 1 0;
-	text-align: center;
-	color: white;
-	font-size: 16px;
-	font-family: Arial;
-	font-weight: 700;
-	line-height: 16px;
-	word-wrap: break-word;
-}
-
-.sezzle-container .div16d
-{
-	width: 26px;
-	height: 45px;
-	left: 727px;
-	top: 156px;
-	position: absolute;
-	background: rgba(255, 255, 255, 0);
-}
-
-@media screen and (max-width: 767px)
-{
-	.sezzle-container .sezzle-header {
-		margin: 50px 0;
-		position: absolute;
-		width: 316px;
-		top: 143px;
-		left: 41px;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 44px;
+		font-family: var(--font-family);
+		color: var(--font-black);
 		text-align: center;
-		letter-spacing: 0;
-		line-height: 64px;
 	}
-	.sezzle-container .sezzle-description {
-		position: absolute;
-		width: 326px;
-		top: 373px;
-		left: 41px;
-		font-family: "Satoshi-Regular", Helvetica;
+	.sezzle-header {
+		font-size: 64px;
+		font-weight: 900;
+		line-height: 74px;
+	}
+	.sezzle-description {
+		font-size: 24px;
 		font-weight: 400;
-		color: #353535;
-		font-size: 24px;
-		text-align: center;
-		letter-spacing: 0;
 		line-height: 34px;
 	}
-	.sezzle-container .how-it-works {
-		position: absolute;
-		width: 390px;
-		top: 700px;
-		left: 0;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 36px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 46px;
-		white-space: nowrap;
-	}
-	.sezzle-container .faq {
-		position: absolute;
-		width: 390px;
-		top: 2331px;
-		left: 0;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 36px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 46px;
-		white-space: nowrap;
-	}
-
-	.sezzle-container .text-wrapper-4 {
-		position: absolute;
-		width: 320px;
-		top: 741px;
-		left: 31px;
-		font-family: "Satoshi-Regular", Helvetica;
-		font-weight: 300;
-		color: #353535;
-		font-size: 24px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 34px;
-	}
-
-	.sezzle-container .group-2 {
-		position: absolute;
-		width: 310px;
-		height: 93px;
-		top: 568px;
-		left: 48px;
-	}
-	.sezzle-container .line {
-		width: 20px;
-		top: 20px;
-		left: 51px;
-		position: absolute;
-		height: 1px;
-	}
-	.sezzle-container .line-2 {
-		width: 20px;
-		top: 20px;
-		left: 133px;
-		position: absolute;
-		height: 1px;
-	}
-	.sezzle-container .line-3 {
-		width: 20px;
-		top: 20px;
-		left: 216px;
-		position: absolute;
-		height: 1px;
-	}
-	.ellipse {
-		position: absolute;
-		width: 40px;
-		height: 41px;
-		top: 0;
-		left: 247px;
-		background-color: #382757;
-		border-radius: 20.08px/20.7px;
-		border: 1.46px solid;
-	}
-
-	.sezzle-container .overlap {
-		position: absolute;
-		width: 54px;
-		height: 46px;
-		top: 47px;
-		left: 240px;
-	}
-
-	.sezzle-container .text-wrapper-5 {
-		position: absolute;
-		top: 0;
-		left: 7px;
-		font-family: "Satoshi-Bold", Helvetica;
+	.installment {
+		font-size: 20.47px;
 		font-weight: 700;
-		color: #353535;
-		font-size: 20.5px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26.3px;
-		white-space: nowrap;
+		line-height: 26.32px;
 	}
-	.sezzle-container .text-wrapper-6 {
-		position: absolute;
-		top: 25px;
-		left: 0;
-		font-family: "Satoshi-Medium", Helvetica;
+	.due-date {
+		color: var(--font-grey);
+		font-size: 14.62px;
 		font-weight: 500;
-		color: #737373;
-		font-size: 14.6px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 20.5px;
-		white-space: nowrap;
+		line-height: 20.468px;
 	}
-	.sezzle-container .overlap-group-wrapper {
-		position: absolute;
-		width: 40px;
-		height: 41px;
-		top: 1px;
-		left: 167px;
-	}
-	.sezzle-container .overlap-group {
-		position: relative;
-		height: 41px;
-	}
-	.sezzle-container .ellipse-2 {
-		position: absolute;
-		width: 41px;
-		height: 40px;
-		top: 1px;
-		left: -1px;
-		background-color: #ffffff;
-		border-radius: 20.5px/19.89px;
-		border: 1.46px solid;
-		border-color: #382757;
-		transform: rotate(-90deg);
-	}
-	.sezzle-container .ellipse-3 {
-		position: absolute;
-		width: 43px;
-		height: 44px;
-		top: 0;
-		left: -1px;
-	}
-	.sezzle-container .overlap-2 {
-		position: absolute;
-		width: 55px;
-		height: 46px;
-		top: 47px;
-		left: 159px;
-	}
-	.sezzle-container .text-wrapper-7 {
-		left: 6px;
-		position: absolute;
-		top: 0;
-		font-family: "Satoshi-Bold", Helvetica;
-		font-weight: 700;
-		color: #353535;
-		font-size: 20.5px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26.3px;
-		white-space: nowrap;
-	}
-	.sezzle-container .text-wrapper-8 {
-		height: 21px;
-		position: absolute;
-		top: 25px;
-		left: 0;
-		font-family: "Satoshi-Medium", Helvetica;
-		font-weight: 500;
-		color: #737373;
-		font-size: 14.6px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 20.5px;
-		white-space: nowrap;
-	}
-	.sezzle-container .overlap-wrapper {
-		position: absolute;
-		width: 40px;
-		height: 41px;
-		top: 1px;
-		left: 83px;
-	}
-	.sezzle-container .ellipse-4 {
-		position: absolute;
-		width: 43px;
-		height: 44px;
-		top: 0;
-		left: -1px;
-	}
-
-	.sezzle-container .div-wrapper {
-		position: absolute;
-		width: 40px;
-		height: 41px;
-		top: 1px;
-		left: 0;
-	}
-	.sezzle-container .ellipse-5 {
-		position: absolute;
-		width: 43px;
-		height: 44px;
-		top: 0;
-		left: -1px;
-	}
-	.sezzle-container .overlap-4 {
-		position: absolute;
-		width: 44px;
-		height: 46px;
-		top: 47px;
-		left: 0;
-	}
-	.sezzle-container .text-wrapper-9 {
-		left: 0;
-		position: absolute;
-		top: 0;
-		font-family: "Satoshi-Bold", Helvetica;
-		font-weight: 700;
-		color: #353535;
-		font-size: 20.5px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26.3px;
-		white-space: nowrap;
-	}
-	.sezzle-container .group-3 {
-		position: absolute;
-		width: 297px;
-		height: 236px;
-		top: 900px;
-		left: 43px;
-	}
-	.sezzle-container .overlap-3 {
-			position: absolute;
-			width: 54px;
-			height: 46px;
-			top: 47px;
-			left: 75px;
-		}
-	.sezzle-container .overlap-5 {
-			position: relative;
-			width: 295px;
-			height: 236px;
-			background-color: #eeeeee;
-			border-radius: 10px;
-		}
-
-	.sezzle-container .shopping-cart {
-			position: absolute;
-			width: 68px;
-			height: 68px;
-			top: 42px;
-			left: 113px;
-		}
-
-	.sezzle-container .text-wrapper-10 {
-		position: absolute;
-		width: 235px;
-		top: 134px;
-		left: 30px;
-		font-family: "Satoshi-Black", Helvetica;
+	.sezzle-subheader {
+		font-size: 36px;
 		font-weight: 900;
-		color: #353535;
+		line-height: 46px;
+	}
+	.sezzle-info {
 		font-size: 16px;
-		text-align: center;
-		letter-spacing: 0;
+		font-weight: 900;
 		line-height: 26px;
 	}
-	.sezzle-container .group-4 {
-		position: absolute;
-		width: 297px;
-		height: 236px;
-		top: 1166px;
-		left: 48px;
+	.cta-area {
+		color: var(--font-purple);
 	}
-	.sezzle-container .text-wrapper-11 {
-		position: absolute;
-		width: 255px;
-		top: 134px;
-		left: 20px;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 16px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26px;
-	}
-	.sezzle-container .group-wrapper {
-		position: absolute;
-		width: 95px;
-		height: 59px;
-		top: 46px;
-		left: 100px;
-		background-color: #382757;
-		border-radius: 5px;
-	}
-	.sezzle-container .group-5 {
-		position: absolute;
-		width: 34px;
-		height: 41px;
-		top: 10px;
-		left: 32px;
-	}
-	.sezzle-container .group-6 {
-		position: absolute;
-		width: 297px;
-		height: 236px;
-		top: 1432px;
-		left: 48px;
-	}
-	.sezzle-container .deployed-code {
-		position: absolute;
-		width: 61px;
-		height: 70px;
-		top: 44px;
-		left: 117px;
-	}
-
-	.sezzle-container .div1
-	{
-		width: 334px; height: 556px; left: 32px; top: 1716px; position: absolute;
-	}
-
-	.sezzle-container .div2
-	{
-		width: 302px; height: 556px; left: 9px; top: 0px; position: absolute; background: #F8F8F8; border-radius: 5px;
-	}
-
-	.sezzle-container .div3
-	{
-		width: 302px; height: 556px; left: 0px; top: 0px; position: absolute; border-radius: 5px; border: 2px #29D3A2 solid;	border-image: linear-gradient(
-			to bottom,
-			rgb(41, 211, 162),
-			rgb(254, 165, 0) 33.85%,
-			rgb(255, 86, 103) 67.19%,
-			rgb(131, 51, 212) 100%
-	)
-	1;
-	}
-
-	.sezzle-container .div4
-	{
-		width: 283px; height: 296px; left: 51px; top: 260px; position: absolute;
-	}
-
-	.sezzle-container .div8
-	{
-		width: 182px; height: 117.04px; left: 0px; top: 370px; position: absolute;
-	}
-
-	.sezzle-container .manage-your-orders {
-
-		color: #382757;
+	.cta-header {
 		font-size: 25px;
-		font-family: Satoshi; font-weight: 700; line-height: 26px; word-wrap: break-word;
+		font-weight: 700;
+		line-height: 26px;
 	}
-
-	.sezzle-container .text-wrapper-12 {
-
-		font-family: "Satoshi-Regular", Helvetica;
+	.cta-description {
 		font-size: 14px;
+		font-weight: 400;
 		line-height: 29.8px;
 	}
-
-	.sezzle-container .button-alternate {
-
-		width: 198px;
-		padding: 16px;
-		left: 45px;
-		top: 168px;
-		position: absolute;
-		background: #382757;
-		border-radius: 100px;
-		border: 1px black solid;
-		justify-content: flex-start;
-		align-items: flex-start;
-		gap: 10px;
-		display: inline-flex;
-	}
-
-	.sezzle-container .button-alternate .search {
-		flex: 1 1 0;
-		text-align: center;
-		color: white;
+	.cta-button {
+		color: var(--font-white);
 		font-size: 16px;
-		font-family: Arial;
 		font-weight: 700;
 		line-height: 16px;
-		word-wrap: break-word;
+		padding: 16px;
+		background-color: var(--font-purple);
+		border-radius: 100px;
+		text-decoration: none;
+		display: block;
 	}
-
-	.sezzle-container .line-4 {
-		width: 390px;
-		top: 2470px;
-		left: 0;
-		object-fit: cover;
-		position: absolute;
-		height: 1px;
+	.cta-button:hover {
+		background-color: var(--font-violet)
 	}
-
-	.sezzle-container .line-5 {
-		width: 390px;
-		top: 2644px;
-		left: 0;
-		object-fit: cover;
-		position: absolute;
-		height: 1px;
+	.cta-button:active {
+		background-color: var(--font-magenta)
 	}
-
-	.sezzle-container .line-6 {
-		width: 390px;
-		top: 2556px;
-		left: 0;
-		object-fit: cover;
-		position: absolute;
-		height: 1px;
+	.review-card {
+		color: var(--font-purple);
 	}
-
-	.sezzle-container .line-7 {
-		width: 390px;
-		top: 2736px;
-		left: 0;
-		object-fit: cover;
-		position: absolute;
-		height: 1px;
+	.review-header {
+		font-size: 11.716px;
+		font-weight: 700;
+		line-height: 12.971px;
 	}
-
-	.sezzle-container .text-wrapper-12 {
-		position: absolute;
-		width: 334px;
-		top: 2407px;
-		left: 32px;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 16px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26px;
-	}
-
-	.sezzle-container .text-wrapper-13 {
-		top: 2571px;
-		position: absolute;
-		width: 334px;
-		left: 32px;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 16px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26px;
-	}
-
-	.sezzle-container .text-wrapper-14 {
-		top: 2484px;
-		position: absolute;
-		width: 334px;
-		left: 32px;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 16px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26px;
-	}
-
-	.sezzle-container .text-wrapper-15 {
-		top: 2658px;
-		position: absolute;
-		width: 334px;
-		left: 32px;
-		font-family: "Satoshi-Black", Helvetica;
-		font-weight: 900;
-		color: #353535;
-		font-size: 16px;
-		text-align: center;
-		letter-spacing: 0;
-		line-height: 26px;
-	}
-
-	.sezzle-container .pay-in-payment {
-		position: absolute;
-		width: 342px;
-		top: 2790px;
-		left: 24px;
-		font-family: "Satoshi-Regular", Helvetica;
+	.review-description {
+		font-size: 8.787px;
 		font-weight: 400;
-		color: #353535;
+		line-height: 12.971px;
+	}
+	.review-name {
+		font-size: 7.532px;
+		font-weight: 700;
+		line-height: 10.042px;
+	}
+	.review-date {
+		font-weight: 400;
+	}
+	.terms {
 		font-size: 12px;
-		text-align: center;
-		letter-spacing: 0;
+		font-weight: 400;
 		line-height: 15px;
 	}
-
-	:root {
-	    --ui-colorswhite: rgba(255, 255, 255, 1);
-		--brand-colorsdark-purple: rgba(56, 39, 87, 1);
-    }
-}
 </style>
-<meta content="width=device-width, initial-scale=1" name="viewport" />
+
 <div class="sezzle-container">
-	<div class="sezzle-logo">
-		<?xml version="1.0" encoding="UTF-8"?>
-			<svg width="360" height="139" viewBox="0 0 360 139" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M58.3442 64.6345C63.8159 70.1062 72.6856 70.1062 78.1573 64.6345L78.6812 64.1106C81.4146 61.3772 75.9454 47.0334 78.6812 44.2975L58.3442 64.6345Z" fill="url(#paint0_linear_26_493)"/>
-				<path d="M79.2099 43.7688L78.686 44.2927C75.9526 47.0261 81.4219 61.3699 78.686 64.1034L99.023 43.7664C96.2872 41.0305 92.7024 39.6626 89.1177 39.6626C85.5305 39.665 81.9433 41.033 79.2099 43.7688Z" fill="url(#paint1_linear_26_493)"/>
-				<path d="M58.3443 44.8214C52.8726 50.2931 52.8726 59.1628 58.3443 64.6321L79.2124 43.7639C84.6841 38.2922 84.6841 29.4226 79.2124 23.9509L58.3443 44.8214Z" fill="url(#paint2_linear_26_493)"/>
-				<path d="M78.1574 64.6345C72.6857 70.1062 72.6857 78.9759 78.1574 84.4476L99.0255 63.5795C104.497 58.1102 104.497 49.2381 99.0255 43.7688L78.1574 64.6345Z" fill="url(#paint3_linear_26_493)"/>
-				<path d="M180.204 54.3096C179.782 52.8641 179.153 51.4889 178.334 50.218C176.932 48.0448 174.979 46.2306 172.69 44.9767C169.071 43.0048 164.756 42.5392 160.781 43.6961C156.769 44.8651 153.454 47.5355 151.448 51.21C149.452 54.8675 148.994 59.0828 150.153 63.0823L150.165 63.1235C150.432 64.0161 150.861 65.1536 150.868 65.173C152.2 68.2896 154.429 70.6689 157.681 72.4468C159.981 73.7055 162.566 74.3701 165.159 74.3701C166.648 74.3701 168.137 74.1542 169.585 73.7274C172.644 72.8348 175.312 71.0691 177.327 68.5904L177.453 68.4327C177.967 67.7827 178.433 67.0891 178.836 66.3663C179.554 65.0833 179.093 63.4558 177.81 62.7379C177.412 62.5148 176.963 62.3983 176.51 62.3983C175.544 62.3983 174.652 62.9198 174.181 63.7638C173.524 64.9402 172.651 65.9637 171.591 66.8029C171.499 66.8756 171.414 66.9532 171.365 67.009C170.388 67.7342 169.287 68.2824 168.091 68.634C165.477 69.4029 162.627 69.0949 160.226 67.7851C158.639 66.9217 157.315 65.6411 156.374 64.067L178.404 57.6033C179.806 57.1886 180.613 55.7139 180.204 54.3096ZM165.202 48.3625C166.905 48.3625 168.613 48.8015 170.141 49.6335C171.647 50.4557 172.937 51.6514 173.871 53.0921C173.924 53.1745 173.975 53.257 174.029 53.3419L154.848 58.9688C154.8 57.157 155.234 55.3598 156.117 53.7494C157.439 51.3264 159.624 49.5655 162.273 48.787C163.238 48.5081 164.223 48.3625 165.202 48.3625Z" fill="#382757"/>
-				<path d="M208.479 69.3059H193.905L210.203 45.3648C210.511 44.9112 210.543 44.3315 210.288 43.8465C210.034 43.3614 209.534 43.0631 208.986 43.0631H188.266C186.89 43.0631 185.77 44.1836 185.77 45.5588C185.77 46.934 186.89 48.0545 188.266 48.0545H202.153L185.86 71.9957C185.552 72.4492 185.52 73.0313 185.775 73.514C186.029 73.9966 186.529 74.2974 187.077 74.2974H208.479C209.854 74.2974 210.972 73.1793 210.972 71.8016C210.972 70.4264 209.854 69.3059 208.479 69.3059Z" fill="#382757"/>
-				<path d="M240.766 69.3059H226.194L242.49 45.3648C242.798 44.9136 242.832 44.3315 242.575 43.844C242.32 43.3614 241.818 43.0606 241.273 43.0606H220.55C219.175 43.0606 218.054 44.1812 218.054 45.5564C218.054 46.9316 219.172 48.0521 220.55 48.0521H234.438L218.144 71.9932C217.839 72.4468 217.805 73.0289 218.059 73.5115C218.316 73.9942 218.814 74.2949 219.362 74.2949H240.763C242.139 74.2949 243.259 73.1768 243.259 71.7992C243.262 70.4264 242.141 69.3059 240.766 69.3059Z" fill="#382757"/>
-				<path d="M255.156 29.5536C253.781 29.5536 252.66 30.6741 252.66 32.0493V71.8913C252.66 73.2665 253.778 74.3871 255.156 74.3871C256.531 74.3871 257.649 73.2665 257.649 71.8913V32.0493C257.649 30.6717 256.531 29.5536 255.156 29.5536Z" fill="#382757"/>
-				<path d="M296.082 54.3096C295.662 52.8665 295.034 51.4913 294.214 50.218C292.812 48.0448 290.86 46.2306 288.57 44.9767C284.952 43.0048 280.637 42.5392 276.662 43.6961C272.65 44.8651 269.335 47.5355 267.331 51.21C265.335 54.8675 264.874 59.0804 266.034 63.0823L266.046 63.1235C266.313 64.0112 266.742 65.1512 266.749 65.173C268.081 68.2896 270.31 70.6665 273.562 72.4468C275.859 73.7055 278.447 74.3701 281.04 74.3701C282.529 74.3701 284.018 74.1542 285.466 73.7274C288.524 72.8348 291.192 71.0667 293.205 68.5928L293.336 68.4279C293.851 67.7754 294.314 67.0842 294.716 66.3663C295.434 65.0833 294.973 63.4558 293.69 62.7379C293.293 62.5148 292.844 62.3983 292.39 62.3983C291.425 62.3983 290.533 62.9198 290.062 63.7638C289.402 64.9426 288.532 65.9637 287.472 66.8004C287.377 66.8732 287.292 66.9532 287.246 67.0066C286.269 67.7318 285.168 68.2799 283.969 68.6316C281.357 69.398 278.507 69.0924 276.104 67.7827C274.518 66.9169 273.193 65.6362 272.252 64.0646L294.282 57.6009C295.687 57.1886 296.492 55.7139 296.082 54.3096ZM281.083 48.3625C282.786 48.3625 284.493 48.8015 286.021 49.6335C287.527 50.4557 288.818 51.6514 289.752 53.0921C289.805 53.1745 289.856 53.257 289.907 53.3419L270.727 58.9688C270.678 57.157 271.115 55.3598 271.995 53.7494C273.317 51.3264 275.502 49.5655 278.153 48.787C279.116 48.5081 280.103 48.3625 281.083 48.3625Z" fill="#382757"/>
-				<path d="M141.793 60.4216C141.053 59.3375 139.983 58.4352 138.618 57.7391C136.384 56.6016 133.488 56.0826 130.713 55.646L130.272 55.5781C128.322 55.2749 126.306 54.9596 125.014 54.3048C124.034 53.81 123.685 53.2497 123.685 52.1631C123.685 50.0555 125.979 48.4668 129.02 48.4668C132.651 48.4668 134.676 49.5267 136.949 50.9141C137.371 51.1712 137.856 51.307 138.346 51.307C139.292 51.307 140.151 50.8267 140.643 50.0215C141.016 49.4103 141.13 48.6875 140.961 47.989C140.791 47.2905 140.362 46.7011 139.748 46.3276C138.489 45.5588 137.114 44.756 135.377 44.1351C133.422 43.4341 131.344 43.0946 129.02 43.0946C126.219 43.0946 123.6 43.9459 121.642 45.4909C119.493 47.1886 118.31 49.5583 118.31 52.1656C118.31 55.2895 119.789 57.6882 122.586 59.1046C124.643 60.1451 127.085 60.5235 129.445 60.8897L129.879 60.9576C135.935 61.9084 137.689 62.7597 137.689 64.7655C137.689 67.2491 135.203 68.8741 131.356 68.9057H131.218C127.09 68.9057 124.774 67.3195 123.532 66.4681C123.326 66.3275 123.148 66.2062 122.974 66.0971C122.547 65.8303 122.055 65.6896 121.553 65.6896C120.619 65.6896 119.765 66.1625 119.27 66.9532C118.487 68.212 118.87 69.8734 120.129 70.6568C120.197 70.7005 120.303 70.7732 120.422 70.8533L120.495 70.9018C121.97 71.9132 125.426 74.2804 131.22 74.2804H131.405C134.744 74.2513 137.614 73.3514 139.704 71.6803C141.873 69.9437 143.066 67.4892 143.066 64.7655C143.066 63.1162 142.639 61.6562 141.793 60.4216Z" fill="#382757"/>
-				<path d="M40.9521 109.142C40.6756 109.142 40.4573 109.062 40.2973 108.902C40.1372 108.728 40.0571 108.495 40.0571 108.204V95.1502H35.1457C34.8838 95.1502 34.68 95.0774 34.5345 94.9319C34.389 94.7864 34.3162 94.5972 34.3162 94.3644C34.3162 94.117 34.389 93.9278 34.5345 93.7968C34.68 93.6659 34.8838 93.6004 35.1457 93.6004H46.7803C47.0423 93.6004 47.246 93.6659 47.3916 93.7968C47.5371 93.9278 47.6098 94.117 47.6098 94.3644C47.6098 94.6118 47.5371 94.8082 47.3916 94.9537C47.246 95.0847 47.0423 95.1502 46.7803 95.1502H41.8689V108.204C41.8689 108.495 41.7889 108.728 41.6288 108.902C41.4833 109.062 41.2577 109.142 40.9521 109.142Z" fill="#382757"/>
-				<path d="M50.5993 109.142C50.3083 109.142 50.09 109.062 49.9445 108.902C49.7989 108.742 49.7262 108.517 49.7262 108.226V94.3425C49.7262 94.0515 49.7989 93.8332 49.9445 93.6877C50.09 93.5276 50.3083 93.4476 50.5993 93.4476C50.8758 93.4476 51.0941 93.5276 51.2542 93.6877C51.4143 93.8332 51.4943 94.0515 51.4943 94.3425V100.738H51.2105C51.5161 99.8943 52.0109 99.2613 52.6949 98.8392C53.3934 98.4027 54.1938 98.1844 55.096 98.1844C55.9401 98.1844 56.6386 98.3372 57.1916 98.6428C57.7591 98.9484 58.1811 99.4141 58.4576 100.04C58.7341 100.651 58.8724 101.43 58.8724 102.375V108.226C58.8724 108.517 58.7923 108.742 58.6323 108.902C58.4867 109.062 58.2757 109.142 57.9992 109.142C57.7082 109.142 57.4826 109.062 57.3225 108.902C57.177 108.742 57.1043 108.517 57.1043 108.226V102.485C57.1043 101.495 56.9078 100.775 56.5149 100.324C56.1365 99.8579 55.5253 99.6251 54.6813 99.6251C53.7063 99.6251 52.9277 99.9307 52.3456 100.542C51.7781 101.139 51.4943 101.939 51.4943 102.943V108.226C51.4943 108.837 51.196 109.142 50.5993 109.142Z" fill="#382757"/>
-				<path d="M66.9131 109.186C65.7926 109.186 64.8249 108.968 64.0099 108.531C63.2096 108.08 62.5838 107.447 62.1327 106.632C61.6961 105.817 61.4778 104.842 61.4778 103.707C61.4778 102.601 61.6961 101.641 62.1327 100.826C62.5692 99.9961 63.1659 99.3486 63.9226 98.8829C64.6939 98.4172 65.5816 98.1844 66.5857 98.1844C67.2988 98.1844 67.9391 98.3081 68.5066 98.5555C69.0742 98.7883 69.5544 99.1303 69.9473 99.5814C70.3548 100.033 70.6604 100.578 70.8641 101.219C71.0824 101.859 71.1915 102.579 71.1915 103.38C71.1915 103.612 71.1261 103.787 70.9951 103.903C70.8641 104.005 70.6749 104.056 70.4275 104.056H62.8312V102.899H70.0128L69.6635 103.183C69.6635 102.397 69.5471 101.735 69.3143 101.197C69.0814 100.644 68.7395 100.222 68.2883 99.9307C67.8518 99.6396 67.2988 99.4941 66.6294 99.4941C65.8872 99.4941 65.2542 99.6687 64.7303 100.018C64.2209 100.353 63.8353 100.826 63.5734 101.437C63.3114 102.033 63.1804 102.732 63.1804 103.532V103.663C63.1804 105.002 63.5006 106.021 64.1409 106.719C64.7958 107.418 65.7198 107.767 66.9131 107.767C67.4079 107.767 67.8954 107.702 68.3757 107.571C68.8704 107.44 69.3507 107.221 69.8163 106.916C70.0201 106.785 70.202 106.727 70.3621 106.741C70.5367 106.741 70.6749 106.792 70.7768 106.894C70.8787 106.981 70.9441 107.098 70.9733 107.243C71.0169 107.374 71.0024 107.52 70.9296 107.68C70.8714 107.84 70.7477 107.978 70.5585 108.095C70.0783 108.444 69.5107 108.713 68.8559 108.902C68.201 109.091 67.5534 109.186 66.9131 109.186Z" fill="#382757"/>
-				<path d="M80.5132 109.142C80.2222 109.142 79.9966 109.062 79.8365 108.902C79.691 108.728 79.6182 108.495 79.6182 108.204V94.5172C79.6182 94.2116 79.6983 93.986 79.8583 93.8405C80.0184 93.6804 80.244 93.6004 80.535 93.6004H85.7084C87.3528 93.6004 88.6189 93.986 89.5066 94.7573C90.3943 95.5286 90.8381 96.6273 90.8381 98.0534C90.8381 98.9557 90.6344 99.7415 90.2269 100.411C89.834 101.066 89.2519 101.568 88.4806 101.917C87.7094 102.252 86.7853 102.419 85.7084 102.419L85.9267 102.135H86.3633C86.9308 102.135 87.4256 102.281 87.8476 102.572C88.2696 102.863 88.6553 103.329 89.0045 103.969L91.1001 107.876C91.2165 108.08 91.2674 108.284 91.2529 108.487C91.2529 108.677 91.1874 108.837 91.0564 108.968C90.9254 109.084 90.7363 109.142 90.4889 109.142C90.2415 109.142 90.0377 109.084 89.8777 108.968C89.7176 108.851 89.5793 108.684 89.4629 108.466L87.0836 104.056C86.7489 103.431 86.3633 103.016 85.9267 102.812C85.4901 102.594 84.9153 102.485 84.2022 102.485H81.4082V108.204C81.4082 108.495 81.3354 108.728 81.1899 108.902C81.0444 109.062 80.8188 109.142 80.5132 109.142ZM81.4082 101.066H85.4465C86.6398 101.066 87.542 100.818 88.1532 100.324C88.7644 99.8142 89.07 99.0575 89.07 98.0534C89.07 97.0784 88.7644 96.3435 88.1532 95.8487C87.542 95.3394 86.6398 95.0847 85.4465 95.0847H81.4082V101.066Z" fill="#382757"/>
-				<path d="M98.5262 109.186C97.4057 109.186 96.438 108.968 95.623 108.531C94.8226 108.08 94.1969 107.447 93.7458 106.632C93.3092 105.817 93.0909 104.842 93.0909 103.707C93.0909 102.601 93.3092 101.641 93.7458 100.826C94.1823 99.9961 94.779 99.3486 95.5357 98.8829C96.307 98.4172 97.1947 98.1844 98.1988 98.1844C98.9119 98.1844 99.5522 98.3081 100.12 98.5555C100.687 98.7883 101.167 99.1303 101.56 99.5814C101.968 100.033 102.273 100.578 102.477 101.219C102.695 101.859 102.805 102.579 102.805 103.38C102.805 103.612 102.739 103.787 102.608 103.903C102.477 104.005 102.288 104.056 102.041 104.056H94.4443V102.899H101.626L101.277 103.183C101.277 102.397 101.16 101.735 100.927 101.197C100.695 100.644 100.353 100.222 99.9014 99.9307C99.4649 99.6396 98.9119 99.4941 98.2425 99.4941C97.5003 99.4941 96.8673 99.6687 96.3434 100.018C95.834 100.353 95.4484 100.826 95.1865 101.437C94.9245 102.033 94.7935 102.732 94.7935 103.532V103.663C94.7935 105.002 95.1137 106.021 95.754 106.719C96.4089 107.418 97.3329 107.767 98.5262 107.767C99.021 107.767 99.5085 107.702 99.9887 107.571C100.484 107.44 100.964 107.221 101.429 106.916C101.633 106.785 101.815 106.727 101.975 106.741C102.15 106.741 102.288 106.792 102.39 106.894C102.492 106.981 102.557 107.098 102.586 107.243C102.63 107.374 102.615 107.52 102.543 107.68C102.484 107.84 102.361 107.978 102.172 108.095C101.691 108.444 101.124 108.713 100.469 108.902C99.8141 109.091 99.1665 109.186 98.5262 109.186Z" fill="#382757"/>
-				<path d="M108.943 109.186C108.289 109.186 107.626 109.106 106.957 108.946C106.302 108.786 105.691 108.509 105.123 108.116C104.978 108.015 104.876 107.898 104.818 107.767C104.76 107.622 104.738 107.483 104.752 107.352C104.781 107.207 104.84 107.083 104.927 106.981C105.029 106.879 105.145 106.821 105.276 106.807C105.422 106.778 105.582 106.807 105.756 106.894C106.324 107.243 106.87 107.491 107.394 107.636C107.932 107.767 108.463 107.833 108.987 107.833C109.817 107.833 110.442 107.68 110.864 107.374C111.286 107.069 111.497 106.654 111.497 106.13C111.497 105.723 111.359 105.402 111.083 105.17C110.806 104.922 110.37 104.733 109.773 104.602L107.786 104.165C106.87 103.976 106.186 103.649 105.735 103.183C105.298 102.717 105.08 102.114 105.08 101.371C105.08 100.716 105.247 100.156 105.582 99.6905C105.931 99.2103 106.419 98.8392 107.044 98.5773C107.67 98.3153 108.398 98.1844 109.227 98.1844C109.867 98.1844 110.471 98.2717 111.039 98.4463C111.621 98.6064 112.145 98.8683 112.611 99.2321C112.756 99.334 112.851 99.4577 112.894 99.6032C112.953 99.7342 112.96 99.8725 112.916 100.018C112.887 100.149 112.822 100.265 112.72 100.367C112.618 100.455 112.494 100.505 112.349 100.52C112.203 100.535 112.05 100.491 111.89 100.389C111.454 100.098 111.01 99.887 110.559 99.756C110.108 99.6105 109.664 99.5377 109.227 99.5377C108.412 99.5377 107.794 99.6978 107.372 100.018C106.95 100.338 106.739 100.76 106.739 101.284C106.739 101.692 106.87 102.026 107.132 102.288C107.394 102.55 107.801 102.739 108.354 102.856L110.34 103.27C111.286 103.474 111.992 103.802 112.458 104.253C112.938 104.689 113.178 105.286 113.178 106.043C113.178 107.003 112.793 107.767 112.021 108.335C111.25 108.902 110.224 109.186 108.943 109.186Z" fill="#382757"/>
-				<path d="M116.746 113.071C116.455 113.071 116.237 112.991 116.091 112.831C115.946 112.686 115.873 112.468 115.873 112.177V99.123C115.873 98.832 115.946 98.6137 116.091 98.4681C116.237 98.3081 116.448 98.228 116.724 98.228C117.015 98.228 117.233 98.3081 117.379 98.4681C117.539 98.6137 117.619 98.832 117.619 99.123V101.197L117.379 100.891C117.612 100.062 118.07 99.4068 118.754 98.9265C119.453 98.4318 120.282 98.1844 121.243 98.1844C122.189 98.1844 123.011 98.4099 123.709 98.8611C124.422 99.2976 124.968 99.9307 125.346 100.76C125.739 101.575 125.936 102.55 125.936 103.685C125.936 104.806 125.739 105.781 125.346 106.61C124.968 107.425 124.43 108.058 123.731 108.509C123.033 108.96 122.203 109.186 121.243 109.186C120.282 109.186 119.46 108.946 118.776 108.466C118.092 107.971 117.626 107.316 117.379 106.501H117.641V112.177C117.641 112.468 117.561 112.686 117.401 112.831C117.241 112.991 117.022 113.071 116.746 113.071ZM120.872 107.767C121.541 107.767 122.116 107.607 122.596 107.287C123.091 106.967 123.469 106.501 123.731 105.89C124.008 105.279 124.146 104.544 124.146 103.685C124.146 102.361 123.848 101.35 123.251 100.651C122.669 99.9525 121.876 99.6032 120.872 99.6032C120.217 99.6032 119.642 99.7633 119.147 100.083C118.652 100.389 118.267 100.847 117.99 101.459C117.728 102.055 117.597 102.797 117.597 103.685C117.597 104.995 117.896 106.006 118.492 106.719C119.089 107.418 119.882 107.767 120.872 107.767Z" fill="#382757"/>
-				<path d="M133.008 109.186C131.975 109.186 131.08 108.96 130.323 108.509C129.567 108.058 128.977 107.425 128.555 106.61C128.148 105.781 127.944 104.806 127.944 103.685C127.944 102.841 128.061 102.084 128.293 101.415C128.526 100.731 128.868 100.149 129.319 99.6687C129.771 99.1885 130.302 98.8247 130.913 98.5773C131.539 98.3153 132.237 98.1844 133.008 98.1844C134.042 98.1844 134.937 98.4099 135.693 98.8611C136.45 99.3122 137.032 99.9525 137.44 100.782C137.862 101.597 138.073 102.565 138.073 103.685C138.073 104.529 137.956 105.286 137.723 105.955C137.491 106.625 137.149 107.207 136.697 107.702C136.246 108.182 135.708 108.553 135.082 108.815C134.471 109.062 133.78 109.186 133.008 109.186ZM133.008 107.767C133.663 107.767 134.238 107.607 134.733 107.287C135.228 106.967 135.606 106.501 135.868 105.89C136.144 105.279 136.283 104.544 136.283 103.685C136.283 102.361 135.984 101.35 135.388 100.651C134.806 99.9525 134.013 99.6032 133.008 99.6032C132.339 99.6032 131.757 99.7633 131.262 100.083C130.782 100.389 130.404 100.847 130.127 101.459C129.865 102.055 129.734 102.797 129.734 103.685C129.734 104.995 130.032 106.006 130.629 106.719C131.226 107.418 132.019 107.767 133.008 107.767Z" fill="#382757"/>
-				<path d="M141.602 109.142C141.31 109.142 141.092 109.062 140.947 108.902C140.801 108.742 140.728 108.517 140.728 108.226V99.123C140.728 98.832 140.801 98.6137 140.947 98.4681C141.092 98.3081 141.303 98.228 141.58 98.228C141.856 98.228 142.067 98.3081 142.213 98.4681C142.373 98.6137 142.453 98.832 142.453 99.123V101L142.213 100.738C142.518 99.8943 143.013 99.2613 143.697 98.8392C144.396 98.4027 145.196 98.1844 146.098 98.1844C146.942 98.1844 147.641 98.3372 148.194 98.6428C148.761 98.9484 149.183 99.4141 149.46 100.04C149.736 100.651 149.875 101.43 149.875 102.375V108.226C149.875 108.517 149.795 108.742 149.634 108.902C149.489 109.062 149.278 109.142 149.001 109.142C148.71 109.142 148.485 109.062 148.325 108.902C148.179 108.742 148.106 108.517 148.106 108.226V102.485C148.106 101.495 147.91 100.775 147.517 100.324C147.139 99.8579 146.528 99.6251 145.683 99.6251C144.708 99.6251 143.93 99.9307 143.348 100.542C142.78 101.139 142.497 101.939 142.497 102.943V108.226C142.497 108.837 142.198 109.142 141.602 109.142Z" fill="#382757"/>
-				<path d="M156.715 109.186C156.06 109.186 155.398 109.106 154.728 108.946C154.074 108.786 153.462 108.509 152.895 108.116C152.749 108.015 152.647 107.898 152.589 107.767C152.531 107.622 152.509 107.483 152.524 107.352C152.553 107.207 152.611 107.083 152.698 106.981C152.8 106.879 152.917 106.821 153.048 106.807C153.193 106.778 153.353 106.807 153.528 106.894C154.095 107.243 154.641 107.491 155.165 107.636C155.703 107.767 156.235 107.833 156.758 107.833C157.588 107.833 158.214 107.68 158.636 107.374C159.058 107.069 159.269 106.654 159.269 106.13C159.269 105.723 159.13 105.402 158.854 105.17C158.577 104.922 158.141 104.733 157.544 104.602L155.558 104.165C154.641 103.976 153.957 103.649 153.506 103.183C153.069 102.717 152.851 102.114 152.851 101.371C152.851 100.716 153.018 100.156 153.353 99.6905C153.702 99.2103 154.19 98.8392 154.816 98.5773C155.441 98.3153 156.169 98.1844 156.999 98.1844C157.639 98.1844 158.243 98.2717 158.81 98.4463C159.392 98.6064 159.916 98.8683 160.382 99.2321C160.528 99.334 160.622 99.4577 160.666 99.6032C160.724 99.7342 160.731 99.8725 160.688 100.018C160.658 100.149 160.593 100.265 160.491 100.367C160.389 100.455 160.266 100.505 160.12 100.52C159.975 100.535 159.822 100.491 159.662 100.389C159.225 100.098 158.781 99.887 158.33 99.756C157.879 99.6105 157.435 99.5377 156.999 99.5377C156.184 99.5377 155.565 99.6978 155.143 100.018C154.721 100.338 154.51 100.76 154.51 101.284C154.51 101.692 154.641 102.026 154.903 102.288C155.165 102.55 155.572 102.739 156.125 102.856L158.112 103.27C159.058 103.474 159.764 103.802 160.229 104.253C160.709 104.689 160.95 105.286 160.95 106.043C160.95 107.003 160.564 107.767 159.793 108.335C159.021 108.902 157.995 109.186 156.715 109.186Z" fill="#382757"/>
-				<path d="M164.517 109.099C164.226 109.099 164.008 109.019 163.862 108.859C163.717 108.684 163.644 108.444 163.644 108.138V99.2103C163.644 98.9047 163.717 98.6719 163.862 98.5118C164.008 98.3517 164.226 98.2717 164.517 98.2717C164.794 98.2717 165.012 98.3517 165.172 98.5118C165.332 98.6719 165.412 98.9047 165.412 99.2103V108.138C165.412 108.444 165.332 108.684 165.172 108.859C165.027 109.019 164.808 109.099 164.517 109.099ZM164.517 95.8269C164.153 95.8269 163.87 95.7323 163.666 95.5431C163.462 95.3394 163.36 95.0702 163.36 94.7355C163.36 94.3862 163.462 94.1243 163.666 93.9496C163.87 93.7604 164.153 93.6659 164.517 93.6659C164.896 93.6659 165.179 93.7604 165.369 93.9496C165.572 94.1243 165.674 94.3862 165.674 94.7355C165.674 95.0702 165.572 95.3394 165.369 95.5431C165.179 95.7323 164.896 95.8269 164.517 95.8269Z" fill="#382757"/>
-				<path d="M174.087 109.186C173.127 109.186 172.298 108.939 171.599 108.444C170.915 107.949 170.457 107.287 170.224 106.457L170.464 106.217V108.226C170.464 108.517 170.384 108.742 170.224 108.902C170.078 109.062 169.867 109.142 169.591 109.142C169.3 109.142 169.081 109.062 168.936 108.902C168.79 108.742 168.718 108.517 168.718 108.226V94.3425C168.718 94.0515 168.79 93.8332 168.936 93.6877C169.081 93.5276 169.3 93.4476 169.591 93.4476C169.867 93.4476 170.086 93.5276 170.246 93.6877C170.406 93.8332 170.486 94.0515 170.486 94.3425V100.847H170.224C170.471 100.033 170.937 99.3849 171.621 98.9047C172.305 98.4245 173.127 98.1844 174.087 98.1844C175.048 98.1844 175.877 98.4099 176.576 98.8611C177.274 99.2976 177.813 99.9307 178.191 100.76C178.584 101.575 178.781 102.55 178.781 103.685C178.781 104.806 178.584 105.781 178.191 106.61C177.813 107.425 177.267 108.058 176.554 108.509C175.856 108.96 175.033 109.186 174.087 109.186ZM173.716 107.767C174.386 107.767 174.961 107.607 175.441 107.287C175.936 106.967 176.314 106.501 176.576 105.89C176.852 105.279 176.991 104.544 176.991 103.685C176.991 102.361 176.692 101.35 176.096 100.651C175.514 99.9525 174.72 99.6032 173.716 99.6032C173.061 99.6032 172.487 99.7633 171.992 100.083C171.497 100.389 171.111 100.847 170.835 101.459C170.573 102.055 170.442 102.797 170.442 103.685C170.442 104.995 170.74 106.006 171.337 106.719C171.934 107.418 172.727 107.767 173.716 107.767Z" fill="#382757"/>
-				<path d="M184.674 109.186C183.627 109.186 182.826 108.866 182.273 108.226C181.72 107.585 181.444 106.668 181.444 105.475V94.3425C181.444 94.0515 181.517 93.8332 181.662 93.6877C181.808 93.5276 182.026 93.4476 182.317 93.4476C182.593 93.4476 182.812 93.5276 182.972 93.6877C183.132 93.8332 183.212 94.0515 183.212 94.3425V105.344C183.212 106.13 183.365 106.719 183.67 107.112C183.991 107.491 184.456 107.68 185.067 107.68C185.198 107.68 185.315 107.673 185.417 107.658C185.519 107.643 185.62 107.636 185.722 107.636C185.882 107.622 185.991 107.658 186.05 107.745C186.122 107.833 186.159 108.007 186.159 108.269C186.159 108.531 186.101 108.728 185.984 108.859C185.868 108.99 185.679 109.077 185.417 109.121C185.3 109.135 185.177 109.15 185.046 109.164C184.915 109.179 184.791 109.186 184.674 109.186Z" fill="#382757"/>
-				<path d="M192.577 109.186C191.456 109.186 190.489 108.968 189.674 108.531C188.873 108.08 188.247 107.447 187.796 106.632C187.36 105.817 187.141 104.842 187.141 103.707C187.141 102.601 187.36 101.641 187.796 100.826C188.233 99.9961 188.83 99.3486 189.586 98.8829C190.358 98.4172 191.245 98.1844 192.249 98.1844C192.962 98.1844 193.603 98.3081 194.17 98.5555C194.738 98.7883 195.218 99.1303 195.611 99.5814C196.018 100.033 196.324 100.578 196.528 101.219C196.746 101.859 196.855 102.579 196.855 103.38C196.855 103.612 196.79 103.787 196.659 103.903C196.528 104.005 196.339 104.056 196.091 104.056H188.495V102.899H195.676L195.327 103.183C195.327 102.397 195.211 101.735 194.978 101.197C194.745 100.644 194.403 100.222 193.952 99.9307C193.515 99.6396 192.962 99.4941 192.293 99.4941C191.551 99.4941 190.918 99.6687 190.394 100.018C189.885 100.353 189.499 100.826 189.237 101.437C188.975 102.033 188.844 102.732 188.844 103.532V103.663C188.844 105.002 189.164 106.021 189.805 106.719C190.459 107.418 191.383 107.767 192.577 107.767C193.072 107.767 193.559 107.702 194.039 107.571C194.534 107.44 195.014 107.221 195.48 106.916C195.684 106.785 195.866 106.727 196.026 106.741C196.2 106.741 196.339 106.792 196.44 106.894C196.542 106.981 196.608 107.098 196.637 107.243C196.681 107.374 196.666 107.52 196.593 107.68C196.535 107.84 196.411 107.978 196.222 108.095C195.742 108.444 195.174 108.713 194.52 108.902C193.865 109.091 193.217 109.186 192.577 109.186Z" fill="#382757"/>
-				<path d="M210.215 109.142C209.953 109.142 209.742 109.077 209.582 108.946C209.422 108.8 209.291 108.589 209.189 108.313L204.365 94.539C204.263 94.2334 204.285 93.9787 204.431 93.775C204.591 93.5567 204.838 93.4476 205.173 93.4476C205.42 93.4476 205.617 93.5131 205.762 93.644C205.908 93.7604 206.031 93.9496 206.133 94.2116L210.652 107.462H209.888L214.494 94.2771C214.595 94.0006 214.719 93.7968 214.865 93.6659C215.01 93.5203 215.207 93.4476 215.454 93.4476C215.687 93.4476 215.869 93.5203 216 93.6659C216.145 93.7968 216.269 94.0006 216.371 94.2771L220.911 107.462H220.234L224.797 94.2116C224.869 93.9642 224.979 93.775 225.124 93.644C225.284 93.5131 225.488 93.4476 225.735 93.4476C226.041 93.4476 226.266 93.5494 226.412 93.7532C226.557 93.9569 226.572 94.2188 226.456 94.539L221.61 108.313C221.508 108.589 221.377 108.8 221.217 108.946C221.071 109.077 220.86 109.142 220.584 109.142C220.322 109.142 220.111 109.077 219.951 108.946C219.805 108.8 219.674 108.589 219.558 108.313L215.17 95.6741H215.65L211.219 108.313C211.117 108.589 210.994 108.8 210.848 108.946C210.703 109.077 210.492 109.142 210.215 109.142Z" fill="#382757"/>
-				<path d="M231.169 109.186C230.442 109.186 229.787 109.048 229.205 108.771C228.637 108.48 228.186 108.087 227.851 107.592C227.517 107.098 227.349 106.545 227.349 105.934C227.349 105.148 227.546 104.529 227.939 104.078C228.346 103.627 229.008 103.307 229.925 103.118C230.856 102.928 232.123 102.834 233.723 102.834H234.706V103.991H233.745C232.566 103.991 231.635 104.049 230.951 104.165C230.282 104.267 229.809 104.449 229.532 104.711C229.27 104.973 229.139 105.344 229.139 105.824C229.139 106.421 229.343 106.909 229.751 107.287C230.173 107.665 230.74 107.854 231.453 107.854C232.035 107.854 232.545 107.716 232.981 107.44C233.432 107.163 233.782 106.785 234.029 106.305C234.291 105.824 234.422 105.271 234.422 104.646V102.157C234.422 101.255 234.24 100.607 233.876 100.214C233.512 99.807 232.916 99.6032 232.086 99.6032C231.577 99.6032 231.068 99.6687 230.558 99.7997C230.049 99.9307 229.51 100.142 228.943 100.433C228.739 100.535 228.565 100.571 228.419 100.542C228.273 100.498 228.157 100.418 228.07 100.302C227.982 100.185 227.931 100.054 227.917 99.9088C227.902 99.7488 227.931 99.596 228.004 99.4504C228.092 99.3049 228.223 99.1885 228.397 99.1012C229.037 98.781 229.67 98.5482 230.296 98.4027C230.922 98.2571 231.519 98.1844 232.086 98.1844C233.003 98.1844 233.76 98.3372 234.356 98.6428C234.953 98.9338 235.397 99.3849 235.688 99.9961C235.979 100.593 236.124 101.364 236.124 102.31V108.226C236.124 108.517 236.052 108.742 235.906 108.902C235.775 109.062 235.579 109.142 235.317 109.142C235.04 109.142 234.829 109.062 234.684 108.902C234.538 108.742 234.465 108.517 234.465 108.226V106.523H234.662C234.546 107.076 234.32 107.549 233.985 107.942C233.665 108.335 233.265 108.64 232.785 108.859C232.304 109.077 231.766 109.186 231.169 109.186Z" fill="#382757"/>
-				<path d="M241.656 113.071C241.437 113.071 241.263 113.013 241.132 112.897C241.001 112.78 240.921 112.62 240.892 112.417C240.877 112.227 240.913 112.031 241.001 111.827L242.507 108.444V109.208L238.316 99.4723C238.229 99.254 238.199 99.0502 238.229 98.8611C238.258 98.6719 238.345 98.5191 238.49 98.4027C238.636 98.2862 238.84 98.228 239.102 98.228C239.335 98.228 239.516 98.279 239.647 98.3808C239.778 98.4827 239.895 98.6646 239.997 98.9265L243.577 107.702H242.987L246.611 98.9265C246.727 98.6646 246.851 98.4827 246.982 98.3808C247.113 98.279 247.302 98.228 247.549 98.228C247.782 98.228 247.957 98.2862 248.073 98.4027C248.204 98.5191 248.277 98.6719 248.292 98.8611C248.321 99.0357 248.292 99.2321 248.204 99.4504L242.616 112.373C242.5 112.635 242.369 112.817 242.223 112.919C242.092 113.021 241.903 113.071 241.656 113.071Z" fill="#382757"/>
-				<path d="M260.395 109.186C259.566 109.186 258.867 109.04 258.3 108.749C257.747 108.444 257.332 108.007 257.055 107.44C256.779 106.858 256.641 106.152 256.641 105.322V99.756H255.178C254.931 99.756 254.742 99.6978 254.611 99.5814C254.48 99.4504 254.414 99.2758 254.414 99.0575C254.414 98.8392 254.48 98.6719 254.611 98.5555C254.742 98.439 254.931 98.3808 255.178 98.3808H256.641V95.8705C256.641 95.5795 256.721 95.3612 256.881 95.2157C257.041 95.0556 257.259 94.9756 257.536 94.9756C257.812 94.9756 258.023 95.0556 258.169 95.2157C258.329 95.3612 258.409 95.5795 258.409 95.8705V98.3808H261.159C261.407 98.3808 261.596 98.439 261.727 98.5555C261.858 98.6719 261.923 98.8392 261.923 99.0575C261.923 99.2758 261.858 99.4504 261.727 99.5814C261.596 99.6978 261.407 99.756 261.159 99.756H258.409V105.148C258.409 105.977 258.583 106.61 258.933 107.047C259.282 107.469 259.849 107.68 260.635 107.68C260.912 107.68 261.145 107.651 261.334 107.592C261.537 107.534 261.705 107.505 261.836 107.505C261.967 107.491 262.076 107.534 262.163 107.636C262.251 107.738 262.294 107.913 262.294 108.16C262.294 108.335 262.258 108.495 262.185 108.64C262.127 108.786 262.018 108.888 261.858 108.946C261.683 109.004 261.45 109.055 261.159 109.099C260.883 109.157 260.628 109.186 260.395 109.186Z" fill="#382757"/>
-				<path d="M268.073 109.186C267.04 109.186 266.145 108.96 265.388 108.509C264.631 108.058 264.042 107.425 263.62 106.61C263.212 105.781 263.009 104.806 263.009 103.685C263.009 102.841 263.125 102.084 263.358 101.415C263.591 100.731 263.933 100.149 264.384 99.6687C264.835 99.1885 265.366 98.8247 265.977 98.5773C266.603 98.3153 267.302 98.1844 268.073 98.1844C269.106 98.1844 270.001 98.4099 270.758 98.8611C271.514 99.3122 272.097 99.9525 272.504 100.782C272.926 101.597 273.137 102.565 273.137 103.685C273.137 104.529 273.021 105.286 272.788 105.955C272.555 106.625 272.213 107.207 271.762 107.702C271.311 108.182 270.772 108.553 270.147 108.815C269.535 109.062 268.844 109.186 268.073 109.186ZM268.073 107.767C268.728 107.767 269.303 107.607 269.797 107.287C270.292 106.967 270.67 106.501 270.932 105.89C271.209 105.279 271.347 104.544 271.347 103.685C271.347 102.361 271.049 101.35 270.452 100.651C269.87 99.9525 269.077 99.6032 268.073 99.6032C267.403 99.6032 266.821 99.7633 266.327 100.083C265.846 100.389 265.468 100.847 265.191 101.459C264.93 102.055 264.799 102.797 264.799 103.685C264.799 104.995 265.097 106.006 265.694 106.719C266.29 107.418 267.083 107.767 268.073 107.767Z" fill="#382757"/>
-				<path d="M282.556 109.142C282.265 109.142 282.039 109.062 281.879 108.902C281.733 108.728 281.661 108.495 281.661 108.204V94.5172C281.661 94.2116 281.741 93.986 281.901 93.8405C282.061 93.6804 282.286 93.6004 282.577 93.6004H287.751C289.395 93.6004 290.661 94.0078 291.549 94.8228C292.437 95.6232 292.881 96.7582 292.881 98.228C292.881 99.6833 292.437 100.818 291.549 101.633C290.661 102.448 289.395 102.856 287.751 102.856H283.451V108.204C283.451 108.495 283.378 108.728 283.232 108.902C283.087 109.062 282.861 109.142 282.556 109.142ZM283.451 101.35H287.533C288.711 101.35 289.599 101.088 290.196 100.564C290.807 100.025 291.112 99.2467 291.112 98.228C291.112 97.1948 290.807 96.4163 290.196 95.8924C289.599 95.3539 288.711 95.0847 287.533 95.0847H283.451V101.35Z" fill="#382757"/>
-				<path d="M298.041 109.186C297.313 109.186 296.658 109.048 296.076 108.771C295.509 108.48 295.058 108.087 294.723 107.592C294.388 107.098 294.221 106.545 294.221 105.934C294.221 105.148 294.417 104.529 294.81 104.078C295.218 103.627 295.88 103.307 296.797 103.118C297.728 102.928 298.994 102.834 300.595 102.834H301.577V103.991H300.617C299.438 103.991 298.506 104.049 297.822 104.165C297.153 104.267 296.68 104.449 296.404 104.711C296.142 104.973 296.011 105.344 296.011 105.824C296.011 106.421 296.214 106.909 296.622 107.287C297.044 107.665 297.611 107.854 298.325 107.854C298.907 107.854 299.416 107.716 299.853 107.44C300.304 107.163 300.653 106.785 300.9 106.305C301.162 105.824 301.293 105.271 301.293 104.646V102.157C301.293 101.255 301.111 100.607 300.748 100.214C300.384 99.807 299.787 99.6032 298.958 99.6032C298.448 99.6032 297.939 99.6687 297.43 99.7997C296.92 99.9307 296.382 100.142 295.814 100.433C295.611 100.535 295.436 100.571 295.29 100.542C295.145 100.498 295.028 100.418 294.941 100.302C294.854 100.185 294.803 100.054 294.788 99.9088C294.774 99.7488 294.803 99.596 294.876 99.4504C294.963 99.3049 295.094 99.1885 295.269 99.1012C295.909 98.781 296.542 98.5482 297.168 98.4027C297.793 98.2571 298.39 98.1844 298.958 98.1844C299.874 98.1844 300.631 98.3372 301.228 98.6428C301.824 98.9338 302.268 99.3849 302.559 99.9961C302.85 100.593 302.996 101.364 302.996 102.31V108.226C302.996 108.517 302.923 108.742 302.778 108.902C302.647 109.062 302.45 109.142 302.188 109.142C301.912 109.142 301.701 109.062 301.555 108.902C301.41 108.742 301.337 108.517 301.337 108.226V106.523H301.533C301.417 107.076 301.191 107.549 300.857 107.942C300.536 108.335 300.136 108.64 299.656 108.859C299.176 109.077 298.637 109.186 298.041 109.186Z" fill="#382757"/>
-				<path d="M308.527 113.071C308.309 113.071 308.134 113.013 308.003 112.897C307.872 112.78 307.792 112.62 307.763 112.417C307.748 112.227 307.785 112.031 307.872 111.827L309.378 108.444V109.208L305.187 99.4723C305.1 99.254 305.071 99.0502 305.1 98.8611C305.129 98.6719 305.216 98.5191 305.362 98.4027C305.507 98.2862 305.711 98.228 305.973 98.228C306.206 98.228 306.388 98.279 306.519 98.3808C306.65 98.4827 306.766 98.6646 306.868 98.9265L310.448 107.702H309.859L313.482 98.9265C313.599 98.6646 313.722 98.4827 313.853 98.3808C313.984 98.279 314.173 98.228 314.421 98.228C314.654 98.228 314.828 98.2862 314.945 98.4027C315.076 98.5191 315.148 98.6719 315.163 98.8611C315.192 99.0357 315.163 99.2321 315.076 99.4504L309.487 112.373C309.371 112.635 309.24 112.817 309.095 112.919C308.964 113.021 308.774 113.071 308.527 113.071Z" fill="#382757"/>
-				<defs>
-					<linearGradient id="paint0_linear_26_493" x1="77.5388" y1="65.2228" x2="67.7071" y2="53.5057" gradientUnits="userSpaceOnUse">
-						<stop stop-color="#CE5DCB"/>
-						<stop offset="0.2095" stop-color="#C558CC"/>
-						<stop offset="0.5525" stop-color="#AC4ACF"/>
-						<stop offset="0.9845" stop-color="#8534D4"/>
-						<stop offset="1" stop-color="#8333D4"/>
-					</linearGradient>
-					<linearGradient id="paint1_linear_26_493" x1="77.8954" y1="51.8858" x2="99.0215" y2="51.8858" gradientUnits="userSpaceOnUse">
-						<stop offset="0.0237" stop-color="#FF5667"/>
-						<stop offset="0.6592" stop-color="#FC8B82"/>
-						<stop offset="1" stop-color="#FBA28E"/>
-					</linearGradient>
-					<linearGradient id="paint2_linear_26_493" x1="54.2405" y1="44.2935" x2="83.3161" y2="44.2935" gradientUnits="userSpaceOnUse">
-						<stop stop-color="#00B874"/>
-						<stop offset="0.5126" stop-color="#29D3A2"/>
-						<stop offset="0.6817" stop-color="#53DFB6"/>
-						<stop offset="1" stop-color="#9FF4D9"/>
-					</linearGradient>
-					<linearGradient id="paint3_linear_26_493" x1="74.0532" y1="64.106" x2="103.128" y2="64.106" gradientUnits="userSpaceOnUse">
-						<stop stop-color="#FCD77E"/>
-						<stop offset="0.5241" stop-color="#FEA500"/>
-						<stop offset="1" stop-color="#FF5B00"/>
-					</linearGradient>
-				</defs>
-			</svg></div>
-	<p class="sezzle-header">Flexible Payments with No Interest</p>
-		<div class="how-it-works">How it Works</div>
-		<div class="faq">FAQs</div>
-		<p class="sezzle-description">
-			Select Sezzle at checkout and split your entire order into 4 payments over 6 weeks with no interest<sup>1</sup>.
+	<img class="sezzle-logo" src="" alt="Sezzle: The responsible way to pay">
+	<h1 class="sezzle-header">Flexible Payments with No Interest</h1>
+	<p class="sezzle-description">Select Sezzle at checkout and split your entire order into 4 payments over 6 weeks
+		with no interest<sup>1</sup>.
+	</p>
+
+	<div class="payment-pie-area">
+		<div class="installment-wrapper">
+			<img class="pie" src="img/ellipse-36.svg" alt="">
+			<div class="installment">25%</div>
+			<div class="due-date">Today</div>
+		</div>
+		<img class="pie-separator" src="" alt="">
+
+		<div class="installment-wrapper">
+			<img class="pie" src="img/ellipse-35.svg" alt="">
+			<div class="installment">25%</div>
+			<div class="due-date">2 weeks</div>
+		</div>
+		<img class="pie-separator" src="" alt="">
+		<div class="installment-wrapper">
+			<img class="pie" src="img/ellipse-34.svg" alt="">
+			<div class="installment">25%</div>
+			<div class="due-date">4 weeks</div>
+		</div>
+		<img class="pie-separator" src="" alt="">
+		<div class="installment-wrapper">
+			<img class="pie" src="img/ellipse-33.svg" alt="">
+			<div class="installment">25%</div>
+			<div class="due-date">6 weeks</div>
+		</div>
+
+		<div class="section-separator"></div>
+
+		<h2 class="sezzle-subheader">How it Works</h2>
+		<p class="sezzle-description">When you select Sezzle at checkout, you are choosing The Responsible Way to Pay.
 		</p>
 
-		<p class="text-wrapper-4">When you select Sezzle at checkout, you are choosing The Responsible Way to Pay.</p>
-		<div class="group-2">
-			<img class="line" src="img/line-42.svg" />
-			<img class="line-2" src="img/line-43.svg" />
-			<img class="line-3" src="img/line-44.svg" />
-			<div class="ellipse"></div>
-			<div class="ellipse"></div>
-			<div class="overlap">
-				<div class="text-wrapper-5">25%</div>
-				<div class="text-wrapper-6">6 weeks</div>
+		<div class="card-area">
+			<div class="info-card">
+				<img class="shopping-cart-icon" src="img/shopping_cart.svg" alt="" />
+				<p class="sezzle-info">Simply shop, add items to your cart, and go to checkout.</p>
 			</div>
-			<div class="overlap-group-wrapper">
-				<div class="overlap-group">
-					<div class="ellipse-2"></div>
-					<img class="ellipse-3" src="img/ellipse-34.svg" />
-				</div>
+			<div class="info-card">
+				<img class="sezzle-card-icon" src="img/group-1528.svg" alt="" />
+				<p class="sezzle-info">Choose Sezzle at checkout. You'll be redirected to sign up or log in to complete
+					your order.</p>
 			</div>
-			<div class="overlap-2">
-				<div class="text-wrapper-7">25%</div>
-				<div class="text-wrapper-8">4 weeks</div>
-			</div>
-			<div class="overlap-wrapper">
-				<div class="overlap-group">
-					<div class="ellipse-2"></div>
-					<img class="ellipse-4" src="img/ellipse-35.svg" /> v
-				</div>
-			</div>
-			<div class="overlap-3">
-				<div class="text-wrapper-5">25%</div>
-				<div class="text-wrapper-6">2 weeks</div>
-			</div>
-			<div class="div-wrapper">
-				<div class="overlap-group">
-					<div class="ellipse-2"></div>
-					<img class="ellipse-5" src="img/ellipse-36.svg" />
-				</div>
-			</div>
-			<div class="overlap-4">
-				<div class="text-wrapper-9">25%</div>
-				<div class="text-wrapper-6">Today</div>
+			<div class="info-card">
+				<img class="ship-time-icon" src="img/deployed_code_history.svg" alt="" />
+				<p class="sezzle-info">Your order will be shipped out right away<sup>2</sup> and your payments will be
+					split up over 6 weeks.</p>
 			</div>
 		</div>
-		<div class="group-3">
-			<div class="overlap-5">
-				<img class="shopping-cart" src="img/shopping_cart.svg" />
-				<p class="text-wrapper-10">Simply shop, add items to your cart, and go to checkout.</p>
-			</div>
-		</div>
-		<img class="line-4" src="img/line-47.svg" />
-		<img class="line-5" src="img/line-49.svg" />
-		<img class="line-6" src="img/line-51.svg" />
-		<img class="line-7" src="img/line-50.svg" />
-		<img class="line-8" src="img/line-52.svg" />
-		<img class="line-9" src="img/line-48.svg" />
-		<div class="group-4">
-			<div class="overlap-5">
-				<p class="text-wrapper-11">
-					Choose Sezzle at checkout. You'll be redirected to sign up or log in to complete your order.
+
+		<div class="section-separator"></div>
+
+		<div class="cta-area">
+			<h3 class="cta-header">Manage Your Orders, Reschedule Payments, and Shop Deals</h3>
+			<p class="cta-description">Available in the Sezzle App.</p>
+			<a class="cta-button" href="https://sezzle.com/app" rel="noreferrer" target="_blank">download the app</a>
+
+			<img class="mobile-app-img" src="img/image-380.png" alt="" />
+
+			<div class="review-card">
+				<img class="trustpilot" src="img/Group-2003.svg" alt="" />
+				<img class="five-stars" src="img/Group-2131.svg" alt="Five stars" />
+				<h4 class="review-header">Love Sezzle</h4>
+				<p class="review-description">Love Sezzle it helps when your doing a project and need that extra time to
+					pay.
 				</p>
-				<div class="group-wrapper"><img class="group-5" src="img/group-1528.svg" /></div>
+				<div class="review-name">Elizabeth E<span class="review-date"> - posted on 7.11.23</span></div>
 			</div>
-		</div>
-		<p class="text-wrapper-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-		<p class="text-wrapper-13">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-		<p class="text-wrapper-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-		<p class="text-wrapper-15">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-		<div class="group-6">
-			<div class="overlap-5">
-				<p class="text-wrapper-11">
-					Your order will be shipped out right away<sup>2</sup> and your payments will be split up over 6 weeks.
+
+			<div class="review-card">
+				<img class="trustpilot" src="img/Group-2003.svg" alt="" />
+				<img class="five-stars" src="img/Group-2131.svg" alt="Five stars" />
+				<h4 class="review-header">Wonderful</h4>
+				<p class="review-description">Wonderful. I mean why not? 4 interest free payments!! Buy now and pay
+					later!
 				</p>
-				<img class="deployed-code" src="img/deployed_code_history.svg" alt="" />
+				<div class="review-name">Julie Jules<span class="review-date"> - posted on 7.9.23</span></div>
+			</div>
+			<div class="review-card">
+				<img class="five-stars" src="img/Group-2131.svg" alt="" />
 			</div>
 		</div>
-	<div class="div1" >
-		<div class="div2" >
-			<div class="div3" >
-				<div class="div3a" ></div>
-				<div class="div3b" ></div>
-			</div>
-			<div class="div4" >
-				<div class="div5" >
-					<div class="div5a" ></div>
-					<div class="div5b" >
-						<div class="div6" >
-							<div class="div6a" ></div>
-							<div class="div6b" ></div>
-							<div class="div6c" ></div>
-						</div>
-						<div class="div7"><img src="img/Group-2131.svg"  alt=""/>
-						</div>
-					</div>
-				</div>
-				<img class="imgreview2"  src="img/image-380.png" />
-			</div>
-			<div class="div8" >
-				<div class="div9" ></div>
-				<div class="div10" >
-					<div class="div11" >
-						<img src="img/Group-2003.svg" />
-					</div>
-					<div class="div12a" ><span class="span12a">Julie Jules</span><span class="span12b"> - posted on 7.9.23</span></div>
-					<div class="div12b" ><span class="span13a" >Wonderful<br/></span><span class="span13b" >Wonderful. I mean why not? 4 interest free payments!! Buy now and pay later!</span></div>
-					<div class="div12c" ><img src="img/Group-2131.svg" />
-					</div>
-				</div>
-			</div>
+
+		<div class="terms">
+			<p><sup>1</sup>Pay in 4 payment option is 0% Annual Percentage Rate (APR). 25% down payment then three
+				payments of 25% every two weeks for 6 weeks. Options depend on your purchase amount, may vary by
+				merchant,
+				and
+				may
+				not be available in all states. Other payment options are subject to credit approval by third party
+				lenders.
+				Rates
+				from 5.99% - 34.99% APR; terms from 3 months – 48 months, which may vary by lender. 0% APR options may
+				be
+				available.
+				APRs will vary depending on credit qualifications, loan amount, term, and lender. Minimum purchase is
+				required.
+			</p>
+			<p><sup>2</sup>Shipping times subject to merchant shipping policy</p>
 		</div>
-		<div class="div13"  >
-			<div class="div13a"></div>
-			<div class="div13b">
-				<div class="div13c">
-					<img src="img/Group-2003.svg"/>
-				</div>
-				<div class="div15a" ><span class="span15a" >Elizabeth E</span><span class="span15aa" > - posted on 7.11.23</span></div>
-				<div class="div15b" ><span class="span15b" >Love Sezzle<br/></span><span class="span15bb" >Love Sezzle it helps when your doing a project and need that extra time to pay.</span></div>
-				<div class="div15c" ><img src="img/Group-2131.svg" />
-				</div>
-			</div>
-		</div>
-		<div class="div16a"><span class="manage-your-orders">Manage Your Orders, Reschedule Payments, and Shop Deals<br/></span><span class="span16b">Available in the Sezzle App.</span></div>
-		<div class="button-alternate" >
-			<div class="search">download the app</div>
-		</div>
-		<div class="div16d"></div>
 	</div>
-
-
-<section>
-<p class="pay-in-payment">
-	<sup>1</sup>Pay in 4 payment option is 0% Annual Percentage Rate (APR). 25% down payment then three payments of 25% every
-	two weeks for 6 weeks. Options depend on your purchase amount, may vary by merchant, and may not be available
-	in all states. Other payment options are subject to credit approval by third party lenders. Rates from 5.99% -
-	34.99% APR; terms from 3 months – 48 months, which may vary by lender. 0% APR options may be available. APRs
-	will vary depending on credit qualifications, loan amount, term, and lender. Minimum purchase is required.<br/><br/><sup>2</sup>Shipping
-	times subject to merchant shipping policy
-</p>
-</section>
-</div>
