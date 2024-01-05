@@ -20,8 +20,6 @@
         color: var(--font-black);
         text-align: center;
         width: 100%;
-        background-color: black;
-        color: var(--font-white);
     }
 
     .sezzle-logo {
@@ -50,9 +48,6 @@
         display: flex;
         flex-direction: row;
         gap: 11.39px;
-        background-color: var(--font-light-grey);
-        padding: 20px;
-        border-radius: 10px;
     }
 
     .pie-separator {
@@ -64,7 +59,6 @@
         font-size: 20.47px;
         font-weight: 700;
         line-height: 26.32px;
-        color: var(--font-black);
     }
 
     .due-date {
@@ -76,7 +70,7 @@
 
     .section-separator {
         max-width: 926px;
-        border: 1px solid var(--font-white);
+        border: 1px solid var(--font-light-grey);
         margin: 48px auto;
     }
 
@@ -112,7 +106,6 @@
         line-height: 26px;
         margin: 12px auto;
         max-width: 588px;
-        color: var(--font-black);
     }
 
     .cta-area {
@@ -269,6 +262,30 @@
         max-width: 936px;
     }
 
+
+    .sezzle-container-dark {
+        background-color: black;
+        color: var(--font-white);
+    }
+
+    .sezzle-container-dark .payment-pie-area {
+        background-color: var(--font-light-grey);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .sezzle-container-dark .installment {
+        color: var(--font-black);
+    }
+
+    .sezzle-container-dark .section-separator {
+        border: 1px solid var(--font-white);
+    }
+
+    .sezzle-container-dark .sezzle-info {
+        color: var(--font-black);
+    }
+
     @media screen and (max-width: 650px) {
 
         .sezzle-logo {
@@ -340,7 +357,7 @@
     }
 </style>
 
-<div class="sezzle-container">
+<div class="sezzle-container sezzle-container-dark">
     <div class="sezzle-logo" alt="Sezzle: The responsible way to pay">
         <svg width="360" height="159" viewBox="0 0 360 139" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="359.565" height="138.551" fill="black" />
