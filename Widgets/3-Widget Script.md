@@ -33,14 +33,14 @@ Widget Script installation is the simplest product to implement, but the process
 - BuyItLive - Widgets are enabled automatically.
 - PrestaShop - toggle the "Enable Widgets" switch to the "On" position in the Sezzle plug-in.
 	- Note: This feature adds the script only - please proceed to the configuration step.
-- Custom/Other Platforms - Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the code files that correspond to the product and cart pages.
+- Custom/Other Platforms - Copy the code snippet from the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a> and paste it into the bottom of the code files that correspond to the product and cart pages. The code snippet is present under "Add Sezzle to your product and cart pages" section of the Setup Checklist of the merchant dashboard.
 
 ## Configuration
 Once the widget script has been added, a configuration must also be put in place.
 - Option 1:  Install the Sezzle Widget Chrome Extension from the <a href="https://chrome.google.com/webstore/detail/sezzle-merchant-widget-ex/jhnomhfoednikimogkeamcaphknfmdkk?hl=en&authuser=0" target="_blank">Chrome App Store</a>, then visit the product page and follow the prompts in the extension window. The extension will create the configuration for the website and save it to Sezzle's widget-server.
     - Advantage: No wait time, can preview changes and update as needed, basic customization.
     - Disadvantages: No advanced troubleshooting, some customizations not supported.
-- Option 2: Click "Request Addition of Widgets" in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a>. The Widget team will create the configuration for the website and save it to Sezzle's widget-server.
+- Option 2: Click "Request Addition of Widgets" in the <a href="https://dashboard.sezzle.com/merchant/checklist" target="_blank">Merchant Dashboard</a>. The button is present under "Add Sezzle to your product and cart pages" section of the Setup Checklist of the merchant dashboard. The Widget team will create the configuration for the website and save it to Sezzle's widget-server.
     - Advantages: Full-service quality assurance, advanced troubleshooting.
     - Disadvantages: Wait time (usually within 1-2 business days).
 - Option 3: Create a <a href="./4-Local Config.md" target="_blank">local configuration</a> within the theme files.
