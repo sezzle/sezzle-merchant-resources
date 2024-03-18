@@ -1,0 +1,380 @@
+@import url("https://fonts.cdnfonts.com/css/satoshi");
+
+:root {
+  --font-family: Satoshi, "Open Sans", sans-serif;
+  --font-black: #353535;
+  --font-grey: #737373;
+  --font-med-grey: #f8f8f8;
+  --font-light-grey: #eee;
+  --font-white: #fff;
+  --font-purple: #382757;
+  --font-violet: #7d25cb;
+  --font-magenta: #8e24ac;
+}
+
+.sezzle-container {
+  font-family: var(--font-family);
+  color: var(--font-black);
+  text-align: center;
+  width: 100%;
+}
+
+.sezzle-logo {
+  margin: 100px auto;
+}
+
+.sezzle-header {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 74px;
+  margin: 27px auto;
+  max-width: 610px;
+}
+
+.sezzle-description {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34px;
+  margin: 27px auto;
+  max-width: 588px;
+}
+
+.payment-pie-area {
+  margin: 27px auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 11.39px;
+}
+
+.pie-separator {
+  position: relative;
+  top: 20px;
+}
+
+.installment {
+  font-size: 20.47px;
+  font-weight: 700;
+  line-height: 26.32px;
+}
+
+.due-date {
+  color: var(--font-grey);
+  font-size: 14.62px;
+  font-weight: 500;
+  line-height: 20.468px;
+}
+
+.section-separator {
+  max-width: 926px;
+  border: 1px solid var(--font-light-grey);
+  margin: 48px auto;
+}
+
+.sezzle-subheader {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 46px;
+  margin: 12px auto;
+  max-width: 610px;
+}
+
+.card-area {
+  margin: 65px auto 50px;
+  max-width: 926px;
+  display: flex;
+  flex-direction: row;
+  gap: 21px;
+}
+
+.info-card {
+  width: 295px;
+  background-color: var(--font-light-grey);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sezzle-info {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 26px;
+  margin: 12px auto;
+  max-width: 588px;
+}
+
+.cta-area {
+  color: var(--font-purple);
+  height: 250px;
+  max-width: 926px;
+  margin: 96px auto 48px;
+  background: var(--font-med-grey);
+  border: 2px solid #29d3a2;
+  border-radius: 5px;
+  border-image: linear-gradient(
+      to right bottom,
+      #29d3a2,
+      #fea500,
+      #ff5667,
+      #8333d4
+    )
+    1;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.cta-main {
+  margin: auto;
+  width: 60%;
+}
+
+.cta-header {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 12px auto;
+  max-width: 431px;
+}
+
+.cta-description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 29.8px;
+  margin: 12px auto;
+}
+
+.cta-button {
+  color: var(--font-white);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  padding: 16px;
+  background-color: var(--font-purple);
+  border-radius: 100px;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  margin: 16px auto;
+  margin: auto;
+}
+
+.cta-button:hover {
+  background-color: var(--font-violet);
+}
+
+.cta-button:active {
+  background-color: var(--font-magenta);
+}
+
+.mobile-reviews {
+  margin: 30px auto;
+  height: 313px;
+  width: 50%;
+  position: relative;
+  top: -75px;
+  left: 15%;
+}
+
+.mobile-app-img {
+  width: 196px;
+  height: 296px;
+  position: absolute;
+  z-index: 2;
+}
+
+.review-card-area {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-card {
+  position: absolute;
+  color: var(--font-purple);
+  width: 182.72px;
+  padding: 17.63px 11.7px 17.2px 17.49px;
+  background-color: var(--font-white);
+  border: 1.26px solid #29d3a2;
+  border-image: linear-gradient(
+      to right bottom,
+      #29d3a2,
+      #fea500,
+      #ff5667,
+      #8333d4
+    )
+    1;
+  border-radius: 2.938px 2.938px 17.626px 2.938px;
+  text-align: left;
+}
+
+.review-card-1 {
+  z-index: 3;
+  top: -20px;
+  left: 60px;
+}
+
+.review-card-2 {
+  z-index: 3;
+  top: 110px;
+  left: -55px;
+}
+
+.review-card-3 {
+  z-index: 1;
+  top: 247px;
+  left: 60px;
+}
+
+.trustpilot-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.review-header {
+  font-size: 11.716px;
+  font-weight: 700;
+  line-height: 12.971px;
+  margin: 10.3px 0 0;
+}
+
+.review-description {
+  font-size: 8.787px;
+  font-weight: 400;
+  line-height: 12.971px;
+  margin: 0 0 9.53px;
+}
+
+.review-name {
+  font-size: 7.532px;
+  font-weight: 700;
+  line-height: 10.042px;
+}
+
+.review-date {
+  font-weight: 400;
+}
+
+.terms {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  margin: 48px auto;
+  max-width: 936px;
+}
+
+.sezzle-container-fr .review-card-2 {
+  top: 115px;
+}
+
+.sezzle-container-dark {
+  background-color: black;
+  color: var(--font-white);
+}
+
+.sezzle-container-dark .payment-pie-area {
+  background-color: var(--font-light-grey);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.sezzle-container-dark .installment {
+  color: var(--font-black);
+}
+
+.sezzle-container-dark .section-separator {
+  border: 1px solid var(--font-white);
+}
+
+.sezzle-container-dark .sezzle-info {
+  color: var(--font-black);
+}
+
+@media screen and (max-width: 650px) {
+  .sezzle-logo {
+    margin: 60px auto;
+  }
+
+  .sezzle-header {
+    font-size: 44px;
+    line-height: 54px;
+    max-width: 316px;
+  }
+
+  .sezzle-description {
+    max-width: 316px;
+  }
+
+  .payment-pie-area {
+    gap: 6px;
+  }
+
+  .section-separator {
+    display: none;
+  }
+
+  .sezzle-subheader {
+    margin: 50px auto 15px;
+  }
+
+  .card-area {
+    flex-direction: column;
+    margin: 40px auto;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 255px;
+    padding: 42px 20px 30px;
+  }
+
+  .cta-area {
+    flex-direction: column;
+    margin: 30px auto;
+    width: 302px;
+    height: 530px;
+  }
+
+  .cta-main {
+    width: 100%;
+    margin: 30px auto;
+  }
+
+  .cta-header {
+    margin: 0 auto;
+  }
+
+  .cta-description {
+    margin: 0 0 8px;
+  }
+
+  .mobile-reviews {
+    width: 100%;
+    margin: 10px auto;
+    top: 0px;
+  }
+
+  .terms {
+    width: 342px;
+  }
+
+  .sezzle-container-fr .due-date {
+    font-size: 12px;
+  }
+
+  .sezzle-container-fr .cta-area {
+    height: 556px;
+  }
+
+  .sezzle-container-fr .cta-main {
+    width: initial;
+    padding: 0 10px;
+  }
+
+  .sezzle-container-fr.sezzle-container-dark .payment-pie-area {
+    padding: 20px 10px;
+    gap: 2px;
+  }
+}
