@@ -15,13 +15,13 @@ deploy_cloudfront_v1:production:
   environment: "${env_production}"
   extends:
     - .deploy_cloudfront
-  before_script: |
-    mkdir -p ./build
-    cp -v light-theme.html ./build/
-    cp -v light-theme-french.html ./build/
-    cp -v dark-theme.html ./build/
-    cp -v dark-theme-french.html ./build/
-    cp -v eventLogger.js ./build/
+  before_script:
+    - mkdir -p ./build
+    - cp -v light-theme.html ./build/
+    - cp -v light-theme-french.html ./build/
+    - cp -v dark-theme.html ./build/
+    - cp -v dark-theme-french.html ./build/
+    - cp -v eventLogger.js ./build/
   tags:
     - ${tag_deploy_us}
   variables:
