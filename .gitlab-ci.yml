@@ -3,22 +3,25 @@ include:
     ref: "v2.0.4"
     file:
       - ".compile/default.yml"
+      - ".build/npm.yml"
+      - ".deploy/cloudfront.yml"
 
 variables:
   JIRA_PROJECT_NAME: "MINT"
+  s3_bucket_production: "sezzlemedia/how-sezzle-works/v2"
+  cf_dist_production: "EFV0KW59BE883"
 
-.before_script: |
-  mkdir -p ./build
-  cp -v light-theme.html ./build/
-  cp -v light-theme-french.html ./build/
-  cp -v dark-theme.html ./build/
-  cp -v dark-theme-french.html ./build/
-  cp -v eventLogger.js ./build/
-
-deploy_cloudfront:production:
+deploy_cloudfront_v1:production:
   environment: "${env_production}"
   extends:
     - .deploy_cloudfront
+  before_script: |
+    mkdir -p ./build
+    cp -v light-theme.html ./build/
+    cp -v light-theme-french.html ./build/
+    cp -v dark-theme.html ./build/
+    cp -v dark-theme-french.html ./build/
+    cp -v eventLogger.js ./build/
   tags:
     - ${tag_deploy_us}
   variables:
@@ -27,3 +30,4 @@ deploy_cloudfront:production:
   rules:
     - !reference [.deploy_default_rules]
     - !reference [.deploy_production_rules]
+  when: manual
