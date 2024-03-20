@@ -2,7 +2,6 @@ include:
   - project: "DevOps/templates"
     ref: "v2.0.4"
     file:
-      - ".compile/default.yml"
       - ".compile/js.yml"
       - ".build/npm.yml"
       - ".deploy/cloudfront.yml"
