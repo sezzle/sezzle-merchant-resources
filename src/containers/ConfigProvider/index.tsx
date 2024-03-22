@@ -1,11 +1,13 @@
-import React, { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, ReactNode } from "react";
 import { DEFAULT_LANGUAGE, DEFAULT_THEME } from "../../constants";
 import Translation from "../../utils/Translation";
 import { ITranslation } from "../../interface";
 
 interface AppConfig {
+  merchant_uuid: string;
   theme: string;
   language: string;
+  origin: string;
 }
 
 interface ConfigContextType {
@@ -16,16 +18,16 @@ interface ConfigContextType {
 const ConfigContext = createContext<ConfigContextType | undefined>(undefined);
 
 export const ConfigProvider = ({ children }: { children: ReactNode }) => {
-  const storedConfig = localStorage.getItem("how_sezzle_works_config");
-  let appConfig: AppConfig = {
-    theme: DEFAULT_THEME,
-    language: DEFAULT_LANGUAGE,
+  const storedConfig: string =
+    localStorage.getItem("about_sezzle_config") || "";
+  const parsedConfig: AppConfig = JSON.parse(storedConfig);
+  const appConfig: AppConfig = {
+    merchant_uuid: parsedConfig.merchant_uuid || "",
+    theme: parsedConfig.theme || DEFAULT_THEME,
+    language: parsedConfig.language || DEFAULT_LANGUAGE,
+    origin: parsedConfig.origin || "",
   };
-  if (storedConfig) {
-    appConfig = JSON.parse(storedConfig);
-  }
-
-  const t = new Translation(appConfig.theme);
+  const t = new Translation(appConfig.language);
   const translation = t.get();
   return (
     <ConfigContext.Provider
