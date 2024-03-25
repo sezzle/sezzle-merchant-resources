@@ -87,9 +87,8 @@ To set up the page on any other platform, please work with your web developer an
 1. Copy and paste the [code](#code-snippet) into your website's page
 1. Click save and/or publish!
 
-#### Code Snippet
-
-Add your `merchant_uuid` and adjust `theme` and `language` as per your website's requirements.
+### Code Snippet
+Add your `merchant_uuid`, adjust `theme` and `language` as per your website's requirements.
 
 - `merchant_uuid` is your merchant ID which of the format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 - `theme` can either be `light` or `dark`.
