@@ -101,7 +101,7 @@ Insert the following code into your HTML file:
   <script>
       const config = {
           merchant_uuid: "",
-          theme: ""
+          theme: "",
           language: ""
       }
       const node = document.getElementById("how-sezzle-works");
