@@ -21,10 +21,19 @@ function App() {
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
-
   useEffect(() => {
-    sendEvent("about-sezzle-onload");
-  });
+    const body = [
+      {
+        event_name: "about-sezzle-onload",
+        merchant_site: config.origin,
+        merchant_uuid: config.merchant_uuid,
+      },
+    ];
+    // hooks are only accessible from inside a JSX element.
+    // So passing data from here, instead of directly getting them during api call.
+    // Some room for improvement.
+    sendEvent(body);
+  }, [config]);
 
   return (
     <div
