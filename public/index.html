@@ -1,1 +1,12 @@
+<script>
+    window.addEventListener('message', function (event) {
+        if (event.data.key == "about_sezzle_config") {
+        localStorage.setItem("about_sezzle_config", JSON.stringify({
+            merchant_uuid: event.data.merchant_uuid,
+            theme: event.data.theme,
+            language: event.data.language,
+            origin: event.origin
+        }));
+    }});
+</script>
 <div id="how-sezzle-works-container"></div>

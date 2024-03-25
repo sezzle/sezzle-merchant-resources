@@ -1,10 +1,4 @@
-export function sendEvent(eventName: string): void {
-  const body = [
-    {
-      event_name: eventName,
-      merchant_site: window.location.hostname,
-    },
-  ];
+export function sendEvent(body: any): void {
   fetch(`${process.env.REACT_APP_WIDGET_SERVER_URL}/v1/event/log`, {
     method: "POST",
     headers: {
