@@ -6,6 +6,9 @@ import frDark from "../../assets/dark-fr.svg";
 
 function Logo(): JSX.Element {
   const { config } = useConfig();
+  if (!config) {
+    return <></>
+  }
   const logoMap: Record<string, Record<string, string>> = {
     light: {
       en: enLight,
