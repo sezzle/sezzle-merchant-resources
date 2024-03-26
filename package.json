@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "start:local": "cd local && http-server -d ."
+    "http-server": "http-server -d .",
+    "start:local": "cd local && http-server"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "http-server": "^14.1.1"
   }
 }
