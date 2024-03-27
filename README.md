@@ -65,7 +65,7 @@ Insert the following code into your HTML file:
 
 ## Working with translations and Lokalise
 
-Now we are using Localise tool here where we keep translations for checkout service.
+Now we are using Localise tool here where we keep translations for how-sezzle-works.
 
 ### If you want to add a new key of translation and upload it to Localise
 
