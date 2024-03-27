@@ -1,0 +1,21 @@
+<div id="how-sezzle-works"></div>
+<script>
+    const config = {
+        merchant_uuid: "xxxx-xxxx-xxxx-xxxx",
+        theme: "dark",
+        language: "en"
+    }
+    const node = document.getElementById("how-sezzle-works");
+    const iframe = document.createElement('iframe');
+    iframe.src = "http://localhost:3000/index.html";
+    iframe.height = '2000px';
+    iframe.width = '100%';
+    iframe.style.border = 'none';
+    iframe.onload = function () {
+        iframe.contentWindow.postMessage({
+            key: "about_sezzle_config",
+            ...config
+        }, "*")
+    };
+    node.appendChild(iframe);
+</script>

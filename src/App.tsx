@@ -14,26 +14,26 @@ import trustPilot from "./assets/trustpilot.svg";
 import mobile from "./assets/mobile.svg";
 import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
-import { useEffect } from "react";
 import { sendEvent } from "./remote/api";
 
 function App() {
   const ctx = useConfig();
   const config = ctx.config;
+  if (!config) {
+    return <></>
+  }
   const translation: ITranslation = ctx.translation;
-  useEffect(() => {
-    const body = [
-      {
-        event_name: "about-sezzle-onload",
-        merchant_site: config.origin,
-        merchant_uuid: config.merchant_uuid,
-      },
-    ];
-    // hooks are only accessible from inside a JSX element.
-    // So passing data from here, instead of directly getting them during api call.
-    // Some room for improvement.
-    sendEvent(body);
-  }, [config]);
+  const body = [
+    {
+      event_name: "about-sezzle-onload",
+      merchant_site: config.origin,
+      merchant_uuid: config.merchant_uuid,
+    },
+  ];
+  // hooks are only accessible from inside a JSX element.
+  // So passing data from here, instead of directly getting them during api call.
+  // Some room for improvement.
+  sendEvent(body);
 
   return (
     <div

@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import { DEFAULT_LANGUAGE, DEFAULT_THEME } from "../../constants";
 import Translation from "../../utils/Translation";
 import { ITranslation } from "../../interface";
@@ -11,27 +11,37 @@ interface AppConfig {
 }
 
 interface ConfigContextType {
-  config: AppConfig;
+  config: AppConfig | undefined;
   translation: ITranslation;
 }
 
 const ConfigContext = createContext<ConfigContextType | undefined>(undefined);
 
 export const ConfigProvider = ({ children }: { children: ReactNode }) => {
-  const storedConfig: string =
-    localStorage.getItem("about_sezzle_config") || "";
-  const parsedConfig: AppConfig = JSON.parse(storedConfig);
-  const appConfig: AppConfig = {
-    merchant_uuid: parsedConfig.merchant_uuid || "",
-    theme: parsedConfig.theme || DEFAULT_THEME,
-    language: parsedConfig.language || DEFAULT_LANGUAGE,
-    origin: parsedConfig.origin || "",
-  };
-  const t = new Translation(appConfig.language);
+  const [aboutSezzleConfig, setAboutSezzleConfig] = useState<AppConfig>();
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data.key === "about_sezzle_config") {
+        setAboutSezzleConfig({
+          merchant_uuid: event.data.merchant_uuid || "",
+          theme: event.data.theme || DEFAULT_THEME,
+          language: event.data.language || DEFAULT_LANGUAGE,
+          origin: event.origin || ""
+        });
+        window.removeEventListener('message', handleMessage);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+  }, []);
+
+  const t = new Translation(aboutSezzleConfig?.language || DEFAULT_LANGUAGE);
   const translation = t.get();
+
   return (
     <ConfigContext.Provider
-      value={{ config: appConfig, translation: translation }}
+      value={{ config: aboutSezzleConfig, translation }}
     >
       {children}
     </ConfigContext.Provider>
