@@ -47,6 +47,8 @@ Open a new terminal and run:
 npm run start:local
 ```
 
+Goto `localhost:8080` or whichever port the http-server is running on, to see the changes. 
+
 `index.html` file inside the `local` directory has the configuration that will be passed to the app. This is to mimic merchant integration and test in local.
 
 ## Support
