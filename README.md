@@ -22,6 +22,16 @@ To set up the page on Shopify, follow the steps below.
 1. Under "Theme Template" (in the bottom-right), select "sezzle"
 1. Save and view the page
 
+You can now add the page to your navigation:
+
+1. Go to "Online Store" "Navigation"
+1. Select the menu where you would like the Sezzle link to appear (ex: Main menu)
+1. Click "Add menu item"
+1. Enter the text you wish to appear (ex: How Sezzle Works)
+1. Click the second box, select "Pages" then the page you just created.
+1. Click Add
+1. Click Save Menu
+
 ### Other Platforms
 
 To set up the page on any other platform, please work with your web developer and/or follow the steps below.
