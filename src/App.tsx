@@ -18,14 +18,14 @@ import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
 
 const dispatchEvent = (
-    config: AppConfig,
+    config: AppConfig | undefined,
     eventType: string
 ) => {
     const body = [
         {
             event_name: eventType,
-            merchant_site: config.origin,
-            merchant_uuid: config.merchant_uuid
+            merchant_site: config?.origin,
+            merchant_uuid: config?.merchant_uuid
         },
     ];
     // hooks are only accessible from inside a JSX element.
@@ -34,23 +34,19 @@ const dispatchEvent = (
     sendEvent(body);
 };
 
-const onSuccess = (config: AppConfig) => {
-  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT)
-}
+const onSuccess = (config: AppConfig | undefined) => {
+    dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
+};
 
 function App() {
   const ctx = useConfig();
   const config = ctx.config;
-  if (!config) {
-    return <></>
-  }
   const translation: ITranslation = ctx.translation;
   onSuccess(config);
-
   return (
     <div
       className={`sezzle-container ${
-        config.theme === DEFAULT_THEME ? "" : "sezzle-container-dark"
+        config && config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
       }`}
     >
       <div className="sezzle-logo" aria-label={translation.logoAltText}>
