@@ -64,8 +64,7 @@ Now we are using Localise tool here where we keep translations for how-sezzle-wo
   "myNewMessage" :  "Default message"
 ```
 
-1. Run command `API_KEY=<localise-api-key> npm run translate:extract` where is `<localise-api-key>` your API key which you need for authentication. You can find Localise API key using following instructions given in the link (https://docs.lokalise.com/en/articles/1929556-api-tokens).
-1. Run command `API_KEY=<localise-api-key> npm run translate:push`
+1. Run command `API_KEY=<localise-api-key> npm run translate:push` where is `<localise-api-key>` your API key which you need for authentication. You can find Localise API key using following instructions given in the link (https://docs.lokalise.com/en/articles/1929556-api-tokens).
 1. Send translations keys to #translation-request Slack channel
 1. Then translator or developer can go to the Lokalise project and add translations for the needed languages.
 
