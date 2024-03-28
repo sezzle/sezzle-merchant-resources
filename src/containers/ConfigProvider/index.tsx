@@ -3,7 +3,7 @@ import { DEFAULT_LANGUAGE, DEFAULT_THEME } from "../../constants";
 import Translation from "../../utils/Translation";
 import { ITranslation } from "../../interface";
 
-interface AppConfig {
+export interface AppConfig {
   merchant_uuid: string;
   theme: string;
   language: string;

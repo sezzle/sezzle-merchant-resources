@@ -1,5 +1,5 @@
 import { DEFAULT_THEME } from "./constants";
-import { useConfig } from "./containers/ConfigProvider";
+import { useConfig, AppConfig } from "./containers/ConfigProvider";
 import { ITranslation } from "./interface";
 import "./stylesheets/styles.css";
 import pieSeparator from "./assets/pie-separator.svg";
@@ -15,6 +15,28 @@ import mobile from "./assets/mobile.svg";
 import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import { sendEvent } from "./remote/api";
+import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
+
+const dispatchEvent = (
+    config: AppConfig,
+    eventType: string
+) => {
+    const body = [
+        {
+            event_name: eventType,
+            merchant_site: config.origin,
+            merchant_uuid: config.merchant_uuid
+        },
+    ];
+    // hooks are only accessible from inside a JSX element.
+    // So passing data from here, instead of directly getting them during api call.
+    // Some room for improvement.
+    sendEvent(body);
+};
+
+const onSuccess = (config: AppConfig) => {
+  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT)
+}
 
 function App() {
   const ctx = useConfig();
@@ -23,17 +45,7 @@ function App() {
     return <></>
   }
   const translation: ITranslation = ctx.translation;
-  const body = [
-    {
-      event_name: "about-sezzle-onload",
-      merchant_site: config.origin,
-      merchant_uuid: config.merchant_uuid,
-    },
-  ];
-  // hooks are only accessible from inside a JSX element.
-  // So passing data from here, instead of directly getting them during api call.
-  // Some room for improvement.
-  sendEvent(body);
+  onSuccess(config);
 
   return (
     <div
