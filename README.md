@@ -4,7 +4,9 @@ How Sezzle Works is a dedicated page that merchants can add to their website to 
 
 **_Note:_** Whenever the below instructions are updated, make sure to update the [merchants docs](https://merchant-help.sezzle.com/hc/en-us/articles/360041531132-How-do-I-make-an-About-Sezzle-page-) as well
 
-## Shopify Process
+## Merchant Integration
+
+### Shopify Process
 
 To set up the page on Shopify, follow the steps below.
 
@@ -13,123 +15,50 @@ To set up the page on Shopify, follow the steps below.
 1. On the theme you want to edit, select "Actions" and then "Edit Code"
 1. Under the "Templates" folder, click "Add New Template", select template for "Page", template type "liquid", and name the page "Sezzle", then click Create Template
 1. Select the theme that best fits your store from the tabs listed.
-1. Copy the appropriate code and paste it under {{page.content}} on the Shopify page.
-   - [Light Theme (English)](#light-theme-english)
-   - [Light Theme (French)](#light-theme-french)
-   - [Dark Theme (English)](#dark-theme-english)
-   - [Dark Theme (French)](#dark-theme-french)
+1. Copy the [code](#code-snippet) and paste it under {{page.content}} on the Shopify page.
 1. Save
 1. Navigate to "Pages"
 1. Add a new page, and give it a title - we recommend something like "How Sezzle Works" or "How to use Sezzle"
 1. Under "Theme Template" (in the bottom-right), select "sezzle"
 1. Save and view the page
 
-## Other Platforms
+### Other Platforms
 
 To set up the page on any other platform, please work with your web developer and/or follow the steps below.
 
 1. Create a new page in your theme
-1. Copy and paste the appropriate code into your website's page
-   - [Light Theme (English)](#light-theme-english)
-   - [Light Theme (French)](#light-theme-french)
-   - [Dark Theme (English)](#dark-theme-english)
-   - [Dark Theme (French)](#dark-theme-french)
+1. Copy and paste the [code](#code-snippet) into your website's page
 1. Click save and/or publish!
 
-### Code Snippets
+### Code Snippet
+Add your `merchant_uuid`, adjust `theme` and `language` as per your website's requirements.
 
-- #### Light Theme (English)
-  ```
-  <div id="how-sezzle-works-container"></div>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-        fetch('https://media.sezzle.com/how-sezzle-works/light-theme.html')
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('failed to fetch `how sezzle works`: ' + response.status);
-        }
-            return response.text();
-        })
-        .then(html => {
-            const container = document.getElementById('how-sezzle-works-container');
-            container.innerHTML = html;
-    })
-    }catch(e){
-        console.error('Error rendering `how sezzle works`: ', e);
-    }
-  });
-  </script>
-  ```
-- #### Light Theme (French)
-  ```
-  <div id="how-sezzle-works-container"></div>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-        fetch('https://media.sezzle.com/how-sezzle-works/light-theme-french.html')
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('failed to fetch `how sezzle works`: ' + response.status);
-        }
-            return response.text();
-        })
-        .then(html => {
-            const container = document.getElementById('how-sezzle-works-container');
-            container.innerHTML = html;
-    })
-    }catch(e){
-        console.error('Error rendering `how sezzle works`: ', e);
-    }
-  });
-  </script>
-  ```
-- #### Dark Theme (English)
+- `merchant_uuid` is your merchant ID which of the format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+- `theme` can either be `light` or `dark`.
+- `language` can either be `en` or `fr`.
 
-  ```
-  <div id="how-sezzle-works-container"></div>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-        fetch('https://media.sezzle.com/how-sezzle-works/dark-theme.html')
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('failed to fetch `how sezzle works`: ' + response.status);
-        }
-            return response.text();
-        })
-        .then(html => {
-            const container = document.getElementById('how-sezzle-works-container');
-            container.innerHTML = html;
-    })
-    }catch(e){
-        console.error('Error rendering `how sezzle works`: ', e);
-    }
-  });
-  </script>
-  ```
+Insert the following code into your HTML file:
 
-- #### Dark Theme (French)
-
-  ```
-  <div id="how-sezzle-works-container"></div>
+```
+<div id="how-sezzle-works"></div>
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-        fetch('https://media.sezzle.com/how-sezzle-works/dark-theme-french.html')
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('failed to fetch `how sezzle works`: ' + response.status);
-        }
-            return response.text();
-        })
-        .then(html => {
-            const container = document.getElementById('how-sezzle-works-container');
-            container.innerHTML = html;
-    })
-    }catch(e){
-        console.error('Error rendering `how sezzle works`: ', e);
-    }
-  });
+      const config = {
+          merchant_uuid: "",
+          theme: "",
+          language: ""
+      }
+      const node = document.getElementById("how-sezzle-works");
+      const iframe = document.createElement('iframe');
+      iframe.src = "http://localhost:3000/index.html";
+      iframe.height = '2000px';
+      iframe.width = '100%';
+      iframe.style.border = 'none';
+      iframe.onload = function () {
+          iframe.contentWindow.postMessage({
+              key: "about_sezzle_config",
+              ...config
+          }, "*")
+      };
+      node.appendChild(iframe);
   </script>
-  ```
+```
