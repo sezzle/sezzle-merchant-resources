@@ -92,7 +92,7 @@ Now we are using Localise tool here where we keep translations for how-sezzle-wo
 
 ### If you want to download translations from Lokalise
 
-1. Run command `API_KEY=<localise-api-key> npm run npm run translate:pull` where is `<localise-api-key>` is your api key which you need for authentication.
+1. Run command `API_KEY=<localise-api-key> npm run translate:pull` where is `<localise-api-key>` is your api key which you need for authentication.
 1. Then updated files with translations should appear in the src/translations directory
 
 Commit and push the change and merge your MR.
