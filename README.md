@@ -28,7 +28,7 @@ You can now add the page to your navigation:
 1. Select the menu where you would like the Sezzle link to appear (ex: Main menu)
 1. Click "Add menu item"
 1. Enter the text you wish to appear (ex: How Sezzle Works)
-1. Click the second box, select "Pages" then the page you just created.
+1. Click the second box, select "Pages" then the page you just created
 1. Click Add
 1. Click Save Menu
 
