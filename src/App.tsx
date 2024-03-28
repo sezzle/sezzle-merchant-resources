@@ -34,6 +34,10 @@ const dispatchEvent = (
     sendEvent(body);
 };
 
+const onSuccess = (config: AppConfig) => {
+  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT)
+}
+
 function App() {
   const ctx = useConfig();
   const config = ctx.config;
@@ -41,7 +45,7 @@ function App() {
     return <></>
   }
   const translation: ITranslation = ctx.translation;
-  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
+  onSuccess(config);
 
   return (
     <div
