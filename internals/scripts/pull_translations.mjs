@@ -61,7 +61,6 @@ lokaliseApi.files()
   })
   .then((_) => {
     formatFrenchTranslationFiles();
-    formatSpanishTranslationFiles();
   })
   .catch((reason) => {
     console.error(reason);
@@ -97,17 +96,11 @@ const replaceFRSpecificCharacters = (messages) =>
     {}
   );
 
-function formatSpanishTranslationFiles() {
-    const filePath = `${basePath}/es.json`;
-    const esTransParsed = JSON.parse(fs.readFileSync(filePath).toString());
-    saveToFile(esTransParsed, filePath)
-}
-
 function formatFrenchTranslationFiles() {
     const filePath = `${basePath}/fr.json`;
     const frTransParsed = JSON.parse(fs.readFileSync(filePath).toString());
     const frTransFormatted = replaceFRSpecificCharacters(frTransParsed);
-    saveToFile(frTransFormatted, filePath)
+    saveToFile(frTransFormatted, filePath);
 }
 
 function saveToFile(TransFormatted, filePath) {
