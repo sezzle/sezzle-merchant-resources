@@ -1,4 +1,23 @@
 <script type="text/javascript" src="https://media.sezzle.com/how-sezzle-works/eventLogger.js"></script>
+<script>
+    let hideElementForCanada = async () => {
+        async function getCountryCodeFromIP() {
+
+        }
+
+        try {
+        let countryCode = await getCountryCodeFromIP();
+        if (countryCode === 'CA') {
+            document.getElementById('lterm').style.display = 'none';
+        }
+    } catch (error){
+        console.error(`There was an error retrieving the location: ${error}`);
+    }
+};
+
+// Call the function when the page loads
+window.onload = hideElementForCanada;
+</script>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <style>
 	@import url('https://fonts.cdnfonts.com/css/satoshi');
@@ -842,14 +861,14 @@
 			merchant,
 			and
 			may
-			not be available in all states. Other payment options are subject to credit approval by third party
+			not be available in all states.<span id="lterm"> Other payment options are subject to credit approval by third party
 			lenders.
 			Rates
-			from 5.99% - 34.99% APR; terms from 3 months – 48 months, which may vary by lender. 0% APR options may
+			from 5.99% - 34.99% APR; terms from 3 months - 48 months, which may vary by lender. 0% APR options may
 			be
 			available.
 			APRs will vary depending on credit qualifications, loan amount, term, and lender. Minimum purchase is
-			required.
+			required.</span>
 		</p>
 		<p><sup>2</sup>Shipping times subject to merchant shipping policy</p>
 	</div>
