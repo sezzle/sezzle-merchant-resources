@@ -1,51 +1,60 @@
 {
-    "name": "how-sezzle-works",
-    "version": "0.1.0",
-    "private": true,
-    "homepage": "how-sezzle-works/v2",
-    "dependencies": {
-        "@testing-library/jest-dom": "^5.17.0",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.5.2",
-        "@types/node": "^16.18.87",
-        "@types/react": "^18.2.64",
-        "@types/react-dom": "^18.2.21",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-error-boundary": "^4.0.13",
-        "react-scripts": "5.0.1",
-        "typescript": "^4.9.5",
-        "web-vitals": "^2.1.4"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --passWithNoTests",
-        "eject": "react-scripts eject",
-        "http-server": "http-server -d .",
-        "start:local": "cd local && http-server"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "http-server": "^14.1.1"
-    }
+  "name": "how-sezzle-works",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "how-sezzle-works/v2",
+  "dependencies": {
+    "@babel/node": "^7.23.9",
+    "@formatjs/cli": "^6.2.7",
+    "@lokalise/node-api": "^12.3.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^16.18.87",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "adm-zip": "^0.5.12",
+    "chalk": "^5.3.0",
+    "node-fetch": "^3.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^3.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --passWithNoTests",
+    "eject": "react-scripts eject",
+    "http-server": "http-server -d .",
+    "start:local": "cd local && http-server",
+    "translate": "npm run translate:pull && npm run translate:extract && npm run translate:push && echo \"\nPlease wait...\" && sleep 10 && npm run translate:pull",
+    "translate:extract": "formatjs extract 'app/**/*.ts*' --ignore='**/*.{d,spec,test}.{tsx,tsx}' --out-file app/translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
+    "translate:pull": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/pull_translations.mjs",
+    "translate:push": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/push_translations.mjs"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "http-server": "^14.1.1"
+  }
 }
