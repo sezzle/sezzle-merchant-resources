@@ -16,7 +16,7 @@ const dispatchEvent = (
     const body = [
         {
             event_name: eventType,
-            description: description,
+            description: description
         },
     ];
     // hooks are only accessible from inside a JSX element.
