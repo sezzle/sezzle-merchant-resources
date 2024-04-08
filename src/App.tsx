@@ -204,10 +204,11 @@ function App() {
         <p>
           <sup>1</sup>
           {translation.term1}
+          <span id="term2">{translation.term2}</span>
         </p>
         <p>
           <sup>2</sup>
-          {translation.term2}
+          {translation.term3}
         </p>
       </div>
     </div>

@@ -23,4 +23,5 @@ export interface ITranslation {
   review2Date: string;
   term1: string;
   term2: string;
+  term3: string;
 }
