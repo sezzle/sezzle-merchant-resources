@@ -16,8 +16,8 @@ import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { getCountryCode }  from "./utils/countryCode";
-import { useEffect, useState} from "react";
+import {IntlProvider, useIntl} from 'react-intl';
+import React from "react";
 
 const dispatchEvent = (
     config: AppConfig | undefined,
@@ -41,24 +41,14 @@ const onSuccess = (config: AppConfig | undefined) => {
 };
 
 function App() {
-  const [countryCode, setCountryCode] = useState('');
-
-  useEffect(() => {
-    const getCountryCodeInstance = new getCountryCode();
-    getCountryCodeInstance._getCountryCodeFromIP().then((code) => {
-      if (typeof code === 'string') {
-        setCountryCode(code);
-      }
-    }).catch((error) => {
-      console.error('Failed to get country code: ', error);
-    });
-  }, []);
+  const intl = useIntl();
+  const hideLanguages = ['en-CA', 'fr-CA']; // Substitute your own languages/codes if necessary
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
   onSuccess(config);
   return (
-    <div
+      <div
       className={`sezzle-container ${
         config && config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
       }`}
@@ -218,7 +208,7 @@ function App() {
         <p>
           <sup>1</sup>
           {translation.term1}
-          {countryCode !== 'CA' && (
+          {!hideLanguages.includes(intl.locale) && (
           <span id="term2">{translation.term2}</span>
           )}
         </p>
@@ -228,6 +218,7 @@ function App() {
         </p>
       </div>
     </div>
+
   );
 }
 
