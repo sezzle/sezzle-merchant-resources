@@ -5,14 +5,9 @@ interface ICountryResponse {
 }
 
 export class getCountryCode {
-    private _configInst = {
-        apiEndpoints: {
-            countryFromIPRequestURL: `${getGeoIpBaseUrl()}/v1/geoip/ipdetails`,
-        },
-    };
 
     public async _getCountryCodeFromIP(): Promise<string | void> {
-        let response: string = await httpRequestWrapper('GET', this._configInst.apiEndpoints.countryFromIPRequestURL);
+        let response: string = await httpRequestWrapper('GET', `${getGeoIpBaseUrl()}/v1/geoip/ipdetails`);
         let parsedResponse: ICountryResponse = JSON.parse(response);
 
         if (parsedResponse.country_iso_code) {
