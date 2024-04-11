@@ -16,7 +16,7 @@ import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { getCountryCode }  from "./utils/countryCode";
+import { getCountryCodeFromIP }  from "./utils/countryCode";
 import { useEffect, useState} from "react";
 
 const dispatchEvent = (
@@ -41,18 +41,17 @@ const onSuccess = (config: AppConfig | undefined) => {
 };
 
 function App() {
-  const [countryCode, setCountryCode] = useState('');
+  const [countryCode, setCountryCode] = useState<string | null>(null);
 
   useEffect(() => {
-    const getCountryCodeInstance = new getCountryCode();
-    getCountryCodeInstance._getCountryCodeFromIP().then((code) => {
-      if (typeof code === 'string') {
+    getCountryCodeFromIP().then(code => {
+      if (code) {
         setCountryCode(code);
       }
-    }).catch((error) => {
-      console.error('Failed to get country code: ', error);
-    });
+    })
+        .catch(error => console.error('Failed to get country code: ', error));
   }, []);
+
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;

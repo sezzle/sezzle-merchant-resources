@@ -1,19 +1,35 @@
-import {getGeoIpBaseUrl, httpRequestWrapper} from './utils';
 
 interface ICountryResponse {
     country_iso_code?: string;
 }
 
-export class getCountryCode {
+export async function getCountryCodeFromIP(): Promise<string | void> {
+    let response: string = await httpRequestWrapper('GET', `${getGeoIpBaseUrl()}/v1/geoip/ipdetails`);
+    let parsedResponse: ICountryResponse = JSON.parse(response);
 
-    public async _getCountryCodeFromIP(): Promise<string | void> {
-        let response: string = await httpRequestWrapper('GET', `${getGeoIpBaseUrl()}/v1/geoip/ipdetails`);
-        let parsedResponse: ICountryResponse = JSON.parse(response);
-
-        if (parsedResponse.country_iso_code) {
-            return parsedResponse.country_iso_code;
-        } else {
-            console.error('Cannot fetch the country code');
-        }
+    if (parsedResponse.country_iso_code) {
+        return parsedResponse.country_iso_code;
+    } else {
+        console.error('Cannot fetch the country code');
     }
+}
+
+export const httpRequestWrapper = async (method: string, url: string, body: any = null): Promise<string> => {
+    const options: RequestInit = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body !== null ? JSON.stringify(body) : null
+    };
+
+    const response = await fetch(url, options);
+    if (!response.ok) {
+        throw new Error('Something went wrong, contact the Sezzle team!');
+    }
+    return await response.text();
+};
+
+const getGeoIpBaseUrl = (): string => {
+    return 'https://geoip.sezzle.com';
 }
