@@ -16,29 +16,42 @@ import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
+import { getCountryCode }  from "./utils/countryCode";
+import { useEffect, useState} from "react";
 
 const dispatchEvent = (
     config: AppConfig | undefined,
     eventType: string
 ) => {
-    const body = [
-        {
-            event_name: eventType,
-            merchant_site: config?.origin,
-            merchant_uuid: config?.merchant_uuid
-        },
-    ];
-    // hooks are only accessible from inside a JSX element.
-    // So passing data from here, instead of directly getting them during api call.
-    // Some room for improvement.
-    sendEvent(body);
+  const body = [
+    {
+      event_name: eventType,
+      merchant_site: config?.origin,
+      merchant_uuid: config?.merchant_uuid
+    },
+  ];
+  // hooks are only accessible from inside a JSX element.
+  // So passing data from here, instead of directly getting them during api call.
+  // Some room for improvement.
+  sendEvent(body);
 };
 
 const onSuccess = (config: AppConfig | undefined) => {
-    dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
+  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
 };
 
 function App() {
+  const [countryCode, setCountryCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    getCountryCode().then(code => {
+      if (code) {
+        setCountryCode(code);
+      }
+    })
+        .catch(error => console.error('Failed to get country code: ', error));
+  }, []);
+
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
@@ -204,10 +217,13 @@ function App() {
         <p>
           <sup>1</sup>
           {translation.term1}
+          {countryCode !== 'CA' && (
+          <span id="term2">{translation.term2}</span>
+          )}
         </p>
         <p>
           <sup>2</sup>
-          {translation.term2}
+          {translation.term3}
         </p>
       </div>
     </div>
