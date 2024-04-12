@@ -1,10 +1,11 @@
+import {GEO_IP_BASE_URL} from "../constants";
 
 interface IGeoIPResponse {
     country_iso_code?: string;
 }
 
 export async function getCountryCode(): Promise<string | void> {
-    let response: string = await httpRequestWrapper('GET', `${getGeoIpBaseUrl}/v1/geoip/ipdetails`);
+    let response: string = await httpRequestWrapper('GET', `${GEO_IP_BASE_URL}/v1/geoip/ipdetails`);
     let parsedResponse: IGeoIPResponse = JSON.parse(response);
 
     if (parsedResponse.country_iso_code) {
@@ -14,7 +15,7 @@ export async function getCountryCode(): Promise<string | void> {
     }
 }
 
-export const httpRequestWrapper = async (method: string, url: string, body: any = null): Promise<string> => {
+const httpRequestWrapper = async (method: string, url: string, body: any = null): Promise<string> => {
     const options: RequestInit = {
         method: method,
         headers: {
@@ -29,6 +30,4 @@ export const httpRequestWrapper = async (method: string, url: string, body: any 
     }
     return await response.text();
 };
-
-const getGeoIpBaseUrl = 'https://geoip.sezzle.com';
 
