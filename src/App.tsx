@@ -16,7 +16,7 @@ import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { getCountryCodeFromIP }  from "./utils/countryCode";
+import { getCountryCode }  from "./utils/countryCode";
 import { useEffect, useState} from "react";
 
 const dispatchEvent = (
@@ -44,7 +44,7 @@ function App() {
   const [countryCode, setCountryCode] = useState<string | null>(null);
 
   useEffect(() => {
-    getCountryCodeFromIP().then(code => {
+    getCountryCode().then(code => {
       if (code) {
         setCountryCode(code);
       }
