@@ -45,7 +45,7 @@ Add your `merchant_uuid`, adjust `theme` and `language` as per your website's re
 
 - `merchant_uuid` is your merchant ID which is of the format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 - `theme` can either be `light` or `dark`.
-- `language` can either be `en` or `fr`.
+- `language` can either be `en` , `fr` or `es`.
 
 Insert the following code into your HTML file:
 

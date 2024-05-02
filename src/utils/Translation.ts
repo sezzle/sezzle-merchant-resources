@@ -1,5 +1,7 @@
 import enTranslation from "../translations/en.json";
 import frTranslation from "../translations/fr.json";
+import esTranslation from "../translations/es.json";
+
 import { DEFAULT_LANGUAGE } from "../constants";
 import { ITranslation } from "../interface";
 
@@ -12,6 +14,7 @@ class Translation {
     this.translationsMap = {
       en: enTranslation,
       fr: frTranslation,
+      es: esTranslation
     };
     this.setLanguage(language);
   }
