@@ -221,8 +221,7 @@
   left: -55px;
 }
 
-.lang-fr .review-card-2,
-.lang-es .review-card-2 {
+.lang-fr-es .review-card-2 {
   top: 125px;
   z-index: 3;
   left: -55px;
