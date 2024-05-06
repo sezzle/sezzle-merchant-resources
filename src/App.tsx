@@ -177,14 +177,14 @@ function App() {
               </div>
             </div>
 
-            <div className="review-card review-card-2">
+            <div className={`review-card review-card-2 ${countryCode === 'fr' ? 'lang-fr' : (countryCode === 'es' ? 'lang-es' : '')}`}>
               <div className="trustpilot-group">
                 <div className="trustpilot">
                   <img src={trustPilot} alt=""></img>
                 </div>
                 <div
-                  className="five-stars"
-                  aria-label="{translation.ratingAltTex}"
+                    className="five-stars"
+                    aria-label="{translation.ratingAltTex}"
                 >
                   <img src={fiveStar} alt=""></img>
                 </div>
