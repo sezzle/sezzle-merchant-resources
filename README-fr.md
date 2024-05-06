@@ -45,7 +45,7 @@ Ajoutez votre « merchant_uuid », ajustez le « thème » et la « langue » 
 
 - `merchant_uuid` (marchand_uuid) est votre identifiant de commerçant au format : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 - `theme` (thème)peut être `clair` ou `sombre`.
-- `language` (langue) peut être `en` ou `fr`.
+- `language` (langue) peut être `en`, `es` ou `fr`.
 
 Insérez le code suivant dans votre fichier HTML :
 

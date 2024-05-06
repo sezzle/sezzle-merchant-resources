@@ -1,7 +1,9 @@
 import { useConfig } from "../../containers/ConfigProvider";
 import enLight from "../../assets/light-en.svg";
+import esLight from "../../assets/light-es.svg";
 import frLight from "../../assets/light-fr.svg";
 import enDark from "../../assets/dark-en.svg";
+import esDark from "../../assets/dark-es.svg";
 import frDark from "../../assets/dark-fr.svg";
 
 function Logo(): JSX.Element {
@@ -13,10 +15,12 @@ function Logo(): JSX.Element {
     light: {
       en: enLight,
       fr: frLight,
+      es: esLight,
     },
     dark: {
       en: enDark,
       fr: frDark,
+      es: esDark,
     },
   };
 

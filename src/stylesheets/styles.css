@@ -221,6 +221,12 @@
   left: -55px;
 }
 
+.review-card-2-fr-es {
+  top: 125px;
+  z-index: 3;
+  left: -55px;
+}
+
 .review-card-3 {
   z-index: 1;
   top: 247px;
