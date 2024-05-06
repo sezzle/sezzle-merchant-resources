@@ -176,7 +176,7 @@ function App() {
                 <span className="review-date">{translation.review1Date}</span>
               </div>
             </div>
-            <div className={`review-card ${config && config.language === 'fr' || config && config.language === 'es' ? 'review-card-2-fr-es' : 'review-card-2'}`}>
+            <div className={`review-card ${config && (config.language === 'fr' || config.language === 'es') ? 'review-card-2-fr-es' : 'review-card-2'}`}>
               <div className="trustpilot-group">
                 <div className="trustpilot">
                   <img src={trustPilot} alt=""></img>
