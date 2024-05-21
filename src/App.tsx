@@ -16,18 +16,15 @@ import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { getCountryCode }  from "./utils/countryCode";
-import { useEffect, useState} from "react";
+import { getCountryCode } from "./utils/countryCode";
+import { useEffect, useRef, useState } from "react";
 
-const dispatchEvent = (
-    config: AppConfig | undefined,
-    eventType: string
-) => {
+const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
   const body = [
     {
       event_name: eventType,
       merchant_site: config?.origin,
-      merchant_uuid: config?.merchant_uuid
+      merchant_uuid: config?.merchant_uuid,
     },
   ];
   // hooks are only accessible from inside a JSX element.
@@ -36,26 +33,28 @@ const dispatchEvent = (
   sendEvent(body);
 };
 
-const onSuccess = (config: AppConfig | undefined) => {
-  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
-};
-
 function App() {
-  const [countryCode, setCountryCode] = useState<string | null>(null);
-
-  useEffect(() => {
-    getCountryCode().then(code => {
-      if (code) {
-        setCountryCode(code);
-      }
-    })
-        .catch(error => console.error('Failed to get country code: ', error));
-  }, []);
-
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
-  onSuccess(config);
+  const countryCodeRef = useRef<string | null>(null);
+  const [isFetchingCountryCode, setIsFetchingCountryCode] = useState(true);
+
+  useEffect(() => {
+    getCountryCode()
+      .then((code) => {
+        if (code) {
+          countryCodeRef.current = code;
+        }
+      })
+      .catch((error) => console.error("Failed to get country code: ", error))
+      .finally(() => setIsFetchingCountryCode(false));
+  }, []);
+
+  if (isFetchingCountryCode) return <></>;
+
+  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
+
   return (
     <div
       className={`sezzle-container ${
@@ -176,14 +175,20 @@ function App() {
                 <span className="review-date">{translation.review1Date}</span>
               </div>
             </div>
-            <div className={`review-card ${config && (config.language === 'fr' || config.language === 'es') ? 'review-card-2-fr-es' : 'review-card-2'}`}>
+            <div
+              className={`review-card ${
+                config && (config.language === "fr" || config.language === "es")
+                  ? "review-card-2-fr-es"
+                  : "review-card-2"
+              }`}
+            >
               <div className="trustpilot-group">
                 <div className="trustpilot">
                   <img src={trustPilot} alt=""></img>
                 </div>
                 <div
-                    className="five-stars"
-                    aria-label="{translation.ratingAltTex}"
+                  className="five-stars"
+                  aria-label="{translation.ratingAltTex}"
                 >
                   <img src={fiveStar} alt=""></img>
                 </div>
@@ -216,8 +221,8 @@ function App() {
         <p>
           <sup>1</sup>
           {translation.term1}
-          {countryCode !== 'CA' && (
-          <span id="term2">{translation.term2}</span>
+          {countryCodeRef.current !== "CA" && (
+            <span id="term2">{translation.term2}</span>
           )}
         </p>
         <p>

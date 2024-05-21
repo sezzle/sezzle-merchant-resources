@@ -1,4 +1,10 @@
-import { createContext, useContext, ReactNode, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 import { DEFAULT_LANGUAGE, DEFAULT_THEME } from "../../constants";
 import Translation from "../../utils/Translation";
 import { ITranslation } from "../../interface";
@@ -27,22 +33,27 @@ export const ConfigProvider = ({ children }: { children: ReactNode }) => {
           merchant_uuid: event.data.merchant_uuid || "",
           theme: event.data.theme || DEFAULT_THEME,
           language: event.data.language || DEFAULT_LANGUAGE,
-          origin: event.origin || ""
+          origin: event.origin || "",
         });
-        window.removeEventListener('message', handleMessage);
+        window.removeEventListener("message", handleMessage);
       }
     };
 
-    window.addEventListener('message', handleMessage);
+    window.addEventListener("message", handleMessage);
   }, []);
+
+  // rendering only when the config is received. If not,
+  // <App> renders twice, once with default config and
+  // once after the config is recieved. This will cause the
+  // hooks to run twice, thus GeoIP will be hit twice and
+  // event log will be sent twice.
+  if (!aboutSezzleConfig) return <></>;
 
   const t = new Translation(aboutSezzleConfig?.language || DEFAULT_LANGUAGE);
   const translation = t.get();
 
   return (
-    <ConfigContext.Provider
-      value={{ config: aboutSezzleConfig, translation }}
-    >
+    <ConfigContext.Provider value={{ config: aboutSezzleConfig, translation }}>
       {children}
     </ConfigContext.Provider>
   );
