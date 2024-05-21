@@ -5,7 +5,7 @@ import "./stylesheets/styles.css";
 import pieSeparator from "./assets/pie-separator.svg";
 import quarterPie from "./assets/quarter-pie.svg";
 import halfPie from "./assets/half-pie.svg";
-import threeQuarterPie from "./assets/quarter-pie.svg";
+import threeQuarterPie from "./assets/three-quarter-pie.svg";
 import fullPie from "./assets/full-pie.svg";
 import cartIcon from "./assets/cart-icon.svg";
 import cardIcon from "./assets/card-icon.svg";
