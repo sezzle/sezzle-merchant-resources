@@ -224,7 +224,7 @@ function App() {
           {countryCodeRef.current !== "CA" && (
             <span id="term2">{translation.term2}</span>
           )}
-          {countryCodeRef.current == "CA" && (
+          {countryCodeRef.current === "CA" && (
               <span id="term3">{translation.term3}</span>
           )}
         </p>
