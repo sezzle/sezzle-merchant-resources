@@ -9,7 +9,7 @@
   "logoAltText": "Sezzle: The responsible way to pay",
   "ratingAltText": "Five stars",
   "review1Date": " - posted on 7.11.23",
-  "review1Description": "Love Sezzle it helps when your doing a project and need that extra time to pay.",
+  "review1Description": "Love Sezzle, it helps when you're doing a project and need that extra time to pay.",
   "review1Header": "Love Sezzle",
   "review2Date": " - posted on 7.9.23",
   "review2Description": "Wonderful. I mean why not? 4 interest free payments!! Buy now and pay later!",
@@ -20,8 +20,9 @@
   "subDescription": "When you select Sezzle at checkout, you are choosing The Responsible Way to Pay.",
   "subHeader": "How it Works",
   "term1": "Pay in 4 payment option is 0% Annual Percentage Rate (APR). 25% down payment then three payments of 25% every two weeks for 6 weeks.",
-  "term2": " Options depend on your purchase amount, may vary by merchant, and may not be available in all states. Other payment options are subject to credit approval by third party lenders. Rates from 5.99% - 34.99% APR; terms from 3 months – 48 months, which may vary by lender. 0% APR options may be available. APRs will vary depending on credit qualifications, loan amount, term, and lender. Minimum purchase is required.",
-  "term3": "Shipping times subject to merchant shipping policy.",
+  "term2": "Options depend on your purchase amount, may vary by merchant, and may not be available in all states. Other payment options are subject to credit approval by third party lenders. Rates from 5.99% - 34.99% APR; terms from 3 months – 48 months, which may vary by lender. 0% APR options may be available. APRs will vary depending on credit qualifications, loan amount, term, and lender. Minimum purchase is required.",
+  "term3": "Options depend on your purchase amount, may vary by merchant, and may not be available in all provinces.",
+  "term4": "Shipping times subject to merchant shipping policy.",
   "today": "Today",
   "weeks": "Weeks"
 }

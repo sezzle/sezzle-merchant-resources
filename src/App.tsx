@@ -194,7 +194,7 @@ function App() {
                 </div>
               </div>
               <h4 className="review-header">{translation.review2Header}</h4>
-              <p className="review-description">{translation.review2Header}</p>
+              <p className="review-description">{translation.review2Description}</p>
               <div className="review-name">
                 {translation.reviewer2Name}
                 <span className="review-date">{translation.review2Date}</span>
@@ -221,13 +221,15 @@ function App() {
         <p>
           <sup>1</sup>
           {translation.term1}
-          {countryCodeRef.current !== "CA" && (
-            <span id="term2">{translation.term2}</span>
+          {countryCodeRef.current === "CA" ? (
+              <span id="term3">{translation.term3}</span>
+          ) : (
+              <span id="term2">{translation.term2}</span>
           )}
         </p>
         <p>
           <sup>2</sup>
-          {translation.term3}
+          {translation.term4}
         </p>
       </div>
     </div>
