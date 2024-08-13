@@ -221,11 +221,10 @@ function App() {
         <p>
           <sup>1</sup>
           {translation.term1}
-          {countryCodeRef.current !== "CA" && (
-            <span id="term2">{translation.term2}</span>
-          )}
-          {countryCodeRef.current === "CA" && (
+          {countryCodeRef.current === "CA" ? (
               <span id="term3">{translation.term3}</span>
+          ) : (
+              <span id="term2">{translation.term2}</span>
           )}
         </p>
         <p>
