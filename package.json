@@ -20,7 +20,6 @@
     "ejs": "^3.1.10",
     "node-fetch": "^3.3.2",
     "nth-check": "^2.1.1",
-    "opener": "^1.5.2",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
