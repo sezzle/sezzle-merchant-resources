@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "how-sezzle-works/v2",
   "dependencies": {
-    "@babel/node": "^7.23.9",
-    "@formatjs/cli": "^6.2.7",
+    "@babel/node": "^7.26.0",
+    "@formatjs/cli": "^6.3.11",
     "@lokalise/node-api": "^12.3.0",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^16.0.0",
