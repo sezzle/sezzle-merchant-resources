@@ -5,8 +5,9 @@ import frLight from "../../assets/light-fr.svg";
 import enDark from "../../assets/dark-en.svg";
 import esDark from "../../assets/dark-es.svg";
 import frDark from "../../assets/dark-fr.svg";
+import React from "react";
 
-function Logo(): JSX.Element {
+function Logo(): React.JSX.Element {
   const { config } = useConfig();
   if (!config) {
     return <></>
