@@ -59,7 +59,7 @@ Insérez le code suivant dans votre fichier HTML :
       }
       const node = document.getElementById("how-sezzle-works");
       const iframe = document.createElement('iframe');
-      iframe.src = '<https://media.sezzle.com/how-sezzle-works/v2/index.html';
+      iframe.src = 'https://media.sezzle.com/how-sezzle-works/v2/index.html';
       iframe.height = '2000px';
       iframe.width = '100%';
       iframe.style.border = 'none';
