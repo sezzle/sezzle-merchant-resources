@@ -220,16 +220,19 @@ function App() {
       <div className="terms">
         <p>
           <sup>1</sup>
-          {translation.term1}
           {countryCodeRef.current === "CA" ? (
-              <span id="term3">{translation.term3}</span>
+              <><span id="term3">{translation.term1}</span><span id="term3">{translation.term3}</span></>
           ) : (
               <span id="term2">{translation.term2}</span>
           )}
         </p>
         <p>
           <sup>2</sup>
-          {translation.term4}
+          {countryCodeRef.current === "CA" ? (
+              <span id="term4">{translation.term4}</span>
+          ) : (
+              <span id="term5">{translation.term5}</span>
+          )}
         </p>
       </div>
     </div>
