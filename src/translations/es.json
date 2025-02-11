@@ -20,9 +20,10 @@
   "subDescription": "Cuando seleccionas Sezzle al finalizar la compra, estás eligiendo la forma responsable de pagar.",
   "subHeader": "Cómo funciona",
   "term1": "La opción de pago en 4 cuotas es 0% Tasa de Porcentaje Anual (TAE). Pago inicial del 25% y luego tres pagos del 25% cada dos semanas durante 6 semanas.",
-  "term2": "Las opciones dependen del monto de su compra, pueden variar según el comerciante y es posible que no estén disponibles en todos los estados. Otras opciones de pago están sujetas a la aprobación de crédito por parte de prestamistas externos. Tasas desde 5,99% - 34,99% TAE; Plazos de 3 a 48 meses, que pueden variar según el prestamista. Es posible que haya opciones de 0% TAE disponibles. Las TAE variarán según las calificaciones crediticias, el monto del préstamo, el plazo y el prestamista. Se requiere compra mínima.",
+  "term2": "",
   "term3": "Las opciones dependen del monto de su compra, pueden variar según el comerciante y pueden no estar disponibles en todas las provincias.",
   "term4": "Tiempos de envío sujetos a la política de envío comercial.",
+  "term5": "",
   "today": "Hoy",
   "weeks": "Semanas"
 }
