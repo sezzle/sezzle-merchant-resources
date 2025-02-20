@@ -25,5 +25,4 @@ export interface ITranslation {
   term2: string;
   term3: string;
   term4: string;
-  term5: string;
 }

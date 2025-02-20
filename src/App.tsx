@@ -228,11 +228,7 @@ function App() {
         </p>
         <p>
           <sup>2</sup>
-          {countryCodeRef.current === "CA" ? (
-              <span id="term4">{translation.term4}</span>
-          ) : (
-              <span id="term5">{translation.term5}</span>
-          )}
+          {translation.term4}
         </p>
       </div>
     </div>
