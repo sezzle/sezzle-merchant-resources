@@ -221,9 +221,9 @@ function App() {
         <p>
           <sup>1</sup>
           {countryCodeRef.current === "CA" ? (
-              <><span id="term3">{translation.term1}</span><span id="term3">{translation.term3}</span></>
+             <div className="CAterms"><span id="term3">{translation.term1}</span><span id="term3">{translation.term3}</span></div>
           ) : (
-              <span id="term2">{translation.term2}</span>
+             <div className="USterms"><span id="term2">{translation.term2}</span></div>
           )}
         </p>
         <p>
