@@ -39,43 +39,49 @@ function App() {
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
   const countryCodeRef = useRef<string | null>(null);
-  const [isFetchingCountryCode, setIsFetchingCountryCode] = useState(true);
+  const [loadingStates, setLoadingStates] = useState({
+    countryCode: true,
+    merchantDetails: true,
+  });
+
   const [merchantDetails, setMerchantDetails] =
     useState<IMerchantDetails | null>(null);
-  const [isFetchingMerchantDetails, setIsFetchingMerchantDetails] =
-    useState(true);
 
   useEffect(() => {
     getCountryCode()
       .then((code) => {
-        if (code) {
-          countryCodeRef.current = code;
-        }
+        countryCodeRef.current = code || "US";
       })
-      .catch((error) => console.error("Failed to get country code: ", error))
-      .finally(() => setIsFetchingCountryCode(false));
+      .catch((error) => {
+        console.error("Failed to get country code:", error);
+        countryCodeRef.current = "US"; // Fallback
+      })
+      .finally(() => {
+        setLoadingStates((prev) => ({ ...prev, countryCode: false }));
+      });
   }, []);
 
   useEffect(() => {
     if (config?.merchant_uuid) {
       GetMerchantDetails(config.merchant_uuid)
-        .then((details) => {
-          setMerchantDetails(details);
-        })
+        .then(setMerchantDetails)
         .catch((error) => {
           console.error("Failed to get merchant details:", error);
           setMerchantDetails(null);
         })
-        .finally(() => setIsFetchingMerchantDetails(false));
+        .finally(() => {
+          setLoadingStates((prev) => ({ ...prev, merchantDetails: false }));
+        });
     } else {
-      setIsFetchingMerchantDetails(false);
+      setLoadingStates((prev) => ({ ...prev, merchantDetails: false }));
     }
   }, [config?.merchant_uuid]);
 
+  const isLoading = loadingStates.countryCode || loadingStates.merchantDetails;
+  if (isLoading) return <></>;
+
   const isNoServiceFeeMerchant =
     merchantDetails?.is_direct_integration_merchant || false;
-
-  if (isFetchingCountryCode || isFetchingMerchantDetails) return <></>;
 
   dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
 
