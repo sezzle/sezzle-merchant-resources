@@ -25,4 +25,11 @@ export interface ITranslation {
   term2: string;
   term3: string;
   term4: string;
+  term1noServiceFee: string;
+  term2noServiceFee: string;
+}
+
+// Interface for merchant details response
+export interface IMerchantDetails {
+  is_direct_integration_merchant: boolean;
 }

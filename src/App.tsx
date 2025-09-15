@@ -14,7 +14,8 @@ import trustPilot from "./assets/trustpilot.svg";
 import mobile from "./assets/mobile.svg";
 import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
-import { sendEvent } from "./remote/api";
+import { sendEvent, GetMerchantDetails } from "./remote/api";
+import { IMerchantDetails } from "./interface";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
 import { getCountryCode } from "./utils/countryCode";
 import { useEffect, useRef, useState } from "react";
@@ -38,20 +39,49 @@ function App() {
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
   const countryCodeRef = useRef<string | null>(null);
-  const [isFetchingCountryCode, setIsFetchingCountryCode] = useState(true);
+  const [loadingStates, setLoadingStates] = useState({
+    countryCode: true,
+    merchantDetails: true,
+  });
+
+  const [merchantDetails, setMerchantDetails] =
+    useState<IMerchantDetails | null>(null);
 
   useEffect(() => {
     getCountryCode()
       .then((code) => {
-        if (code) {
-          countryCodeRef.current = code;
-        }
+        countryCodeRef.current = code || "US";
       })
-      .catch((error) => console.error("Failed to get country code: ", error))
-      .finally(() => setIsFetchingCountryCode(false));
+      .catch((error) => {
+        console.error("Failed to get country code:", error);
+        countryCodeRef.current = "US"; // Fallback
+      })
+      .finally(() => {
+        setLoadingStates((prev) => ({ ...prev, countryCode: false }));
+      });
   }, []);
 
-  if (isFetchingCountryCode) return <></>;
+  useEffect(() => {
+    if (config?.merchant_uuid) {
+      GetMerchantDetails(config.merchant_uuid)
+        .then(setMerchantDetails)
+        .catch((error) => {
+          console.error("Failed to get merchant details:", error);
+          setMerchantDetails(null);
+        })
+        .finally(() => {
+          setLoadingStates((prev) => ({ ...prev, merchantDetails: false }));
+        });
+    } else {
+      setLoadingStates((prev) => ({ ...prev, merchantDetails: false }));
+    }
+  }, [config?.merchant_uuid]);
+
+  const isLoading = loadingStates.countryCode || loadingStates.merchantDetails;
+  if (isLoading) return <></>;
+
+  const isNoServiceFeeMerchant =
+    merchantDetails?.is_direct_integration_merchant || false;
 
   dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
 
@@ -194,7 +224,9 @@ function App() {
                 </div>
               </div>
               <h4 className="review-header">{translation.review2Header}</h4>
-              <p className="review-description">{translation.review2Description}</p>
+              <p className="review-description">
+                {translation.review2Description}
+              </p>
               <div className="review-name">
                 {translation.reviewer2Name}
                 <span className="review-date">{translation.review2Date}</span>
@@ -219,19 +251,35 @@ function App() {
 
       <div className="terms">
         <p>
-          {countryCodeRef.current === "CA" ? (
-             <div className="CAterms"><sup>1</sup><span id="term1">{translation.term1}</span><span id="term3">{translation.term3}</span></div>
+          {isNoServiceFeeMerchant ? (
+            <div>
+              <sup>1</sup>
+              <span id="term1">{translation.term1noServiceFee}</span>
+            </div>
+          ) : countryCodeRef.current === "CA" ? (
+            <div className="CAterms">
+              <sup>1</sup>
+              <span id="term1">{translation.term1}</span>
+              <span id="term3">{translation.term3}</span>
+            </div>
           ) : (
-             <div className="USterms"><sup>1</sup><span id="term2">{translation.term2}</span></div>
+            <div className="USterms">
+              <sup>1</sup>
+              <span id="term2">{translation.term2}</span>
+            </div>
           )}
         </p>
+
         <p>
           <sup>2</sup>
-          {translation.term4}
+          <span>
+            {isNoServiceFeeMerchant
+              ? translation.term2noServiceFee
+              : translation.term4}
+          </span>
         </p>
       </div>
     </div>
   );
 }
-
 export default App;
