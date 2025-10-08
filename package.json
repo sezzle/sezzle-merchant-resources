@@ -62,7 +62,6 @@
     "devDependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "http-server": "^14.1.1",
-        "@types/html-minifier-terser": "^7.0.2",
         "html-minifier-terser": "^7.2.0"
     },
     "overrides": {
@@ -71,7 +70,6 @@
         "webpack": "^5.94.0",
         "express": "^4.21.1",
         "http-proxy-middleware": "^3.0.3",
-        "html-minifier-terser": "^7.2.0",
-        "@types/html-minifier-terser": "^7.0.2"
+        "html-minifier-terser": "^7.2.0"
     }
 }
