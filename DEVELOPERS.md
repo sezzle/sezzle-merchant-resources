@@ -51,6 +51,15 @@ Goto `localhost:8080` or whichever port the http-server is running on, to see th
 
 `index.html` file inside the `local` directory has the configuration that will be passed to the app. This is to mimic merchant integration and test in local.
 
+### End to End (E2E) Testing
+
+1. Start the application `npm start`
+1. `cd /Applications && ngrok http 3000`
+1. Follow the instructions in the Readme to install the product on a Shopify test store
+  - Note: This could also be used on an unpublished theme of the merchant's site where an issue is occurring if you need to confirm that the changes will resolve a known bug
+1. Replace `https://media.sezzle.com` in `iframe.src` with the Ngrok forwarding URL (keep the path the same) and save changes
+1. Click the Shopify Shopping Bag icon in the left toolbar, then click `Preview Store` and navigate to the page.
+
 
 ## Working with translations and Lokalise
 
