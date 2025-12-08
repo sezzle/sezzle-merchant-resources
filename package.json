@@ -1,75 +1,67 @@
 {
-    "name": "how-sezzle-works",
-    "version": "0.1.0",
-    "private": true,
-    "homepage": "how-sezzle-works/v2",
-    "dependencies": {
-        "@babel/node": "^7.28.0",
-        "@formatjs/cli": "^6.7.3",
-        "@lokalise/node-api": "^15.3.0",
-        "@testing-library/jest-dom": "^6.9.1",
-        "@testing-library/react": "^16.3.0",
-        "@testing-library/user-event": "^14.6.1",
-        "@types/jest": "^30.0.0",
-        "@types/node": "^24.7.0",
-        "@types/react": "^19.2.2",
-        "@types/react-dom": "^19.2.1",
-        "adm-zip": "^0.5.16",
-        "chalk": "^5.6.2",
-        "css-select": "^6.0.0",
-        "ejs": "^3.1.10",
-        "node-fetch": "^3.3.2",
-        "nth-check": "^2.1.1",
-        "postcss": "^8.5.6",
-        "react": "^19.2.0",
-        "react-dom": "^19.2.0",
-        "react-error-boundary": "^6.0.0",
-        "react-scripts": "^5.0.1",
-        "typescript": "^5.9.3",
-        "web-vitals": "^5.1.0",
-        "webpack-dev-server": "^5.2.2"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --passWithNoTests",
-        "eject": "react-scripts eject",
-        "http-server": "http-server -d .",
-        "start:local": "cd local && http-server",
-        "translate": "npm run translate:pull && npm run translate:extract && npm run translate:push && echo \"\nPlease wait...\" && sleep 10 && npm run translate:pull",
-        "translate:extract": "formatjs extract 'app/**/*.ts*' --ignore='**/*.{d,spec,test}.{tsx,tsx}' --out-file app/translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
-        "translate:pull": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/pull_translations.mjs",
-        "translate:push": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/push_translations.mjs"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "http-server": "^14.1.1",
-        "html-minifier-terser": "^7.2.0"
-    },
-    "overrides": {
-        "typescript": "^5.9.3",
-        "nth-check": "$nth-check",
-        "webpack": "^5.94.0",
-        "express": "^4.21.1",
-        "http-proxy-middleware": "^3.0.3",
-        "html-minifier-terser": "$html-minifier-terser"
-    }
+  "name": "how-sezzle-works",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "how-sezzle-works/v2",
+  "dependencies": {
+    "@babel/node": "^7.26.0",
+    "@formatjs/cli": "^6.3.14",
+    "@lokalise/node-api": "^15.0.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "adm-zip": "^0.5.16",
+    "chalk": "^5.4.1",
+    "css-select": "^5.1.0",
+    "ejs": "^3.1.10",
+    "node-fetch": "^3.3.2",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.49",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-error-boundary": "^5.0.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.7.2",
+    "web-vitals": "^4.2.4",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --passWithNoTests",
+    "eject": "react-scripts eject",
+    "http-server": "http-server -d .",
+    "start:local": "cd local && http-server",
+    "translate": "npm run translate:pull && npm run translate:extract && npm run translate:push && echo \"\nPlease wait...\" && sleep 10 && npm run translate:pull",
+    "translate:extract": "formatjs extract 'app/**/*.ts*' --ignore='**/*.{d,spec,test}.{tsx,tsx}' --out-file app/translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
+    "translate:pull": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/pull_translations.mjs",
+    "translate:push": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/push_translations.mjs"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "http-server": "^14.1.1"
+  },
+  "overrides": {
+    "typescript": "^5.7.2",
+    "nth-check": "$nth-check",
+    "webpack": "^5.94.0",
+    "express": "^4.21.1",
+    "http-proxy-middleware": "^3.0.3"
+  }
 }
