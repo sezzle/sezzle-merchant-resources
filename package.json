@@ -41,12 +41,6 @@
     "translate:pull": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/pull_translations.mjs",
     "translate:push": "PROJECT_ID='4684505165ddb6a9ca5538.26034218' babel-node --presets @babel/preset-env -- internals/scripts/push_translations.mjs"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
