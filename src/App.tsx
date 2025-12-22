@@ -250,7 +250,7 @@ function App() {
       </div>
 
       <div className="terms">
-        <p>
+        <div>
           {isNoServiceFeeMerchant ? (
             <div>
               <sup>1</sup>
@@ -268,16 +268,16 @@ function App() {
               <span id="term2">{translation.term2}</span>
             </div>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           <sup>2</sup>
           <span>
             {isNoServiceFeeMerchant
               ? translation.term2noServiceFee
               : translation.term4}
           </span>
-        </p>
+        </div>
       </div>
     </div>
   );

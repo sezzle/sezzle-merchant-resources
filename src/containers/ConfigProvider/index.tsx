@@ -40,6 +40,16 @@ export const ConfigProvider = ({ children }: { children: ReactNode }) => {
     };
 
     window.addEventListener("message", handleMessage);
+
+    // Signal to parent that we're ready to receive config
+    // This fixes Safari timing issue where onload fires before React mounts
+    if (window.parent !== window) {
+      window.parent.postMessage({ key: "signal_about_sezzle_ready" }, "*");
+    }
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
   }, []);
 
   // rendering only when the config is received. If not,
