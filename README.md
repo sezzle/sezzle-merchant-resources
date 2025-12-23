@@ -63,12 +63,25 @@ Insert the following code into your HTML file:
       iframe.height = '2000px';
       iframe.width = '100%';
       iframe.style.border = 'none';
-      iframe.onload = function () {
+
+      // Function to send config to iframe
+      const sendConfig = function() {
           iframe.contentWindow.postMessage({
               key: "about_sezzle_config",
               ...config
-          }, "*")
+          }, "*");
       };
+
+      // Listen for ready signal from iframe (handles browsers where onload fires before React mounts)
+      window.addEventListener("message", function(event) {
+          if (event.data.key === "signal_about_sezzle_ready") {
+              sendConfig();
+          }
+      });
+
+      // Also send on load as fallback
+      iframe.onload = sendConfig;
+
       node.appendChild(iframe);
   </script>
 ```
