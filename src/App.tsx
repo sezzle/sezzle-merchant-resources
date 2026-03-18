@@ -218,7 +218,7 @@ function App() {
                 </div>
                 <div
                   className="five-stars"
-                  aria-label="{translation.ratingAltTex}"
+                  aria-label={translation.ratingAltText}
                 >
                   <img src={fiveStar} alt=""></img>
                 </div>
