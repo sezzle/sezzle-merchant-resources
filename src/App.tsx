@@ -138,6 +138,9 @@ function App() {
           <div className="due-date">6 {translation.weeks}</div>
         </div>
       </div>
+      {!!config?.isLongTerm && countryCodeRef.current !== "CA" && (
+        <p className="long-term-text">{translation.longTerm}</p>
+      )}
       <div className="section-separator"></div>
 
       <h2 className="sezzle-subheader">{translation.subHeader}</h2>

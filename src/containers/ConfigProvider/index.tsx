@@ -14,6 +14,7 @@ export interface AppConfig {
   theme: string;
   language: string;
   origin: string;
+  isLongTerm: boolean;
 }
 
 interface ConfigContextType {
@@ -34,6 +35,7 @@ export const ConfigProvider = ({ children }: { children: ReactNode }) => {
           theme: event.data.theme || DEFAULT_THEME,
           language: event.data.language || DEFAULT_LANGUAGE,
           origin: event.origin || "",
+          isLongTerm: event.data.isLongTerm || false,
         });
         window.removeEventListener("message", handleMessage);
       }
