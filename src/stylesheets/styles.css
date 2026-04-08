@@ -47,6 +47,11 @@
   gap: 11.39px;
 }
 
+.long-term-text {
+  max-width: 588px;
+  margin: auto;
+}
+
 .pie-separator {
   position: relative;
   top: 20px;

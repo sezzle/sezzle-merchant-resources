@@ -46,6 +46,7 @@ Add your `merchant_uuid`, adjust `theme` and `language` as per your website's re
 - `merchant_uuid` is your merchant ID which is of the format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 - `theme` can either be `light` or `dark`.
 - `language` can either be `en` , `fr` or `es`.
+- `isLongTerm` can be either `true` or `false` (only enable this if you are approved to offer Sezzle Long-term financing)
 
 Insert the following code into your HTML file:
 
@@ -55,7 +56,8 @@ Insert the following code into your HTML file:
       const config = {
           merchant_uuid: "",
           theme: "",
-          language: ""
+          language: "",
+          isLongTerm: false
       }
       const node = document.getElementById("how-sezzle-works");
       const iframe = document.createElement('iframe');

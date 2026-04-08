@@ -1,5 +1,6 @@
 export interface ITranslation {
   logoAltText: string;
+  longTerm: string;
   header: string;
   description: string;
   today: string;

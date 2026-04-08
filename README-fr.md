@@ -46,6 +46,7 @@ Ajoutez votre « merchant_uuid », ajustez le « thème » et la « langue » 
 - `merchant_uuid` (marchand_uuid) est votre identifiant de commerçant au format : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 - `theme` (thème)peut être `clair` ou `sombre`.
 - `language` (langue) peut être `en`, `es` ou `fr`.
+-  `isLongTerm` (Est-ce disponible à long terme) peut être soit `true` (vraie), soit `false` (faux). (N'activez cette option que si vous avez été approuvé pour proposer le financement à long terme Sezzle.)
 
 Insérez le code suivant dans votre fichier HTML :
 
@@ -55,7 +56,8 @@ Insérez le code suivant dans votre fichier HTML :
       const config = {
           merchant_uuid: "",
           theme: "",
-          language: ""
+          language: "",
+          isLongTerm: false
       }
       const node = document.getElementById("how-sezzle-works");
       const iframe = document.createElement('iframe');
