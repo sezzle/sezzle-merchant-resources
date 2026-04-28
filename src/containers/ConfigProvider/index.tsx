@@ -22,7 +22,7 @@ interface ConfigContextType {
   translation: ITranslation;
 }
 
-const ConfigContext = createContext<ConfigContextType | undefined>(undefined);
+export const ConfigContext = createContext<ConfigContextType | undefined>(undefined);
 
 export const ConfigProvider = ({ children }: { children: ReactNode }) => {
   const [aboutSezzleConfig, setAboutSezzleConfig] = useState<AppConfig>();

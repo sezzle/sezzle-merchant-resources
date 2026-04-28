@@ -1,7 +1,7 @@
 import { IMerchantDetails } from "../interface";
 
 export function sendEvent(body: any): void {
-  fetch(`${process.env.REACT_APP_WIDGET_SERVER_URL}/v1/event/log`, {
+  fetch(`${import.meta.env.VITE_WIDGET_SERVER_URL}/v1/event/log`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export function GetMerchantDetails(
   merchant_uuid: string
 ): Promise<IMerchantDetails | null> {
   return fetch(
-    `${process.env.REACT_APP_WIDGET_SERVER_URL}/v1/merchants/${merchant_uuid}/how-sezzle-works`,
+    `${import.meta.env.VITE_WIDGET_SERVER_URL}/v1/merchants/${merchant_uuid}/how-sezzle-works`,
     {
       method: "GET",
       headers: {

@@ -5,8 +5,7 @@ Run the following in Terminal:
 ```
 cd ~/go/src/sezzle
 git clone ssh://git@gitlab.sezzle.com:10022/sezzle/how-sezzle-works.git
-nvm use
-npm install
+bun install
 ```
 
 ## Running Tests
@@ -14,13 +13,13 @@ npm install
 To test all files, run the following in Terminal:
 
 ```
-npm test src
+bun run test src
 ```
 
 To test files modified since last commit, run:
 
 ```
-npm test
+bun run test
 ```
 
 ## Running Locally
@@ -28,7 +27,7 @@ npm test
 Run the following in Terminal:
 
 ```
-npm start
+bun start
 ```
 
 Home page is set to `/how-sezzle-works/v2` since that is where this app is deployed in `media.sezzle.com`
@@ -38,13 +37,13 @@ Home page is set to `/how-sezzle-works/v2` since that is where this app is deplo
 Start the app if not already:
 
 ```
-npm start
+bun start
 ```
 
 Open a new terminal and run:
 
 ```
-npm run start:local
+bun run start:local
 ```
 
 Goto `localhost:8080` or whichever port the http-server is running on, to see the changes.
@@ -55,7 +54,7 @@ Goto `localhost:8080` or whichever port the http-server is running on, to see th
 
 ### End to End (E2E) Testing
 
-1. Start the application `npm run build && npm start`
+1. Start the application `bun run build && bun start`
 1. In a new tab, run `ngrok http 3000`
 1. Follow the instructions in the Readme to install the product on a Shopify test store
   - Note: This could also be used on an unpublished theme of the merchant's site where an issue is occurring if you need to confirm that the changes will resolve a known bug
@@ -75,13 +74,13 @@ Now we are using Localise tool here where we keep translations for how-sezzle-wo
   "myNewMessage" :  "Default message"
 ```
 
-1. Run command `API_KEY=<localise-api-key> npm run translate:push` where is `<localise-api-key>` your API key which you need for authentication. You can find Localise API key using following instructions given in the link (https://docs.lokalise.com/en/articles/1929556-api-tokens).
+1. Run command `API_KEY=<localise-api-key> bun run translate:push` where is `<localise-api-key>` your API key which you need for authentication. You can find Localise API key using following instructions given in the link (https://docs.lokalise.com/en/articles/1929556-api-tokens).
 1. Send translations keys to #translation-request Slack channel
 1. Then translator or developer can go to the Lokalise project and add translations for the needed languages.
 
 ### If you want to download translations from Lokalise
 
-1. Run command `API_KEY=<localise-api-key> npm run translate:pull` where is `<localise-api-key>` is your api key which you need for authentication.
+1. Run command `API_KEY=<localise-api-key> bun run translate:pull` where is `<localise-api-key>` is your api key which you need for authentication.
 1. Then updated files with translations should appear in the src/translations directory
 
 Commit and push the change and merge your MR.

@@ -6,7 +6,42 @@ include:
       - ".build/npm.yml"
       - ".deploy/cloudfront.yml"
 
+image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/oven/bun:1.3.11-alpine
+
 variables:
+  BUN_INSTALL_CACHE_DIR: "/tmp/bun-cache"
+
   JIRA_PROJECT_NAME: "MINT"
   s3_bucket_production: "sezzlemedia/how-sezzle-works/v2"
   cf_dist_production: "EFV0KW59BE883"
+
+# BUN OVERRIDES
+.compile_js:
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/oven/bun:1.3.11-alpine
+  cache:
+    key:
+      files:
+        - bun.lock
+    paths:
+      - $BUN_INSTALL_CACHE_DIR
+      - $NODE_PATH
+    policy: $CACHE_POLICY
+  before_script:
+    - !reference [ .install_bin_script ]
+    - !reference [ .print_env_script ]
+    - !reference [ .bun_install_script ]
+    - ci_about
+    - !reference [ .gitlab_login_ci_script ]
+    - !reference [ .npm_login_script ]
+    - bun_install
+    - log section "Running script" -f cya -t false
+
+compile_js:npm_install:
+  variables:
+    CACHE_POLICY: pull-push
+
+compile_js:unit_test:
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/oven/bun:1.3.11-alpine
+  coverage: '/All files\s*\|\s*(\d+(?:\.\d+)?)/'
+  script:
+    - bun run test
