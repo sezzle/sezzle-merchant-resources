@@ -1,0 +1,13 @@
+[install]
+# Keep optional deps enabled (rollup needs platform-specific binaries)
+# Use hoisted linker to match npm's node_modules layout
+linker = "hoisted"
+minimumReleaseAge = 259200
+minimumReleaseAgeExcludes = [
+  "@sezzle/auth-cookies",
+  "@sezzle/sezzle-address",
+  "@sezzle/sezzle-components",
+  "@sezzle/shopper-auth-fe",
+  "@sezzle/storage-manager",
+  "@sezzle/web-product-events",
+]
