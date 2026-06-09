@@ -12,6 +12,9 @@
   --font-magenta: #8e24ac;
 }
 
+#how-sezzle-works-container {
+}
+
 .sezzle-container {
   font-family: var(--font-family);
   color: var(--font-black);
@@ -20,7 +23,7 @@
 }
 
 .sezzle-logo {
-  margin: 100px auto;
+  margin: 10px auto;
 }
 
 .sezzle-header {
@@ -37,37 +40,6 @@
   line-height: 34px;
   margin: 27px auto;
   max-width: 588px;
-}
-
-.payment-pie-area {
-  margin: 27px auto;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  gap: 11.39px;
-}
-
-.long-term-text {
-  max-width: 588px;
-  margin: auto;
-}
-
-.pie-separator {
-  position: relative;
-  top: 20px;
-}
-
-.installment {
-  font-size: 20.47px;
-  font-weight: 700;
-  line-height: 26.32px;
-}
-
-.due-date {
-  color: var(--font-grey);
-  font-size: 14.62px;
-  font-weight: 500;
-  line-height: 20.468px;
 }
 
 .section-separator {
@@ -285,16 +257,6 @@
   color: var(--font-white);
 }
 
-.sezzle-container-dark .payment-pie-area {
-  background-color: var(--font-light-grey);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.sezzle-container-dark .installment {
-  color: var(--font-black);
-}
-
 .sezzle-container-dark .section-separator {
   border: 1px solid var(--font-white);
 }
@@ -304,9 +266,6 @@
 }
 
 @media screen and (max-width: 650px) {
-  .sezzle-logo {
-    margin: 60px auto;
-  }
 
   .sezzle-header {
     font-size: 44px;
@@ -316,10 +275,6 @@
 
   .sezzle-description {
     max-width: 316px;
-  }
-
-  .payment-pie-area {
-    gap: 6px;
   }
 
   .section-separator {
@@ -371,10 +326,6 @@
     width: 342px;
   }
 
-  .sezzle-container-fr .due-date {
-    font-size: 12px;
-  }
-
   .sezzle-container-fr .cta-area {
     height: 556px;
   }
@@ -384,8 +335,459 @@
     padding: 0 10px;
   }
 
-  .sezzle-container-fr.sezzle-container-dark .payment-pie-area {
-    padding: 20px 10px;
-    gap: 2px;
-  }
+}
+
+/* ---------------------------------------------------------------------------
+   Payment-plan section — ported (flattened to plain CSS) from
+   ../sezzle-widget-react/src/Components/modal.scss. Rendered inline on the page
+   rather than as a lightbox overlay, so the modal's fixed/overlay wrappers are
+   dropped. SCSS color variables are inlined:
+     font-color #303030  accent #8333d4  focus #af0fda  mute #5e5e5e
+     mid-mute #767676    xx-mute #f4f4f4  background #fff  mute-purple #f9f5fd
+   --------------------------------------------------------------------------- */
+.sezzle-payment-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 326px;
+  max-width: 100%;
+  margin: auto;
+  color: #303030;
+  text-align: left;
+  font-family: var(--font-family);
+}
+
+.sezzle-payment-plan .trusted {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+  color: #5e5e5e;
+  margin: 8px auto 0;
+  text-align: center;
+}
+
+.sezzle-payment-plan .payment-plan-header {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #303030;
+  margin: auto;
+}
+
+/* --- amount input --- */
+.sezzle-payment-plan .sample-payments {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  margin: 8px auto;
+}
+.sezzle-payment-plan .sample-payments.sezzle-multi-plan-fr {
+  padding: 0;
+}
+.sezzle-payment-plan .sample-payments-title {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 0.15px;
+  text-align: center;
+  color: #303030;
+  align-content: center;
+}
+.sezzle-payment-plan .input-amount-container {
+  width: min-content;
+  height: 58px;
+  border-radius: 10px;
+  padding: 0 16px;
+  align-content: center;
+  border: 1px solid #767676;
+}
+.sezzle-payment-plan .input-amount-label {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  vertical-align: middle;
+  color: #5e5e5e;
+}
+.sezzle-payment-plan .input-amount {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 0.15px;
+  vertical-align: middle;
+  color: #303030;
+  width: 75px;
+  background: none;
+  border: none;
+}
+.sezzle-payment-plan .input-amount:focus-visible {
+  outline: none;
+}
+.sezzle-payment-plan .input-amount.input-error {
+  color: #d32f2f;
+}
+.sezzle-payment-plan .input-amount-container:focus-within {
+  border: 2px solid #af0fda;
+}
+.sezzle-payment-plan .input-amount-container.input-error {
+  border: 2px solid #d32f2f;
+}
+
+/* --- payment cards (shared) --- */
+.sezzle-payment-plan .payment-cards {
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 8px;
+  border: 4px solid #f4f4f4;
+}
+.sezzle-payment-plan .payment-card {
+  gap: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.sezzle-payment-plan .payment-card:not(:last-child) {
+  border-bottom: 2px solid #f4f4f4;
+}
+.sezzle-payment-plan .plan-summary .purple {
+  display: flex;
+  justify-content: space-between;
+}
+.sezzle-payment-plan .plan-summary .purple .left {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: anchor-center;
+}
+.sezzle-payment-plan .plan-summary .purple .left .price {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 23px;
+  letter-spacing: 0.2px;
+  color: #8333d4;
+}
+.sezzle-payment-plan .plan-summary .purple .left .due {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 0.15px;
+  color: #8333d4;
+}
+.sezzle-payment-plan .plan-summary .purple .right {
+  width: fit-content;
+  border-radius: 24px;
+  height: fit-content;
+  padding: 4px 10px;
+  background-color: #f9f5fd;
+  align-items: center;
+  display: flex;
+}
+.sezzle-payment-plan .plan-summary .purple .right .pill {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #8333d4;
+  width: fit-content;
+}
+.sezzle-payment-plan .plan-summary .purple .right .pill sup {
+  vertical-align: super;
+  font-size: 0.6em;
+}
+.sezzle-payment-plan .plan-summary .grey {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #5e5e5e;
+  text-align: left;
+}
+
+/* --- bi-weekly installment breakdown --- */
+.sezzle-payment-plan .payment-breakdown {
+  display: flex;
+  justify-content: center;
+}
+.sezzle-payment-plan .payment-breakdown .installment {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sezzle-payment-plan .payment-breakdown .graphic {
+  display: flex;
+  justify-content: space-between;
+}
+.sezzle-payment-plan .payment-breakdown .dash {
+  display: flex;
+  align-items: center;
+}
+.sezzle-payment-plan .payment-breakdown .dot {
+  display: flex;
+}
+.sezzle-payment-plan .payment-breakdown .dot svg {
+  width: 16px;
+}
+.sezzle-payment-plan .payment-breakdown .detail .amount {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #5e5e5e;
+}
+.sezzle-payment-plan .payment-breakdown .detail .due {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #5e5e5e;
+}
+.sezzle-payment-plan .payment-breakdown .detail.first-installment .amount {
+  font-weight: 700;
+  color: #303030;
+}
+.sezzle-payment-plan .payment-breakdown .detail.first-installment .due {
+  color: #303030;
+}
+
+/* --- monthly (long-term) detail rows --- */
+.sezzle-payment-plan .monthly-plan-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sezzle-payment-plan .monthly-detail-row {
+  display: flex;
+  flex-direction: column;
+  width: -webkit-fill-available;
+}
+.sezzle-payment-plan .monthly-detail-row .detail-label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #5e5e5e;
+}
+.sezzle-payment-plan .monthly-detail-row .detail-value {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #303030;
+}
+
+/* --- "See details" feature accordion --- */
+.sezzle-payment-plan .features-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 11px 16px 16px;
+}
+.sezzle-payment-plan .accordion-title-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: anchor-center;
+}
+.sezzle-payment-plan .accordion-title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #303030;
+  height: fit-content;
+  align-content: center;
+}
+.sezzle-payment-plan .accordion-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sezzle-payment-plan .accordion-icon svg {
+  width: 12px;
+  height: 7px;
+}
+.sezzle-payment-plan .features-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sezzle-payment-plan .single-feature {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.sezzle-payment-plan .single-feature div {
+  align-content: center;
+}
+.sezzle-payment-plan .single-feature svg {
+  width: 13.333px;
+  height: 13.333px;
+}
+.sezzle-payment-plan .single-feature span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #303030;
+  text-align: left;
+  align-self: anchor-center;
+}
+
+/* --- how to pay carousel --- */
+.sezzle-payment-plan .how-to-sezzle {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+.sezzle-payment-plan .carousel-header {
+  display: flex;
+  justify-content: space-between;
+}
+.sezzle-payment-plan .how-to-text-wrapper {
+  gap: 4px;
+  display: flex;
+}
+.sezzle-payment-plan .how-to-text {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #303030;
+  align-content: center;
+}
+.sezzle-payment-plan .how-to-logo {
+  display: flex;
+  align-items: center;
+}
+.sezzle-payment-plan .how-to-logo img {
+  margin: 0;
+  background: none;
+}
+.sezzle-payment-plan .arrows {
+  gap: 4px;
+  display: flex;
+  flex-direction: row;
+}
+.sezzle-payment-plan .arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.sezzle-payment-plan .arrow.disabled {
+  filter: grayscale(1) opacity(0.5);
+  cursor: default;
+}
+.sezzle-payment-plan .arrow svg {
+  width: 24px;
+  height: 24px;
+}
+.sezzle-payment-plan .carousel {
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+.sezzle-payment-plan .carousel.position-1 {
+  justify-content: start;
+}
+.sezzle-payment-plan .carousel.position-2 {
+  justify-content: center;
+}
+.sezzle-payment-plan .carousel.position-3 {
+  justify-content: end;
+}
+.sezzle-payment-plan .carousel-item {
+  border-radius: 10px;
+  padding: 16px 12px;
+  background-color: #ffffff;
+  display: flex;
+}
+.sezzle-payment-plan .carousel-item-content {
+  width: 260px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sezzle-payment-plan .step-number {
+  height: 20px;
+  border-radius: 31.04px;
+  padding: 0 2.47px;
+  background-color: #f9f5fd;
+  display: flex;
+}
+.sezzle-payment-plan .step-number-content {
+  display: flex;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #8333d4;
+  width: 17px;
+  align-items: center;
+  justify-content: center;
+}
+.sezzle-payment-plan .step-name {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.4px;
+  color: #303030;
+  padding: 0 25px 0 8px;
+  text-align: left;
+}
+.sezzle-payment-plan .carousel-dots {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+}
+.sezzle-payment-plan .carousel-dots .dot:not(.active) {
+  filter: grayscale(1) opacity(0.25);
+}
+.sezzle-payment-plan .carousel-dots .dot svg {
+  height: 20px;
+  width: 6px;
+}
+
+/* --- modal terms --- */
+.sezzle-payment-plan .terms-container {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.sezzle-payment-plan .terms-container .terms {
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #5e5e5e;
+  margin: 0;
+  max-width: none;
+}
+.sezzle-payment-plan .terms-container .terms a {
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 0.2px;
+  color: #8333d4;
+}
+
+/* --- dark theme: text rendered directly on the page background --- */
+.sezzle-container-dark .sezzle-payment-plan .trusted,
+.sezzle-container-dark .sezzle-payment-plan .payment-plan-header,
+.sezzle-container-dark .sezzle-payment-plan .sample-payments-title,
+.sezzle-container-dark .sezzle-payment-plan .input-amount-label,
+.sezzle-container-dark .sezzle-payment-plan .input-amount,
+.sezzle-container-dark .sezzle-payment-plan .terms-container .terms {
+  color: var(--font-white);
 }

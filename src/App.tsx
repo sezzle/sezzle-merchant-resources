@@ -2,11 +2,6 @@ import { DEFAULT_THEME } from "./constants";
 import { useConfig, AppConfig } from "./containers/ConfigProvider";
 import { ITranslation } from "./interface";
 import "./stylesheets/styles.css";
-import pieSeparator from "./assets/pie-separator.svg";
-import quarterPie from "./assets/quarter-pie.svg";
-import halfPie from "./assets/half-pie.svg";
-import threeQuarterPie from "./assets/three-quarter-pie.svg";
-import fullPie from "./assets/full-pie.svg";
 import cartIcon from "./assets/cart-icon.svg";
 import cardIcon from "./assets/card-icon.svg";
 import shipTimeIcon from "./assets/ship-time-icon.svg";
@@ -14,11 +9,11 @@ import trustPilot from "./assets/trustpilot.svg";
 import mobile from "./assets/mobile.svg";
 import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
+import PaymentPlan from "./components/PaymentPlan";
 import { sendEvent, GetMerchantDetails } from "./remote/api";
 import { IMerchantDetails } from "./interface";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { getCountryCode } from "./utils/countryCode";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
   const body = [
@@ -38,28 +33,11 @@ function App() {
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
-  const countryCodeRef = useRef<string | null>(null);
-  const [loadingStates, setLoadingStates] = useState({
-    countryCode: true,
-    merchantDetails: true,
-  });
+  const isCA = ctx.isCA;
 
+  const [merchantDetailsLoading, setMerchantDetailsLoading] = useState(true);
   const [merchantDetails, setMerchantDetails] =
     useState<IMerchantDetails | null>(null);
-
-  useEffect(() => {
-    getCountryCode()
-      .then((code) => {
-        countryCodeRef.current = code || "US";
-      })
-      .catch((error) => {
-        console.error("Failed to get country code:", error);
-        countryCodeRef.current = "US"; // Fallback
-      })
-      .finally(() => {
-        setLoadingStates((prev) => ({ ...prev, countryCode: false }));
-      });
-  }, []);
 
   useEffect(() => {
     if (config?.merchant_uuid) {
@@ -70,15 +48,14 @@ function App() {
           setMerchantDetails(null);
         })
         .finally(() => {
-          setLoadingStates((prev) => ({ ...prev, merchantDetails: false }));
+          setMerchantDetailsLoading(false);
         });
     } else {
-      setLoadingStates((prev) => ({ ...prev, merchantDetails: false }));
+      setMerchantDetailsLoading(false);
     }
   }, [config?.merchant_uuid]);
 
-  const isLoading = loadingStates.countryCode || loadingStates.merchantDetails;
-  if (isLoading) return <></>;
+  if (merchantDetailsLoading) return <></>;
 
   const isNoServiceFeeMerchant =
     merchantDetails?.is_direct_integration_merchant || false;
@@ -86,203 +63,115 @@ function App() {
   dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
 
   return (
-    <div
-      className={`sezzle-container ${
-        config && config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
-      }`}
-    >
-      <div className="sezzle-logo" aria-label={translation.logoAltText}>
-        <Logo />
-      </div>
-      <h1 className="sezzle-header">{translation.header}</h1>
-      <p className="sezzle-description">
-        {translation.description}
-        <sup>1</sup>
-      </p>
-      <div className="payment-pie-area">
-        <div className="installment-wrapper">
-          <div className="pie">
-            <img src={quarterPie} alt=""></img>
+      <div
+          className={`sezzle-container ${
+              config && config.theme !== DEFAULT_THEME
+                  ? "sezzle-container-dark"
+                  : ""
+          }`}
+      >
+          <div className="sezzle-logo" aria-label={translation.logoAltText}>
+              <Logo />
           </div>
-          <div className="installment">25%</div>
-          <div className="due-date">{translation.today}</div>
-        </div>
-        <div className="pie-separator">
-          <img src={pieSeparator} alt=""></img>
-        </div>
-        <div className="installment-wrapper">
-          <div className="pie">
-            <img src={halfPie} alt=""></img>
-          </div>
-          <div className="installment">25%</div>
-          <div className="due-date">2 {translation.weeks}</div>
-        </div>
-        <div className="pie-separator">
-          <img src={pieSeparator} alt=""></img>
-        </div>
-        <div className="installment-wrapper">
-          <div className="pie">
-            <img src={threeQuarterPie} alt=""></img>
-          </div>
-          <div className="installment">25%</div>
-          <div className="due-date">4 {translation.weeks}</div>
-        </div>
-        <div className="pie-separator">
-          <img src={pieSeparator} alt=""></img>
-        </div>
-        <div className="installment-wrapper">
-          <div className="pie">
-            <img src={fullPie} alt=""></img>
-          </div>
-          <div className="installment">25%</div>
-          <div className="due-date">6 {translation.weeks}</div>
-        </div>
-      </div>
-      {!!config?.isLongTerm && countryCodeRef.current !== "CA" && (
-        <p className="long-term-text">{translation.longTerm}</p>
-      )}
-      <div className="section-separator"></div>
+          <PaymentPlan />
 
-      <h2 className="sezzle-subheader">{translation.subHeader}</h2>
-      <p className="sezzle-description">{translation.subDescription}</p>
+          <div className="section-separator"></div>
 
-      <div className="card-area">
-        <div className="info-card">
-          <div className="shopping-cart-icon">
-            <img src={cartIcon} alt=""></img>
-          </div>
-          <p className="sezzle-info">{translation.cartInfo}</p>
-        </div>
-        <div className="info-card">
-          <div className="sezzle-card-icon">
-            <img src={cardIcon} alt=""></img>
-          </div>
-          <p className="sezzle-info">{translation.checkoutInfo}</p>
-        </div>
-        <div className="info-card">
-          <div className="ship-time-icon">
-            <img src={shipTimeIcon} alt=""></img>
-          </div>
-          <p
-            className="sezzle-info"
-            dangerouslySetInnerHTML={{ __html: translation.shipmentInfo }}
-          ></p>
-        </div>
-      </div>
-
-      <div className="section-separator"></div>
-
-      <div className="cta-area">
-        <div className="cta-main">
-          <h3 className="cta-header">{translation.ctaHeader}</h3>
-          <p className="cta-description">{translation.ctaDescription}</p>
-          <a
-            className="cta-button"
-            href="https://sezzle.com/app"
-            rel="noreferrer"
-            target="_blank"
-          >
-            {translation.ctaButton}
-          </a>
-        </div>
-        <div className="mobile-reviews">
-          <div className="mobile-app-img">
-            <img src={mobile} alt=""></img>
-          </div>
-          <div className="review-card-area">
-            <div className="review-card review-card-1">
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div className="five-stars" aria-label="Five stars">
-                  <img src={fiveStar} alt=""></img>
-                </div>
+          <div className="cta-area">
+              <div className="cta-main">
+                  <h3 className="cta-header">{translation.ctaHeader}</h3>
+                  <p className="cta-description">
+                      {translation.ctaDescription}
+                  </p>
+                  <a
+                      className="cta-button"
+                      href="https://sezzle.com/app"
+                      rel="noreferrer"
+                      target="_blank"
+                  >
+                      {translation.ctaButton}
+                  </a>
               </div>
-              <h4 className="review-header">{translation.review1Header}</h4>
-              <p className="review-description">
-                {translation.review1Description}
-              </p>
-              <div className="review-name">
-                {translation.reviewer1Name}{" "}
-                <span className="review-date">{translation.review1Date}</span>
+              <div className="mobile-reviews">
+                  <div className="mobile-app-img">
+                      <img src={mobile} alt=""></img>
+                  </div>
+                  <div className="review-card-area">
+                      <div className="review-card review-card-1">
+                          <div className="trustpilot-group">
+                              <div className="trustpilot">
+                                  <img src={trustPilot} alt=""></img>
+                              </div>
+                              <div
+                                  className="five-stars"
+                                  aria-label="Five stars"
+                              >
+                                  <img src={fiveStar} alt=""></img>
+                              </div>
+                          </div>
+                          <h4 className="review-header">
+                              {translation.review1Header}
+                          </h4>
+                          <p className="review-description">
+                              {translation.review1Description}
+                          </p>
+                          <div className="review-name">
+                              {translation.reviewer1Name}{" "}
+                              <span className="review-date">
+                                  {translation.review1Date}
+                              </span>
+                          </div>
+                      </div>
+                      <div
+                          className={`review-card ${
+                              config &&
+                              (config.language === "fr" ||
+                                  config.language === "es")
+                                  ? "review-card-2-fr-es"
+                                  : "review-card-2"
+                          }`}
+                      >
+                          <div className="trustpilot-group">
+                              <div className="trustpilot">
+                                  <img src={trustPilot} alt=""></img>
+                              </div>
+                              <div
+                                  className="five-stars"
+                                  aria-label={translation.ratingAltText}
+                              >
+                                  <img src={fiveStar} alt=""></img>
+                              </div>
+                          </div>
+                          <h4 className="review-header">
+                              {translation.review2Header}
+                          </h4>
+                          <p className="review-description">
+                              {translation.review2Description}
+                          </p>
+                          <div className="review-name">
+                              {translation.reviewer2Name}
+                              <span className="review-date">
+                                  {translation.review2Date}
+                              </span>
+                          </div>
+                      </div>
+                      <div className="review-card review-card-3">
+                          <div className="trustpilot-group">
+                              <div className="trustpilot">
+                                  <img src={trustPilot} alt=""></img>
+                              </div>
+                              <div
+                                  className="five-stars"
+                                  aria-label={translation.ratingAltText}
+                              >
+                                  <img src={fiveStar} alt=""></img>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div
-              className={`review-card ${
-                config && (config.language === "fr" || config.language === "es")
-                  ? "review-card-2-fr-es"
-                  : "review-card-2"
-              }`}
-            >
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label={translation.ratingAltText}
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-              <h4 className="review-header">{translation.review2Header}</h4>
-              <p className="review-description">
-                {translation.review2Description}
-              </p>
-              <div className="review-name">
-                {translation.reviewer2Name}
-                <span className="review-date">{translation.review2Date}</span>
-              </div>
-            </div>
-            <div className="review-card review-card-3">
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label={translation.ratingAltText}
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
-
-      <div className="terms">
-        <div>
-          {isNoServiceFeeMerchant ? (
-            <div>
-              <sup>1</sup>
-              <span id="term1">{translation.term1noServiceFee}</span>
-            </div>
-          ) : countryCodeRef.current === "CA" ? (
-            <div className="CAterms">
-              <sup>1</sup>
-              <span id="term1">{translation.term1}</span>
-              <span id="term3">{translation.term3}</span>
-            </div>
-          ) : (
-            <div className="USterms">
-              <sup>1</sup>
-              <span id="term2">{translation.term2}</span>
-            </div>
-          )}
-        </div>
-
-        <div>
-          <sup>2</sup>
-          <span>
-            {isNoServiceFeeMerchant
-              ? translation.term2noServiceFee
-              : translation.term4}
-          </span>
-        </div>
-      </div>
-    </div>
   );
 }
 export default App;

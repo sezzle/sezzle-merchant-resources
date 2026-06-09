@@ -9,22 +9,14 @@ import esTranslation from "./translations/es.json";
 const SERVER_URL = import.meta.env.VITE_WIDGET_SERVER_URL;
 
 interface FetchHandlers {
-    countryCode?: string;
     isDirectIntegration?: boolean;
 }
 
 const installFetchMock = ({
-    countryCode = "US",
     isDirectIntegration = false,
 }: FetchHandlers = {}) => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
         const url = typeof input === "string" ? input : input.toString();
-        if (url.includes("/v1/geoip/ipdetails")) {
-            return {
-                ok: true,
-                text: async () => JSON.stringify({ country_iso_code: countryCode }),
-            } as Response;
-        }
         if (url.includes("/v1/event/log")) {
             return { ok: true } as Response;
         }
@@ -76,7 +68,7 @@ describe("how-sezzle-works widget (integration)", () => {
         expect(container.querySelector(".sezzle-container")).toBeNull();
     });
 
-    it("renders the English widget once config + GeoIP + merchant details resolve", async () => {
+    it("renders the English widget once config + merchant details resolve", async () => {
         installFetchMock();
         renderWidget();
         postConfig({
@@ -147,19 +139,20 @@ describe("how-sezzle-works widget (integration)", () => {
         expect(container.querySelector(".sezzle-container-dark")).not.toBeNull();
     });
 
-    it("renders Canadian terms when GeoIP returns CA", async () => {
-        installFetchMock({ countryCode: "CA" });
+    it("renders Canadian terms and hides long-term cards when countryCode is CA", async () => {
+        installFetchMock();
         const { container } = renderWidget();
         postConfig({
             merchant_uuid: "fc99cfc7-5772-4b36-826c-f27a2b87a8b7",
             theme: "light",
             language: "en",
             isLongTerm: true,
+            countryCode: "CA",
         });
 
         await screen.findByRole("heading", { level: 1, name: enTranslation.header });
         expect(container.querySelector(".CAterms")).not.toBeNull();
-        expect(container.querySelector(".long-term-text")).toBeNull();
+        expect(container.querySelector(".payment-cards-monthly")).toBeNull();
     });
 
     it("renders no-service-fee terms for direct integration merchants", async () => {

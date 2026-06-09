@@ -2,7 +2,13 @@ export const DEFAULT_LANGUAGE = "en";
 export const DEFAULT_THEME = "light";
 export const ABOUT_SEZZLE_ONLOAD_EVENT = "about-sezzle-onload";
 export const ABOUT_SEZZLE_ERROR_EVENT = "about-sezzle-error";
-export const GEO_IP_BASE_URL = "https://geoip.sezzle.com";
+
+// Country is merchant-provided (we no longer auto-detect via GeoIP). US is the
+// default; "CA" disables Pay-in-5 and all long-term financing.
+export const DEFAULT_COUNTRY_CODE = "US";
+export const DEFAULT_NUMBER_OF_PAYMENTS = 5;
+// Upper bound for bi-weekly installments (mirrors sezzle-widget-react maxPrice).
+export const DEFAULT_MAX_PRICE = 2500;
 
 export const DIRECT_MERCHANT_UUIDS: string[] = [
   // Add direct integration merchant UUIDs here
