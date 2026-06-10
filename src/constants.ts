@@ -9,7 +9,3 @@ export const DEFAULT_COUNTRY_CODE = "US";
 export const DEFAULT_NUMBER_OF_PAYMENTS = 5;
 // Upper bound for bi-weekly installments (mirrors sezzle-widget-react maxPrice).
 export const DEFAULT_MAX_PRICE = 2500;
-
-export const DIRECT_MERCHANT_UUIDS: string[] = [
-  // Add direct integration merchant UUIDs here
-];

@@ -71,7 +71,7 @@ describe("ConfigProvider", () => {
             language: "fr",
             isLongTerm: true,
         });
-        expect(typeof result.current.translation.header).toBe("string");
+        expect(typeof result.current.translation.ctaHeader).toBe("string");
     });
 
     it("falls back to defaults when fields are missing", () => {

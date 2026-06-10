@@ -1,15 +1,6 @@
 export interface ITranslation {
   logoAltText: string;
-  longTerm: string;
-  header: string;
-  description: string;
   today: string;
-  weeks: string;
-  subHeader: string;
-  subDescription: string;
-  cartInfo: string;
-  checkoutInfo: string;
-  shipmentInfo: string;
   ctaHeader: string;
   ctaDescription: string;
   ctaButton: string;
@@ -22,12 +13,6 @@ export interface ITranslation {
   review2Description: string;
   reviewer2Name: string;
   review2Date: string;
-  term1: string;
-  term2: string;
-  term3: string;
-  term4: string;
-  term1noServiceFee: string;
-  term2noServiceFee: string;
 
   // Payment-plan / modal keys (ported from sezzle-widget-react)
   MultiPlanAmount: string;
@@ -63,14 +48,8 @@ export interface ITranslation {
   webBankTermsPI5: string;
   linkToCompleteTerms: string;
   sezzleInformation: string;
-  closeSezzleModal: string;
   previousSlide: string;
   nextSlide: string;
   carouselPosition: string;
   slide: string;
-}
-
-// Interface for merchant details response
-export interface IMerchantDetails {
-  is_direct_integration_merchant: boolean;
 }

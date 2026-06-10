@@ -2,18 +2,13 @@ import { DEFAULT_THEME } from "./constants";
 import { useConfig, AppConfig } from "./containers/ConfigProvider";
 import { ITranslation } from "./interface";
 import "./stylesheets/styles.css";
-import cartIcon from "./assets/cart-icon.svg";
-import cardIcon from "./assets/card-icon.svg";
-import shipTimeIcon from "./assets/ship-time-icon.svg";
 import trustPilot from "./assets/trustpilot.svg";
 import mobile from "./assets/mobile.svg";
 import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
 import PaymentPlan from "./components/PaymentPlan";
-import { sendEvent, GetMerchantDetails } from "./remote/api";
-import { IMerchantDetails } from "./interface";
+import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { useEffect, useState } from "react";
 
 const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
   const body = [
@@ -33,32 +28,6 @@ function App() {
   const ctx = useConfig();
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
-  const isCA = ctx.isCA;
-
-  const [merchantDetailsLoading, setMerchantDetailsLoading] = useState(true);
-  const [merchantDetails, setMerchantDetails] =
-    useState<IMerchantDetails | null>(null);
-
-  useEffect(() => {
-    if (config?.merchant_uuid) {
-      GetMerchantDetails(config.merchant_uuid)
-        .then(setMerchantDetails)
-        .catch((error) => {
-          console.error("Failed to get merchant details:", error);
-          setMerchantDetails(null);
-        })
-        .finally(() => {
-          setMerchantDetailsLoading(false);
-        });
-    } else {
-      setMerchantDetailsLoading(false);
-    }
-  }, [config?.merchant_uuid]);
-
-  if (merchantDetailsLoading) return <></>;
-
-  const isNoServiceFeeMerchant =
-    merchantDetails?.is_direct_integration_merchant || false;
 
   dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
 
