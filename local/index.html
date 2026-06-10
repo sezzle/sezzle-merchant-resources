@@ -1,3 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <!-- Without this, mobile/emulated viewports lay out at the default ~980px
+         and scale the whole page down to fit, so the app's max-width media
+         queries never fire. Mirrors the viewport meta in the app's index.html. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How Sezzle Works — local harness</title>
+</head>
+<body>
 <div id="how-sezzle-works"></div>
 <script>
     const config = {
@@ -38,3 +49,5 @@
 
     node.appendChild(iframe);
 </script>
+</body>
+</html>
