@@ -52,4 +52,25 @@ describe("Logo", () => {
         const img = screen.getByAltText("Logo") as HTMLImageElement;
         expect(img.src).toContain(asset);
     });
+
+    // Light is the default: anything that isn't exactly "dark" uses the light
+    // logo rather than rendering a broken/undefined src.
+    it.each(["light", "DARK", "midnight", ""])(
+        "falls back to the light logo for theme %j",
+        (theme) => {
+            renderLogo({
+                merchant_uuid: "x",
+                theme,
+                language: "en",
+                origin: "",
+                isLongTerm: false,
+                countryCode: "US",
+                numberOfPayments: 5,
+                minPrice: 0,
+                maxPrice: 2500,
+            });
+            const img = screen.getByAltText("Logo") as HTMLImageElement;
+            expect(img.src).toContain("Color-Logo.svg");
+        }
+    );
 });

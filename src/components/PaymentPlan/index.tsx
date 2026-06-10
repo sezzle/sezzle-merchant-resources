@@ -11,7 +11,7 @@ import {
   isProductEligiblePI5,
   isInputAmountValid,
 } from "../../utils/renderFunctions";
-import { getCurrency } from "../../utils/price";
+import { getCurrency, normalizePriceString } from "../../utils/price";
 import BiweeklyCard from "./BiweeklyCard";
 import MonthlyCards from "./MonthlyCards";
 import HowToPayCarousel from "./HowToPayCarousel";
@@ -27,7 +27,6 @@ export interface Eligibility {
 // (group "a"'s minPriceLT) when long-term is disabled.
 const DEFAULT_INPUT_PRICE = 150;
 
-const CURRENCY_REGEX_GLOBAL = /[$€£₤₹]/g;
 const SANITIZE_REGEX = /[^0-9,.$€£₤₹]/g;
 
 const PaymentPlan = () => {
@@ -49,7 +48,10 @@ const PaymentPlan = () => {
     setInputValue(raw);
 
     const nextCurrency = getCurrency(raw);
-    const nextPriceString = raw.replace(CURRENCY_REGEX_GLOBAL, "");
+    // Resolve thousands/decimal separators into a canonical numeric string
+    // (e.g. "15,000.00" -> "15000.00") so every downstream consumer that does
+    // Number(priceString) / parsePrice sees a parseable value.
+    const nextPriceString = normalizePriceString(raw);
 
     const valid = isInputAmountValid(
       nextPriceString,

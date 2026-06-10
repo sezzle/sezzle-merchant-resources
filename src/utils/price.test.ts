@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   parsePriceString,
   parsePrice,
+  normalizePriceString,
   getCurrency,
   formatNumberForLocale,
 } from "./price";
@@ -13,6 +14,29 @@ describe("parsePriceString / parsePrice", () => {
   });
   it("returns empty string for falsy input", () => {
     expect(parsePriceString("")).toBe("");
+  });
+});
+
+describe("normalizePriceString / parsePrice separator handling", () => {
+  // A separator with 3+ trailing digits is a thousands grouping; the amount
+  // has no fractional part.
+  it.each(["$15,000", "$15.000", "$15,000.00", "$15.000,00"])(
+    "treats %s as 15000",
+    (input) => {
+      expect(parsePrice(input)).toBe(15000);
+    }
+  );
+
+  // A separator with exactly 2 trailing digits is the decimal point (cents).
+  it.each(["$150.00", "$150,00"])("treats %s as 150", (input) => {
+    expect(parsePrice(input)).toBe(150);
+  });
+
+  it("canonicalizes mixed grouping + decimal to a parseable string", () => {
+    expect(normalizePriceString("$15,000.00")).toBe("15000.00");
+    expect(normalizePriceString("$15.000,00")).toBe("15000.00");
+    expect(normalizePriceString("$15,000")).toBe("15000");
+    expect(normalizePriceString("150")).toBe("150");
   });
 });
 

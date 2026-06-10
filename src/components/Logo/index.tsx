@@ -8,12 +8,9 @@ function Logo(): React.JSX.Element {
   if (!config) {
     return <></>
   }
-  const logoMap: Record<string, string> = {
-      light: enLight,
-      dark: enDark
-  };
-
-  const logoImg: string = logoMap[config.theme];
+  // Light is the default: only an explicit "dark" theme uses the white logo;
+  // any other value falls back to the light (full-color) logo.
+  const logoImg: string = config.theme === "dark" ? enDark : enLight;
   return <img src={logoImg} alt="Logo" height="75px" width="300px"/>;
 }
 

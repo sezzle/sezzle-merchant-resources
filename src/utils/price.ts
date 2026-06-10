@@ -22,9 +22,37 @@ export function parsePriceString(price: string): string {
   return formattedPrice;
 }
 
+/**
+ * Normalizes a price string to a plain `parseFloat`-friendly form, resolving
+ * thousands vs. decimal separators by position rather than by symbol (so "."
+ * and "," can each play either role). The last separator is the decimal point
+ * only when at most two digits follow it (cents — third-to-last position or
+ * rightward); any separator with three or more trailing digits is a thousands
+ * grouping (fourth-to-last or leftward) and is dropped. Examples:
+ *   "15,000"   "15.000"     -> "15000"
+ *   "15,000.00" "15.000,00" -> "15000.00"
+ *   "150.00"   "150,00"     -> "150.00"
+ */
+export function normalizePriceString(price: string): string {
+  const extracted = parsePriceString(price);
+  const lastSep = Math.max(extracted.lastIndexOf(","), extracted.lastIndexOf("."));
+  if (lastSep === -1) return extracted;
+
+  const digitsAfterLastSep = extracted.length - 1 - lastSep;
+  if (digitsAfterLastSep <= 2) {
+    // Last separator is the decimal point; any earlier separator is grouping.
+    const integerPart = extracted.slice(0, lastSep).replace(/[.,]/g, "");
+    const fractionPart = extracted.slice(lastSep + 1);
+    return `${integerPart}.${fractionPart}`;
+  }
+  // Three or more trailing digits: the last separator is a thousands grouping,
+  // so every separator is grouping and the amount has no fractional part.
+  return extracted.replace(/[.,]/g, "");
+}
+
 /** Parses the price from a string to a float. */
 export function parsePrice(price: string): number {
-  return parseFloat(parsePriceString(price));
+  return parseFloat(normalizePriceString(price));
 }
 
 /** True when the single character is numeric. */

@@ -9,6 +9,7 @@ import Logo from "./components/Logo";
 import PaymentPlan from "./components/PaymentPlan";
 import { sendEvent } from "./remote/api";
 import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
+import { useEffect } from "react";
 
 const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
   const body = [
@@ -29,7 +30,11 @@ function App() {
   const config = ctx.config;
   const translation: ITranslation = ctx.translation;
 
-  dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
+  // Fire the onload analytics event as a side effect after render — not during
+  // render — so it sends exactly once and stays safe under re-renders/StrictMode.
+  useEffect(() => {
+    dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
+  }, [config]);
 
   return (
       <div
