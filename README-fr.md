@@ -2,7 +2,7 @@
 
 How Sezzle Works est une page dédiée que les commerçants peuvent ajouter à leur site Web pour promouvoir davantage Sezzle. Suivez les instructions ci-dessous pour mettre en œuvre.
 
-**_Remarque :_** Chaque fois que les instructions ci-dessous sont mises à jour, assurez-vous de mettre à jour les [documents des marchands](https://merchant-help.sezzle.com/hc/en-us/articles/360041531132-How-do- Je-crée-une-page-à-propos-de-Sezzle-) également
+**_Remarque :_** Chaque fois que les instructions ci-dessous sont mises à jour, assurez-vous de mettre à jour les [documents des marchands](https://merchant-help.sezzle.com/hc/en-us/articles/360041531132-How-do-I-make-an-About-Sezzle-page-) également
 
 ## Intégration des marchands
 
@@ -44,7 +44,7 @@ Pour configurer la page sur toute autre plateforme, veuillez travailler avec vot
 Ajoutez votre « merchant_uuid », ajustez le « thème » et la « langue » selon les exigences de votre site Web.
 
 - `merchant_uuid` (marchand_uuid) est votre identifiant de commerçant au format : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-- `theme` (thème)peut être `clair` ou `sombre`.
+- `theme` (thème) peut être `light` (clair) ou `dark` (sombre).
 - `language` (langue) peut être `en`, `es` ou `fr`.
 - `countryCode` (code de pays) est le pays du visiteur sur deux lettres (par ex. `US`, `CA`). Par défaut `US`. Au Canada (`CA`), Paiement en 5 fois et tout financement à long terme sont masqués automatiquement.
 - `numberOfPayments` (nombre de paiements) peut être `4` ou `5`. Par défaut `5` (la carte Paiement en 5 fois s'affiche au-dessus de 50 $). Indiquez `4` pour ne jamais afficher la carte Paiement en 5 fois. Forcé à `4` au Canada.
