@@ -27,14 +27,17 @@ describe("Logo", () => {
         expect(container.querySelector("img")).toBeNull();
     });
 
+    // The logo is theme-driven only: light -> Color-Logo, dark ->
+    // Color-White-Logo. Language no longer affects which asset is used, so each
+    // language maps to the same theme-based asset.
     it.each([
-        ["light", "en"],
-        ["light", "fr"],
-        ["light", "es"],
-        ["dark", "en"],
-        ["dark", "fr"],
-        ["dark", "es"],
-    ])("renders the %s/%s logo when configured", (theme, language) => {
+        ["light", "en", "Color-Logo.svg"],
+        ["light", "fr", "Color-Logo.svg"],
+        ["light", "es", "Color-Logo.svg"],
+        ["dark", "en", "Color-White-Logo.svg"],
+        ["dark", "fr", "Color-White-Logo.svg"],
+        ["dark", "es", "Color-White-Logo.svg"],
+    ])("renders the %s/%s logo when configured", (theme, language, asset) => {
         renderLogo({
             merchant_uuid: "x",
             theme,
@@ -47,6 +50,6 @@ describe("Logo", () => {
             maxPrice: 2500,
         });
         const img = screen.getByAltText("Logo") as HTMLImageElement;
-        expect(img.src).toContain(`${theme}-${language}`);
+        expect(img.src).toContain(asset);
     });
 });
