@@ -4,7 +4,16 @@
 import { useState } from "react";
 import { ITranslation } from "../../interface";
 import { useConfig } from "../../containers/ConfigProvider";
-import { ArrowLeftIcon, ArrowRightIcon, DotMarkerIcon } from "./icons";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  DotMarkerIcon,
+  StepOneIcon,
+  StepTwoIcon,
+  StepThreeIcon,
+} from "./icons";
+
+const STEP_IMAGES = [StepOneIcon, StepTwoIcon, StepThreeIcon];
 
 const MIN_TAB = 1;
 const MAX_TAB = 3;
@@ -71,16 +80,22 @@ const HowToPayCarousel = ({ translation }: { translation: ITranslation }) => {
         </div>
       </div>
       <div className={`carousel position-${activeTab}`}>
-        {steps.map((step, i) => (
-          <div className="carousel-item" key={i}>
-            <div className="carousel-item-content">
-              <div className="step-number">
-                <span className="step-number-content">{i + 1}</span>
+        {steps.map((step, i) => {
+          const StepImage = STEP_IMAGES[i];
+          return (
+            <div className="carousel-item" key={i}>
+              <div className="carousel-item-content">
+                <div className="step-number">
+                  <span className="step-number-content">{i + 1}</span>
+                </div>
+                <div className="step-name">{step}</div>
+                <div className="step-image">
+                  <StepImage />
+                </div>
               </div>
-              <div className="step-name">{step}</div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div
         className="carousel-dots"

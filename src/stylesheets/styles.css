@@ -16,9 +16,6 @@
   --font-magnolia: #f9f5fd;
 }
 
-#how-sezzle-works-container {
-}
-
 .sezzle-container {
   font-family: var(--font-family);
   color: var(--font-black);
@@ -713,6 +710,7 @@
   border-radius: 10px;
   padding: 16px 12px;
   background-color: #ffffff;
+  border: 1px solid #f4f4f4;
   display: flex;
 }
 .sezzle-payment-plan .carousel-item-content {
@@ -747,6 +745,10 @@
   color: #303030;
   padding: 0 25px 0 8px;
   text-align: left;
+}
+.sezzle-payment-plan .step-image svg {
+  width: 28.5557861328125px;
+  height: 29.413787841796875px;
 }
 .sezzle-payment-plan .carousel-dots {
   display: flex;
@@ -784,6 +786,14 @@
   line-height: 12px;
   letter-spacing: 0.2px;
   color: #8333d4;
+}
+
+.sezzle-payment-plan .terms-container .terms a:hover {
+  color: var(--font-purple)
+}
+
+.sezzle-payment-plan .terms-container .terms a:active {
+  color: var(--font-magenta)
 }
 
 /* --- dark theme: text rendered directly on the page background --- */
