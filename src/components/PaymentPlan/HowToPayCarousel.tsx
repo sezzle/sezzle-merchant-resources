@@ -3,12 +3,28 @@
 // imperative DOM toggling is replaced with a single activeTab state value.
 import { useState } from "react";
 import { ITranslation } from "../../interface";
+import { useConfig } from "../../containers/ConfigProvider";
 import { ArrowLeftIcon, ArrowRightIcon, DotMarkerIcon } from "./icons";
 
 const MIN_TAB = 1;
 const MAX_TAB = 3;
 
+const FULL_COLOR_LOGO =
+  "https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg";
+const WHITE_LOGO =
+    "https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor_WhiteWM.svg";
+
+const logoSrcForTheme = (theme: string): string => {
+  switch (theme) {
+    case "dark":
+      return WHITE_LOGO;
+    default:
+      return FULL_COLOR_LOGO;
+  }
+};
+
 const HowToPayCarousel = ({ translation }: { translation: ITranslation }) => {
+  const { config } = useConfig();
   const [activeTab, setActiveTab] = useState(MIN_TAB);
   const steps = [
     translation.MultiPlanStep1,
@@ -26,8 +42,8 @@ const HowToPayCarousel = ({ translation }: { translation: ITranslation }) => {
           <span className="how-to-text">{translation.MultiPlanhowToPay}</span>
           <div className="how-to-logo">
             <img
-              className="how-to-sezzle-logo szl-light-image"
-              src="https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg"
+              className="how-to-sezzle-logo"
+              src={logoSrcForTheme(config?.theme ?? "light")}
               alt="Sezzle"
               style={{ height: "14px", width: "58px" }}
             />

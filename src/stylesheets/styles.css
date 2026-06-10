@@ -10,6 +10,10 @@
   --font-purple: #382757;
   --font-violet: #7d25cb;
   --font-magenta: #8e24ac;
+  --font-fuschia: #ca74e2;
+  --font-iris: #b67ee7;
+  --font-lavender: #a08dc9;
+  --font-magnolia: #f9f5fd;
 }
 
 #how-sezzle-works-container {
@@ -788,6 +792,27 @@
 .sezzle-container-dark .sezzle-payment-plan .sample-payments-title,
 .sezzle-container-dark .sezzle-payment-plan .input-amount-label,
 .sezzle-container-dark .sezzle-payment-plan .input-amount,
+.sezzle-container-dark .sezzle-payment-plan .how-to-text,
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms {
   color: var(--font-white);
+}
+
+/* dark theme: active (non-disabled) carousel arrows use the lighter fuschia */
+.sezzle-container-dark .sezzle-payment-plan .arrow:not(.disabled) svg path {
+  fill: var(--font-fuschia);
+}
+
+/* dark theme: active carousel dot uses the lighter fuschia */
+.sezzle-container-dark .sezzle-payment-plan .carousel-dots .dot.active svg rect {
+  fill: var(--font-fuschia);
+}
+
+.sezzle-container-dark .sezzle-payment-plan .terms-container .terms a {
+  color: var(--font-fuschia);
+}
+.sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:hover {
+  color: var(--font-lavender);
+}
+.sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:active {
+  color: var(--font-iris);
 }
