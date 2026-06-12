@@ -10,7 +10,7 @@
   --font-purple: #382757;
   --font-violet: #7d25cb;
   --font-magenta: #8e24ac;
-  --font-fuschia: #ca74e2;
+  --font-fuchsia: #ca74e2;
   --font-iris: #b67ee7;
   --font-lavender: #a08dc9;
   --font-magnolia: #f9f5fd;
@@ -817,18 +817,18 @@
   color: var(--font-white);
 }
 
-/* dark theme: active (non-disabled) carousel arrows use the lighter fuschia */
+/* dark theme: active (non-disabled) carousel arrows use the lighter fuchsia */
 .sezzle-container-dark .sezzle-payment-plan .arrow:not(.disabled) svg path {
-  fill: var(--font-fuschia);
+  fill: var(--font-fuchsia);
 }
 
-/* dark theme: active carousel dot uses the lighter fuschia */
+/* dark theme: active carousel dot uses the lighter fuchsia */
 .sezzle-container-dark .sezzle-payment-plan .carousel-dots .dot.active svg rect {
-  fill: var(--font-fuschia);
+  fill: var(--font-fuchsia);
 }
 
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms a {
-  color: var(--font-fuschia);
+  color: var(--font-fuchsia);
 }
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:hover {
   color: var(--font-lavender);
