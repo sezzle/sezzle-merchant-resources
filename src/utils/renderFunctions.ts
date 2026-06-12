@@ -52,6 +52,11 @@ export function isInputAmountValid(
   return price >= minPrice && price <= upper;
 }
 
+// Inserts a single thousands comma (e.g. 1234.5 -> "1,234.50"). This assumes
+// prices stay below $1,000,000 — only one comma group is added, so anything at
+// or above a million would render incorrectly (e.g. "1000,000.00"). Safe given
+// the current maxPriceLT of 15000; revisit (e.g. Intl.NumberFormat) if that
+// limit ever exceeds $999,999.
 export function addDelimiters(priceString: number | string): string {
   const parsedPrice = Number(priceString).toFixed(2);
   if (parsedPrice.length > 6) {
