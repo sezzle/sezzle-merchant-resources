@@ -72,6 +72,15 @@ describe("PaymentPlan", () => {
         expect(container.querySelector(".carousel.position-2")).not.toBeNull();
     });
 
+    it("jumps the how-to-pay carousel when a dot is clicked", async () => {
+        const user = userEvent.setup();
+        const { container } = render(wrap(ltConfig, <PaymentPlan />));
+        expect(container.querySelector(".carousel.position-1")).not.toBeNull();
+
+        await user.click(screen.getByLabelText(`${enTranslation.slide} 3`));
+        expect(container.querySelector(".carousel.position-3")).not.toBeNull();
+    });
+
     it("toggles the long-term features accordion", async () => {
         const user = userEvent.setup();
         render(wrap(ltConfig, <PaymentPlan />));

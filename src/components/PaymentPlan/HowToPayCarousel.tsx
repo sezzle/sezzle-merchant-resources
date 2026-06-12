@@ -103,15 +103,17 @@ const HowToPayCarousel = ({ translation }: { translation: ITranslation }) => {
         aria-label={translation.carouselPosition}
       >
         {[1, 2, 3].map((n) => (
-          <div
+          <button
+            type="button"
             className={`dot${activeTab === n ? " active" : ""}`}
             role="tab"
             aria-selected={activeTab === n}
             aria-label={`${translation.slide} ${n}`}
+            onClick={() => setActiveTab(n)}
             key={n}
           >
             <DotMarkerIcon />
-          </div>
+          </button>
         ))}
       </div>
     </div>

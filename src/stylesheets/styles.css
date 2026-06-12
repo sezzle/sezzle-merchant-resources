@@ -760,6 +760,12 @@
   gap: 8px;
   justify-content: center;
 }
+.sezzle-payment-plan .carousel-dots .dot {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
 .sezzle-payment-plan .carousel-dots .dot:not(.active) {
   filter: grayscale(1) opacity(0.25);
 }
