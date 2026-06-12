@@ -11,7 +11,7 @@ function Logo(): React.JSX.Element {
   // Light is the default: only an explicit "dark" theme uses the white logo;
   // any other value falls back to the light (full-color) logo.
   const logoImg: string = config.theme === "dark" ? enDark : enLight;
-  return <img src={logoImg} alt="Logo" height="75px" width="300px"/>;
+  return <img src={logoImg} alt="Logo" height={75} width={300} />;
 }
 
 export default Logo;
