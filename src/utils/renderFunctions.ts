@@ -74,7 +74,9 @@ export function calculateMonthlyWithInterest(
   term: number,
   APR: number
 ): number {
-  const price = Number(priceText);
+  // Normalize defensively so callers can pass a grouped/symbol-bearing string
+  // (e.g. "$15,000.00") without silently producing NaN; Number() would not.
+  const price = parsePrice(priceText);
   if (APR <= 0) {
     return price / term;
   }
