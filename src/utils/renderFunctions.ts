@@ -75,15 +75,13 @@ export function calculateMonthlyWithInterest(
   APR: number
 ): number {
   const price = Number(priceText);
-  if (APR > 0) {
-    const rate = APR / 100 / 12;
-    const numerator = price * rate * Math.pow(1 + rate, term);
-    const denominator = Math.pow(1 + rate, term) - 1;
-    const interestPayment = numerator / denominator;
-    return interestPayment;
-  } else {
+  if (APR <= 0) {
     return price / term;
   }
+  const rate = APR / 100 / 12;
+  const numerator = price * rate * Math.pow(1 + rate, term);
+  const denominator = Math.pow(1 + rate, term) - 1;
+  return numerator / denominator;
 }
 
 export function getFormattedPrice(
