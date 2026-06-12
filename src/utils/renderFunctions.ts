@@ -96,23 +96,21 @@ export function getFormattedPrice(
   const priceReplacer = parsePrice(price);
   const formatter = price.replace(priceString, "{price}");
 
-  let sezzleInstallmentPrice: number;
+  // Default to the bi-weekly installment price; override only when LT-eligible
+  // with valid terms. The default also acts as a defensive guard: when
+  // LT-eligible but no terms match (e.g. a malformed termsToShow that slipped
+  // past validation), we keep the bi-weekly price rather than producing NaN.
+  const biweeklyInstallmentPrice = priceReplacer / numberOfPayments;
+  let sezzleInstallmentPrice = biweeklyInstallmentPrice;
   if (isProductEligibleLT(priceString, minPriceLT, maxPriceLT)) {
     const terms = selectTermsToShow(priceReplacer, termsConfig);
-    // Defensive guard: when LT-eligible but no terms match (e.g. a malformed
-    // termsToShow that slipped past validation), fall back to the bi-weekly
-    // installment price rather than producing NaN.
     if (Array.isArray(terms) && terms.length > 0) {
       sezzleInstallmentPrice = calculateMonthlyWithInterest(
         priceString,
         terms[terms.length - 1],
         medianAPR
       );
-    } else {
-      sezzleInstallmentPrice = priceReplacer / numberOfPayments;
     }
-  } else {
-    sezzleInstallmentPrice = priceReplacer / numberOfPayments;
   }
 
   const sezzleInstallmentFormattedPrice = formatter.replace(
