@@ -56,6 +56,14 @@ Goto `localhost:8080` or whichever port the http-server is running on, to see th
 
 1. Start the application `bun run build && bun start`
 1. In a new tab, run `ngrok http 3000`
+1. Add the Ngrok forwarding host (the part of the URL without the `https://`, e.g. `3eb1-66-41-45-216.ngrok-free.app`) to `server.allowedHosts` in `vite.config.ts`, otherwise Vite will block the tunneled requests. Restart the app for the change to take effect.
+  Example:
+  ```
+    server: {
+      port: 3000,
+      allowedHosts: ["3eb1-66-41-45-216.ngrok-free.app"],
+    },
+  ```
 1. Follow the instructions in the Readme to install the product on a Shopify test store
   - Note: This could also be used on an unpublished theme of the merchant's site where an issue is occurring if you need to confirm that the changes will resolve a known bug
 1. Replace `https://media.sezzle.com` in `iframe.src` with the Ngrok forwarding URL (keep the path the same) and save changes
