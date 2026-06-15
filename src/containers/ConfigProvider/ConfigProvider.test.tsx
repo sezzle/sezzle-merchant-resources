@@ -71,7 +71,7 @@ describe("ConfigProvider", () => {
             language: "fr",
             isLongTerm: true,
         });
-        expect(typeof result.current.translation.header).toBe("string");
+        expect(typeof result.current.translation.ctaHeader).toBe("string");
     });
 
     it("falls back to defaults when fields are missing", () => {
@@ -87,7 +87,42 @@ describe("ConfigProvider", () => {
             theme: "light",
             language: "en",
             isLongTerm: false,
+            countryCode: "US",
+            numberOfPayments: 5,
         });
+        expect(result.current.effectiveNumberOfPayments).toBe(5);
+        expect(result.current.isCA).toBe(false);
+        // Long-term disabled (no LTgroup / minPriceLT / isLongTerm).
+        expect(result.current.ltConfig.minPriceLT).toBe(0);
+    });
+
+    it("gates Pay-in-5 and long-term off for Canada", () => {
+        const wrapper = ({ children }: { children: React.ReactNode }) => (
+            <ConfigProvider>{children}</ConfigProvider>
+        );
+        const { result } = renderHook(() => useConfig(), { wrapper });
+
+        postConfig({
+            merchant_uuid: "abc",
+            countryCode: "CA",
+            isLongTerm: true,
+        });
+
+        expect(result.current.isCA).toBe(true);
+        expect(result.current.effectiveNumberOfPayments).toBe(4);
+        expect(result.current.ltConfig.minPriceLT).toBe(0);
+    });
+
+    it("enables long-term via isLongTerm alone (group a backcompat)", () => {
+        const wrapper = ({ children }: { children: React.ReactNode }) => (
+            <ConfigProvider>{children}</ConfigProvider>
+        );
+        const { result } = renderHook(() => useConfig(), { wrapper });
+
+        postConfig({ merchant_uuid: "abc", isLongTerm: true });
+
+        expect(result.current.ltConfig.minPriceLT).toBe(150);
+        expect(result.current.ltConfig.medianAPR).toBe(21.99);
     });
 });
 

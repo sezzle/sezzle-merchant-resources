@@ -24,7 +24,6 @@ export default defineConfig({
                 "src/setupTests.ts",
                 "src/vite-env.d.ts",
                 "src/interface.ts",
-                "src/reportWebVitals.ts",
                 "src/index.tsx",
             ],
         },

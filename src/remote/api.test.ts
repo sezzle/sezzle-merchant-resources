@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { sendEvent, GetMerchantDetails } from "./api";
+import { sendEvent } from "./api";
 
 const SERVER_URL = import.meta.env.VITE_WIDGET_SERVER_URL;
 
@@ -41,42 +41,5 @@ describe("sendEvent", () => {
                 expect.any(Error)
             )
         );
-    });
-});
-
-describe("GetMerchantDetails", () => {
-    beforeEach(() => {
-        vi.spyOn(console, "error").mockImplementation(() => {});
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
-    });
-
-    it("returns the parsed merchant details on success", async () => {
-        const details = { is_direct_integration_merchant: true };
-        const fetchMock = vi.fn().mockResolvedValue({
-            ok: true,
-            json: async () => details,
-        });
-        vi.stubGlobal("fetch", fetchMock);
-
-        const result = await GetMerchantDetails("merchant-123");
-
-        expect(result).toEqual(details);
-        expect(fetchMock).toHaveBeenCalledWith(
-            `${SERVER_URL}/v1/merchants/merchant-123/how-sezzle-works`,
-            expect.objectContaining({ method: "GET" })
-        );
-    });
-
-    it("returns null and logs the error on failure", async () => {
-        const fetchMock = vi.fn().mockResolvedValue({ ok: false });
-        vi.stubGlobal("fetch", fetchMock);
-
-        const result = await GetMerchantDetails("merchant-123");
-
-        expect(result).toBeNull();
-        expect(console.error).toHaveBeenCalled();
     });
 });

@@ -46,7 +46,18 @@ Add your `merchant_uuid`, adjust `theme` and `language` as per your website's re
 - `merchant_uuid` is your merchant ID which is of the format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 - `theme` can either be `light` or `dark`.
 - `language` can either be `en` , `fr` or `es`.
-- `isLongTerm` can be either `true` or `false` (only enable this if you are approved to offer Sezzle Long-term financing)
+- `countryCode` is the viewer's two-letter country (e.g. `US`, `CA`). Defaults to `US`. In Canada (`CA`), Pay-in-5 and all long-term financing are hidden automatically.
+- `numberOfPayments` can be `4` or `5`. Defaults to `5` (the Pay-in-5 bi-weekly card shows above $50). Set `4` to never show the Pay-in-5 card. Forced to `4` in Canada.
+
+##### Long-term financing (only for merchants approved for Sezzle Long-term)
+
+- `LTgroup` enables long-term and applies your lending package's defaults. Confirm the value for your enrollment with your account manager. Options: `"a"` or `"b"`. This is the crucial option for enabling long-term.
+- `isLongTerm` (legacy) can be `true` or `false`. For backwards compatibility, `isLongTerm: true` behaves like `LTgroup: "a"`.
+- `minPriceLT` / `maxPriceLT` — the price range (in whole dollars) eligible for long-term monthly installments. Default to the `LTgroup` preset (e.g. `150` / `15000` for group `a`).
+- `minAPR` / `medianAPR` / `maxAPR` — APR range and the representative APR used to calculate monthly amounts. Default to the `LTgroup` preset.
+- `termsToShow` — object mapping price thresholds (in dollars) to term-length arrays (in months), plus a `default` key, e.g. `{ default: [3, 6, 9], 500: [12, 18, 24] }`. Defaults to the `LTgroup` preset.
+
+The input field on the page defaults to `minPriceLT` (or `$150` when long-term is disabled).
 
 Insert the following code into your HTML file:
 
@@ -57,6 +68,11 @@ Insert the following code into your HTML file:
           merchant_uuid: "",
           theme: "",
           language: "",
+          countryCode: "US",
+          numberOfPayments: 5,
+          // Long-term financing (only if approved). isLongTerm is the legacy
+          // toggle; prefer LTgroup ("a" or "b") for new integrations.
+          // LTgroup: "a",
           isLongTerm: false
       }
       const node = document.getElementById("how-sezzle-works");

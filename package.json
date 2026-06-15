@@ -16,8 +16,7 @@
     "postcss": "^8.4.49",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-error-boundary": "^5.0.0",
-    "web-vitals": "^4.2.4"
+    "react-error-boundary": "^5.0.0"
   },
   "scripts": {
     "start": "vite",
