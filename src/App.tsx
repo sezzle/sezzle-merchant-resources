@@ -105,143 +105,157 @@ function App() {
   ];
 
   return (
-    <div
-      className={`sezzle-container ${
-        config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
-      }`}
-    >
-      <div className="sezzle-logo" aria-label={translation.logoAltText}>
-        <Logo />
-      </div>
-
-      <p className="trusted">{translation.MultiPlantrusted}</p>
-
-      <section
-        className={`sezzle-payment-plan sezzle-multi-plan${
-          eligibility.pi5 ? "" : " pi4-only"
-        }`}
-        aria-label={translation.sezzleInformation}
+      <div
+          className={`sezzle-container ${
+              config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
+          }`}
       >
-        <p className="payment-plan-header">{translation.MultiPlanheader}</p>
-        <PaymentWrapper
-          currency={currency}
-          priceString={priceString}
-          inputValue={inputValue}
-          hasError={hasError}
-          onChange={handleChange}
-          eligibility={eligibility}
-          translation={translation}
-          ltConfig={ltConfig}
-          lang={lang}
-        />
-      </section>
-
-      <div className="section-separator"></div>
-
-      <h2 className="sezzle-subheader">{translation.subHeader}</h2>
-
-      <div className="card-area">
-        {steps.map(({ StepImage, name }, i) => (
-          <div className="info-card" key={i}>
-            <div className="step-image">
-              <StepImage />
-            </div>
-            <p className="sezzle-info">{name}</p>
+          <div className="sezzle-logo" aria-label={translation.logoAltText}>
+              <Logo />
           </div>
-        ))}
-      </div>
 
-      <div className="cta-area">
-        <div className="cta-main">
-          <h3 className="cta-header">{translation.ctaHeader}</h3>
-          <p className="cta-description">{translation.ctaDescription}</p>
-          <a
-            className="cta-button"
-            href="https://sezzle.com/app"
-            rel="noreferrer"
-            target="_blank"
-          >
-            {translation.ctaButton}
-          </a>
-        </div>
-        <div className="mobile-reviews">
-          <div className="mobile-app-img">
-            <img src={mobile} alt=""></img>
-          </div>
-          <div className="review-card-area">
-            <div className="review-card review-card-1">
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div className="five-stars" aria-label="Five stars">
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-              <h4 className="review-header">{translation.review1Header}</h4>
-              <p className="review-description">
-                {translation.review1Description}
-              </p>
-              <div className="review-name">
-                {translation.reviewer1Name}{" "}
-                <span className="review-date">{translation.review1Date}</span>
-              </div>
-            </div>
-            <div
-              className={`review-card ${
-                config.language === "fr" || config.language === "es"
-                  ? "review-card-2-fr-es"
-                  : "review-card-2"
+          <p className="trusted">{translation.MultiPlantrusted}</p>
+          <p className="payment-plan-header">{translation.MultiPlanheader}</p>
+
+          <section
+              className={`sezzle-payment-plan sezzle-multi-plan${
+                  eligibility.pi5 ? "" : " pi4-only"
               }`}
-            >
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label={translation.ratingAltText}
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-              <h4 className="review-header">{translation.review2Header}</h4>
-              <p className="review-description">
-                {translation.review2Description}
-              </p>
-              <div className="review-name">
-                {translation.reviewer2Name}
-                <span className="review-date">{translation.review2Date}</span>
-              </div>
-            </div>
-            <div className="review-card review-card-3">
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label={translation.ratingAltText}
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              aria-label={translation.sezzleInformation}
+          >
+              <PaymentWrapper
+                  currency={currency}
+                  priceString={priceString}
+                  inputValue={inputValue}
+                  hasError={hasError}
+                  onChange={handleChange}
+                  eligibility={eligibility}
+                  translation={translation}
+                  ltConfig={ltConfig}
+                  lang={lang}
+              />
+          </section>
 
-      <section className="sezzle-payment-plan sezzle-payment-plan-terms">
-        <div className="sezzle-multi-plan">
-          <PaymentTerms
-            eligibility={eligibility}
-            translation={translation}
-            ltConfig={ltConfig}
-            lang={lang}
-          />
-        </div>
-      </section>
-    </div>
+          <div className="section-separator"></div>
+
+          <h2 className="sezzle-subheader">{translation.subHeader}</h2>
+
+          <div className="card-area">
+              {steps.map(({ StepImage, name }, i) => (
+                  <div className="info-card" key={i}>
+                      <div className="step-image">
+                          <StepImage />
+                      </div>
+                      <p className="sezzle-info">{name}</p>
+                  </div>
+              ))}
+          </div>
+
+          <div className="cta-area">
+              <div className="cta-main">
+                  <h3 className="cta-header">{translation.ctaHeader}</h3>
+                  <p className="cta-description">
+                      {translation.ctaDescription}
+                  </p>
+                  <a
+                      className="cta-button"
+                      href="https://sezzle.com/app"
+                      rel="noreferrer"
+                      target="_blank"
+                  >
+                      {translation.ctaButton}
+                  </a>
+              </div>
+              <div className="mobile-reviews">
+                  <div className="mobile-app-img">
+                      <img src={mobile} alt=""></img>
+                  </div>
+                  <div className="review-card-area">
+                      <div className="review-card review-card-1">
+                          <div className="trustpilot-group">
+                              <div className="trustpilot">
+                                  <img src={trustPilot} alt=""></img>
+                              </div>
+                              <div
+                                  className="five-stars"
+                                  aria-label="Five stars"
+                              >
+                                  <img src={fiveStar} alt=""></img>
+                              </div>
+                          </div>
+                          <h4 className="review-header">
+                              {translation.review1Header}
+                          </h4>
+                          <p className="review-description">
+                              {translation.review1Description}
+                          </p>
+                          <div className="review-name">
+                              {translation.reviewer1Name}{" "}
+                              <span className="review-date">
+                                  {translation.review1Date}
+                              </span>
+                          </div>
+                      </div>
+                      <div
+                          className={`review-card ${
+                              config.language === "fr" ||
+                              config.language === "es"
+                                  ? "review-card-2-fr-es"
+                                  : "review-card-2"
+                          }`}
+                      >
+                          <div className="trustpilot-group">
+                              <div className="trustpilot">
+                                  <img src={trustPilot} alt=""></img>
+                              </div>
+                              <div
+                                  className="five-stars"
+                                  aria-label={translation.ratingAltText}
+                              >
+                                  <img src={fiveStar} alt=""></img>
+                              </div>
+                          </div>
+                          <h4 className="review-header">
+                              {translation.review2Header}
+                          </h4>
+                          <p className="review-description">
+                              {translation.review2Description}
+                          </p>
+                          <div className="review-name">
+                              {translation.reviewer2Name}
+                              <span className="review-date">
+                                  {translation.review2Date}
+                              </span>
+                          </div>
+                      </div>
+                      <div className="review-card review-card-3">
+                          <div className="trustpilot-group">
+                              <div className="trustpilot">
+                                  <img src={trustPilot} alt=""></img>
+                              </div>
+                              <div
+                                  className="five-stars"
+                                  aria-label={translation.ratingAltText}
+                              >
+                                  <img src={fiveStar} alt=""></img>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <section className="sezzle-payment-plan sezzle-payment-plan-terms">
+              <div className="sezzle-multi-plan">
+                  <PaymentTerms
+                      eligibility={eligibility}
+                      translation={translation}
+                      ltConfig={ltConfig}
+                      lang={lang}
+                  />
+              </div>
+          </section>
+      </div>
   );
 }
 export default App;

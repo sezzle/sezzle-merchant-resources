@@ -58,13 +58,16 @@ describe("how-sezzle-works widget (integration)", () => {
 
     it("renders the English widget once config arrives", async () => {
         installFetchMock();
-        renderWidget();
+        const { container } = renderWidget();
         postConfig({ ...BASE, theme: "dark", language: "en", isLongTerm: true });
 
         expect(
             await screen.findByRole("heading", { name: enTranslation.ctaHeader })
         ).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.MultiPlanheader)).toBeInTheDocument();
+        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
+        expect(
+            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
+        ).toBe(enTranslation.MultiPlanheader.replace(/\s+/g, " "));
         expect(
             screen.getByRole("link", { name: enTranslation.ctaButton })
         ).toHaveAttribute("href", "https://sezzle.com/app");
@@ -74,13 +77,16 @@ describe("how-sezzle-works widget (integration)", () => {
 
     it("renders the French widget when language=fr", async () => {
         installFetchMock();
-        renderWidget();
+        const { container } = renderWidget();
         postConfig({ ...BASE, theme: "light", language: "fr", isLongTerm: false });
 
         expect(
             await screen.findByRole("heading", { name: frTranslation.ctaHeader })
         ).toBeInTheDocument();
-        expect(screen.getByText(frTranslation.MultiPlanheader)).toBeInTheDocument();
+        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
+        expect(
+            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
+        ).toBe(frTranslation.MultiPlanheader.replace(/\s+/g, " "));
         expect(
             screen.getByRole("link", { name: frTranslation.ctaButton })
         ).toBeInTheDocument();
@@ -88,13 +94,16 @@ describe("how-sezzle-works widget (integration)", () => {
 
     it("renders the Spanish widget when language=es", async () => {
         installFetchMock();
-        renderWidget();
+        const { container } = renderWidget();
         postConfig({ ...BASE, theme: "light", language: "es", isLongTerm: false });
 
         expect(
             await screen.findByRole("heading", { name: esTranslation.ctaHeader })
         ).toBeInTheDocument();
-        expect(screen.getByText(esTranslation.MultiPlanheader)).toBeInTheDocument();
+        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
+        expect(
+            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
+        ).toBe(esTranslation.MultiPlanheader.replace(/\s+/g, " "));
     });
 
     it("applies the dark theme class when theme=dark", async () => {

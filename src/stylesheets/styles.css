@@ -1,352 +1,280 @@
 @import url("https://fonts.cdnfonts.com/css/satoshi");
 
 :root {
-  --font-family: Satoshi, "Open Sans", sans-serif;
-  --font-black: #353535;
-  --font-grey: #737373;
-  --font-med-grey: #f8f8f8;
-  --font-light-grey: #eee;
-  --font-white: #fff;
-  --font-purple: #382757;
-  --font-violet: #7d25cb;
-  --font-magenta: #8e24ac;
-  --font-fuchsia: #ca74e2;
-  --font-iris: #b67ee7;
-  --font-lavender: #a08dc9;
-  --font-magnolia: #f9f5fd;
+    --font-family: Satoshi, "Open Sans", sans-serif;
+    --font-black: #353535;
+    --font-grey: #737373;
+    --font-med-grey: #f8f8f8;
+    --font-light-grey: #eee;
+    --font-white: #fff;
+    --font-purple: #382757;
+    --font-violet: #7d25cb;
+    --font-magenta: #8e24ac;
+    --font-fuchsia: #ca74e2;
+    --font-iris: #b67ee7;
+    --font-lavender: #a08dc9;
+    --font-magnolia: #f9f5fd;
 }
 
 .sezzle-container {
-  font-family: var(--font-family);
-  color: var(--font-black);
-  text-align: center;
-  width: 100%;
+    font-family: var(--font-family);
+    color: var(--font-black);
+    text-align: center;
+    width: 100%;
 }
 
 .sezzle-logo {
-  margin: 10px auto;
+    margin: 10px auto;
 }
 
 .sezzle-header {
-  font-size: 64px;
-  font-weight: 900;
-  line-height: 74px;
-  margin: 27px auto;
-  max-width: 610px;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 74px;
+    margin: 27px auto;
+    max-width: 610px;
 }
 
 .sezzle-description {
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 34px;
-  margin: 27px auto;
-  max-width: 588px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 34px;
+    margin: 27px auto;
+    max-width: 588px;
 }
 
 .section-separator {
-  max-width: 926px;
-  border: 1px solid var(--font-light-grey);
-  margin: 48px auto;
+    max-width: 926px;
+    border: 1px solid var(--font-light-grey);
+    margin: 48px auto;
 }
 
 .sezzle-subheader {
-  font-size: 36px;
-  font-weight: 900;
-  line-height: 46px;
-  margin: 12px auto;
-  max-width: 610px;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 46px;
+    margin: 12px auto;
+    max-width: 610px;
 }
 
 .card-area {
-  margin: 65px auto 50px;
-  max-width: 926px;
-  display: flex;
-  flex-direction: row;
-  gap: 21px;
+    margin: 65px auto 50px;
+    max-width: 926px;
+    display: flex;
+    flex-direction: row;
+    gap: 21px;
 }
 
 .info-card {
-  width: 295px;
-  background-color: var(--font-light-grey);
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+    width: 295px;
+    background-color: var(--font-light-grey);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .sezzle-info {
-  font-size: 16px;
-  font-weight: 900;
-  line-height: 26px;
-  margin: 12px auto;
-  max-width: 588px;
-  height: 50%;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 26px;
+    margin: 12px auto;
+    max-width: 588px;
+    height: 50%;
 }
 
 /* Render the step illustrations at twice their intrinsic size. The vertical
    margin reserves flow space the scale transform would otherwise overflow. */
 .card-area .step-image {
-  margin: 16px 0;
-  height: 50%;
+    margin: 16px 0;
+    height: 50%;
 }
 .card-area .step-image svg {
-  transform: scale(2);
+    transform: scale(2);
 }
 
 .cta-area {
-  color: var(--font-purple);
-  height: 250px;
-  max-width: 926px;
-  margin: 96px auto 48px;
-  background: var(--font-med-grey);
-  border: 2px solid #29d3a2;
-  border-radius: 5px;
-  border-image: linear-gradient(
-      to right bottom,
-      #29d3a2,
-      #fea500,
-      #ff5667,
-      #8333d4
-    )
-    1;
-  display: flex;
-  flex-direction: row-reverse;
+    color: var(--font-purple);
+    height: 250px;
+    max-width: 926px;
+    margin: 96px auto 48px;
+    background: var(--font-med-grey);
+    border: 2px solid #29d3a2;
+    border-radius: 5px;
+    border-image: linear-gradient(
+            to right bottom,
+            #29d3a2,
+            #fea500,
+            #ff5667,
+            #8333d4
+        )
+        1;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .cta-main {
-  margin: auto;
-  width: 60%;
+    margin: auto;
+    width: 60%;
 }
 
 .cta-header {
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 26px;
-  margin: 12px auto;
-  max-width: 431px;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 26px;
+    margin: 12px auto;
+    max-width: 431px;
 }
 
 .cta-description {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 29.8px;
-  margin: 12px auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 29.8px;
+    margin: 12px auto;
 }
 
 .cta-button {
-  color: var(--font-white);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 16px;
-  padding: 16px;
-  background-color: var(--font-purple);
-  border-radius: 100px;
-  text-decoration: none;
-  display: block;
-  width: fit-content;
-  margin: 16px auto;
-  margin: auto;
+    color: var(--font-white);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    padding: 16px;
+    background-color: var(--font-purple);
+    border-radius: 100px;
+    text-decoration: none;
+    display: block;
+    width: fit-content;
+    margin: 16px auto;
+    margin: auto;
 }
 
 .cta-button:hover {
-  background-color: var(--font-violet);
+    background-color: var(--font-violet);
 }
 
 .cta-button:active {
-  background-color: var(--font-magenta);
+    background-color: var(--font-magenta);
 }
 
 .mobile-reviews {
-  margin: 30px auto;
-  height: 313px;
-  width: 50%;
-  position: relative;
-  top: -75px;
-  left: 15%;
+    margin: 30px auto;
+    height: 313px;
+    width: 50%;
+    position: relative;
+    top: -75px;
+    left: 15%;
 }
 
 .mobile-app-img {
-  width: 196px;
-  height: 296px;
-  position: absolute;
-  z-index: 2;
+    width: 196px;
+    height: 296px;
+    position: absolute;
+    z-index: 2;
 }
 
 .review-card-area {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
 }
 
 .review-card {
-  position: absolute;
-  color: var(--font-purple);
-  width: 182.72px;
-  padding: 17.63px 11.7px 17.2px 17.49px;
-  background-color: var(--font-white);
-  border: 1.26px solid #29d3a2;
-  border-image: linear-gradient(
-      to right bottom,
-      #29d3a2,
-      #fea500,
-      #ff5667,
-      #8333d4
-    )
-    1;
-  border-radius: 2.938px 2.938px 17.626px 2.938px;
-  text-align: left;
+    position: absolute;
+    color: var(--font-purple);
+    width: 182.72px;
+    padding: 17.63px 11.7px 17.2px 17.49px;
+    background-color: var(--font-white);
+    border: 1.26px solid #29d3a2;
+    border-image: linear-gradient(
+            to right bottom,
+            #29d3a2,
+            #fea500,
+            #ff5667,
+            #8333d4
+        )
+        1;
+    border-radius: 2.938px 2.938px 17.626px 2.938px;
+    text-align: left;
 }
 
 .review-card-1 {
-  z-index: 3;
-  top: -20px;
-  left: 60px;
+    z-index: 3;
+    top: -20px;
+    left: 60px;
 }
 
 .review-card-2 {
-  z-index: 3;
-  top: 110px;
-  left: -55px;
+    z-index: 3;
+    top: 110px;
+    left: -55px;
 }
 
 .review-card-2-fr-es {
-  top: 125px;
-  z-index: 3;
-  left: -55px;
+    top: 125px;
+    z-index: 3;
+    left: -55px;
 }
 
 .review-card-3 {
-  z-index: 1;
-  top: 247px;
-  left: 60px;
+    z-index: 1;
+    top: 247px;
+    left: 60px;
 }
 
 .trustpilot-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .review-header {
-  font-size: 11.716px;
-  font-weight: 700;
-  line-height: 12.971px;
-  margin: 10.3px 0 0;
+    font-size: 11.716px;
+    font-weight: 700;
+    line-height: 12.971px;
+    margin: 10.3px 0 0;
 }
 
 .review-description {
-  font-size: 8.787px;
-  font-weight: 400;
-  line-height: 12.971px;
-  margin: 0 0 9.53px;
+    font-size: 8.787px;
+    font-weight: 400;
+    line-height: 12.971px;
+    margin: 0 0 9.53px;
 }
 
 .review-name {
-  font-size: 7.532px;
-  font-weight: 700;
-  line-height: 10.042px;
+    font-size: 7.532px;
+    font-weight: 700;
+    line-height: 10.042px;
 }
 
 .review-date {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 .terms {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 15px;
-  margin: 48px auto;
-  max-width: 936px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    margin: 48px auto;
+    max-width: 936px;
 }
 
 .sezzle-container-fr .review-card-2 {
-  top: 115px;
+    top: 115px;
 }
 
 .sezzle-container-dark {
-  background-color: black;
-  color: var(--font-white);
+    background-color: black;
+    color: var(--font-white);
 }
 
 .sezzle-container-dark .section-separator {
-  border: 1px solid var(--font-white);
+    border: 1px solid var(--font-white);
 }
 
 .sezzle-container-dark .sezzle-info {
-  color: var(--font-black);
-}
-
-@media screen and (max-width: 650px) {
-
-  .sezzle-header {
-    font-size: 44px;
-    line-height: 54px;
-    max-width: 316px;
-  }
-
-  .sezzle-description {
-    max-width: 316px;
-  }
-
-  .section-separator {
-    display: none;
-  }
-
-  .sezzle-subheader {
-    margin: 50px auto 15px;
-  }
-
-  .card-area {
-    flex-direction: column;
-    margin: 40px auto;
-    align-items: center;
-  }
-
-  .info-card {
-    width: 255px;
-    padding: 42px 20px 30px;
-  }
-
-  .cta-area {
-    flex-direction: column;
-    margin: 30px auto;
-    width: 302px;
-    height: 530px;
-  }
-
-  .cta-main {
-    width: 100%;
-    margin: 30px auto;
-  }
-
-  .cta-header {
-    margin: 0 auto;
-  }
-
-  .cta-description {
-    margin: 0 0 8px;
-  }
-
-  .mobile-reviews {
-    width: 100%;
-    margin: 10px auto;
-    top: 0px;
-  }
-
-  .terms {
-    width: 342px;
-  }
-
-  .sezzle-container-fr .cta-area {
-    height: 556px;
-  }
-
-  .sezzle-container-fr .cta-main {
-    width: initial;
-    padding: 0 10px;
-  }
-
+    color: var(--font-black);
 }
 
 /* ---------------------------------------------------------------------------
@@ -358,501 +286,583 @@
      mid-mute #767676    xx-mute #f4f4f4  background #fff  mute-purple #f9f5fd
    --------------------------------------------------------------------------- */
 .sezzle-payment-plan {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 400px;
-  margin: auto;
-  color: #303030;
-  text-align: left;
-  font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 400px;
+    margin: auto;
+    color: #303030;
+    text-align: left;
+    font-family: var(--font-family);
 }
 
 .sezzle-multi-plan {
-  margin: auto;
+    margin: auto;
 }
 
 .trusted {
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 17px;
-  letter-spacing: 0.2px;
-  color: #5e5e5e;
-  margin: 8px auto 0;
-  text-align: center;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 17px;
+    letter-spacing: 0.2px;
+    color: #5e5e5e;
+    margin: 8px auto 0;
+    text-align: center;
 }
 
-.sezzle-payment-plan .payment-plan-header {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
-  letter-spacing: 0.1px;
-  text-align: center;
-  color: #303030;
-  margin: 16px auto;
+.payment-plan-header {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #303030;
+    margin: 24px auto;
 }
 
 /* --- amount input --- */
 .sezzle-payment-plan .sample-payments {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 16px;
-  margin: 8px auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    margin: 8px auto;
 }
 .sezzle-payment-plan .sample-payments.sezzle-multi-plan-fr {
-  padding: 0;
+    padding: 0;
 }
 .sezzle-payment-plan .sample-payments-title {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 21px;
-  letter-spacing: 0.15px;
-  text-align: center;
-  color: #303030;
-  align-content: center;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 0.15px;
+    text-align: center;
+    color: #303030;
+    align-content: center;
 }
 .sezzle-payment-plan .input-amount-container {
-  width: min-content;
-  height: 58px;
-  border-radius: 10px;
-  padding: 0 16px;
-  align-content: center;
-  border: 1px solid #767676;
+    width: min-content;
+    height: 58px;
+    border-radius: 10px;
+    padding: 0 16px;
+    align-content: center;
+    border: 1px solid #767676;
 }
 .sezzle-payment-plan .input-amount-label {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  vertical-align: middle;
-  color: #5e5e5e;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    vertical-align: middle;
+    color: #5e5e5e;
 }
 .sezzle-payment-plan .input-amount {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 21px;
-  letter-spacing: 0.15px;
-  vertical-align: middle;
-  color: #303030;
-  width: 75px;
-  background: none;
-  border: none;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    color: #303030;
+    width: 75px;
+    background: none;
+    border: none;
 }
 .sezzle-payment-plan .input-amount:focus-visible {
-  outline: none;
+    outline: none;
 }
 .sezzle-payment-plan .input-amount.input-error {
-  color: #d32f2f;
+    color: #d32f2f;
 }
 .sezzle-payment-plan .input-amount-container:focus-within {
-  border: 2px solid #af0fda;
+    border: 2px solid #af0fda;
 }
 .sezzle-payment-plan .input-amount-container.input-error {
-  border: 2px solid #d32f2f;
+    border: 2px solid #d32f2f;
 }
 
 /* --- payment cards (shared) --- */
 .sezzle-payment-plan .payment-cards {
-  border-radius: 10px;
-  background-color: #ffffff;
-  margin-top: 8px;
-  border: 4px solid #f4f4f4;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-top: 8px;
+    border: 4px solid #f4f4f4;
 }
 .sezzle-payment-plan .payment-card {
-  gap: 8px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
 }
 .sezzle-payment-plan .payment-card:not(:last-child) {
-  border-bottom: 2px solid #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
 }
 .sezzle-payment-plan .plan-summary .purple {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .sezzle-payment-plan .plan-summary .purple .left {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  gap: 6px;
-  align-items: center;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
 }
 .sezzle-payment-plan .plan-summary .purple .left .price {
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 23px;
-  letter-spacing: 0.2px;
-  color: #8333d4;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 23px;
+    letter-spacing: 0.2px;
+    color: #8333d4;
 }
 .sezzle-payment-plan .plan-summary .purple .left .due {
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 21px;
-  letter-spacing: 0.15px;
-  color: #8333d4;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 0.15px;
+    color: #8333d4;
 }
 .sezzle-payment-plan .plan-summary .purple .right {
-  width: fit-content;
-  border-radius: 24px;
-  height: fit-content;
-  padding: 4px 10px;
-  background-color: #f9f5fd;
-  align-items: center;
-  display: flex;
+    width: fit-content;
+    border-radius: 24px;
+    height: fit-content;
+    padding: 4px 10px;
+    background-color: #f9f5fd;
+    align-items: center;
+    display: flex;
 }
 .sezzle-payment-plan .plan-summary .purple .right .pill {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #8333d4;
-  width: fit-content;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #8333d4;
+    width: fit-content;
 }
 .sezzle-payment-plan .plan-summary .purple .right .pill sup {
-  vertical-align: super;
-  font-size: 0.6em;
+    vertical-align: super;
+    font-size: 0.6em;
 }
 .sezzle-payment-plan .plan-summary .grey {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #5e5e5e;
-  text-align: left;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #5e5e5e;
+    text-align: left;
 }
 
 /* --- bi-weekly installment breakdown --- */
 .sezzle-payment-plan .payment-breakdown {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .sezzle-payment-plan .payment-breakdown .installment {
-  width: 100%;
-  width: -webkit-fill-available;
-  width: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    width: 100%;
+    width: -webkit-fill-available;
+    width: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 .sezzle-payment-plan .payment-breakdown .graphic {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .sezzle-payment-plan .payment-breakdown .dash {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 .sezzle-payment-plan .payment-breakdown .dot {
-  display: flex;
+    display: flex;
 }
 .sezzle-payment-plan .payment-breakdown .dot svg {
-  width: 16px;
+    width: 16px;
 }
 .sezzle-payment-plan .payment-breakdown .detail .amount {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  text-align: center;
-  color: #5e5e5e;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    text-align: center;
+    color: #5e5e5e;
 }
 .sezzle-payment-plan .payment-breakdown .detail .due {
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 17px;
-  letter-spacing: 0.2px;
-  text-align: center;
-  color: #5e5e5e;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 17px;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: #5e5e5e;
 }
 .sezzle-payment-plan .payment-breakdown .detail.first-installment .amount {
-  font-weight: 700;
-  color: #303030;
+    font-weight: 700;
+    color: #303030;
 }
 .sezzle-payment-plan .payment-breakdown .detail.first-installment .due {
-  color: #303030;
+    color: #303030;
 }
 
 /* --- monthly (long-term) detail rows --- */
 .sezzle-payment-plan .monthly-plan-details {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .sezzle-payment-plan .monthly-detail-row {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  width: -webkit-fill-available;
-  width: stretch;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    width: -webkit-fill-available;
+    width: stretch;
 }
 .sezzle-payment-plan .monthly-detail-row .detail-label {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #5e5e5e;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #5e5e5e;
 }
 .sezzle-payment-plan .monthly-detail-row .detail-value {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #303030;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #303030;
 }
 
 /* --- "See details" feature accordion --- */
 .sezzle-payment-plan .features-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 11px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 11px 16px 16px;
 }
 .sezzle-payment-plan .accordion-title-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 .sezzle-payment-plan .accordion-title {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #303030;
-  height: fit-content;
-  align-content: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #303030;
+    height: fit-content;
+    align-content: center;
 }
 .sezzle-payment-plan .accordion-icon {
-  background: none;
-  border: none;
-  cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 .sezzle-payment-plan .accordion-icon svg {
-  width: 12px;
-  height: 7px;
+    width: 12px;
+    height: 7px;
 }
 .sezzle-payment-plan .features-drawer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 .sezzle-payment-plan .single-feature {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
 }
 .sezzle-payment-plan .single-feature div {
-  align-content: center;
+    align-content: center;
 }
 .sezzle-payment-plan .single-feature svg {
-  width: 13.333px;
-  height: 13.333px;
+    width: 13.333px;
+    height: 13.333px;
 }
 .sezzle-payment-plan .single-feature span {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #303030;
-  text-align: left;
-  align-self: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #303030;
+    text-align: left;
+    align-self: center;
 }
 
 /* --- how to pay carousel --- */
 .sezzle-payment-plan .how-to-sezzle {
-  display: flex;
-  flex-direction: column;
-  padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
 }
 .sezzle-payment-plan .carousel-header {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .sezzle-payment-plan .how-to-text-wrapper {
-  gap: 4px;
-  display: flex;
+    gap: 4px;
+    display: flex;
 }
 .sezzle-payment-plan .how-to-text {
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #303030;
-  align-content: center;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #303030;
+    align-content: center;
 }
 .sezzle-payment-plan .how-to-logo {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 .sezzle-payment-plan .how-to-logo img {
-  margin: 0;
-  background: none;
+    margin: 0;
+    background: none;
 }
 .sezzle-payment-plan .arrows {
-  gap: 4px;
-  display: flex;
-  flex-direction: row;
+    gap: 4px;
+    display: flex;
+    flex-direction: row;
 }
 .sezzle-payment-plan .arrow {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 .sezzle-payment-plan .arrow.disabled {
-  filter: grayscale(1) opacity(0.5);
-  cursor: default;
+    filter: grayscale(1) opacity(0.5);
+    cursor: default;
 }
 .sezzle-payment-plan .arrow svg {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 .sezzle-payment-plan .carousel {
-  gap: 8px;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
 }
 .sezzle-payment-plan .carousel.position-1 {
-  justify-content: start;
+    justify-content: start;
 }
 .sezzle-payment-plan .carousel.position-2 {
-  justify-content: center;
+    justify-content: center;
 }
 .sezzle-payment-plan .carousel.position-3 {
-  justify-content: end;
+    justify-content: end;
 }
 .sezzle-payment-plan .carousel-item {
-  border-radius: 10px;
-  padding: 16px 12px;
-  background-color: #ffffff;
-  border: 1px solid #f4f4f4;
-  display: flex;
+    border-radius: 10px;
+    padding: 16px 12px;
+    background-color: #ffffff;
+    border: 1px solid #f4f4f4;
+    display: flex;
 }
 .sezzle-payment-plan .carousel-item-content {
-  width: 260px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .sezzle-payment-plan .step-number {
-  height: 20px;
-  border-radius: 31.04px;
-  padding: 0 2.47px;
-  background-color: #f9f5fd;
-  display: flex;
+    height: 20px;
+    border-radius: 31.04px;
+    padding: 0 2.47px;
+    background-color: #f9f5fd;
+    display: flex;
 }
 .sezzle-payment-plan .step-number-content {
-  display: flex;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #8333d4;
-  width: 17px;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #8333d4;
+    width: 17px;
+    align-items: center;
+    justify-content: center;
 }
 .sezzle-payment-plan .step-name {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.4px;
-  color: #303030;
-  padding: 0 25px 0 8px;
-  text-align: left;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.4px;
+    color: #303030;
+    padding: 0 25px 0 8px;
+    text-align: left;
 }
 .sezzle-payment-plan .step-image svg {
-  width: 28.5557861328125px;
-  height: 29.413787841796875px;
+    width: 28.5557861328125px;
+    height: 29.413787841796875px;
 }
 .sezzle-payment-plan .carousel-dots {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
 }
 .sezzle-payment-plan .carousel-dots .dot {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 .sezzle-payment-plan .carousel-dots .dot:not(.active) {
-  filter: grayscale(1) opacity(0.25);
+    filter: grayscale(1) opacity(0.25);
 }
 .sezzle-payment-plan .carousel-dots .dot svg {
-  height: 20px;
-  width: 6px;
+    height: 20px;
+    width: 6px;
 }
 
 /* --- modal terms --- */
 /* The terms render full-width on the page rather than constrained to the
    326px payment-plan column. */
 .sezzle-payment-plan.sezzle-payment-plan-terms {
-  width: 100%;
-  max-width: 926px;
+    width: 100%;
+    max-width: 926px;
 }
 .sezzle-payment-plan .terms-container {
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
 }
 .sezzle-payment-plan .terms-container .terms {
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 12px;
-  letter-spacing: 0.2px;
-  text-align: center;
-  color: #5e5e5e;
-  margin: 0;
-  max-width: none;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: #5e5e5e;
+    margin: 0;
+    max-width: none;
 }
 .sezzle-payment-plan .terms-container .terms a {
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 12px;
-  letter-spacing: 0.2px;
-  color: #8333d4;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 0.2px;
+    color: #8333d4;
 }
 
 .sezzle-payment-plan .terms-container .terms a:hover {
-  color: var(--font-purple)
+    color: var(--font-purple);
 }
 
 .sezzle-payment-plan .terms-container .terms a:active {
-  color: var(--font-magenta)
+    color: var(--font-magenta);
 }
 
 /* --- dark theme: text rendered directly on the page background --- */
 .sezzle-container-dark .trusted,
-.sezzle-container-dark .sezzle-payment-plan .payment-plan-header,
+.sezzle-container-dark .payment-plan-header,
 .sezzle-container-dark .sezzle-payment-plan .sample-payments-title,
 .sezzle-container-dark .sezzle-payment-plan .input-amount-label,
 .sezzle-container-dark .sezzle-payment-plan .input-amount,
 .sezzle-container-dark .sezzle-payment-plan .how-to-text,
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms {
-  color: var(--font-white);
+    color: var(--font-white);
 }
 
 /* dark theme: active (non-disabled) carousel arrows use the lighter fuchsia */
 .sezzle-container-dark .sezzle-payment-plan .arrow:not(.disabled) svg path {
-  fill: var(--font-fuchsia);
+    fill: var(--font-fuchsia);
 }
 
 /* dark theme: active carousel dot uses the lighter fuchsia */
-.sezzle-container-dark .sezzle-payment-plan .carousel-dots .dot.active svg rect {
-  fill: var(--font-fuchsia);
+.sezzle-container-dark
+    .sezzle-payment-plan
+    .carousel-dots
+    .dot.active
+    svg
+    rect {
+    fill: var(--font-fuchsia);
 }
 
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms a {
-  color: var(--font-fuchsia);
+    color: var(--font-fuchsia);
 }
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:hover {
-  color: var(--font-lavender);
+    color: var(--font-lavender);
 }
 .sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:active {
-  color: var(--font-iris);
+    color: var(--font-iris);
+}
+
+/* Responsive overrides — kept at the end so they win over the base rules above
+   (media queries add no specificity, so source order decides). */
+@media screen and (max-width: 650px) {
+    .sezzle-header {
+        font-size: 44px;
+        line-height: 54px;
+        max-width: 316px;
+    }
+
+    .sezzle-description {
+        max-width: 316px;
+    }
+    .payment-plan-header {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .section-separator {
+        display: none;
+    }
+
+    .sezzle-subheader {
+        margin: 50px auto 15px;
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    .card-area {
+        flex-direction: column;
+        margin: 40px auto;
+        align-items: center;
+    }
+
+    .info-card {
+        width: 255px;
+        padding: 42px 20px 30px;
+    }
+
+    .cta-area {
+        flex-direction: column;
+        margin: 30px auto;
+        width: 302px;
+        height: 530px;
+    }
+
+    .cta-main {
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .cta-header {
+        margin: 0 auto;
+    }
+
+    .cta-description {
+        margin: 0 0 8px;
+    }
+
+    .mobile-reviews {
+        width: 100%;
+        margin: 10px auto;
+        top: 0px;
+    }
+
+    .terms {
+        width: 342px;
+    }
+
+    .sezzle-container-fr .cta-area {
+        height: 556px;
+    }
+
+    .sezzle-container-fr .cta-main {
+        width: initial;
+        padding: 0 10px;
+    }
 }

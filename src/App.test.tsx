@@ -74,8 +74,11 @@ describe("App", () => {
 
     it("renders the payment-plan header and customer reviews", () => {
         installFetchMock();
-        render(wrap(baseConfig, <App />));
-        expect(screen.getByText(enTranslation.MultiPlanheader)).toBeInTheDocument();
+        const { container } = render(wrap(baseConfig, <App />));
+        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
+        expect(
+            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
+        ).toBe(enTranslation.MultiPlanheader.replace(/\s+/g, " "));
         expect(screen.getByText(enTranslation.review1Header)).toBeInTheDocument();
         expect(screen.getByText(enTranslation.review2Header)).toBeInTheDocument();
     });
