@@ -81,6 +81,17 @@
   line-height: 26px;
   margin: 12px auto;
   max-width: 588px;
+  height: 50%;
+}
+
+/* Render the step illustrations at twice their intrinsic size. The vertical
+   margin reserves flow space the scale transform would otherwise overflow. */
+.card-area .step-image {
+  margin: 16px 0;
+  height: 50%;
+}
+.card-area .step-image svg {
+  transform: scale(2);
 }
 
 .cta-area {
@@ -350,15 +361,18 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 326px;
-  max-width: 100%;
+  max-width: 400px;
   margin: auto;
   color: #303030;
   text-align: left;
   font-family: var(--font-family);
 }
 
-.sezzle-payment-plan .trusted {
+.sezzle-multi-plan {
+  margin: auto;
+}
+
+.trusted {
   font-weight: 400;
   font-size: 11px;
   line-height: 17px;
@@ -370,12 +384,12 @@
 
 .sezzle-payment-plan .payment-plan-header {
   font-weight: 700;
-  font-size: 21px;
+  font-size: 24px;
   line-height: 28px;
   letter-spacing: 0.1px;
   text-align: center;
   color: #303030;
-  margin: auto;
+  margin: 16px auto;
 }
 
 /* --- amount input --- */
@@ -775,6 +789,12 @@
 }
 
 /* --- modal terms --- */
+/* The terms render full-width on the page rather than constrained to the
+   326px payment-plan column. */
+.sezzle-payment-plan.sezzle-payment-plan-terms {
+  width: 100%;
+  max-width: 926px;
+}
 .sezzle-payment-plan .terms-container {
   gap: 8px;
   display: flex;
@@ -807,7 +827,7 @@
 }
 
 /* --- dark theme: text rendered directly on the page background --- */
-.sezzle-container-dark .sezzle-payment-plan .trusted,
+.sezzle-container-dark .trusted,
 .sezzle-container-dark .sezzle-payment-plan .payment-plan-header,
 .sezzle-container-dark .sezzle-payment-plan .sample-payments-title,
 .sezzle-container-dark .sezzle-payment-plan .input-amount-label,

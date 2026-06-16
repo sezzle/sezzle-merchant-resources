@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
 import enTranslation from "./translations/en.json";
 import {
@@ -150,5 +151,40 @@ describe("App", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
         expect(pillTexts(container).some((t) => t.includes("Pay in 5"))).toBe(true);
+    });
+
+    it("parses grouped input and drives the bi-weekly amount ($1,000.00 -> $250.00 per Pay-in-4)", async () => {
+        installFetchMock();
+        const user = userEvent.setup();
+        render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
+        const input = screen.getByLabelText(enTranslation.MultiPlanAmount);
+        await user.clear(input);
+        await user.type(input, "$1,000.00");
+
+        expect((input as HTMLInputElement).className).not.toContain("input-error");
+        // 1000 / 4 = 250.00 on the Pay-in-4 card.
+        expect(screen.getAllByText("$250.00").length).toBeGreaterThan(0);
+    });
+
+    it("flags an out-of-range amount with the error class", async () => {
+        installFetchMock();
+        const user = userEvent.setup();
+        render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
+        const input = screen.getByLabelText(enTranslation.MultiPlanAmount);
+        await user.clear(input);
+        await user.type(input, "20000"); // above the LT max (15000)
+
+        expect((input as HTMLInputElement).className).toContain("input-error");
+    });
+
+    it("toggles the long-term features accordion", async () => {
+        installFetchMock();
+        const user = userEvent.setup();
+        render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
+        const toggle = screen.getByRole("button", { name: enTranslation.LTseeDetails });
+        expect(toggle.getAttribute("aria-expanded")).toBe("false");
+
+        await user.click(toggle);
+        expect(toggle.getAttribute("aria-expanded")).toBe("true");
     });
 });

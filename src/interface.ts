@@ -1,5 +1,6 @@
 export interface ITranslation {
   logoAltText: string;
+  subHeader: string;
   today: string;
   ctaHeader: string;
   ctaDescription: string;

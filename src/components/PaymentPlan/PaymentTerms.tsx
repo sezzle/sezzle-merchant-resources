@@ -5,7 +5,7 @@
 import { ITranslation } from "../../interface";
 import { ResolvedLTConfig, termMonthBounds } from "../../utils/ltConfig";
 import { formatNumberForLocale } from "../../utils/price";
-import { Eligibility } from "./index";
+import { Eligibility } from "./PaymentWrapper";
 
 interface PaymentTermsProps {
   eligibility: Eligibility;

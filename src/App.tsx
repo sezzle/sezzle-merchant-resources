@@ -1,15 +1,34 @@
-import { DEFAULT_THEME } from "./constants";
+import { DEFAULT_THEME, ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
 import { useConfig, AppConfig } from "./containers/ConfigProvider";
-import { ITranslation } from "./interface";
 import "./stylesheets/styles.css";
 import trustPilot from "./assets/trustpilot.svg";
 import mobile from "./assets/mobile.svg";
 import fiveStar from "./assets/five-star.svg";
 import Logo from "./components/Logo";
-import PaymentPlan from "./components/PaymentPlan";
+import PaymentWrapper, {
+  Eligibility,
+} from "./components/PaymentPlan/PaymentWrapper";
+import PaymentTerms from "./components/PaymentPlan/PaymentTerms";
+import {
+  StepOneIcon,
+  StepTwoIcon,
+  StepThreeIcon,
+} from "./components/PaymentPlan/icons";
 import { sendEvent } from "./remote/api";
-import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  isProductEligibleLT,
+  isProductEligiblePI4,
+  isProductEligiblePI5,
+  isInputAmountValid,
+} from "./utils/renderFunctions";
+import { getCurrency, normalizePriceString } from "./utils/price";
+
+// Default the input to the resolved long-term minimum, falling back to $150
+// (group "a"'s minPriceLT) when long-term is disabled.
+const DEFAULT_INPUT_PRICE = 150;
+
+const SANITIZE_REGEX = /[^0-9,.$€£₤₹]/g;
 
 const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
   const body = [
@@ -26,9 +45,16 @@ const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
 };
 
 function App() {
-  const ctx = useConfig();
-  const config = ctx.config;
-  const translation: ITranslation = ctx.translation;
+  const { config, translation, ltConfig, effectiveNumberOfPayments } =
+    useConfig();
+
+  const initialPrice =
+    ltConfig.minPriceLT > 0 ? ltConfig.minPriceLT : DEFAULT_INPUT_PRICE;
+
+  const [currency, setCurrency] = useState("$");
+  const [priceString, setPriceString] = useState(String(initialPrice));
+  const [inputValue, setInputValue] = useState(`$${initialPrice}`);
+  const [hasError, setHasError] = useState(false);
 
   // Fire the onload analytics event as a side effect after render — not during
   // render — so it sends exactly once and stays safe under re-renders/StrictMode.
@@ -36,27 +62,112 @@ function App() {
     dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
   }, [config]);
 
+  if (!config) return null;
+  const lang = config.language;
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = event.target.value.replace(SANITIZE_REGEX, "");
+    setInputValue(raw);
+
+    const nextCurrency = getCurrency(raw);
+    // Resolve thousands/decimal separators into a canonical numeric string
+    // (e.g. "15,000.00" -> "15000.00") so every downstream consumer that does
+    // Number(priceString) / parsePrice sees a parseable value.
+    const nextPriceString = normalizePriceString(raw);
+
+    const valid = isInputAmountValid(
+      nextPriceString,
+      config.minPrice,
+      config.maxPrice,
+      ltConfig.minPriceLT,
+      ltConfig.maxPriceLT
+    );
+    if (!valid) {
+      setHasError(true);
+      return;
+    }
+    setHasError(false);
+    setCurrency(nextCurrency);
+    setPriceString(nextPriceString);
+  };
+
+  // Eligibility for the displayed cards relaxes minPrice to 0 so a bi-weekly
+  // card always shows (mirrors the modal's on-open render). Strict minPrice
+  // still gates user input via isInputAmountValid above.
+  const eligibility: Eligibility = {
+    pi4: isProductEligiblePI4(priceString, 0, config.maxPrice),
+    pi5: isProductEligiblePI5(
+      priceString,
+      config.maxPrice,
+      effectiveNumberOfPayments
+    ),
+    lt: isProductEligibleLT(
+      priceString,
+      ltConfig.minPriceLT,
+      ltConfig.maxPriceLT
+    ),
+  };
+
+  // The "how it works" cards reuse the how-to-pay carousel's data: each card's
+  // illustration is the carousel step image and its copy is the step name, by
+  // index.
+  const steps = [
+    { StepImage: StepOneIcon, name: translation.MultiPlanStep1 },
+    { StepImage: StepTwoIcon, name: translation.MultiPlanStep2 },
+    { StepImage: StepThreeIcon, name: translation.MultiPlanStep3 },
+  ];
+
   return (
     <div
       className={`sezzle-container ${
-        config && config.theme !== DEFAULT_THEME
-          ? "sezzle-container-dark"
-          : ""
+        config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
       }`}
     >
       <div className="sezzle-logo" aria-label={translation.logoAltText}>
         <Logo />
       </div>
-      <PaymentPlan />
+
+      <p className="trusted">{translation.MultiPlantrusted}</p>
+
+      <section
+        className={`sezzle-payment-plan sezzle-multi-plan${
+          eligibility.pi5 ? "" : " pi4-only"
+        }`}
+        aria-label={translation.sezzleInformation}
+      >
+        <p className="payment-plan-header">{translation.MultiPlanheader}</p>
+        <PaymentWrapper
+          currency={currency}
+          priceString={priceString}
+          inputValue={inputValue}
+          hasError={hasError}
+          onChange={handleChange}
+          eligibility={eligibility}
+          translation={translation}
+          ltConfig={ltConfig}
+          lang={lang}
+        />
+      </section>
 
       <div className="section-separator"></div>
+
+      <h2 className="sezzle-subheader">{translation.subHeader}</h2>
+
+      <div className="card-area">
+        {steps.map(({ StepImage, name }, i) => (
+          <div className="info-card" key={i}>
+            <div className="step-image">
+              <StepImage />
+            </div>
+            <p className="sezzle-info">{name}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="cta-area">
         <div className="cta-main">
           <h3 className="cta-header">{translation.ctaHeader}</h3>
-          <p className="cta-description">
-            {translation.ctaDescription}
-          </p>
+          <p className="cta-description">{translation.ctaDescription}</p>
           <a
             className="cta-button"
             href="https://sezzle.com/app"
@@ -76,31 +187,22 @@ function App() {
                 <div className="trustpilot">
                   <img src={trustPilot} alt=""></img>
                 </div>
-                <div
-                  className="five-stars"
-                  aria-label="Five stars"
-                >
+                <div className="five-stars" aria-label="Five stars">
                   <img src={fiveStar} alt=""></img>
                 </div>
               </div>
-              <h4 className="review-header">
-                {translation.review1Header}
-              </h4>
+              <h4 className="review-header">{translation.review1Header}</h4>
               <p className="review-description">
                 {translation.review1Description}
               </p>
               <div className="review-name">
                 {translation.reviewer1Name}{" "}
-                <span className="review-date">
-                  {translation.review1Date}
-                </span>
+                <span className="review-date">{translation.review1Date}</span>
               </div>
             </div>
             <div
               className={`review-card ${
-                config &&
-                (config.language === "fr" ||
-                  config.language === "es")
+                config.language === "fr" || config.language === "es"
                   ? "review-card-2-fr-es"
                   : "review-card-2"
               }`}
@@ -116,17 +218,13 @@ function App() {
                   <img src={fiveStar} alt=""></img>
                 </div>
               </div>
-              <h4 className="review-header">
-                {translation.review2Header}
-              </h4>
+              <h4 className="review-header">{translation.review2Header}</h4>
               <p className="review-description">
                 {translation.review2Description}
               </p>
               <div className="review-name">
                 {translation.reviewer2Name}
-                <span className="review-date">
-                  {translation.review2Date}
-                </span>
+                <span className="review-date">{translation.review2Date}</span>
               </div>
             </div>
             <div className="review-card review-card-3">
@@ -145,6 +243,17 @@ function App() {
           </div>
         </div>
       </div>
+
+      <section className="sezzle-payment-plan sezzle-payment-plan-terms">
+        <div className="sezzle-multi-plan">
+          <PaymentTerms
+            eligibility={eligibility}
+            translation={translation}
+            ltConfig={ltConfig}
+            lang={lang}
+          />
+        </div>
+      </section>
     </div>
   );
 }
