@@ -24,8 +24,6 @@ import {
 } from "./utils/renderFunctions";
 import { getCurrency, normalizePriceString } from "./utils/price";
 
-// Default the input to the resolved long-term minimum, falling back to $150
-// (group "a"'s minPriceLT) when long-term is disabled.
 const DEFAULT_INPUT_PRICE = 150;
 
 const SANITIZE_REGEX = /[^0-9,.$€£₤₹]/g;
@@ -38,9 +36,6 @@ const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
       merchant_uuid: config?.merchant_uuid,
     },
   ];
-  // hooks are only accessible from inside a JSX element.
-  // So passing data from here, instead of directly getting them during api call.
-  // Some room for improvement.
   sendEvent(body);
 };
 
@@ -56,8 +51,6 @@ function App() {
   const [inputValue, setInputValue] = useState(`$${initialPrice}`);
   const [hasError, setHasError] = useState(false);
 
-  // Fire the onload analytics event as a side effect after render — not during
-  // render — so it sends exactly once and stays safe under re-renders/StrictMode.
   useEffect(() => {
     dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
   }, [config]);
@@ -70,9 +63,6 @@ function App() {
     setInputValue(raw);
 
     const nextCurrency = getCurrency(raw);
-    // Resolve thousands/decimal separators into a canonical numeric string
-    // (e.g. "15,000.00" -> "15000.00") so every downstream consumer that does
-    // Number(priceString) / parsePrice sees a parseable value.
     const nextPriceString = normalizePriceString(raw);
 
     const valid = isInputAmountValid(
@@ -108,9 +98,6 @@ function App() {
     ),
   };
 
-  // The "how it works" cards reuse the how-to-pay carousel's data: each card's
-  // illustration is the carousel step image and its copy is the step name, by
-  // index.
   const steps = [
     { StepImage: StepOneIcon, name: translation.MultiPlanStep1 },
     { StepImage: StepTwoIcon, name: translation.MultiPlanStep2 },

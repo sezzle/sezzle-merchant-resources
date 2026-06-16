@@ -1,6 +1,4 @@
-// Presentational ".payment-plan-wrapper": the amount input plus the bi-weekly
-// (Pay-in-4 / Pay-in-5) and long-term monthly cards. State (price, eligibility,
-// validation) is owned by App and passed in — this component is pure render.
+// Presentational ".payment-plan-wrapper" (amount input + cards); state is owned by App.
 import { ITranslation } from "../../interface";
 import { ResolvedLTConfig } from "../../utils/ltConfig";
 import BiweeklyCard from "./BiweeklyCard";
