@@ -80,6 +80,32 @@ describe("App", () => {
         expect(screen.getByText(enTranslation.review2Header)).toBeInTheDocument();
     });
 
+    it("renders the How it Works section built from the carousel steps", () => {
+        installFetchMock();
+        const { container } = render(wrap(baseConfig, <App />));
+        expect(
+            screen.getByRole("heading", { name: enTranslation.subHeader })
+        ).toBeInTheDocument();
+        const cards = container.querySelectorAll(".card-area .info-card");
+        expect(cards.length).toBe(3);
+        expect(screen.getByText(enTranslation.MultiPlanStep1)).toBeInTheDocument();
+        expect(screen.getByText(enTranslation.MultiPlanStep2)).toBeInTheDocument();
+        expect(screen.getByText(enTranslation.MultiPlanStep3)).toBeInTheDocument();
+        // Each card shows its step illustration in place of the old icon.
+        expect(
+            container.querySelectorAll(".card-area .step-image svg").length
+        ).toBe(3);
+    });
+
+    it("renders the trusted tagline outside the payment-plan section", () => {
+        installFetchMock();
+        const { container } = render(wrap(baseConfig, <App />));
+        const trusted = container.querySelector(".trusted");
+        expect(trusted?.textContent).toBe(enTranslation.MultiPlantrusted);
+        // The tagline was lifted out of .sezzle-payment-plan to sit under the logo.
+        expect(container.querySelector(".sezzle-payment-plan .trusted")).toBeNull();
+    });
+
     it("labels the logo region with the localized alt text", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
