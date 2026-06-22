@@ -56,54 +56,41 @@ describe("how-sezzle-works widget (integration)", () => {
         expect(container.querySelector(".sezzle-container")).toBeNull();
     });
 
-    it("renders the English widget once config arrives", async () => {
+    it("renders the English page once config arrives", async () => {
         installFetchMock();
-        const { container } = renderWidget();
+        renderWidget();
         postConfig({ ...BASE, theme: "dark", language: "en", isLongTerm: true });
 
         expect(
-            await screen.findByRole("heading", { name: enTranslation.ctaHeader })
+            await screen.findByRole("heading", { name: enTranslation.appTitle })
         ).toBeInTheDocument();
-        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
+        // Hero headline is static, merchant-agnostic copy.
         expect(
-            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
-        ).toBe(enTranslation.MultiPlanheader.replace(/\s+/g, " "));
-        expect(
-            screen.getByRole("link", { name: enTranslation.ctaButton })
-        ).toHaveAttribute("href", "https://sezzle.com/app");
-        expect(screen.getByText(enTranslation.review1Header)).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.review2Header)).toBeInTheDocument();
+            screen.getByRole("heading", { name: enTranslation.heroHeadline })
+        ).toBeInTheDocument();
     });
 
-    it("renders the French widget when language=fr", async () => {
+    it("renders the French page when language=fr", async () => {
         installFetchMock();
-        const { container } = renderWidget();
+        renderWidget();
         postConfig({ ...BASE, theme: "light", language: "fr", isLongTerm: false });
 
         expect(
-            await screen.findByRole("heading", { name: frTranslation.ctaHeader })
+            await screen.findByRole("heading", { name: frTranslation.appTitle })
         ).toBeInTheDocument();
-        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
         expect(
-            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
-        ).toBe(frTranslation.MultiPlanheader.replace(/\s+/g, " "));
-        expect(
-            screen.getByRole("link", { name: frTranslation.ctaButton })
+            screen.getByRole("heading", { name: frTranslation.faqTitle })
         ).toBeInTheDocument();
     });
 
-    it("renders the Spanish widget when language=es", async () => {
+    it("renders the Spanish page when language=es", async () => {
         installFetchMock();
-        const { container } = renderWidget();
+        renderWidget();
         postConfig({ ...BASE, theme: "light", language: "es", isLongTerm: false });
 
         expect(
-            await screen.findByRole("heading", { name: esTranslation.ctaHeader })
+            await screen.findByRole("heading", { name: esTranslation.appTitle })
         ).toBeInTheDocument();
-        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
-        expect(
-            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
-        ).toBe(esTranslation.MultiPlanheader.replace(/\s+/g, " "));
     });
 
     it("applies the dark theme class when theme=dark", async () => {
@@ -111,7 +98,7 @@ describe("how-sezzle-works widget (integration)", () => {
         const { container } = renderWidget();
         postConfig({ ...BASE, theme: "dark", language: "en", isLongTerm: false });
 
-        await screen.findByRole("heading", { name: enTranslation.ctaHeader });
+        await screen.findByRole("heading", { name: enTranslation.appTitle });
         expect(container.querySelector(".sezzle-container-dark")).not.toBeNull();
     });
 
@@ -126,7 +113,7 @@ describe("how-sezzle-works widget (integration)", () => {
             countryCode: "CA",
         });
 
-        await screen.findByRole("heading", { name: enTranslation.ctaHeader });
+        await screen.findByRole("heading", { name: enTranslation.appTitle });
         expect(container.querySelector(".payment-cards-monthly")).toBeNull();
     });
 });

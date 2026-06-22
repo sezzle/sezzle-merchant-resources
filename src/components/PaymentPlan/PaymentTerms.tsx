@@ -55,6 +55,7 @@ const PaymentTerms = ({
           />
         </p>
       )}
+      <p className="terms">{translation.webBankVirtualCards}</p>
       {eligibility.lt && <p className="terms lt-terms">{ltTerms3}</p>}
     </div>
   );

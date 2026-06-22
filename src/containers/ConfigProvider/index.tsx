@@ -35,6 +35,11 @@ export interface AppConfig {
   // Bi-weekly price bounds (mirrors sezzle-widget-react minPrice/maxPrice).
   minPrice: number;
   maxPrice: number;
+  // Optional merchant display name for the footer copy. When omitted, the page
+  // falls back to window.location.hostname. "Shop Now" CTAs always target
+  // window.location.origin (the partner-hosted page's own site), so the
+  // integration does not supply a shop URL.
+  merchantName?: string;
   // Raw long-term inputs (resolved into `ltConfig` below).
   LTgroup?: string;
   minPriceLT?: number;
@@ -115,6 +120,7 @@ export const ConfigProvider = ({ children }: { children: ReactNode }) => {
             event.data.numberOfPayments || DEFAULT_NUMBER_OF_PAYMENTS,
           minPrice: event.data.minPrice || 0,
           maxPrice: event.data.maxPrice || DEFAULT_MAX_PRICE,
+          merchantName: event.data.merchantName,
           LTgroup: event.data.LTgroup,
           minPriceLT: event.data.minPriceLT,
           maxPriceLT: event.data.maxPriceLT,

@@ -1,8 +1,10 @@
-// Bi-weekly (Pay-in-4 / Pay-in-5) payment card, ported from
-// generateBiweeklyCard in sezzle-widget-react's MultiPlanModal.js.
+// Bi-weekly (Pay-in-4 / Pay-in-5) plan block: a header row (per-installment
+// amount + plan pill) above a dot timeline showing every installment. The
+// per-installment amount is price / numberOfPayments (never the long-term
+// monthly amount): passing minPriceLT/maxPriceLT = 0 to getFormattedPrice
+// forces the non-LT branch even for LT-eligible prices.
 import { ITranslation } from "../../interface";
 import { getFormattedPrice } from "../../utils/renderFunctions";
-import { DotIcon } from "./icons";
 
 interface BiweeklyCardProps {
   numberOfPayments: number;
@@ -11,75 +13,13 @@ interface BiweeklyCardProps {
   translation: ITranslation;
 }
 
-// One installment's connector graphic (left dash, dot, right dash). The dashes
-// hide at the ends and the middle ones grow taller, mirroring the modal.
-const InstallmentGraphic = ({
-  index,
-  numberOfPayments,
-  classModifier,
-  dashWidth,
-}: {
-  index: number;
-  numberOfPayments: number;
-  classModifier: string;
-  dashWidth: number;
-}) => {
-  const isFirst = index === 0;
-  const isLast = index === numberOfPayments - 1;
-  const isMiddle = index > 0 && index < numberOfPayments - 1;
-  const rectX = dashWidth === 30 ? "0.75" : "0.399994";
-  const rightHeight = isMiddle ? 16 : 2;
-
-  return (
-    <div className="graphic">
-      <div className={`dash left ${classModifier}`}>
-        <svg
-          width={dashWidth}
-          height="2"
-          viewBox={`0 0 ${dashWidth} 2`}
-          fill="#E8E8E8"
-          xmlns="http://www.w3.org/2000/svg"
-          style={isFirst ? { visibility: "hidden" } : undefined}
-        >
-          <rect x={rectX} width={dashWidth} height="2" fill="#E8E8E8" />
-        </svg>
-      </div>
-      <div className="dot">
-        <DotIcon />
-      </div>
-      <div className={`dash right ${classModifier}`}>
-        <svg
-          width={dashWidth}
-          height={rightHeight}
-          viewBox={`0 0 ${dashWidth} ${rightHeight}`}
-          fill="#E8E8E8"
-          xmlns="http://www.w3.org/2000/svg"
-          style={isLast ? { visibility: "hidden" } : undefined}
-        >
-          <rect
-            x={rectX}
-            y={isMiddle ? "7" : undefined}
-            width={dashWidth}
-            height="2"
-            fill="#E8E8E8"
-          />
-        </svg>
-      </div>
-    </div>
-  );
-};
-
 const BiweeklyCard = ({
   numberOfPayments,
   currency,
   priceString,
   translation,
 }: BiweeklyCardProps) => {
-  const classModifier = numberOfPayments === 4 ? "fourth" : "fifth";
-  const dashWidth = numberOfPayments === 4 ? 30 : 22;
-  // Biweekly cards always show the bi-weekly installment (price / numberOfPayments),
-  // never the long-term monthly amount. Passing minPriceLT/maxPriceLT = 0 forces
-  // getFormattedPrice down the non-LT branch even for LT-eligible prices.
+  const isPI5 = numberOfPayments === 5;
   const installmentPrice = getFormattedPrice(
     currency + priceString,
     numberOfPayments,
@@ -89,56 +29,42 @@ const BiweeklyCard = ({
     null
   );
 
-  const installments = [];
+  const steps = [];
   for (let i = 0; i < numberOfPayments; i++) {
-    const isFirst = i === 0;
-    const weekNumber = i * 2;
-    const dueText = isFirst
-      ? translation.today
-      : `${weekNumber} ${translation.MultiPlanweeks}`;
-    installments.push(
-      <div className="installment" key={i}>
-        <InstallmentGraphic
-          index={i}
-          numberOfPayments={numberOfPayments}
-          classModifier={classModifier}
-          dashWidth={dashWidth}
-        />
-        <div className={`detail${isFirst ? " first-installment" : ""}`}>
-          <div className={`amount ${numberOfPayments}-pay-installment`}>
-            {installmentPrice}
-          </div>
-          <div className="due">{dueText}</div>
-        </div>
+    const when =
+      i === 0
+        ? translation.today
+        : `${i * 2} ${translation.MultiPlanweeks}`;
+    steps.push(
+      <div className="hsw-step" key={i}>
+        <div className={`hsw-dot${i === 0 ? " is-first" : ""}`} />
+        <div className="hsw-step-amt">{installmentPrice}</div>
+        <div className="hsw-step-when">{when}</div>
       </div>
     );
   }
 
   return (
-    <div className={`payment-card ${numberOfPayments}-pay-installment-card`}>
-      <div className="plan-summary">
-        <div className="purple">
-          <div className="left">
-            <span className={`price ${numberOfPayments}-pay-installment`}>
-              {installmentPrice}
-            </span>
-            <span className="due">{translation.today}</span>
-          </div>
-          <div className="right">
-            <span className="pill">
-              {translation.MultiPlanpayIn} {numberOfPayments}
-              {numberOfPayments === 5 && <sup>TM</sup>}
-            </span>
-          </div>
-        </div>
-        <div className="grey">
-          <span className={`${numberOfPayments}-pay-installment`}>
+    <div className="hsw-plan">
+      <div className="hsw-plan-head">
+        <div>
+          <span className={`hsw-plan-amount${isPI5 ? " is-pi5" : ""}`}>
             {installmentPrice}
-          </span>{" "}
-          {translation.MultiPlanevery2Weeks}
+          </span>
+          <span className="hsw-plan-today"> {translation.today}</span>
         </div>
+        <span className={`pill hsw-plan-pill${isPI5 ? " is-pi5" : ""}`}>
+          {translation.MultiPlanpayIn} {numberOfPayments}
+          {isPI5 && <sup>TM</sup>}
+        </span>
       </div>
-      <div className="payment-breakdown">{installments}</div>
+      <div
+        className="hsw-timeline"
+        style={{ "--cols": numberOfPayments } as React.CSSProperties}
+      >
+        <div className="hsw-timeline-line" />
+        {steps}
+      </div>
     </div>
   );
 };

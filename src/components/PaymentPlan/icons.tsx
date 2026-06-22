@@ -58,6 +58,52 @@ export const ChevronUpIcon = () => (
   </svg>
 );
 
+// Small check used by the hero "Trusted by millions" line (stroked, jade).
+export const CheckIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="var(--sezzle-jade)"
+    strokeWidth="2.4"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+);
+
+// Chevron used by the FAQ accordion (stroked; CSS rotates + recolors it).
+export const FaqChevronIcon = () => (
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+export const AppStoreIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M16.365 1.43c0 1.14-.467 2.227-1.225 3.02-.81.85-2.14 1.5-3.24 1.41-.13-1.09.43-2.26 1.13-3 .79-.85 2.18-1.47 3.21-1.51.03.04.12.05.12.08zM20.94 17.06c-.55 1.28-.82 1.85-1.53 2.98-.99 1.58-2.39 3.54-4.12 3.55-1.54.02-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.06-1.79-4.05-3.37-2.77-4.42-3.06-9.6-1.35-12.35.96-1.53 2.47-2.43 3.89-2.43 1.45 0 2.36.99 3.56.99 1.16 0 1.87-.99 3.55-.99 1.27 0 2.61.69 3.57 1.88-3.14 1.72-2.63 6.2.56 7.74z" />
+  </svg>
+);
+
+export const GooglePlayIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M3.6 2.3 13 11.7 3.6 21.1c-.4-.2-.7-.6-.7-1.2V3.5c0-.6.3-1 .7-1.2zm10.7 10.6 2.6 2.6-9.4 5.4 6.8-8zm3.9-3.9 2.9 1.7c.6.4.6 1.3 0 1.7l-2.9 1.7-2.9-2.5 2.8-2.6zM6.9 2.6l9.4 5.4-2.6 2.6-6.8-8z" />
+  </svg>
+);
+
 export const StepOneIcon = () => (
   <svg
     width="29"

@@ -1,6 +1,14 @@
-// Presentational ".payment-plan-wrapper" (amount input + cards); state is owned by App.
+// Calculator card body: title + amount input, then a plan block per available
+// plan. Pay-in-4 always shows (the amount input only accepts in-range values,
+// so it is always eligible). Pay-in-5 shows only outside Canada
+// (showPI5Row === effectiveNumberOfPayments === 5); below the $50 floor it
+// shows an "available on orders of …" note instead of the timeline. Long-term
+// monthly cards render when LT-eligible (US + long-term enabled). State is
+// owned by App.
 import { ITranslation } from "../../interface";
 import { ResolvedLTConfig } from "../../utils/ltConfig";
+import { PI5_MIN_PRICE } from "../../utils/renderFunctions";
+import { interpolate } from "../../utils/interpolate";
 import BiweeklyCard from "./BiweeklyCard";
 import MonthlyCards from "./MonthlyCards";
 
@@ -17,6 +25,7 @@ interface PaymentWrapperProps {
   hasError: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   eligibility: Eligibility;
+  showPI5Row: boolean;
   translation: ITranslation;
   ltConfig: ResolvedLTConfig;
   lang: string;
@@ -29,56 +38,72 @@ const PaymentWrapper = ({
   hasError,
   onChange,
   eligibility,
+  showPI5Row,
   translation,
   ltConfig,
   lang,
 }: PaymentWrapperProps) => {
+  const pi5BelowMessage = interpolate(translation.payBelowMin, {
+    min: `${currency}${PI5_MIN_PRICE}`,
+  });
+
   return (
-    <div className="payment-plan-wrapper">
-      <p
-        className={`sample-payments${
-          lang === "fr" ? " sezzle-multi-plan-fr" : ""
-        }`}
-      >
-        <span className="sample-payments-title">
-          {translation.MultiPlanSeePlans}
-        </span>
-        <span
-          className={`input-amount-container${hasError ? " input-error" : ""}`}
-        >
-          <label
-            className="input-amount-label"
-            htmlFor="multi-plan-input-amount"
+    <div className="hsw-calc-card">
+      <div className="hsw-calc-head">
+        <div>
+          <div className="hsw-calc-title">{translation.calcTitle}</div>
+          <div className="hsw-calc-subtitle">{translation.calcSubtitle}</div>
+        </div>
+        <label className="hsw-amount-field">
+          <span className="hsw-amount-label">{translation.calcAmountLabel}</span>
+          <span
+            className={`hsw-amount-input-wrap${hasError ? " input-error" : ""}`}
           >
-            {translation.MultiPlanAmount}
-          </label>
-          <input
-            className={`price input-amount${hasError ? " input-error" : ""}`}
-            id="multi-plan-input-amount"
-            maxLength={12}
-            value={inputValue}
-            onChange={onChange}
-          />
-        </span>
-      </p>
-      {eligibility.pi4 && (
-        <div className="payment-cards payment-cards-biweekly">
+            <input
+              className={`input-amount hsw-amount-input${
+                hasError ? " input-error" : ""
+              }`}
+              id="multi-plan-input-amount"
+              aria-label={translation.calcAmountLabel}
+              maxLength={12}
+              value={inputValue}
+              onChange={onChange}
+            />
+          </span>
+        </label>
+      </div>
+
+      {/* Pay in 4 — always available */}
+      <BiweeklyCard
+        numberOfPayments={4}
+        currency={currency}
+        priceString={priceString}
+        translation={translation}
+      />
+
+      {/* Pay in 5 — hidden entirely in Canada */}
+      {showPI5Row &&
+        (eligibility.pi5 ? (
           <BiweeklyCard
-            numberOfPayments={4}
+            numberOfPayments={5}
             currency={currency}
             priceString={priceString}
             translation={translation}
           />
-          {eligibility.pi5 && (
-            <BiweeklyCard
-              numberOfPayments={5}
-              currency={currency}
-              priceString={priceString}
-              translation={translation}
-            />
-          )}
-        </div>
-      )}
+        ) : (
+          <div className="hsw-plan">
+            <div className="hsw-plan-head">
+              <div>
+                <span className="hsw-plan-below">{pi5BelowMessage}</span>
+              </div>
+              <span className="pill hsw-plan-pill is-pi5">
+                {translation.MultiPlanpayIn} 5<sup>TM</sup>
+              </span>
+            </div>
+          </div>
+        ))}
+
+      {/* Long-term monthly plans (US + long-term enabled) */}
       {eligibility.lt && (
         <div className="payment-cards payment-cards-monthly">
           <MonthlyCards
@@ -90,6 +115,8 @@ const PaymentWrapper = ({
           />
         </div>
       )}
+
+      <p className="hsw-calc-footnote">{translation.calcFootnote}</p>
     </div>
   );
 };

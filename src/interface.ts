@@ -1,38 +1,17 @@
 export interface ITranslation {
   logoAltText: string;
-  subHeader: string;
   today: string;
-  ctaHeader: string;
-  ctaDescription: string;
-  ctaButton: string;
-  review1Header: string;
-  review1Description: string;
-  reviewer1Name: string;
-  review1Date: string;
-  ratingAltText: string;
-  review2Header: string;
-  review2Description: string;
-  reviewer2Name: string;
-  review2Date: string;
 
   // Payment-plan / modal keys (ported from sezzle-widget-react)
-  MultiPlanAmount: string;
-  MultiPlanevery2Weeks: string;
-  MultiPlanheader: string;
-  MultiPlanhowToPay: string;
   MultiPlanpayIn: string;
-  MultiPlanSeePlans: string;
-  MultiPlanStep1: string;
-  MultiPlanStep2: string;
-  MultiPlanStep3: string;
   MultiPlantrusted: string;
   MultiPlanweeks: string;
   LTadjustedTotal: string;
   LThideDetails: string;
   LTinterest: string;
   LTmonthlyAmount: string;
-  LTpercent: string;
   LTperMonth: string;
+  LTpercent: string;
   LTreadApr: string;
   LTsampleApr: string;
   LTseeDetails: string;
@@ -47,10 +26,50 @@ export interface ITranslation {
   webBankTerms: string;
   webBankTermsPI4: string;
   webBankTermsPI5: string;
+  webBankVirtualCards: string;
   linkToCompleteTerms: string;
-  sezzleInformation: string;
-  previousSlide: string;
-  nextSlide: string;
-  carouselPosition: string;
-  slide: string;
+
+  // Redesign marketing copy (hero, calculator, how-it-works, app promo, FAQ,
+  // footer). `{merchantName}` / `{min}` are interpolated at render.
+  heroEyebrow: string;
+  heroHeadline: string;
+  heroSubcopy: string;
+  heroShopNow: string;
+  heroSeeHow: string;
+  calcTitle: string;
+  calcSubtitle: string;
+  calcAmountLabel: string;
+  payBelowMin: string;
+  calcFootnote: string;
+  hiwEyebrow: string;
+  hiwTitle: string;
+  hiwSubcopy: string;
+  hiwStepLabel: string;
+  hiwStep1Title: string;
+  hiwStep1Body: string;
+  hiwStep2Title: string;
+  hiwStep2Body: string;
+  hiwStep3Title: string;
+  hiwStep3Body: string;
+  appEyebrow: string;
+  appTitle: string;
+  appBody: string;
+  appStore: string;
+  googlePlay: string;
+  appGetTheApp: string;
+  appScreenAlt: string;
+  faqEyebrow: string;
+  faqTitle: string;
+  faq1Q: string;
+  faq1A: string;
+  faq2Q: string;
+  faq2A: string;
+  faq3Q: string;
+  faq3A: string;
+  faq4Q: string;
+  faq4A: string;
+  faq5Q: string;
+  faq5A: string;
+  footerShopNow: string;
+  footerCopyright: string;
 }

@@ -1,868 +1,872 @@
-@import url("https://fonts.cdnfonts.com/css/satoshi");
+/* ===========================================================================
+   How Sezzle Works — redesigned marketing page.
+   Tokens ported from the Sezzle Design System handoff bundle
+   (colors_and_type.css). Section styles author against the semantic tokens
+   (--bg-canvas, --fg-primary, …) so the dark theme only has to re-point those
+   tokens under .sezzle-container-dark rather than restyle every rule.
+   =========================================================================== */
+
+/* Satoshi — the four weights this page uses (300/Light is unused). */
+@font-face { font-family: "Satoshi"; font-weight: 400; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Regular.otf") format("opentype"); }
+@font-face { font-family: "Satoshi"; font-weight: 500; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Medium.otf") format("opentype"); }
+@font-face { font-family: "Satoshi"; font-weight: 700; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Bold.otf") format("opentype"); }
+@font-face { font-family: "Satoshi"; font-weight: 900; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Black.otf") format("opentype"); }
 
 :root {
-    --font-family: Satoshi, "Open Sans", sans-serif;
-    --font-black: #353535;
-    --font-grey: #737373;
-    --font-med-grey: #f8f8f8;
-    --font-light-grey: #eee;
-    --font-white: #fff;
-    --font-purple: #382757;
-    --font-violet: #7d25cb;
-    --font-magenta: #8e24ac;
-    --font-fuchsia: #ca74e2;
-    --font-iris: #b67ee7;
-    --font-lavender: #a08dc9;
-    --font-magnolia: #f9f5fd;
+    /* Brand */
+    --sezzle-eggplant: #2a1a3a;
+    --sezzle-altoid: #6e6786;
+    --sezzle-lilac: #f9f5fd;
+    --sezzle-jade: #00b874;
+    --sezzle-green: #29d3a2;
+    --sezzle-eggplant-700: #3a2550;
+
+    --violet-50: #f4ecfd;
+    --violet-100: #e6d2fb;
+    --violet-200: #c9a1f4;
+    --violet-500: #8333d4;
+    --violet-600: #7124c2;
+    --violet-700: #5a1aa0;
+
+    --neutral-0: #ffffff;
+    --neutral-100: #f4f4f4;
+    --neutral-200: #eaeaea;
+    --neutral-300: #d1d1d1;
+    --neutral-600: #5e5e5e;
+
+    /* Brand petal gradient (hero glow + app banner) */
+    --gradient-petals:
+        conic-gradient(from 200deg at 50% 50%,
+            #a366ff 0deg, #4b0099 90deg, #cc2e2e 140deg, #ff8080 180deg,
+            #ffb84d 220deg, #e67300 270deg, #009956 315deg, #00e68a 360deg);
+
+    /* Semantic roles — re-pointed under .sezzle-container-dark */
+    --fg-primary: var(--sezzle-eggplant);
+    --fg-secondary: var(--sezzle-altoid);
+    --fg-onbrand: var(--neutral-0);
+    --accent: var(--violet-500);
+    --accent-deep: var(--violet-600);
+    --accent-soft: var(--violet-50);
+
+    --bg-canvas: var(--neutral-0);
+    --bg-tinted: var(--sezzle-lilac);
+    --bg-card: var(--neutral-0);
+
+    --border-subtle: var(--neutral-200);
+    --border-default: var(--neutral-300);
+    --timeline-track: var(--neutral-200);
+
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-2xl: 32px;
+    --radius-pill: 9999px;
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.14), 0 3px 6px rgba(0, 0, 0, 0.08);
+    --shadow-brand: 0 8px 24px rgba(131, 51, 212, 0.22);
+
+    --font-display: "Satoshi", system-ui, -apple-system, "Open Sans", sans-serif;
+    --font-body: "Satoshi", system-ui, -apple-system, "Open Sans", sans-serif;
+
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-fast: 120ms;
+    --dur-base: 200ms;
+    --dur-slow: 320ms;
 }
 
-.sezzle-container {
-    font-family: var(--font-family);
-    color: var(--font-black);
-    text-align: center;
-    width: 100%;
-}
-
-.sezzle-logo {
-    margin: 10px auto;
-}
-
-.sezzle-header {
-    font-size: 64px;
-    font-weight: 900;
-    line-height: 74px;
-    margin: 27px auto;
-    max-width: 610px;
-}
-
-.sezzle-description {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 34px;
-    margin: 27px auto;
-    max-width: 588px;
-}
-
-.section-separator {
-    max-width: 926px;
-    border: 1px solid var(--font-light-grey);
-    margin: 48px auto;
-}
-
-.sezzle-subheader {
-    font-size: 36px;
-    font-weight: 900;
-    line-height: 46px;
-    margin: 12px auto;
-    max-width: 610px;
-}
-
-.card-area {
-    margin: 65px auto 50px;
-    max-width: 926px;
-    display: flex;
-    flex-direction: row;
-    gap: 21px;
-}
-
-.info-card {
-    width: 295px;
-    background-color: var(--font-light-grey);
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.sezzle-info {
-    font-size: 16px;
-    font-weight: 900;
-    line-height: 26px;
-    margin: 12px auto;
-    max-width: 588px;
-    height: 50%;
-}
-
-/* Render the step illustrations at twice their intrinsic size. The vertical
-   margin reserves flow space the scale transform would otherwise overflow. */
-.card-area .step-image {
-    margin: 16px 0;
-    height: 50%;
-}
-.card-area .step-image svg {
-    transform: scale(2);
-}
-
-.cta-area {
-    color: var(--font-purple);
-    height: 250px;
-    max-width: 926px;
-    margin: 96px auto 48px;
-    background: var(--font-med-grey);
-    border: 2px solid #29d3a2;
-    border-radius: 5px;
-    border-image: linear-gradient(
-            to right bottom,
-            #29d3a2,
-            #fea500,
-            #ff5667,
-            #8333d4
-        )
-        1;
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.cta-main {
-    margin: auto;
-    width: 60%;
-}
-
-.cta-header {
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 26px;
-    margin: 12px auto;
-    max-width: 431px;
-}
-
-.cta-description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 29.8px;
-    margin: 12px auto;
-}
-
-.cta-button {
-    color: var(--font-white);
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 16px;
-    padding: 16px;
-    background-color: var(--font-purple);
-    border-radius: 100px;
-    text-decoration: none;
-    display: block;
-    width: fit-content;
-    margin: 16px auto;
-    margin: auto;
-}
-
-.cta-button:hover {
-    background-color: var(--font-violet);
-}
-
-.cta-button:active {
-    background-color: var(--font-magenta);
-}
-
-.mobile-reviews {
-    margin: 30px auto;
-    height: 313px;
-    width: 50%;
-    position: relative;
-    top: -75px;
-    left: 15%;
-}
-
-.mobile-app-img {
-    width: 196px;
-    height: 296px;
-    position: absolute;
-    z-index: 2;
-}
-
-.review-card-area {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-}
-
-.review-card {
-    position: absolute;
-    color: var(--font-purple);
-    width: 182.72px;
-    padding: 17.63px 11.7px 17.2px 17.49px;
-    background-color: var(--font-white);
-    border: 1.26px solid #29d3a2;
-    border-image: linear-gradient(
-            to right bottom,
-            #29d3a2,
-            #fea500,
-            #ff5667,
-            #8333d4
-        )
-        1;
-    border-radius: 2.938px 2.938px 17.626px 2.938px;
-    text-align: left;
-}
-
-.review-card-1 {
-    z-index: 3;
-    top: -20px;
-    left: 60px;
-}
-
-.review-card-2 {
-    z-index: 3;
-    top: 110px;
-    left: -55px;
-}
-
-.review-card-2-fr-es {
-    top: 125px;
-    z-index: 3;
-    left: -55px;
-}
-
-.review-card-3 {
-    z-index: 1;
-    top: 247px;
-    left: 60px;
-}
-
-.trustpilot-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.review-header {
-    font-size: 11.716px;
-    font-weight: 700;
-    line-height: 12.971px;
-    margin: 10.3px 0 0;
-}
-
-.review-description {
-    font-size: 8.787px;
-    font-weight: 400;
-    line-height: 12.971px;
-    margin: 0 0 9.53px;
-}
-
-.review-name {
-    font-size: 7.532px;
-    font-weight: 700;
-    line-height: 10.042px;
-}
-
-.review-date {
-    font-weight: 400;
-}
-
-.terms {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-    margin: 48px auto;
-    max-width: 936px;
-}
-
-.sezzle-container-fr .review-card-2 {
-    top: 115px;
-}
-
+/* ── Dark theme: re-point the semantic tokens ──────────────────────────── */
 .sezzle-container-dark {
-    background-color: black;
-    color: var(--font-white);
+    --fg-primary: #f3eefb;
+    --fg-secondary: #b3a9c9;
+    --accent: var(--violet-200);
+    --accent-deep: #d9bcf7;
+    --accent-soft: rgba(201, 161, 244, 0.16);
+    --bg-canvas: #150d23;
+    --bg-tinted: #1d1330;
+    --bg-card: #241733;
+    --border-subtle: rgba(255, 255, 255, 0.12);
+    --border-default: rgba(255, 255, 255, 0.22);
+    --timeline-track: rgba(255, 255, 255, 0.18);
 }
 
-.sezzle-container-dark .section-separator {
-    border: 1px solid var(--font-white);
+/* ── Container + base ──────────────────────────────────────────────────── */
+.sezzle-container {
+    font-family: var(--font-body);
+    color: var(--fg-primary);
+    background: var(--bg-canvas);
+    width: 100%;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+.sezzle-container * {
+    box-sizing: border-box;
 }
 
-.sezzle-container-dark .sezzle-info {
-    color: var(--font-black);
+.hsw-section {
+    padding: 80px 40px;
+}
+.hsw-inner {
+    max-width: 1120px;
+    margin: 0 auto;
 }
 
-/* ---------------------------------------------------------------------------
-   Payment-plan section — ported (flattened to plain CSS) from
-   ../sezzle-widget-react/src/Components/modal.scss. Rendered inline on the page
-   rather than as a lightbox overlay, so the modal's fixed/overlay wrappers are
-   dropped. SCSS color variables are inlined:
-     font-color #303030  accent #8333d4  focus #af0fda  mute #5e5e5e
-     mid-mute #767676    xx-mute #f4f4f4  background #fff  mute-purple #f9f5fd
-   --------------------------------------------------------------------------- */
-.sezzle-payment-plan {
+.hsw-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+}
+
+.hsw-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 34px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out),
+        transform var(--dur-fast) var(--ease-out);
+}
+.hsw-btn:active {
+    transform: scale(0.97);
+}
+.hsw-btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--shadow-brand);
+}
+.hsw-btn-primary:hover {
+    background: var(--accent-deep);
+}
+.hsw-btn-secondary {
+    background: var(--bg-card);
+    color: var(--fg-primary);
+    border-color: var(--border-default);
+}
+.hsw-btn-secondary:hover {
+    border-color: var(--accent);
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+.hsw-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: color-mix(in srgb, var(--bg-canvas) 82%, transparent);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+}
+.hsw-header .sezzle-logo {
+    display: flex;
+    align-items: center;
+}
+.hsw-header .sezzle-logo img {
+    height: 38px;
+    width: auto;
+    display: block;
+}
+.hsw-header-cta {
+    font-size: 15px;
+    padding: 12px 26px;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.hsw-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px 64px;
+    background: linear-gradient(180deg, var(--bg-tinted) 0%, var(--bg-canvas) 100%);
+}
+.hsw-hero-glow {
+    position: absolute;
+    top: -180px;
+    right: -160px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: var(--gradient-petals);
+    filter: blur(90px);
+    opacity: 0.28;
+    pointer-events: none;
+}
+.hsw-hero-grid {
+    position: relative;
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+}
+.hsw-hero-eyebrow {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-xs);
+}
+.hsw-hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    margin: 22px 0 0;
+    text-wrap: balance;
+    color: var(--fg-primary);
+}
+.hsw-hero-sub {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--fg-secondary);
+    margin: 20px 0 0;
+    max-width: 480px;
+}
+.hsw-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+}
+.hsw-trusted {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 26px 0 0;
+    color: var(--fg-secondary);
+    font-size: 14px;
+}
+.hsw-trusted svg {
+    flex: none;
+}
+
+/* ── Calculator card ───────────────────────────────────────────────────── */
+.hsw-calc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+}
+.hsw-calc-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.hsw-calc-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.hsw-calc-subtitle {
+    font-size: 14px;
+    color: var(--fg-secondary);
+    margin-top: 4px;
+}
+.hsw-amount-field {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    max-width: 400px;
-    margin: auto;
-    color: #303030;
-    text-align: left;
-    font-family: var(--font-family);
+    gap: 6px;
 }
-
-.sezzle-multi-plan {
-    margin: auto;
-}
-
-.trusted {
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 17px;
-    letter-spacing: 0.2px;
-    color: #5e5e5e;
-    margin: 8px auto 0;
-    text-align: center;
-}
-
-.payment-plan-header {
-    font-weight: 900;
-    font-size: 36px;
-    line-height: 46px;
-    letter-spacing: 0.1px;
-    text-align: center;
-    color: #303030;
-    margin: 24px auto;
-}
-
-/* --- amount input --- */
-.sezzle-payment-plan .sample-payments {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-    margin: 8px auto;
-}
-.sezzle-payment-plan .sample-payments.sezzle-multi-plan-fr {
-    padding: 0;
-}
-.sezzle-payment-plan .sample-payments-title {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 21px;
-    letter-spacing: 0.15px;
-    text-align: center;
-    color: #303030;
-    align-content: center;
-}
-.sezzle-payment-plan .input-amount-container {
-    width: min-content;
-    height: 58px;
-    border-radius: 10px;
-    padding: 0 16px;
-    align-content: center;
-    border: 1px solid #767676;
-}
-.sezzle-payment-plan .input-amount-label {
-    font-weight: 500;
+.hsw-amount-label {
     font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    vertical-align: middle;
-    color: #5e5e5e;
+    font-weight: 700;
+    color: var(--fg-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
-.sezzle-payment-plan .input-amount {
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 21px;
-    letter-spacing: 0.15px;
-    vertical-align: middle;
-    color: #303030;
-    width: 75px;
-    background: none;
+.hsw-amount-input-wrap {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 0 14px;
+    background: var(--bg-card);
+    transition: border-color var(--dur-base) var(--ease-out);
+}
+.hsw-amount-input-wrap:focus-within {
+    border-color: var(--accent);
+}
+.hsw-amount-input-wrap.input-error {
+    border-color: #d32f2f;
+}
+.hsw-amount-input {
     border: none;
-}
-.sezzle-payment-plan .input-amount:focus-visible {
     outline: none;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--fg-primary);
+    width: 110px;
+    padding: 11px 4px;
+    background: transparent;
 }
-.sezzle-payment-plan .input-amount.input-error {
+.hsw-amount-input.input-error {
     color: #d32f2f;
 }
-.sezzle-payment-plan .input-amount-container:focus-within {
-    border: 2px solid #af0fda;
-}
-.sezzle-payment-plan .input-amount-container.input-error {
-    border: 2px solid #d32f2f;
-}
 
-/* --- payment cards (shared) --- */
-.sezzle-payment-plan .payment-cards {
-    border-radius: 10px;
-    background-color: #ffffff;
-    margin-top: 8px;
-    border: 4px solid #f4f4f4;
+/* one plan block (Pay in 4 / Pay in 5 / monthly group) */
+.hsw-plan {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-subtle);
 }
-.sezzle-payment-plan .payment-card {
-    gap: 8px;
-    padding: 16px;
+.hsw-plan-head {
     display: flex;
-    flex-direction: column;
-}
-.sezzle-payment-plan .payment-card:not(:last-child) {
-    border-bottom: 2px solid #f4f4f4;
-}
-.sezzle-payment-plan .plan-summary .purple {
-    display: flex;
+    align-items: baseline;
     justify-content: space-between;
+    margin-bottom: 18px;
 }
-.sezzle-payment-plan .plan-summary .purple .left {
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-    align-items: center;
+.hsw-plan-amount {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--accent);
 }
-.sezzle-payment-plan .plan-summary .purple .left .price {
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 23px;
-    letter-spacing: 0.2px;
-    color: #8333d4;
+.hsw-plan-amount.is-pi5 {
+    color: var(--sezzle-eggplant);
 }
-.sezzle-payment-plan .plan-summary .purple .left .due {
-    font-weight: 700;
+.sezzle-container-dark .hsw-plan-amount.is-pi5 {
+    color: var(--fg-primary);
+}
+.hsw-plan-today {
     font-size: 15px;
-    line-height: 21px;
-    letter-spacing: 0.15px;
-    color: #8333d4;
-}
-.sezzle-payment-plan .plan-summary .purple .right {
-    width: fit-content;
-    border-radius: 24px;
-    height: fit-content;
-    padding: 4px 10px;
-    background-color: #f9f5fd;
-    align-items: center;
-    display: flex;
-}
-.sezzle-payment-plan .plan-summary .purple .right .pill {
+    color: var(--fg-secondary);
     font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #8333d4;
-    width: fit-content;
 }
-.sezzle-payment-plan .plan-summary .purple .right .pill sup {
+.hsw-plan-below {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fg-secondary);
+}
+.pill,
+.hsw-plan-pill {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+}
+.hsw-plan-pill.is-pi5 {
+    color: var(--sezzle-eggplant);
+    background: var(--neutral-100);
+}
+.sezzle-container-dark .hsw-plan-pill.is-pi5 {
+    color: var(--fg-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+.hsw-plan-pill sup {
     vertical-align: super;
     font-size: 0.6em;
 }
-.sezzle-payment-plan .plan-summary .grey {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #5e5e5e;
-    text-align: left;
-}
 
-/* --- bi-weekly installment breakdown --- */
-.sezzle-payment-plan .payment-breakdown {
-    display: flex;
-    justify-content: center;
+/* dot timeline */
+.hsw-timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
+    gap: 6px;
 }
-.sezzle-payment-plan .payment-breakdown .installment {
-    width: 100%;
-    width: -webkit-fill-available;
-    width: stretch;
+.hsw-timeline-line {
+    position: absolute;
+    top: 13px;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: var(--timeline-track);
+    z-index: 0;
+}
+.hsw-step {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-}
-.sezzle-payment-plan .payment-breakdown .graphic {
-    display: flex;
-    justify-content: space-between;
-}
-.sezzle-payment-plan .payment-breakdown .dash {
-    display: flex;
     align-items: center;
+    gap: 7px;
 }
-.sezzle-payment-plan .payment-breakdown .dot {
-    display: flex;
+.hsw-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-default);
 }
-.sezzle-payment-plan .payment-breakdown .dot svg {
-    width: 16px;
+.hsw-dot.is-first {
+    background: var(--sezzle-jade);
+    border-color: var(--sezzle-jade);
 }
-.sezzle-payment-plan .payment-breakdown .detail .amount {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    text-align: center;
-    color: #5e5e5e;
-}
-.sezzle-payment-plan .payment-breakdown .detail .due {
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 17px;
-    letter-spacing: 0.2px;
-    text-align: center;
-    color: #5e5e5e;
-}
-.sezzle-payment-plan .payment-breakdown .detail.first-installment .amount {
+.hsw-step-amt {
+    font-size: 14px;
     font-weight: 700;
-    color: #303030;
+    color: var(--fg-primary);
 }
-.sezzle-payment-plan .payment-breakdown .detail.first-installment .due {
-    color: #303030;
+.hsw-step-when {
+    font-size: 12px;
+    color: var(--fg-secondary);
+    text-align: center;
+}
+.hsw-calc-footnote {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--fg-secondary);
+    margin: 22px 0 0;
 }
 
-/* --- monthly (long-term) detail rows --- */
-.sezzle-payment-plan .monthly-plan-details {
+/* ── Monthly (long-term) cards — restyled, reused component ─────────────── */
+.payment-cards-monthly {
+    margin-top: 4px;
+}
+.payment-cards-monthly .monthly-installment-card {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-subtle);
+}
+.monthly-installment-card .plan-summary .purple {
     display: flex;
-    flex-direction: row;
+    align-items: baseline;
     justify-content: space-between;
 }
-.sezzle-payment-plan .monthly-detail-row {
+.monthly-installment-card .plan-summary .left {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    width: -webkit-fill-available;
-    width: stretch;
+    align-items: baseline;
+    gap: 6px;
 }
-.sezzle-payment-plan .monthly-detail-row .detail-label {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #5e5e5e;
+.monthly-installment-card .price.monthly-amount {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--accent);
 }
-.sezzle-payment-plan .monthly-detail-row .detail-value {
+.monthly-installment-card .due {
+    font-size: 15px;
+    color: var(--fg-secondary);
     font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #303030;
 }
-
-/* --- "See details" feature accordion --- */
-.sezzle-payment-plan .features-accordion {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 11px 16px 16px;
-}
-.sezzle-payment-plan .accordion-title-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-.sezzle-payment-plan .accordion-title {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #303030;
-    height: fit-content;
-    align-content: center;
-}
-.sezzle-payment-plan .accordion-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-.sezzle-payment-plan .accordion-icon svg {
-    width: 12px;
-    height: 7px;
-}
-.sezzle-payment-plan .features-drawer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.sezzle-payment-plan .single-feature {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-}
-.sezzle-payment-plan .single-feature div {
-    align-content: center;
-}
-.sezzle-payment-plan .single-feature svg {
-    width: 13.333px;
-    height: 13.333px;
-}
-.sezzle-payment-plan .single-feature span {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #303030;
-    text-align: left;
-    align-self: center;
-}
-
-/* --- how to pay carousel --- */
-.sezzle-payment-plan .how-to-sezzle {
-    display: flex;
-    flex-direction: column;
-    padding-top: 8px;
-}
-.sezzle-payment-plan .carousel-header {
+.monthly-plan-details {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
 }
-.sezzle-payment-plan .how-to-text-wrapper {
-    gap: 4px;
+.monthly-detail-row {
     display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
-.sezzle-payment-plan .how-to-text {
-    font-weight: 500;
+.monthly-detail-row .detail-label {
+    font-size: 12px;
+    color: var(--fg-secondary);
+}
+.monthly-detail-row .detail-value {
     font-size: 13px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #303030;
-    align-content: center;
+    font-weight: 700;
+    color: var(--fg-primary);
 }
-.sezzle-payment-plan .how-to-logo {
+
+/* feature accordion */
+.features-accordion {
+    margin-top: 18px;
+}
+.accordion-title-bar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
-.sezzle-payment-plan .how-to-logo img {
-    margin: 0;
-    background: none;
+.accordion-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
 }
-.sezzle-payment-plan .arrows {
-    gap: 4px;
-    display: flex;
-    flex-direction: row;
-}
-.sezzle-payment-plan .arrow {
+.accordion-icon {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 4px;
+    display: inline-flex;
 }
-.sezzle-payment-plan .arrow.disabled {
-    filter: grayscale(1) opacity(0.5);
-    cursor: default;
+.accordion-icon svg path {
+    fill: var(--accent);
 }
-.sezzle-payment-plan .arrow svg {
-    width: 24px;
-    height: 24px;
-}
-.sezzle-payment-plan .carousel {
-    gap: 8px;
+.features-drawer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+}
+.single-feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--fg-secondary);
+}
+.single-feature svg path {
+    fill: var(--sezzle-jade);
+}
+
+/* ── How it works ──────────────────────────────────────────────────────── */
+.hsw-hiw {
+    padding: 88px 40px;
+    background: var(--bg-canvas);
+}
+.hsw-section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+}
+.hsw-section-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+    color: var(--fg-primary);
+}
+.hsw-section-sub {
+    font-size: 18px;
+    color: var(--fg-secondary);
+    margin: 14px 0 0;
+}
+.hsw-hiw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+}
+.hsw-step-card {
+    background: var(--bg-tinted);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    transition: box-shadow var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out);
+}
+.hsw-step-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--violet-200);
+}
+.hsw-step-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+}
+.hsw-step-badge .step-image svg {
+    width: 30px;
+    height: 30px;
+}
+.hsw-step-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 24px;
+}
+.hsw-step-num.is-final {
+    color: var(--sezzle-jade);
+}
+.hsw-step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 21px;
+    margin: 8px 0 0;
+    color: var(--fg-primary);
+}
+.hsw-step-body {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--fg-secondary);
+    margin: 10px 0 0;
+}
+
+/* ── App promo ─────────────────────────────────────────────────────────── */
+.hsw-app {
+    padding: 40px;
+    background: var(--bg-canvas);
+}
+.hsw-app-banner {
+    position: relative;
+    overflow: hidden;
+    max-width: 1120px;
+    margin: 0 auto;
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(135deg, var(--violet-700) 0%, var(--sezzle-eggplant) 100%);
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+.hsw-app-glow {
+    position: absolute;
+    bottom: -160px;
+    left: -120px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: var(--gradient-petals);
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+}
+.hsw-app-phone {
+    position: relative;
+    justify-self: center;
+}
+.hsw-app-phone img {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.45));
+}
+.hsw-app-content {
+    position: relative;
+    color: #fff;
+}
+.hsw-app-eyebrow {
+    color: var(--sezzle-green);
+}
+.hsw-app-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+    color: #fff;
+}
+.hsw-app-body {
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 16px 0 0;
+    max-width: 420px;
+}
+.hsw-store-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+.hsw-store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 22px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform var(--dur-fast) var(--ease-out);
+}
+.hsw-store-btn:active {
+    transform: scale(0.97);
+}
+.hsw-store-btn.is-primary {
+    background: #fff;
+    color: var(--sezzle-eggplant);
+}
+.hsw-store-btn.is-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+/* ── FAQ ───────────────────────────────────────────────────────────────── */
+.hsw-faq {
+    padding: 88px 40px;
+    background: var(--bg-tinted);
+}
+.hsw-faq-inner {
+    max-width: 760px;
+    margin: 0 auto;
+}
+.hsw-faq-list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.hsw-faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
     overflow: hidden;
 }
-.sezzle-payment-plan .carousel.position-1 {
-    justify-content: start;
-}
-.sezzle-payment-plan .carousel.position-2 {
-    justify-content: center;
-}
-.sezzle-payment-plan .carousel.position-3 {
-    justify-content: end;
-}
-.sezzle-payment-plan .carousel-item {
-    border-radius: 10px;
-    padding: 16px 12px;
-    background-color: #ffffff;
-    border: 1px solid #f4f4f4;
+.hsw-faq-q {
+    width: 100%;
     display: flex;
-}
-.sezzle-payment-plan .carousel-item-content {
-    width: 260px;
-    display: flex;
-    flex-direction: row;
     align-items: center;
-}
-.sezzle-payment-plan .step-number {
-    height: 20px;
-    border-radius: 31.04px;
-    padding: 0 2.47px;
-    background-color: #f9f5fd;
-    display: flex;
-}
-.sezzle-payment-plan .step-number-content {
-    display: flex;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #8333d4;
-    width: 17px;
-    align-items: center;
-    justify-content: center;
-}
-.sezzle-payment-plan .step-name {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.4px;
-    color: #303030;
-    padding: 0 25px 0 8px;
+    justify-content: space-between;
+    gap: 16px;
     text-align: left;
-}
-.sezzle-payment-plan .step-image svg {
-    width: 28.5557861328125px;
-    height: 29.413787841796875px;
-}
-.sezzle-payment-plan .carousel-dots {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    justify-content: center;
-}
-.sezzle-payment-plan .carousel-dots .dot {
-    background: none;
+    background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 22px 24px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--fg-primary);
 }
-.sezzle-payment-plan .carousel-dots .dot:not(.active) {
-    filter: grayscale(1) opacity(0.25);
+.hsw-faq-q svg {
+    flex: none;
+    transition: transform var(--dur-slow) var(--ease-out);
 }
-.sezzle-payment-plan .carousel-dots .dot svg {
-    height: 20px;
-    width: 6px;
+.hsw-faq-q svg path {
+    stroke: var(--accent);
+}
+.hsw-faq-q[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+.hsw-faq-a {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height var(--dur-slow) var(--ease-out);
+}
+.hsw-faq-a.is-open {
+    max-height: 320px;
+}
+.hsw-faq-a p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    padding: 0 24px 22px;
+    margin: 0;
 }
 
-/* --- modal terms --- */
-/* The terms render full-width on the page rather than constrained to the
-   326px payment-plan column. */
-.sezzle-payment-plan.sezzle-payment-plan-terms {
-    width: 100%;
-    max-width: 926px;
+/* ── Footer / disclosures ──────────────────────────────────────────────── */
+.hsw-footer {
+    background: var(--sezzle-eggplant);
+    color: rgba(255, 255, 255, 0.66);
+    padding: 56px 40px 48px;
 }
-.sezzle-payment-plan .terms-container {
-    gap: 8px;
+.sezzle-container-dark .hsw-footer {
+    background: #0e0818;
+}
+.hsw-footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+.hsw-footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hsw-footer-top img {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+.hsw-footer-cta {
+    background: #fff;
+    color: var(--sezzle-eggplant);
+    font-size: 15px;
+    padding: 12px 26px;
+    box-shadow: none;
+}
+.hsw-footer-cta:hover {
+    background: #fff;
+}
+.hsw-footer-disclosures {
+    margin-top: 28px;
+}
+.hsw-footer-disclosures .terms-container {
     display: flex;
     flex-direction: column;
+    gap: 14px;
 }
-.sezzle-payment-plan .terms-container .terms {
-    font-weight: 400;
-    font-size: 9px;
-    line-height: 12px;
-    letter-spacing: 0.2px;
-    text-align: center;
-    color: #5e5e5e;
+.hsw-footer-disclosures .terms {
     margin: 0;
-    max-width: none;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.66);
 }
-.sezzle-payment-plan .terms-container .terms a {
-    font-weight: 400;
-    font-size: 9px;
-    line-height: 12px;
-    letter-spacing: 0.2px;
-    color: #8333d4;
+.hsw-footer-disclosures .terms a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: underline;
 }
-
-.sezzle-payment-plan .terms-container .terms a:hover {
-    color: var(--font-purple);
-}
-
-.sezzle-payment-plan .terms-container .terms a:active {
-    color: var(--font-magenta);
+.hsw-footer-copyright {
+    margin: 16px 0 0;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-/* --- dark theme: text rendered directly on the page background --- */
-.sezzle-container-dark .trusted,
-.sezzle-container-dark .payment-plan-header,
-.sezzle-container-dark .sezzle-payment-plan .sample-payments-title,
-.sezzle-container-dark .sezzle-payment-plan .input-amount-label,
-.sezzle-container-dark .sezzle-payment-plan .input-amount,
-.sezzle-container-dark .sezzle-payment-plan .how-to-text,
-.sezzle-container-dark .sezzle-payment-plan .terms-container .terms {
-    color: var(--font-white);
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media screen and (max-width: 900px) {
+    .hsw-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .hsw-hiw-grid {
+        grid-template-columns: 1fr;
+    }
+    .hsw-app-banner {
+        grid-template-columns: 1fr;
+        padding: 48px 32px;
+        text-align: center;
+    }
+    .hsw-app-body {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hsw-store-btns {
+        justify-content: center;
+    }
 }
 
-/* dark theme: active (non-disabled) carousel arrows use the lighter fuchsia */
-.sezzle-container-dark .sezzle-payment-plan .arrow:not(.disabled) svg path {
-    fill: var(--font-fuchsia);
-}
-
-/* dark theme: active carousel dot uses the lighter fuchsia */
-.sezzle-container-dark
-    .sezzle-payment-plan
-    .carousel-dots
-    .dot.active
-    svg
-    rect {
-    fill: var(--font-fuchsia);
-}
-
-.sezzle-container-dark .sezzle-payment-plan .terms-container .terms a {
-    color: var(--font-fuchsia);
-}
-.sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:hover {
-    color: var(--font-lavender);
-}
-.sezzle-container-dark .sezzle-payment-plan .terms-container .terms a:active {
-    color: var(--font-iris);
-}
-
-/* Responsive overrides — kept at the end so they win over the base rules above
-   (media queries add no specificity, so source order decides). */
-@media screen and (max-width: 650px) {
-    .sezzle-header {
-        font-size: 44px;
-        line-height: 54px;
-        max-width: 316px;
+@media screen and (max-width: 600px) {
+    .hsw-header,
+    .hsw-hero,
+    .hsw-hiw,
+    .hsw-app,
+    .hsw-faq,
+    .hsw-footer {
+        padding-left: 20px;
+        padding-right: 20px;
     }
-
-    .sezzle-description {
-        max-width: 316px;
+    .hsw-section-title,
+    .hsw-app-title {
+        font-size: 30px;
     }
-    .payment-plan-header {
-        font-size: 24px;
-        line-height: 28px;
+    .hsw-calc-card {
+        padding: 22px;
     }
-    .section-separator {
-        display: none;
+    .hsw-step-amt {
+        font-size: 13px;
     }
-
-    .sezzle-subheader {
-        margin: 50px auto 15px;
-        font-size: 24px;
-        line-height: 28px;
-    }
-
-    .card-area {
-        flex-direction: column;
-        margin: 40px auto;
-        align-items: center;
-    }
-
-    .info-card {
-        width: 255px;
-        padding: 42px 20px 30px;
-    }
-
-    .cta-area {
-        flex-direction: column;
-        margin: 30px auto;
-        width: 302px;
-        height: 530px;
-    }
-
-    .cta-main {
-        width: 100%;
-        margin: 30px auto;
-    }
-
-    .cta-header {
-        margin: 0 auto;
-    }
-
-    .cta-description {
-        margin: 0 0 8px;
-    }
-
-    .mobile-reviews {
-        width: 100%;
-        margin: 10px auto;
-        top: 0px;
-    }
-
-    .terms {
-        width: 342px;
-    }
-
-    .sezzle-container-fr .cta-area {
-        height: 556px;
-    }
-
-    .sezzle-container-fr .cta-main {
-        width: initial;
-        padding: 0 10px;
+    .hsw-step-when {
+        font-size: 11px;
     }
 }

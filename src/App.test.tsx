@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 import enTranslation from "./translations/en.json";
+import { interpolate } from "./utils/interpolate";
 import {
     ConfigContext,
     deriveConfigContext,
@@ -61,52 +62,114 @@ describe("App", () => {
         vi.unstubAllGlobals();
     });
 
-    it("renders the CTA heading and download link", () => {
+    it("renders the app-promo heading and the desktop Get-the-app link", () => {
         installFetchMock();
         render(wrap(baseConfig, <App />));
         expect(
-            screen.getByRole("heading", { name: enTranslation.ctaHeader })
+            screen.getByRole("heading", { name: enTranslation.appTitle })
         ).toBeInTheDocument();
+        // jsdom reports a desktop user agent, so the single "Get the app" CTA
+        // (pointing at sezzle.com/app) renders instead of the store badges.
         expect(
-            screen.getByRole("link", { name: enTranslation.ctaButton })
+            screen.getByRole("link", { name: enTranslation.appGetTheApp })
         ).toHaveAttribute("href", "https://sezzle.com/app");
     });
 
-    it("renders the payment-plan header and customer reviews", () => {
-        installFetchMock();
-        const { container } = render(wrap(baseConfig, <App />));
-        // The header copy contains non-breaking spaces; compare on collapsed whitespace.
-        expect(
-            container.querySelector(".payment-plan-header")?.textContent?.replace(/\s+/g, " ")
-        ).toBe(enTranslation.MultiPlanheader.replace(/\s+/g, " "));
-        expect(screen.getByText(enTranslation.review1Header)).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.review2Header)).toBeInTheDocument();
+    it("links to the native store listings on mobile", () => {
+        const originalUA = navigator.userAgent;
+        Object.defineProperty(navigator, "userAgent", {
+            value: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15",
+            configurable: true,
+        });
+        try {
+            installFetchMock();
+            render(wrap(baseConfig, <App />));
+            expect(
+                screen.getByRole("link", { name: enTranslation.appStore })
+            ).toHaveAttribute(
+                "href",
+                "https://apps.apple.com/us/app/sezzle-buy-now-pay-later/id1434922495"
+            );
+            expect(
+                screen.getByRole("link", { name: enTranslation.googlePlay })
+            ).toHaveAttribute(
+                "href",
+                "https://play.google.com/store/apps/details?id=com.sezzle.sezzlemobile"
+            );
+        } finally {
+            Object.defineProperty(navigator, "userAgent", {
+                value: originalUA,
+                configurable: true,
+            });
+        }
     });
 
-    it("renders the How it Works section built from the carousel steps", () => {
+    it("renders the hero headline and falls back to the hostname for merchant name", () => {
+        installFetchMock();
+        render(wrap(baseConfig, <App />));
+        expect(
+            screen.getByRole("heading", { name: enTranslation.heroHeadline })
+        ).toBeInTheDocument();
+        // With no merchantName configured, merchant-name templates fall back to
+        // the current hostname.
+        const expectedCopyright = interpolate(enTranslation.footerCopyright, {
+            merchantName: window.location.hostname,
+        });
+        expect(screen.getByText(expectedCopyright)).toBeInTheDocument();
+    });
+
+    it("personalizes merchant-name copy and points Shop Now at the current origin", () => {
+        installFetchMock();
+        render(wrap({ ...baseConfig, merchantName: "Maple & Pine" }, <App />));
+        // Footer copy is personalized with the configured merchant name.
+        const expectedCopyright = interpolate(enTranslation.footerCopyright, {
+            merchantName: "Maple & Pine",
+        });
+        expect(screen.getByText(expectedCopyright)).toBeInTheDocument();
+        // Every plain "Shop Now" CTA (header + hero) points at the current origin.
+        const shopLinks = screen.getAllByRole("link", {
+            name: enTranslation.heroShopNow,
+        });
+        expect(shopLinks.length).toBeGreaterThan(0);
+        shopLinks.forEach((link) =>
+            expect(link).toHaveAttribute("href", window.location.origin)
+        );
+    });
+
+    it("renders the FAQ accordion with the first item open", () => {
+        installFetchMock();
+        render(wrap(baseConfig, <App />));
+        expect(
+            screen.getByRole("heading", { name: enTranslation.faqTitle })
+        ).toBeInTheDocument();
+        const first = screen.getByRole("button", { name: enTranslation.faq1Q });
+        expect(first.getAttribute("aria-expanded")).toBe("true");
+        const last = screen.getByRole("button", { name: enTranslation.faq5Q });
+        expect(last.getAttribute("aria-expanded")).toBe("false");
+    });
+
+    it("renders the How it Works section as three step cards", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
         expect(
-            screen.getByRole("heading", { name: enTranslation.subHeader })
+            screen.getByRole("heading", { name: enTranslation.hiwTitle })
         ).toBeInTheDocument();
-        const cards = container.querySelectorAll(".card-area .info-card");
-        expect(cards.length).toBe(3);
-        expect(screen.getByText(enTranslation.MultiPlanStep1)).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.MultiPlanStep2)).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.MultiPlanStep3)).toBeInTheDocument();
-        // Each card shows its step illustration in place of the old icon.
+        expect(container.querySelectorAll(".hsw-step-card").length).toBe(3);
+        expect(screen.getByText(enTranslation.hiwStep1Title)).toBeInTheDocument();
+        expect(screen.getByText(enTranslation.hiwStep2Title)).toBeInTheDocument();
+        expect(screen.getByText(enTranslation.hiwStep3Title)).toBeInTheDocument();
         expect(
-            container.querySelectorAll(".card-area .step-image svg").length
+            container.querySelectorAll(".hsw-step-badge .step-image svg").length
         ).toBe(3);
     });
 
-    it("renders the trusted tagline outside the payment-plan section", () => {
+    it("renders the trusted tagline in the hero, not the calculator card", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
-        const trusted = container.querySelector(".trusted");
-        expect(trusted?.textContent).toBe(enTranslation.MultiPlantrusted);
-        // The tagline was lifted out of .sezzle-payment-plan to sit under the logo.
-        expect(container.querySelector(".sezzle-payment-plan .trusted")).toBeNull();
+        expect(container.querySelector(".hsw-trusted")?.textContent).toContain(
+            enTranslation.MultiPlantrusted
+        );
+        expect(container.querySelector(".hsw-calc-card .hsw-trusted")).toBeNull();
     });
 
     it("labels the logo region with the localized alt text", () => {
@@ -142,7 +205,7 @@ describe("App", () => {
     it("defaults the amount input to $150", () => {
         installFetchMock();
         render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
-        expect(screen.getByLabelText(enTranslation.MultiPlanAmount)).toHaveValue("$150");
+        expect(screen.getByLabelText(enTranslation.calcAmountLabel)).toHaveValue("$150");
     });
 
     it("shows long-term monthly cards when isLongTerm is true outside of Canada", () => {
@@ -161,12 +224,12 @@ describe("App", () => {
         expect(container.querySelector(".payment-cards-monthly")).toBeNull();
     });
 
-    // Class names starting with a digit (e.g. "5-pay-installment-card") can't be
-    // passed to querySelector unescaped, so assert on the card pill text instead.
+    // Class names starting with a digit can't be passed to querySelector
+    // unescaped, so assert on the card pill text instead.
     const pillTexts = (container: HTMLElement) =>
         Array.from(container.querySelectorAll(".pill")).map((p) => p.textContent ?? "");
 
-    it("hides the Pay-in-5 card in Canada", () => {
+    it("hides the Pay-in-5 row in Canada", () => {
         installFetchMock();
         const { container } = render(
             wrap({ ...baseConfig, countryCode: "CA" }, <App />)
@@ -176,22 +239,37 @@ describe("App", () => {
         expect(pills.some((t) => t.includes("Pay in 5"))).toBe(false);
     });
 
-    it("shows the Pay-in-5 card by default (US, numberOfPayments 5)", () => {
+    it("shows the Pay-in-5 row by default (US, numberOfPayments 5)", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
         expect(pillTexts(container).some((t) => t.includes("Pay in 5"))).toBe(true);
+    });
+
+    it("shows the Pay-in-5 below-minimum note for amounts under $50", async () => {
+        installFetchMock();
+        const user = userEvent.setup();
+        const { container } = render(wrap(baseConfig, <App />));
+        const input = screen.getByLabelText(enTranslation.calcAmountLabel);
+        await user.clear(input);
+        await user.type(input, "$30");
+        const expected = interpolate(enTranslation.payBelowMin, { min: "$50" });
+        expect(
+            Array.from(container.querySelectorAll(".hsw-plan-below")).some(
+                (el) => el.textContent === expected
+            )
+        ).toBe(true);
     });
 
     it("parses grouped input and drives the bi-weekly amount ($1,000.00 -> $250.00 per Pay-in-4)", async () => {
         installFetchMock();
         const user = userEvent.setup();
         render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
-        const input = screen.getByLabelText(enTranslation.MultiPlanAmount);
+        const input = screen.getByLabelText(enTranslation.calcAmountLabel);
         await user.clear(input);
         await user.type(input, "$1,000.00");
 
         expect((input as HTMLInputElement).className).not.toContain("input-error");
-        // 1000 / 4 = 250.00 on the Pay-in-4 card.
+        // 1000 / 4 = 250.00 on the Pay-in-4 timeline (header + steps).
         expect(screen.getAllByText("$250.00").length).toBeGreaterThan(0);
     });
 
@@ -199,7 +277,7 @@ describe("App", () => {
         installFetchMock();
         const user = userEvent.setup();
         render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
-        const input = screen.getByLabelText(enTranslation.MultiPlanAmount);
+        const input = screen.getByLabelText(enTranslation.calcAmountLabel);
         await user.clear(input);
         await user.type(input, "20000"); // above the LT max (15000)
 
