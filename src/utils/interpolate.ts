@@ -7,8 +7,9 @@ export function interpolate(
   vars: Record<string, string | number>
 ): string {
   return Object.entries(vars).reduce(
-    (out, [key, value]) =>
-      out.replace(new RegExp(`\\{${key}\\}`, "g"), String(value)),
+    // split/join replaces every `{key}` literally — no dynamic RegExp, so keys
+    // containing regex metacharacters can't cause mismatches or ReDoS.
+    (out, [key, value]) => out.split(`{${key}}`).join(String(value)),
     template
   );
 }
