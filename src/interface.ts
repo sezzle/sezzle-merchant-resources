@@ -7,17 +7,12 @@ export interface ITranslation {
   MultiPlantrusted: string;
   MultiPlanweeks: string;
   LTadjustedTotal: string;
-  LThideDetails: string;
   LTinterest: string;
   LTmonthlyAmount: string;
   LTperMonth: string;
   LTpercent: string;
   LTreadApr: string;
   LTsampleApr: string;
-  LTseeDetails: string;
-  LTsingleFeatureAffordable: string;
-  LTsingleFeaturePrequalify: string;
-  LTsingleFeatureTrusted: string;
   LTtermLength: string;
   LTterms3: string;
   terms1: string;

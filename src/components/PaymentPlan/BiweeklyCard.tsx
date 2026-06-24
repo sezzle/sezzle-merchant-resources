@@ -48,12 +48,12 @@ const BiweeklyCard = ({
     <div className="hsw-plan">
       <div className="hsw-plan-head">
         <div className="hsw-plan-headline">
-          <span className={`hsw-plan-amount${isPI5 ? " is-pi5" : ""}`}>
+          <span className="hsw-plan-amount">
             {installmentPrice}
           </span>
           <span className="hsw-plan-today">{translation.today}</span>
         </div>
-        <span className={`pill hsw-plan-pill${isPI5 ? " is-pi5" : ""}`}>
+        <span className="pill hsw-plan-pill">
           {translation.MultiPlanpayIn} {numberOfPayments}
           {isPI5 && <sup>TM</sup>}
         </span>

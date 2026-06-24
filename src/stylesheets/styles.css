@@ -213,7 +213,10 @@
     display: grid;
     grid-template-columns: 1.05fr 1fr;
     gap: 56px;
-    align-items: center;
+}
+.hsw-hero-content {
+    position: relative;
+    top: 65px;
 }
 .hsw-hero-eyebrow {
     background: var(--bg-card);
@@ -347,12 +350,6 @@
     letter-spacing: -0.02em;
     color: var(--accent);
 }
-.hsw-plan-amount.is-pi5 {
-    color: var(--sezzle-eggplant);
-}
-.sezzle-container-dark .hsw-plan-amount.is-pi5 {
-    color: var(--fg-primary);
-}
 /* Amount + "Today" share a baseline so the small label sits on the big
    figure's baseline rather than drifting against it. */
 .hsw-plan-headline {
@@ -379,14 +376,6 @@
     padding: 8px 14px;
     border-radius: var(--radius-pill);
     white-space: nowrap;
-}
-.hsw-plan-pill.is-pi5 {
-    color: var(--sezzle-eggplant);
-    background: var(--neutral-100);
-}
-.sezzle-container-dark .hsw-plan-pill.is-pi5 {
-    color: var(--fg-primary);
-    background: rgba(255, 255, 255, 0.1);
 }
 .hsw-plan-pill sup {
     vertical-align: super;
@@ -491,54 +480,13 @@
     gap: 2px;
 }
 .monthly-detail-row .detail-label {
-    font-size: 12px;
-    color: var(--fg-secondary);
-}
-.monthly-detail-row .detail-value {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--fg-primary);
-}
-
-/* feature accordion */
-.features-accordion {
-    margin-top: 18px;
-}
-.accordion-title-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.accordion-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
-}
-.accordion-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    display: inline-flex;
-}
-.accordion-icon svg path {
-    fill: var(--accent);
-}
-.features-drawer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 12px;
-}
-.single-feature {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-size: 14px;
     color: var(--fg-secondary);
 }
-.single-feature svg path {
-    fill: var(--sezzle-jade);
+.monthly-detail-row .detail-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fg-primary);
 }
 
 /* ── How it works ──────────────────────────────────────────────────────── */

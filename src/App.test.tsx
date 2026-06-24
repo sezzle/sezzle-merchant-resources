@@ -283,15 +283,4 @@ describe("App", () => {
 
         expect((input as HTMLInputElement).className).toContain("input-error");
     });
-
-    it("toggles the long-term features accordion", async () => {
-        installFetchMock();
-        const user = userEvent.setup();
-        render(wrap({ ...baseConfig, isLongTerm: true }, <App />));
-        const toggle = screen.getByRole("button", { name: enTranslation.LTseeDetails });
-        expect(toggle.getAttribute("aria-expanded")).toBe("false");
-
-        await user.click(toggle);
-        expect(toggle.getAttribute("aria-expanded")).toBe("true");
-    });
 });

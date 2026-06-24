@@ -49,13 +49,13 @@ const PaymentTerms = ({
                   </span>
               </p>
           )}
+          {eligibility.lt && <p className="terms lt-terms">{ltTerms3}</p>}
           <p
               className="terms"
               dangerouslySetInnerHTML={{
                   __html: translation.webBankVirtualCards,
               }}
           />
-          {eligibility.lt && <p className="terms lt-terms">{ltTerms3}</p>}
       </div>
   );
 };

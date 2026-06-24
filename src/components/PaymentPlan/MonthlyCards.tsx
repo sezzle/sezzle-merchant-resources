@@ -1,7 +1,5 @@
-// Long-term monthly installment cards + the "See details" feature accordion,
-// ported from generateMonthlyCard / generateMonthlyInner in
-// sezzle-widget-react's MultiPlanModal.js.
-import { useState } from "react";
+// Long-term monthly installment cards, ported from generateMonthlyCard /
+// generateMonthlyInner in sezzle-widget-react's MultiPlanModal.js.
 import { ITranslation } from "../../interface";
 import {
   addDelimiters,
@@ -9,7 +7,6 @@ import {
 } from "../../utils/renderFunctions";
 import { selectTermsToShow, ResolvedLTConfig } from "../../utils/ltConfig";
 import { parsePrice, formatNumberForLocale } from "../../utils/price";
-import { FeatureCheckIcon, ChevronDownIcon, ChevronUpIcon } from "./icons";
 
 interface MonthlyCardsProps {
   currency: string;
@@ -90,66 +87,6 @@ const MonthlyCard = ({
   );
 };
 
-const FeaturesAccordion = ({ translation }: { translation: ITranslation }) => {
-  const [expanded, setExpanded] = useState(false);
-  const label = expanded ? translation.LThideDetails : translation.LTseeDetails;
-
-  return (
-    <div className="features-accordion">
-      <div className="accordion-title-bar">
-        <span className="accordion-title" aria-hidden="true">
-          {label}
-        </span>
-        <button
-          className="accordion-icon accordion-toggle"
-          aria-expanded={expanded}
-          aria-controls="features-drawer"
-          aria-label={label}
-          onClick={() => setExpanded((e) => !e)}
-        >
-          {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
-        </button>
-      </div>
-      <div
-        id="features-drawer"
-        className="features-drawer"
-        style={expanded ? undefined : { display: "none" }}
-      >
-        <div className="single-feature">
-          <div>
-            <FeatureCheckIcon />
-          </div>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: translation.LTsingleFeatureAffordable,
-            }}
-          />
-        </div>
-        <div className="single-feature">
-          <div>
-            <FeatureCheckIcon />
-          </div>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: translation.LTsingleFeaturePrequalify,
-            }}
-          />
-        </div>
-        <div className="single-feature">
-          <div>
-            <FeatureCheckIcon />
-          </div>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: translation.LTsingleFeatureTrusted,
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const MonthlyCards = ({
   currency,
   priceString,
@@ -172,7 +109,6 @@ const MonthlyCards = ({
           lang={lang}
         />
       ))}
-      <FeaturesAccordion translation={translation} />
     </>
   );
 };
