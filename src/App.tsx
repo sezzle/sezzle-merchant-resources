@@ -136,7 +136,7 @@ function App() {
 
       <AppPromo translation={translation} />
 
-      <Faq translation={translation} />
+      <Faq translation={translation} showPI5={showPI5Row} />
 
       <Footer
         translation={translation}

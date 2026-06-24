@@ -1,6 +1,8 @@
 import { useConfig } from "../../containers/ConfigProvider";
-import enLight from "../../assets/Color-Logo.svg";
-import enDark from "../../assets/Color-White-Logo.svg";
+// Header uses the horizontal "Buy Now, Pay Later" lockup: full-color on light
+// backgrounds, white on dark. Both share the same intrinsic ratio.
+import enLight from "../../assets/sezzle-horizontal-full-color.png";
+import enDark from "../../assets/sezzle-horizontal-bnpl-white.png";
 import React from "react";
 
 function Logo(): React.JSX.Element {
@@ -11,7 +13,9 @@ function Logo(): React.JSX.Element {
   // Light is the default: only an explicit "dark" theme uses the white logo;
   // any other value falls back to the light (full-color) logo.
   const logoImg: string = config.theme === "dark" ? enDark : enLight;
-  return <img src={logoImg} alt="Logo" height={75} width={300} />;
+  // width/height set the intrinsic ratio so the browser reserves the right
+  // space (CSS still caps the rendered height to 38px).
+  return <img src={logoImg} alt="Logo" width={135} height={38} />;
 }
 
 export default Logo;

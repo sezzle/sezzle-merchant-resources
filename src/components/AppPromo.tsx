@@ -1,6 +1,6 @@
 // App-promo banner: phone screenshot + copy and the app-download CTA(s).
 // On mobile we surface the native App Store / Google Play listings; on desktop
-// a single "Get the app" button points at sezzle.com/app.
+// a single "Get The App" button points at sezzle.com/app.
 import { ITranslation } from "../interface";
 import appScreen from "../assets/sezzle-app-screen.webp";
 import { AppStoreIcon, GooglePlayIcon } from "./PaymentPlan/icons";

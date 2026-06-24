@@ -350,6 +350,13 @@
 .sezzle-container-dark .hsw-plan-amount.is-pi5 {
     color: var(--fg-primary);
 }
+/* Amount + "Today" share a baseline so the small label sits on the big
+   figure's baseline rather than drifting against it. */
+.hsw-plan-headline {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+}
 .hsw-plan-today {
     font-size: 15px;
     color: var(--fg-secondary);
@@ -364,9 +371,10 @@
 .hsw-plan-pill {
     font-size: 12px;
     font-weight: 700;
+    line-height: 1.1;
     color: var(--accent);
     background: var(--accent-soft);
-    padding: 5px 12px;
+    padding: 8px 14px;
     border-radius: var(--radius-pill);
     white-space: nowrap;
 }

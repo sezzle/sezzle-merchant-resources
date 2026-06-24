@@ -22,12 +22,10 @@ export interface ITranslation {
   LTterms3: string;
   terms1: string;
   terms2: string;
-  termsHiw: string;
   webBankTerms: string;
   webBankTermsPI4: string;
   webBankTermsPI5: string;
   webBankVirtualCards: string;
-  linkToCompleteTerms: string;
 
   // Redesign marketing copy (hero, calculator, how-it-works, app promo, FAQ,
   // footer). `{merchantName}` / `{min}` are interpolated at render.
@@ -66,6 +64,7 @@ export interface ITranslation {
   faq2A: string;
   faq3Q: string;
   faq3A: string;
+  faq3APi5: string;
   faq4Q: string;
   faq4A: string;
   faq5Q: string;

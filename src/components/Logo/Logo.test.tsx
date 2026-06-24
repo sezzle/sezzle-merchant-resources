@@ -27,16 +27,16 @@ describe("Logo", () => {
         expect(container.querySelector("img")).toBeNull();
     });
 
-    // The logo is theme-driven only: light -> Color-Logo, dark ->
-    // Color-White-Logo. Language no longer affects which asset is used, so each
-    // language maps to the same theme-based asset.
+    // The logo is theme-driven only: light -> full-color "Buy Now, Pay Later"
+    // lockup, dark -> white "Buy Now, Pay Later" lockup. Language no longer
+    // affects which asset is used, so each language maps to the same asset.
     it.each([
-        ["light", "en", "Color-Logo.svg"],
-        ["light", "fr", "Color-Logo.svg"],
-        ["light", "es", "Color-Logo.svg"],
-        ["dark", "en", "Color-White-Logo.svg"],
-        ["dark", "fr", "Color-White-Logo.svg"],
-        ["dark", "es", "Color-White-Logo.svg"],
+        ["light", "en", "sezzle-horizontal-full-color.png"],
+        ["light", "fr", "sezzle-horizontal-full-color.png"],
+        ["light", "es", "sezzle-horizontal-full-color.png"],
+        ["dark", "en", "sezzle-horizontal-bnpl-white.png"],
+        ["dark", "fr", "sezzle-horizontal-bnpl-white.png"],
+        ["dark", "es", "sezzle-horizontal-bnpl-white.png"],
     ])("renders the %s/%s logo when configured", (theme, language, asset) => {
         renderLogo({
             merchant_uuid: "x",
@@ -70,7 +70,7 @@ describe("Logo", () => {
                 maxPrice: 2500,
             });
             const img = screen.getByAltText("Logo") as HTMLImageElement;
-            expect(img.src).toContain("Color-Logo.svg");
+            expect(img.src).toContain("sezzle-horizontal-full-color.png");
         }
     );
 });

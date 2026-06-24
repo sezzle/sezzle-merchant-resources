@@ -37,27 +37,26 @@ const PaymentTerms = ({
     : translation.webBankTermsPI4;
 
   return (
-    <div className="terms-container">
-      <p className="terms">
-        <span>{translation.terms1}</span>
-        <br />
-        <span dangerouslySetInnerHTML={{ __html: translation.termsHiw }} />
-      </p>
-      <p className="terms">{translation.terms2}</p>
-      {eligibility.pi4 && (
-        <p className="terms">
-          <span className="webbank-terms">
-            {translation.webBankTerms} {productTerms}
-          </span>
-          <br />
-          <span
-            dangerouslySetInnerHTML={{ __html: translation.linkToCompleteTerms }}
+      <div className="terms-container">
+          <p className="terms">
+              <span>{translation.terms1}</span>{" "}
+              <span>{translation.terms2}</span>
+          </p>
+          {eligibility.pi4 && (
+              <p className="terms">
+                  <span className="webbank-terms">
+                      {translation.webBankTerms} {productTerms}
+                  </span>
+              </p>
+          )}
+          <p
+              className="terms"
+              dangerouslySetInnerHTML={{
+                  __html: translation.webBankVirtualCards,
+              }}
           />
-        </p>
-      )}
-      <p className="terms">{translation.webBankVirtualCards}</p>
-      {eligibility.lt && <p className="terms lt-terms">{ltTerms3}</p>}
-    </div>
+          {eligibility.lt && <p className="terms lt-terms">{ltTerms3}</p>}
+      </div>
   );
 };
 

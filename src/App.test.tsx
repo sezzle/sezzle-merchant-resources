@@ -68,7 +68,7 @@ describe("App", () => {
         expect(
             screen.getByRole("heading", { name: enTranslation.appTitle })
         ).toBeInTheDocument();
-        // jsdom reports a desktop user agent, so the single "Get the app" CTA
+        // jsdom reports a desktop user agent, so the single "Get The App" CTA
         // (pointing at sezzle.com/app) renders instead of the store badges.
         expect(
             screen.getByRole("link", { name: enTranslation.appGetTheApp })
