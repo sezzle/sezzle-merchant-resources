@@ -32,6 +32,7 @@ export interface ITranslation {
   heroEyebrow: string;
   heroHeadline: string;
   heroSubcopy: string;
+  heroSubPi5: string;
   heroShopNow: string;
   heroSeeHow: string;
   calcTitle: string;

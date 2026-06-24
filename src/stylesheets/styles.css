@@ -272,6 +272,9 @@
     gap: 16px;
     flex-wrap: wrap;
 }
+.hsw-calc-head div:first-child {
+    align-self: anchor-center;
+}
 .hsw-calc-title {
     font-size: 13px;
     font-weight: 700;
@@ -371,7 +374,6 @@
 .hsw-plan-pill {
     font-size: 12px;
     font-weight: 700;
-    line-height: 1.1;
     color: var(--accent);
     background: var(--accent-soft);
     padding: 8px 14px;
@@ -406,6 +408,10 @@
     height: 2px;
     background: var(--timeline-track);
     z-index: 0;
+}
+.hsw-timeline-line:first-child {
+    left: 12%;
+    right: 12%;
 }
 .hsw-step {
     position: relative;
@@ -586,7 +592,7 @@
     background: var(--bg-card);
     box-shadow: var(--shadow-sm);
 }
-.hsw-step-badge .step-image svg {
+.hsw-step-badge .step-image, .hsw-step-badge .step-image svg {
     width: 30px;
     height: 30px;
 }
@@ -595,9 +601,6 @@
     font-weight: 700;
     color: var(--accent);
     margin-top: 24px;
-}
-.hsw-step-num.is-final {
-    color: var(--sezzle-jade);
 }
 .hsw-step-title {
     font-family: var(--font-display);

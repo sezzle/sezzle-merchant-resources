@@ -116,6 +116,7 @@ function App() {
         translation={translation}
         merchantName={merchantName}
         shopUrl={shopUrl}
+        showPI5={showPI5Row}
         calculator={
           <PaymentWrapper
             currency={currency}

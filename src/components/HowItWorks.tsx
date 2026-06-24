@@ -31,9 +31,7 @@ const HowItWorks = ({ translation }: HowItWorksProps) => {
                   <Icon />
                 </div>
               </div>
-              <div
-                className={`hsw-step-num${i === steps.length - 1 ? " is-final" : ""}`}
-              >
+              <div className="hsw-step-num">
                 {translation.hiwStepLabel} {i + 1}
               </div>
               <h3 className="hsw-step-title">{title}</h3>
