@@ -275,6 +275,9 @@
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-xs);
 }
+.sezzle-container-dark .hsw-eyebrow.hsw-hero-eyebrow {
+    background: var(--border-subtle);
+}
 .hsw-hero-title {
     font-family: var(--font-display);
     font-weight: 500;
