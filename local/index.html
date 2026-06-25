@@ -24,6 +24,13 @@
     const node = document.getElementById("how-sezzle-works");
     const iframe = document.createElement('iframe');
     iframe.src = "http://localhost:3000/index.html";
+    // Accessible name for the frame, localized to match the page's hiwTitle.
+    const FRAME_TITLES = {
+        en: "How Sezzle Works",
+        fr: "Comment fonctionne Sezzle",
+        es: "Cómo funciona Sezzle",
+    };
+    iframe.title = FRAME_TITLES[config.language] || FRAME_TITLES.en;
     iframe.height = '2000px';
     iframe.width = '100%';
     iframe.style.border = 'none';

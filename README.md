@@ -77,6 +77,13 @@ Insert the following code into your HTML file:
       const node = document.getElementById("how-sezzle-works");
       const iframe = document.createElement('iframe');
       iframe.src = 'https://media.sezzle.com/how-sezzle-works/v2/index.html';
+      // Accessible name for the frame, localized to match config.language.
+      const FRAME_TITLES = {
+          en: "How Sezzle Works",
+          fr: "Comment fonctionne Sezzle",
+          es: "Cómo funciona Sezzle",
+      };
+      iframe.title = FRAME_TITLES[config.language] || FRAME_TITLES.en;
       iframe.height = '2000px';
       iframe.width = '100%';
       iframe.style.border = 'none';

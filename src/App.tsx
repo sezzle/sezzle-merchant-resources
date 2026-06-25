@@ -51,6 +51,14 @@ function App() {
     dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
   }, [config]);
 
+  // Give the embedded document a localized name (used as the page/frame
+  // accessible name), sourced from the translation like the section headings.
+  useEffect(() => {
+    if (translation?.hiwTitle) {
+      document.title = translation.hiwTitle;
+    }
+  }, [translation]);
+
   if (!config) return null;
   const lang = config.language;
 
