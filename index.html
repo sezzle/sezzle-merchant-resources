@@ -6,7 +6,11 @@
         <title>How Sezzle Works</title>
     </head>
     <body>
-        <div id="how-sezzle-works-container"></div>
+        <!-- The mount node is the page's single <main> landmark, so the
+             document always exposes one even before React renders / before
+             merchant config arrives. App renders header + content + footer
+             inside it (do not add another <main>). -->
+        <main id="how-sezzle-works-container"></main>
         <script type="module" src="/src/index.tsx"></script>
     </body>
 </html>

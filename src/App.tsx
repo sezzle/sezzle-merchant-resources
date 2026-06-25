@@ -118,39 +118,36 @@ function App() {
         config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
       }`}
     >
+      {/* The page's single <main> landmark is the mount node in index.html,
+          so this content renders inside it — do not add another <main> here. */}
       <Header translation={translation} shopUrl={shopUrl} />
 
-      {/* Primary content lives in a <main> landmark so the embedded document
-          has the single main region screen readers expect (the header/footer
-          remain the banner/contentinfo landmarks). */}
-      <main>
-        <Hero
-          translation={translation}
-          merchantName={merchantName}
-          shopUrl={shopUrl}
-          showPI5={showPI5Row}
-          calculator={
-            <PaymentWrapper
-              currency={currency}
-              priceString={priceString}
-              inputValue={inputValue}
-              hasError={hasError}
-              onChange={handleChange}
-              eligibility={eligibility}
-              showPI5Row={showPI5Row}
-              translation={translation}
-              ltConfig={ltConfig}
-              lang={lang}
-            />
-          }
-        />
+      <Hero
+        translation={translation}
+        merchantName={merchantName}
+        shopUrl={shopUrl}
+        showPI5={showPI5Row}
+        calculator={
+          <PaymentWrapper
+            currency={currency}
+            priceString={priceString}
+            inputValue={inputValue}
+            hasError={hasError}
+            onChange={handleChange}
+            eligibility={eligibility}
+            showPI5Row={showPI5Row}
+            translation={translation}
+            ltConfig={ltConfig}
+            lang={lang}
+          />
+        }
+      />
 
-        <HowItWorks translation={translation} />
+      <HowItWorks translation={translation} />
 
-        <AppPromo translation={translation} />
+      <AppPromo translation={translation} />
 
-        <Faq translation={translation} showPI5={showPI5Row} />
-      </main>
+      <Faq translation={translation} showPI5={showPI5Row} />
 
       <Footer
         translation={translation}
