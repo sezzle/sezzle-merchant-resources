@@ -11,26 +11,24 @@
 @font-face { font-family: "Satoshi"; font-weight: 500; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Medium.otf") format("opentype"); }
 
 :root {
-    /* Brand */
-    --sezzle-eggplant: #2a1a3a;
-    --sezzle-altoid: #6e6786;
-    --sezzle-lilac: #f9f5fd;
-    --sezzle-jade: #00b874;
-    --sezzle-green: #29d3a2;
-    --sezzle-eggplant-700: #3a2550;
+    /* ── Brand core palette (sezzle.com/brand-guidelines) ─────────────────── */
+    --plum-dark: #201733;   /* Primary Plum — Dark  : dark bg, font/icon on light */
+    --plum-light: #f2e6ff;  /* Primary Plum — Light : light bg, font/icon on dark */
+    --green-bold: #9ff4d9;  /* Bold Green  : CTAs on dark, progress, success     */
+    --plum-bold: #8333d4;   /* Bold Plum   : CTAs on light, brand expression     */
+    --pink-bold: #ff5667;   /* Bold Pink   : discounts, sales, pricing, errors   */
+    --orange-bold: #ff8100; /* Bold Orange : Sezzle Spend/Balance, earned value  */
 
-    --violet-50: #f4ecfd;
-    --violet-100: #e6d2fb;
-    --violet-200: #c9a1f4;
-    --violet-500: #8333d4;
-    --violet-600: #7124c2;
-    --violet-700: #5a1aa0;
+    /* Tints of Bold Plum for hovers/borders (brand-expression family) */
+    --plum-100: #e6d2fb;
+    --plum-200: #c9a1f4;
+    --plum-600: #7124c2;
+    --plum-700: #5a1aa0;
+
+    /* Darker Bold-Green for on-dark hover states (text-on-fill stays AA). */
+    --green-deep: #5fd9b8;
 
     --neutral-0: #ffffff;
-    --neutral-100: #f4f4f4;
-    --neutral-200: #eaeaea;
-    --neutral-300: #d1d1d1;
-    --neutral-600: #5e5e5e;
 
     /* Brand petal gradient (hero glow + app banner) */
     --gradient-petals:
@@ -38,22 +36,27 @@
             #a366ff 0deg, #4b0099 90deg, #cc2e2e 140deg, #ff8080 180deg,
             #ffb84d 220deg, #e67300 270deg, #009956 315deg, #00e68a 360deg);
 
-    /* Semantic roles — re-pointed under .sezzle-container-dark */
-    --fg-primary: var(--sezzle-eggplant);
-    --fg-secondary: var(--sezzle-altoid);
+    /* ── Semantic roles (LIGHT) — brand opacity hierarchy over Plum Dark ───
+       Headings 100% · body 60% · labels 50% · tag fill 12% · border 8% ·
+       card/divider fills 4%. Re-pointed wholesale under .sezzle-container-dark. */
+    --fg-primary: var(--plum-dark);                  /* headings — 100% */
+    --fg-secondary: rgba(32, 23, 51, 0.64);          /* body/labels     */
     --fg-onbrand: var(--neutral-0);
-    --accent: var(--violet-500);
-    --accent-deep: var(--violet-600);
-    --accent-soft: var(--violet-50);
+    --accent: var(--plum-bold);                      /* CTA / link on light */
+    --accent-deep: var(--plum-600);
+    --accent-soft: rgba(131, 51, 212, 0.12);         /* tag fill — 12% */
+    --indicator: var(--plum-bold);                   /* progress/success on light */
+    --danger: var(--pink-bold);
 
     --bg-canvas: var(--neutral-0);
-    --bg-tinted: var(--sezzle-lilac);
+    --bg-tinted: var(--plum-light);                  /* light brand surface */
     --bg-card: var(--neutral-0);
 
-    --border-subtle: var(--neutral-200);
-    --border-default: var(--neutral-300);
-    --timeline-track: var(--neutral-200);
+    --border-subtle: rgba(32, 23, 51, 0.08);         /* border/divider — 8% */
+    --border-default: rgba(32, 23, 51, 0.16);
+    --timeline-track: rgba(32, 23, 51, 0.12);
 
+    --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
@@ -77,17 +80,19 @@
 
 /* ── Dark theme: re-point the semantic tokens ──────────────────────────── */
 .sezzle-container-dark {
-    --fg-primary: #f3eefb;
-    --fg-secondary: #b3a9c9;
-    --accent: var(--violet-200);
-    --accent-deep: #d9bcf7;
-    --accent-soft: rgba(201, 161, 244, 0.16);
-    --bg-canvas: #150d23;
-    --bg-tinted: #1d1330;
-    --bg-card: #241733;
-    --border-subtle: rgba(255, 255, 255, 0.12);
-    --border-default: rgba(255, 255, 255, 0.22);
-    --timeline-track: rgba(255, 255, 255, 0.18);
+    /* Plum Light over Plum Dark, same brand opacity hierarchy. */
+    --fg-primary: var(--plum-light);                 /* headings — 100% */
+    --fg-secondary: rgba(242, 230, 255, 0.64);       /* body/labels     */
+    --accent: var(--plum-200);                       /* link / expression on dark */
+    --accent-deep: var(--green-deep);
+    --accent-soft: rgba(159, 244, 217, 0.12);        /* tag fill — 12% Bold Green */
+    --indicator: var(--green-bold);                  /* progress/success on dark */
+    --bg-canvas: var(--plum-dark);
+    --bg-tinted: var(--plum-dark);
+    --bg-card: var(--plum-dark);
+    --border-subtle: rgba(242, 230, 255, 0.08);      /* border/divider — 8% */
+    --border-default: rgba(242, 230, 255, 0.16);
+    --timeline-track: rgba(242, 230, 255, 0.14);
 }
 
 /* ── Container + base ──────────────────────────────────────────────────── */
@@ -122,18 +127,23 @@
     margin: 0;
 }
 
+/* Brand: every button is pill-shaped, Satoshi Medium 15px, 14×28 padding,
+   min 44px touch target. Primary fill follows the background — Bold Plum on
+   light, Bold Green on dark (handled in the dark-theme override below). */
 .hsw-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    min-height: 44px;
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 16px;
-    padding: 15px 34px;
+    font-size: 15px;
+    padding: 14px 28px;
     border-radius: var(--radius-pill);
     text-decoration: none;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     transition: background var(--dur-base) var(--ease-out),
         border-color var(--dur-base) var(--ease-out),
         transform var(--dur-fast) var(--ease-out);
@@ -143,7 +153,7 @@
 }
 .hsw-btn-primary {
     background: var(--accent);
-    color: #fff;
+    color: var(--neutral-0);
     box-shadow: var(--shadow-brand);
 }
 .hsw-btn-primary:hover {
@@ -151,11 +161,53 @@
 }
 .hsw-btn-secondary {
     background: var(--bg-card);
-    color: var(--fg-primary);
-    border-color: var(--border-default);
+    color: var(--accent);
+    border-color: var(--accent);
 }
 .hsw-btn-secondary:hover {
-    border-color: var(--accent);
+    color: var(--accent-deep);
+    border-color: var(--accent-deep);
+}
+
+/* ── CTAs on dark backgrounds — Bold Green (brand) ─────────────────────────
+   Primary: Bold Green fill, Plum-Dark text. Secondary: Bold Green text+border.
+   Hover darkens to --green-deep; Plum-Dark on either green clears AA (≈9.7:1),
+   and Bold-Green/--green-deep text on the Plum-Dark canvas clears AA too. */
+.sezzle-container-dark .hsw-btn-primary {
+    background: var(--green-bold);
+    color: var(--plum-dark);
+    box-shadow: none;
+}
+.sezzle-container-dark .hsw-btn-primary:hover {
+    background: var(--green-deep);
+}
+.sezzle-container-dark .hsw-btn-secondary {
+    color: var(--green-bold);
+    border-color: var(--green-bold);
+}
+.sezzle-container-dark .hsw-btn-secondary:hover {
+    color: var(--green-deep);
+    border-color: var(--green-deep);
+}
+
+/* ── Text links ────────────────────────────────────────────────────────────
+   Brand: the "Text link" button variant — accent colour, underlined, sentence
+   case. Picks up --accent so it is Bold Plum on light, Plum-Light on dark.
+   Scoped to body copy so it never restyles the pill buttons (which are <a>s). */
+.hsw-hero-sub a,
+.hsw-app-body a,
+.hsw-step-body a,
+.hsw-faq-a a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--dur-base) var(--ease-out);
+}
+.hsw-hero-sub a:hover,
+.hsw-app-body a:hover,
+.hsw-step-body a:hover,
+.hsw-faq-a a:hover {
+    color: var(--accent-deep);
 }
 
 /* ── Header ────────────────────────────────────────────────────────────── */
@@ -313,7 +365,7 @@
     border-color: var(--accent);
 }
 .hsw-amount-input-wrap.input-error {
-    border-color: #d32f2f;
+    border-color: var(--danger);
 }
 .hsw-amount-input {
     border: none;
@@ -327,7 +379,7 @@
     background: transparent;
 }
 .hsw-amount-input.input-error {
-    color: #d32f2f;
+    color: var(--danger);
 }
 
 /* one plan block (Pay in 4 / Pay in 5 / monthly group) */
@@ -365,12 +417,15 @@
     font-weight: 500;
     color: var(--fg-secondary);
 }
+/* "Pay in X" plan pill — fixed Bold-Plum-on-Plum-Light tag, identical in both
+   themes (core palette tokens, never re-pointed), so it reads the same and stays
+   AA regardless of the surrounding card surface. */
 .pill,
 .hsw-plan-pill {
     font-size: 12px;
     font-weight: 500;
-    color: var(--accent);
-    background: var(--accent-soft);
+    color: var(--plum-bold);
+    background: var(--plum-light);
     padding: 8px 14px;
     border-radius: var(--radius-pill);
     white-space: nowrap;
@@ -416,8 +471,8 @@
     border: 2px solid var(--border-default);
 }
 .hsw-dot.is-first {
-    background: var(--sezzle-jade);
-    border-color: var(--sezzle-jade);
+    background: var(--green-bold);
+    border-color: var(--green-bold);
 }
 .hsw-step-amt {
     font-size: 14px;
@@ -526,7 +581,7 @@
 }
 .hsw-step-card:hover {
     box-shadow: var(--shadow-md);
-    border-color: var(--violet-200);
+    border-color: var(--plum-200);
 }
 .hsw-step-badge {
     display: flex;
@@ -573,7 +628,7 @@
     max-width: 1120px;
     margin: 0 auto;
     border-radius: var(--radius-2xl);
-    background: linear-gradient(135deg, var(--violet-700) 0%, var(--sezzle-eggplant) 100%);
+    background: linear-gradient(135deg, var(--plum-700) 0%, var(--plum-dark) 100%);
     padding: 64px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -605,10 +660,10 @@
 }
 .hsw-app-content {
     position: relative;
-    color: #fff;
+    color: var(--neutral-0)
 }
 .hsw-app-eyebrow {
-    color: var(--sezzle-green);
+    color: var(--green-bold);
 }
 .hsw-app-title {
     font-family: var(--font-display);
@@ -617,7 +672,7 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin: 14px 0 0;
-    color: #fff;
+    color: var(--neutral-0)
 }
 .hsw-app-body {
     font-size: 17px;
@@ -632,6 +687,8 @@
     gap: 12px;
     margin-top: 30px;
 }
+/* Store buttons sit on the dark app banner: white at rest, Bold Green on hover.
+   Primary = solid white fill; secondary = white outline. */
 .hsw-store-btn {
     display: inline-flex;
     align-items: center;
@@ -640,19 +697,30 @@
     border-radius: var(--radius-pill);
     text-decoration: none;
     font-weight: 500;
-    transition: transform var(--dur-fast) var(--ease-out);
+    border: 2px solid transparent;
+    transition: background var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out),
+        color var(--dur-base) var(--ease-out),
+        transform var(--dur-fast) var(--ease-out);
 }
 .hsw-store-btn:active {
     transform: scale(0.97);
 }
 .hsw-store-btn.is-primary {
-    background: #fff;
-    color: var(--sezzle-eggplant);
+    background: var(--neutral-0);
+    color: var(--plum-dark);
+}
+.hsw-store-btn.is-primary:hover {
+    background: var(--green-bold);
 }
 .hsw-store-btn.is-secondary {
     background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
+    border-color: var(--neutral-0);
+    color: var(--neutral-0);
+}
+.hsw-store-btn.is-secondary:hover {
+    border-color: var(--green-bold);
+    color: var(--green-bold);
 }
 
 /* ── FAQ ───────────────────────────────────────────────────────────────── */
@@ -720,12 +788,12 @@
 
 /* ── Footer / disclosures ──────────────────────────────────────────────── */
 .hsw-footer {
-    background: var(--sezzle-eggplant);
+    background: var(--plum-dark);
     color: rgba(255, 255, 255, 0.66);
     padding: 56px 40px 48px;
 }
 .sezzle-container-dark .hsw-footer {
-    background: #0e0818;
+    background: var(--plum-dark);
 }
 .hsw-footer-inner {
     max-width: 1120px;
@@ -745,15 +813,15 @@
     width: auto;
     display: block;
 }
+/* Footer sits on Plum-Dark — CTA follows the on-dark rule (Bold Green fill). */
 .hsw-footer-cta {
-    background: #fff;
-    color: var(--sezzle-eggplant);
+    background: var(--green-bold);
+    color: var(--plum-dark);
     font-size: 15px;
-    padding: 12px 26px;
     box-shadow: none;
 }
 .hsw-footer-cta:hover {
-    background: #fff;
+    background: var(--green-deep);
 }
 .hsw-footer-disclosures {
     margin-top: 28px;
@@ -770,8 +838,11 @@
     color: rgba(255, 255, 255, 0.66);
 }
 .hsw-footer-disclosures .terms a {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--green-bold);
     text-decoration: underline;
+}
+.hsw-footer-disclosures .terms a:hover {
+    color: var(--green-deep)
 }
 .hsw-footer-copyright {
     margin: 16px 0 0;
@@ -788,6 +859,9 @@
     }
     .hsw-hiw-grid {
         grid-template-columns: 1fr;
+    }
+    .hsw-hero-content {
+        position: initial;
     }
     .hsw-app-banner {
         grid-template-columns: 1fr;
