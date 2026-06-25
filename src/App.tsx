@@ -120,32 +120,37 @@ function App() {
     >
       <Header translation={translation} shopUrl={shopUrl} />
 
-      <Hero
-        translation={translation}
-        merchantName={merchantName}
-        shopUrl={shopUrl}
-        showPI5={showPI5Row}
-        calculator={
-          <PaymentWrapper
-            currency={currency}
-            priceString={priceString}
-            inputValue={inputValue}
-            hasError={hasError}
-            onChange={handleChange}
-            eligibility={eligibility}
-            showPI5Row={showPI5Row}
-            translation={translation}
-            ltConfig={ltConfig}
-            lang={lang}
-          />
-        }
-      />
+      {/* Primary content lives in a <main> landmark so the embedded document
+          has the single main region screen readers expect (the header/footer
+          remain the banner/contentinfo landmarks). */}
+      <main>
+        <Hero
+          translation={translation}
+          merchantName={merchantName}
+          shopUrl={shopUrl}
+          showPI5={showPI5Row}
+          calculator={
+            <PaymentWrapper
+              currency={currency}
+              priceString={priceString}
+              inputValue={inputValue}
+              hasError={hasError}
+              onChange={handleChange}
+              eligibility={eligibility}
+              showPI5Row={showPI5Row}
+              translation={translation}
+              ltConfig={ltConfig}
+              lang={lang}
+            />
+          }
+        />
 
-      <HowItWorks translation={translation} />
+        <HowItWorks translation={translation} />
 
-      <AppPromo translation={translation} />
+        <AppPromo translation={translation} />
 
-      <Faq translation={translation} showPI5={showPI5Row} />
+        <Faq translation={translation} showPI5={showPI5Row} />
+      </main>
 
       <Footer
         translation={translation}
