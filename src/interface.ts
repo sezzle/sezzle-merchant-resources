@@ -21,7 +21,6 @@ export interface ITranslation {
   webBankTermsPI4: string;
   webBankTermsPI5: string;
   webBankVirtualCards: string;
-  linkToCompleteTerms: string;
 
   // Redesign marketing copy (hero, calculator, how-it-works, app promo, FAQ,
   // footer). `{merchantName}` / `{min}` are interpolated at render.
