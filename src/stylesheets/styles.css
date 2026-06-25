@@ -9,8 +9,6 @@
 /* Satoshi — the four weights this page uses (300/Light is unused). */
 @font-face { font-family: "Satoshi"; font-weight: 400; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Regular.otf") format("opentype"); }
 @font-face { font-family: "Satoshi"; font-weight: 500; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Medium.otf") format("opentype"); }
-@font-face { font-family: "Satoshi"; font-weight: 700; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Bold.otf") format("opentype"); }
-@font-face { font-family: "Satoshi"; font-weight: 900; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Black.otf") format("opentype"); }
 
 :root {
     /* Brand */
@@ -117,7 +115,7 @@
 .hsw-eyebrow {
     display: inline-block;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
@@ -129,7 +127,7 @@
     align-items: center;
     gap: 8px;
     font-family: var(--font-body);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 16px;
     padding: 15px 34px;
     border-radius: var(--radius-pill);
@@ -227,7 +225,7 @@
 }
 .hsw-hero-title {
     font-family: var(--font-display);
-    font-weight: 900;
+    font-weight: 500;
     font-size: clamp(36px, 5vw, 54px);
     line-height: 1.04;
     letter-spacing: -0.025em;
@@ -280,7 +278,7 @@
 }
 .hsw-calc-title {
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--fg-secondary);
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -297,7 +295,7 @@
 }
 .hsw-amount-label {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--fg-secondary);
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -322,7 +320,7 @@
     outline: none;
     font-family: var(--font-body);
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--fg-primary);
     width: 110px;
     padding: 11px 4px;
@@ -346,7 +344,7 @@
 }
 .hsw-plan-amount {
     font-size: 24px;
-    font-weight: 900;
+    font-weight: 500;
     letter-spacing: -0.02em;
     color: var(--accent);
 }
@@ -364,13 +362,13 @@
 }
 .hsw-plan-below {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--fg-secondary);
 }
 .pill,
 .hsw-plan-pill {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--accent);
     background: var(--accent-soft);
     padding: 8px 14px;
@@ -423,7 +421,7 @@
 }
 .hsw-step-amt {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--fg-primary);
 }
 .hsw-step-when {
@@ -459,7 +457,7 @@
 }
 .monthly-installment-card .price.monthly-amount {
     font-size: 24px;
-    font-weight: 900;
+    font-weight: 500;
     letter-spacing: -0.02em;
     color: var(--accent);
 }
@@ -485,7 +483,7 @@
 }
 .monthly-detail-row .detail-value {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--fg-primary);
 }
 
@@ -501,7 +499,7 @@
 }
 .hsw-section-title {
     font-family: var(--font-display);
-    font-weight: 900;
+    font-weight: 500;
     font-size: 40px;
     letter-spacing: -0.02em;
     margin: 14px 0 0;
@@ -546,13 +544,13 @@
 }
 .hsw-step-num {
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--accent);
     margin-top: 24px;
 }
 .hsw-step-title {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 21px;
     margin: 8px 0 0;
     color: var(--fg-primary);
@@ -614,7 +612,7 @@
 }
 .hsw-app-title {
     font-family: var(--font-display);
-    font-weight: 900;
+    font-weight: 500;
     font-size: 36px;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -641,7 +639,7 @@
     padding: 13px 22px;
     border-radius: var(--radius-pill);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 500;
     transition: transform var(--dur-fast) var(--ease-out);
 }
 .hsw-store-btn:active {
@@ -690,7 +688,7 @@
     cursor: pointer;
     padding: 22px 24px;
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 18px;
     color: var(--fg-primary);
 }
