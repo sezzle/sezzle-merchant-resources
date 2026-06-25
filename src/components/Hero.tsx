@@ -38,7 +38,16 @@ const Hero = ({
           })}
         </p>
         <div className="hsw-hero-actions">
-          <a className="hsw-btn hsw-btn-primary" href={shopUrl} rel="noreferrer">
+          {/* target="_top" breaks out of the Sezzle iframe so the merchant's
+              own site loads in the full window, not inside this embed. The
+              "See how it works" anchor below is in-page, so it stays within
+              the iframe (no target). */}
+          <a
+            className="hsw-btn hsw-btn-primary"
+            href={shopUrl}
+            target="_top"
+            rel="noreferrer"
+          >
             {translation.heroShopNow}
           </a>
           <a className="hsw-btn hsw-btn-secondary" href="#how-it-works">

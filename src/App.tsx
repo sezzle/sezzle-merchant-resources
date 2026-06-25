@@ -106,11 +106,17 @@ function App() {
   // 4). Below the $50 floor the row shows an "available on …" note instead.
   const showPI5Row = effectiveNumberOfPayments === 5;
 
-  // Both default off the current location: the page is hosted on the partner's
-  // own domain, so its origin is the store to link back to and its hostname is a
-  // sensible merchant-name fallback when none is configured.
-  const merchantName = config.merchantName || window.location.hostname;
-  const shopUrl = window.location.origin;
+  // This page runs inside an iframe served from Sezzle's CDN
+  // (media.sezzle.com), so window.location here is the iframe host — NOT the
+  // merchant. The merchant's site is the parent page's origin, captured as
+  // config.origin (= the postMessage event.origin, the same value reported as
+  // merchant_site in analytics). Use it for both the "Shop Now" link target and
+  // the merchant-name fallback. origin is scheme+host only (no path), so the
+  // link lands on the merchant's home page.
+  const shopUrl = config.origin || "https://sezzle.com";
+  const merchantName =
+    config.merchantName ||
+    (config.origin ? new URL(config.origin).hostname : "");
 
   return (
     <div

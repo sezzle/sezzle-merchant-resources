@@ -65,6 +65,11 @@ const PaymentWrapper = ({
               }`}
               id="multi-plan-input-amount"
               aria-label={translation.calcAmountLabel}
+              // Expose the rejected-input state to assistive tech, not just the
+              // visual `input-error` class. A localized helper-text message is a
+              // follow-up: it needs a new translation key, which is blocked on
+              // the same EN-copy approval as the rest of this redesign.
+              aria-invalid={hasError}
               maxLength={12}
               value={inputValue}
               onChange={onChange}

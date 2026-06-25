@@ -36,9 +36,10 @@ export interface AppConfig {
   minPrice: number;
   maxPrice: number;
   // Optional merchant display name for the footer copy. When omitted, the page
-  // falls back to window.location.hostname. "Shop Now" CTAs always target
-  // window.location.origin (the partner-hosted page's own site), so the
-  // integration does not supply a shop URL.
+  // falls back to the hostname of `origin` (the parent/merchant page). "Shop
+  // Now" CTAs target `origin` too, so the integration does not supply a shop
+  // URL. (window.location here is the iframe host on Sezzle's CDN, so it must
+  // not be used for either.)
   merchantName?: string;
   // Raw long-term inputs (resolved into `ltConfig` below).
   LTgroup?: string;

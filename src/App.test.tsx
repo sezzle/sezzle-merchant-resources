@@ -104,21 +104,21 @@ describe("App", () => {
         }
     });
 
-    it("renders the hero headline and falls back to the hostname for merchant name", () => {
+    it("renders the hero headline and falls back to the merchant origin's hostname for merchant name", () => {
         installFetchMock();
         render(wrap(baseConfig, <App />));
         expect(
             screen.getByRole("heading", { name: enTranslation.heroHeadline })
         ).toBeInTheDocument();
         // With no merchantName configured, merchant-name templates fall back to
-        // the current hostname.
+        // the hostname of the parent (merchant) origin — NOT the iframe host.
         const expectedCopyright = interpolate(enTranslation.footerCopyright, {
-            merchantName: window.location.hostname,
+            merchantName: new URL(baseConfig.origin).hostname,
         });
         expect(screen.getByText(expectedCopyright)).toBeInTheDocument();
     });
 
-    it("personalizes merchant-name copy and points Shop Now at the current origin", () => {
+    it("personalizes merchant-name copy and points Shop Now at the merchant origin, breaking out of the iframe", () => {
         installFetchMock();
         render(wrap({ ...baseConfig, merchantName: "Maple & Pine" }, <App />));
         // Footer copy is personalized with the configured merchant name.
@@ -126,14 +126,16 @@ describe("App", () => {
             merchantName: "Maple & Pine",
         });
         expect(screen.getByText(expectedCopyright)).toBeInTheDocument();
-        // Every plain "Shop Now" CTA (header + hero) points at the current origin.
+        // Every plain "Shop Now" CTA (header + hero) targets the parent
+        // (merchant) origin, and uses target="_top" so it escapes the iframe.
         const shopLinks = screen.getAllByRole("link", {
             name: enTranslation.heroShopNow,
         });
         expect(shopLinks.length).toBeGreaterThan(0);
-        shopLinks.forEach((link) =>
-            expect(link).toHaveAttribute("href", window.location.origin)
-        );
+        shopLinks.forEach((link) => {
+            expect(link).toHaveAttribute("href", baseConfig.origin);
+            expect(link).toHaveAttribute("target", "_top");
+        });
     });
 
     it("renders the FAQ accordion with the first item open", () => {

@@ -33,7 +33,14 @@ const Footer = ({
     <div className="hsw-footer-inner">
       <div className="hsw-footer-top">
         <img src={whiteLogo} alt={translation.logoAltText} />
-        <a className="hsw-btn hsw-footer-cta" href={shopUrl} rel="noreferrer">
+        {/* target="_top" breaks out of the Sezzle iframe so the merchant's own
+            site loads in the full window, not inside this embed. */}
+        <a
+          className="hsw-btn hsw-footer-cta"
+          href={shopUrl}
+          target="_top"
+          rel="noreferrer"
+        >
           {interpolate(translation.footerShopNow, { merchantName })}
         </a>
       </div>

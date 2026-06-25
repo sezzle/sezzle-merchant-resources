@@ -12,9 +12,12 @@ const Header = ({ translation, shopUrl }: HeaderProps) => (
     <div className="sezzle-logo" aria-label={translation.logoAltText}>
       <Logo />
     </div>
+    {/* target="_top" breaks out of the Sezzle iframe so the merchant's own
+        site loads in the full window, not inside this embed. */}
     <a
       className="hsw-btn hsw-btn-primary hsw-header-cta"
       href={shopUrl}
+      target="_top"
       rel="noreferrer"
     >
       {translation.heroShopNow}

@@ -1,18 +1,3 @@
-export const DotIcon = () => (
-  <svg
-    width="17"
-    height="16"
-    viewBox="0 0 17 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8.39999 12C10.6091 12 12.4 10.2091 12.4 8C12.4 5.79086 10.6091 4 8.39999 4C6.19085 4 4.39999 5.79086 4.39999 8C4.39999 10.2091 6.19085 12 8.39999 12Z"
-      fill="var(--indicator)"
-    />
-  </svg>
-);
-
 // Small check used by the hero "Trusted by millions" line. Uses the theme
 // progress/success indicator (Bold Plum on light, Bold Green on dark).
 export const CheckIcon = () => (
