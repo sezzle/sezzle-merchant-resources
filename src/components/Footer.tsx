@@ -6,11 +6,10 @@
 import { ITranslation } from "../interface";
 import { ResolvedLTConfig } from "../utils/ltConfig";
 import { interpolate } from "../utils/interpolate";
-import { useConfig } from "../containers/ConfigProvider";
 import PaymentTerms from "./PaymentPlan/PaymentTerms";
 import { Eligibility } from "./PaymentPlan/PaymentWrapper";
-// Theme-aware brand mark: full-color on light, white on dark (mirrors Logo).
-import colorLogo from "../assets/Color-Logo.svg";
+// The footer background is dark in both themes, so the white mark is always
+// the legible choice.
 import whiteLogo from "../assets/Color-White-Logo.svg";
 
 interface FooterProps {
@@ -29,16 +28,11 @@ const Footer = ({
   eligibility,
   ltConfig,
   lang,
-}: FooterProps) => {
-  const { config } = useConfig();
-  // const footerLogo = config?.theme === "dark" ? colorLogo : whiteLogo;
-  const footerLogo = whiteLogo;
-
-  return (
+}: FooterProps) => (
   <footer className="hsw-footer">
     <div className="hsw-footer-inner">
       <div className="hsw-footer-top">
-        <img src={footerLogo} alt="Sezzle" />
+        <img src={whiteLogo} alt="Sezzle" />
         <a className="hsw-btn hsw-footer-cta" href={shopUrl} rel="noreferrer">
           {interpolate(translation.footerShopNow, { merchantName })}
         </a>
@@ -56,7 +50,6 @@ const Footer = ({
       </div>
     </div>
   </footer>
-  );
-};
+);
 
 export default Footer;

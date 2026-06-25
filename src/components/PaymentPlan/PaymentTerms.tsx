@@ -56,6 +56,12 @@ const PaymentTerms = ({
                   __html: translation.webBankVirtualCards,
               }}
           />
+          <p
+              className="terms"
+              dangerouslySetInnerHTML={{
+                  __html: translation.linkToCompleteTerms,
+              }}
+          />
       </div>
   );
 };
