@@ -9,53 +9,55 @@
     <title>How Sezzle Works — local harness</title>
 </head>
 <body>
-<div id="how-sezzle-works"></div>
-<script>
-    const config = {
-        merchant_uuid: "fc99cfc7-5772-4b36-826c-f27a2b87a8b7",
-        // merchantName: "Crow's Capes",
-        // language: "fr",
-        // countryCode: "CA",
-        // numberOfPayments: 4,
-        // isLongTerm: true,
-        // LTgroup: "b",
-        // theme: "dark",
-    }
-    const node = document.getElementById("how-sezzle-works");
-    const iframe = document.createElement('iframe');
-    iframe.src = "http://localhost:3000/index.html";
-    // Accessible name for the frame, localized to match the page's hiwTitle.
-    const FRAME_TITLES = {
-        en: "How Sezzle Works",
-        fr: "Comment fonctionne Sezzle",
-        es: "Cómo funciona Sezzle",
-    };
-    iframe.title = FRAME_TITLES[config.language] || FRAME_TITLES.en;
-    iframe.height = '2000px';
-    iframe.width = '100%';
-    iframe.style.border = 'none';
+    <main>
+        <div id="how-sezzle-works"></div>
+        <script>
+            const config = {
+                merchant_uuid: "fc99cfc7-5772-4b36-826c-f27a2b87a8b7",
+                // merchantName: "Crow's Capes",
+                // language: "fr",
+                // countryCode: "CA",
+                // numberOfPayments: 4,
+                // isLongTerm: true,
+                // LTgroup: "b",
+                // theme: "dark",
+            }
+            const node = document.getElementById("how-sezzle-works");
+            const iframe = document.createElement('iframe');
+            iframe.src = "http://localhost:3000/index.html";
+            // Accessible name for the frame, localized to match the page's hiwTitle.
+            const FRAME_TITLES = {
+                en: "How Sezzle Works",
+                fr: "Comment fonctionne Sezzle",
+                es: "Cómo funciona Sezzle",
+            };
+            iframe.title = FRAME_TITLES[config.language] || FRAME_TITLES.en;
+            iframe.height = '2000px';
+            iframe.width = '100%';
+            iframe.style.border = 'none';
 
-    // Function to send config to iframe
-    const sendConfig = () => {
-        iframe.contentWindow.postMessage({
-            key: "about_sezzle_config",
-            ...config
-        }, "*");
-    };
+            // Function to send config to iframe
+            const sendConfig = () => {
+                iframe.contentWindow.postMessage({
+                    key: "about_sezzle_config",
+                    ...config
+                }, "*");
+            };
 
-    // Listen for ready signal from iframe (handles browsers where onload fires before React mounts)
-    window.addEventListener("message", function (event) {
-        if (event.data.key === "signal_about_sezzle_ready") {
-            sendConfig();
-        }
-    });
+            // Listen for ready signal from iframe (handles browsers where onload fires before React mounts)
+            window.addEventListener("message", function (event) {
+                if (event.data.key === "signal_about_sezzle_ready") {
+                    sendConfig();
+                }
+            });
 
-    // Also send on load as fallback for browsers where timing works
-    iframe.onload = function () {
-        sendConfig();
-    };
+            // Also send on load as fallback for browsers where timing works
+            iframe.onload = function () {
+                sendConfig();
+            };
 
-    node.appendChild(iframe);
-</script>
+            node.appendChild(iframe);
+        </script>
+</main>
 </body>
 </html>
