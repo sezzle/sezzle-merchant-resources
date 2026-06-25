@@ -1,12 +1,14 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Logo from "./index";
 import { ConfigContext, deriveConfigContext } from "../../containers/ConfigProvider";
 import type { AppConfig } from "../../containers/ConfigProvider";
 import type { ITranslation } from "../../interface";
 import { resolveLTConfig } from "../../utils/ltConfig";
 
-const baseTranslation = {} as ITranslation;
+const baseTranslation = {
+    logoAltText: "Sezzle: The responsible way to pay",
+} as ITranslation;
 
 const renderLogo = (config: AppConfig | undefined) => {
     const derived = config
@@ -38,7 +40,7 @@ describe("Logo", () => {
         ["dark", "fr", "sezzle-horizontal-bnpl-white.png"],
         ["dark", "es", "sezzle-horizontal-bnpl-white.png"],
     ])("renders the %s/%s logo when configured", (theme, language, asset) => {
-        renderLogo({
+        const { container } = renderLogo({
             merchant_uuid: "x",
             theme,
             language,
@@ -49,7 +51,9 @@ describe("Logo", () => {
             minPrice: 0,
             maxPrice: 2500,
         });
-        const img = screen.getByAltText("Logo") as HTMLImageElement;
+        // The image carries the localized alt text (sourced from translations).
+        const img = container.querySelector("img") as HTMLImageElement;
+        expect(img.getAttribute("alt")).toBe(baseTranslation.logoAltText);
         expect(img.src).toContain(asset);
     });
 
@@ -58,7 +62,7 @@ describe("Logo", () => {
     it.each(["light", "DARK", "midnight", ""])(
         "falls back to the light logo for theme %j",
         (theme) => {
-            renderLogo({
+            const { container } = renderLogo({
                 merchant_uuid: "x",
                 theme,
                 language: "en",
@@ -69,7 +73,7 @@ describe("Logo", () => {
                 minPrice: 0,
                 maxPrice: 2500,
             });
-            const img = screen.getByAltText("Logo") as HTMLImageElement;
+            const img = container.querySelector("img") as HTMLImageElement;
             expect(img.src).toContain("sezzle-horizontal-full-color.png");
         }
     );

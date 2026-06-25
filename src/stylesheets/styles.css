@@ -6,7 +6,8 @@
    tokens under .sezzle-container-dark rather than restyle every rule.
    =========================================================================== */
 
-/* Satoshi — the four weights this page uses (300/Light is unused). */
+/* Satoshi — the two weights this page uses (Regular 400 / Medium 500). Brand
+   guidelines cap weight at 500, so Bold/Black are intentionally not bundled. */
 @font-face { font-family: "Satoshi"; font-weight: 400; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Regular.otf") format("opentype"); }
 @font-face { font-family: "Satoshi"; font-weight: 500; font-style: normal; font-display: swap; src: url("../assets/fonts/Satoshi-Medium.otf") format("opentype"); }
 

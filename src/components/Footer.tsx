@@ -32,7 +32,7 @@ const Footer = ({
   <footer className="hsw-footer">
     <div className="hsw-footer-inner">
       <div className="hsw-footer-top">
-        <img src={whiteLogo} alt="Sezzle" />
+        <img src={whiteLogo} alt={translation.logoAltText} />
         <a className="hsw-btn hsw-footer-cta" href={shopUrl} rel="noreferrer">
           {interpolate(translation.footerShopNow, { merchantName })}
         </a>

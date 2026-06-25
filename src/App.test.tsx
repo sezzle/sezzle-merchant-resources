@@ -148,6 +148,24 @@ describe("App", () => {
         expect(last.getAttribute("aria-expanded")).toBe("false");
     });
 
+    it("collapses the open FAQ item and switches between items on click", async () => {
+        installFetchMock();
+        const user = userEvent.setup();
+        render(wrap(baseConfig, <App />));
+        const first = screen.getByRole("button", { name: enTranslation.faq1Q });
+        const second = screen.getByRole("button", { name: enTranslation.faq2Q });
+
+        // First item is open by default; clicking it collapses (no item open).
+        expect(first.getAttribute("aria-expanded")).toBe("true");
+        await user.click(first);
+        expect(first.getAttribute("aria-expanded")).toBe("false");
+
+        // Opening another item closes the previously focused one.
+        await user.click(second);
+        expect(second.getAttribute("aria-expanded")).toBe("true");
+        expect(first.getAttribute("aria-expanded")).toBe("false");
+    });
+
     it("renders the How it Works section as three step cards", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
