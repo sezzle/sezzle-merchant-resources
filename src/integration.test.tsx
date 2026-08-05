@@ -5,6 +5,7 @@ import { ConfigProvider } from "./containers/ConfigProvider";
 import enTranslation from "./translations/en.json";
 import frTranslation from "./translations/fr.json";
 import esTranslation from "./translations/es.json";
+import { interpolate } from "./utils/interpolate";
 
 // The only network call the widget makes is the about-sezzle onload event log.
 const installFetchMock = () => {
@@ -64,9 +65,15 @@ describe("how-sezzle-works widget (integration)", () => {
         expect(
             await screen.findByRole("heading", { name: enTranslation.appTitle })
         ).toBeInTheDocument();
-        // Hero headline is static, merchant-agnostic copy.
+        // Hero headline names the merchant — with no merchantName in the config
+        // that resolves to the hostname of the posting (merchant) origin.
         expect(
-            screen.getByRole("heading", { name: enTranslation.heroHeadline })
+            screen.getByRole("heading", {
+                level: 1,
+                name: interpolate(enTranslation.heroHeadline, {
+                    merchantName: "shop.example.com",
+                }).replace(/\n/g, " "),
+            })
         ).toBeInTheDocument();
     });
 

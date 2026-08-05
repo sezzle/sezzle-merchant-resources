@@ -1,16 +1,20 @@
-// Bi-weekly (Pay-in-4 / Pay-in-5) plan block: a header row (per-installment
-// amount + plan pill) above a dot timeline showing every installment. The
-// per-installment amount is price / numberOfPayments (never the long-term
-// monthly amount): passing minPriceLT/maxPriceLT = 0 to getFormattedPrice
-// forces the non-LT branch even for LT-eligible prices.
+// Bi-weekly (Pay-in-4 / Pay-in-5) plan block: a header row pairing the plan
+// name (left, carrying the footnote marker for its WebBank example) with the
+// per-installment amount (right), above a progress track and the installment
+// schedule. The per-installment amount is price / numberOfPayments (never the
+// long-term monthly amount): passing minPriceLT/maxPriceLT = 0 to
+// getFormattedPrice forces the non-LT branch even for LT-eligible prices.
 import { ITranslation } from "../../interface";
 import { getFormattedPrice } from "../../utils/renderFunctions";
+import { interpolate } from "../../utils/interpolate";
+import { Footnotes } from "./footnotes";
 
 interface BiweeklyCardProps {
   numberOfPayments: number;
   currency: string;
   priceString: string;
   translation: ITranslation;
+  footnotes: Footnotes;
 }
 
 const BiweeklyCard = ({
@@ -18,6 +22,7 @@ const BiweeklyCard = ({
   currency,
   priceString,
   translation,
+  footnotes,
 }: BiweeklyCardProps) => {
   const isPI5 = numberOfPayments === 5;
   const installmentPrice = getFormattedPrice(
@@ -32,12 +37,9 @@ const BiweeklyCard = ({
   const steps = [];
   for (let i = 0; i < numberOfPayments; i++) {
     const when =
-      i === 0
-        ? translation.today
-        : `${i * 2} ${translation.MultiPlanweeks}`;
+      i === 0 ? translation.today : `${i * 2} ${translation.MultiPlanweeks}`;
     steps.push(
       <div className="hsw-step" key={i}>
-        <div className={`hsw-dot${i === 0 ? " is-first" : ""}`} />
         <div className="hsw-step-amt">{installmentPrice}</div>
         <div className="hsw-step-when">{when}</div>
       </div>
@@ -47,22 +49,31 @@ const BiweeklyCard = ({
   return (
     <div className="hsw-plan">
       <div className="hsw-plan-head">
-        <div className="hsw-plan-headline">
-          <span className="hsw-plan-amount">
-            {installmentPrice}
-          </span>
-          <span className="hsw-plan-today">{translation.today}</span>
+        <h3 className="hsw-plan-label">
+          {interpolate(translation.calcPlanPayments, {
+            count: numberOfPayments,
+          })}
+          <sup className="hsw-footnote-ref">
+            {isPI5 ? footnotes.pi5 : footnotes.pi4}
+          </sup>
+        </h3>
+        <div className="hsw-plan-values">
+          <span className="hsw-plan-amount">{installmentPrice}</span>{" "}
+          <span className="hsw-plan-today">{translation.calcTodayInline}</span>
         </div>
-        <span className="pill hsw-plan-pill">
-          {translation.MultiPlanpayIn} {numberOfPayments}
-          {isPI5 && <sup>TM</sup>}
-        </span>
+      </div>
+      {/* Only the first installment is paid now, so the track fills 1/n.
+          Decorative — the schedule below states the same thing in text. */}
+      <div className="hsw-progress" aria-hidden="true">
+        <div
+          className="hsw-progress-fill"
+          style={{ width: `${100 / numberOfPayments}%` }}
+        />
       </div>
       <div
-        className="hsw-timeline"
+        className="hsw-plan-steps"
         style={{ "--cols": numberOfPayments } as React.CSSProperties}
       >
-        <div className="hsw-timeline-line" />
         {steps}
       </div>
     </div>

@@ -74,6 +74,17 @@ describe("ConfigProvider", () => {
         expect(typeof result.current.translation.appTitle).toBe("string");
     });
 
+    it("passes includeInStore through from the merchant config", () => {
+        const wrapper = ({ children }: { children: React.ReactNode }) => (
+            <ConfigProvider>{children}</ConfigProvider>
+        );
+        const { result } = renderHook(() => useConfig(), { wrapper });
+
+        postConfig({ merchant_uuid: "abc", includeInStore: true });
+
+        expect(result.current.config).toMatchObject({ includeInStore: true });
+    });
+
     it("falls back to defaults when fields are missing", () => {
         const wrapper = ({ children }: { children: React.ReactNode }) => (
             <ConfigProvider>{children}</ConfigProvider>
@@ -89,6 +100,7 @@ describe("ConfigProvider", () => {
             isLongTerm: false,
             countryCode: "US",
             numberOfPayments: 5,
+            includeInStore: false,
         });
         expect(result.current.effectiveNumberOfPayments).toBe(5);
         expect(result.current.isCA).toBe(false);

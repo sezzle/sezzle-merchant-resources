@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import PaymentWrapper, {
   Eligibility,
 } from "./components/PaymentPlan/PaymentWrapper";
+import { buildFootnotes } from "./components/PaymentPlan/footnotes";
 import { sendEvent } from "./remote/api";
 import { useEffect, useState } from "react";
 import {
@@ -113,10 +114,26 @@ function App() {
   // merchant_site in analytics). Use it for both the "Shop Now" link target and
   // the merchant-name fallback. origin is scheme+host only (no path), so the
   // link lands on the merchant's home page.
+  // Every merchant-personalized string interpolates this, so fall back to the
+  // localized "your store" rather than leaving a hole in the sentence when the
+  // integration supplies neither a name nor a usable parent origin.
+  // Markers are allocated once, from the same flags that decide what renders,
+  // and handed to every component that shows a marker or a disclosure.
+  const footnotes = buildFootnotes({
+    // Both rows render whenever they're on the page, whether they show a
+    // schedule or an "available on orders …" note, so their disclosures are
+    // keyed to the row rather than to amount eligibility.
+    pi4: true,
+    pi5: showPI5Row,
+    lt: eligibility.lt,
+    virtualCard: config.includeInStore,
+  });
+
   const shopUrl = config.origin || "https://sezzle.com";
   const merchantName =
     config.merchantName ||
-    (config.origin ? new URL(config.origin).hostname : "");
+    (config.origin ? new URL(config.origin).hostname : "") ||
+    translation.merchantFallback;
 
   return (
     <div
@@ -133,6 +150,7 @@ function App() {
         merchantName={merchantName}
         shopUrl={shopUrl}
         showPI5={showPI5Row}
+        footnotes={footnotes}
         calculator={
           <PaymentWrapper
             currency={currency}
@@ -145,23 +163,35 @@ function App() {
             translation={translation}
             ltConfig={ltConfig}
             lang={lang}
+            footnotes={footnotes}
+            maxPrice={config.maxPrice}
+            ltOffered={ltConfig.minPriceLT > 0}
           />
         }
       />
 
-      <HowItWorks translation={translation} />
+      <HowItWorks
+        translation={translation}
+        includeInStore={config.includeInStore}
+        merchantName={merchantName}
+        footnotes={footnotes}
+      />
 
-      <AppPromo translation={translation} />
+      <AppPromo translation={translation} footnotes={footnotes} />
 
-      <Faq translation={translation} showPI5={showPI5Row} />
+      <Faq
+        translation={translation}
+        showPI5={showPI5Row}
+        footnotes={footnotes}
+      />
 
       <Footer
         translation={translation}
         merchantName={merchantName}
         shopUrl={shopUrl}
-        eligibility={eligibility}
         ltConfig={ltConfig}
         lang={lang}
+        footnotes={footnotes}
       />
     </div>
   );

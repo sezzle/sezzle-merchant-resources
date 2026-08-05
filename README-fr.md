@@ -48,6 +48,7 @@ Ajoutez votre « merchant_uuid », ajustez le « thème » et la « langue » 
 - `language` (langue) peut être `en`, `es` ou `fr`.
 - `countryCode` (code de pays) est le pays du visiteur sur deux lettres (par ex. `US`, `CA`). Par défaut `US`. Au Canada (`CA`), Paiement en 5 fois et tout financement à long terme sont masqués automatiquement.
 - `numberOfPayments` (nombre de paiements) peut être `4` ou `5`. Par défaut `5` (la carte Paiement en 5 fois s'affiche au-dessus de 50 $). Indiquez `4` pour ne jamais afficher la carte Paiement en 5 fois. Forcé à `4` au Canada.
+- `includeInStore` (inclure en magasin) peut être `true` (vrai) ou `false` (faux). Par défaut `false`. Indiquez `true` si les clients peuvent aussi payer avec Sezzle à votre caisse (au moyen d'une carte virtuelle Sezzle dans l'application Sezzle). La section « Comment fonctionne Sezzle » se divise alors en deux groupes d'étapes intitulés « Payer plus tard en ligne » et « Payer plus tard en magasin », au lieu d'afficher uniquement les étapes en ligne.
 - `LTgroup` active le long terme et applique les valeurs par défaut de votre forfait de prêt (options : `"a"` ou `"b"`) ; confirmez la valeur auprès de votre gestionnaire de compte. C'est l'option essentielle pour activer le long terme. Vous pouvez aussi remplacer `minPriceLT` / `maxPriceLT` / `minAPR` / `medianAPR` / `maxAPR` / `termsToShow` ; sinon, les valeurs du préréglage `LTgroup` s'appliquent. Le champ de saisie utilise par défaut `minPriceLT` (ou `150 $` lorsque le long terme est désactivé).
 -  `isLongTerm` (héritée) peut être soit `true` (vraie), soit `false` (faux). Pour la rétrocompatibilité, `isLongTerm: true` se comporte comme `LTgroup: "a"`. (N'activez le long terme que si vous avez été approuvé pour proposer le financement à long terme Sezzle.)
 
@@ -62,6 +63,7 @@ Insérez le code suivant dans votre fichier HTML :
           language: "",
           countryCode: "US",
           numberOfPayments: 5,
+          includeInStore: false,
           // Financement à long terme (uniquement si approuvé). isLongTerm est
           // l'option héritée ; préférez LTgroup ("a" ou "b").
           // LTgroup: "a",

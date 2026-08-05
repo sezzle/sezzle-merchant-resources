@@ -7,27 +7,27 @@ import { ITranslation } from "../interface";
 import { ResolvedLTConfig } from "../utils/ltConfig";
 import { interpolate } from "../utils/interpolate";
 import PaymentTerms from "./PaymentPlan/PaymentTerms";
-import { Eligibility } from "./PaymentPlan/PaymentWrapper";
+import { Footnotes } from "./PaymentPlan/footnotes";
 // The footer background is dark in both themes, so the white mark is always
 // the legible choice.
-import whiteLogo from "../assets/Color-White-Logo.svg";
+import whiteLogo from "../assets/sezzle-wordmark-white.webp";
 
 interface FooterProps {
   translation: ITranslation;
   merchantName: string;
   shopUrl: string;
-  eligibility: Eligibility;
   ltConfig: ResolvedLTConfig;
   lang: string;
+  footnotes: Footnotes;
 }
 
 const Footer = ({
   translation,
   merchantName,
   shopUrl,
-  eligibility,
   ltConfig,
   lang,
+  footnotes,
 }: FooterProps) => (
   <footer className="hsw-footer">
     <div className="hsw-footer-inner">
@@ -46,10 +46,10 @@ const Footer = ({
       </div>
       <div className="hsw-footer-disclosures">
         <PaymentTerms
-          eligibility={eligibility}
           translation={translation}
           ltConfig={ltConfig}
           lang={lang}
+          footnotes={footnotes}
         />
         <p className="hsw-footer-copyright">
           {interpolate(translation.footerCopyright, { merchantName })}

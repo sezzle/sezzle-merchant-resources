@@ -1,68 +1,129 @@
-// App-promo banner: phone screenshot + copy and the app-download CTA(s).
-// On mobile we surface the native App Store / Google Play listings; on desktop
-// a single "Get The App" button points at sezzle.com/app.
+// App-promo section: phone screenshot beside the copy, the app-download CTA,
+// and the two store-rating pills. Sits on the light brand tint (a full-width
+// section, not an inset banner).
+//
+// The CTA follows the device: on mobile it deep-links to the viewer's own store
+// listing, on desktop it points at sezzle.com/app. Either way both rating pills
+// link to their respective listings, so both stores stay reachable.
 import { ITranslation } from "../interface";
 import appScreen from "../assets/sezzle-app-screen.webp";
-import { AppStoreIcon, GooglePlayIcon } from "./PaymentPlan/icons";
-import { isMobileDevice } from "../utils/device";
-
-const APP_URL = "https://sezzle.com/app";
-const APP_STORE_URL =
-  "https://apps.apple.com/us/app/sezzle-buy-now-pay-later/id1434922495";
-const GOOGLE_PLAY_URL =
-  "https://play.google.com/store/apps/details?id=com.sezzle.sezzlemobile";
+// Official store badges, as used in the design handoff. Their artwork carries
+// the store name, so the pills need no separate text label.
+import appStoreBadge from "../assets/app-store-badge.png";
+import googlePlayBadge from "../assets/google-play-badge.png";
+import { StarIcon } from "./PaymentPlan/icons";
+import { isMobileDevice, isIOSDevice } from "../utils/device";
+import { interpolate } from "../utils/interpolate";
+import {
+  APP_URL,
+  APP_STORE_URL,
+  GOOGLE_PLAY_URL,
+  APP_RATINGS_AS_OF,
+} from "../constants";
+import { Footnotes } from "./PaymentPlan/footnotes";
+import { withFootnote } from "../utils/footnoteText";
 
 interface AppPromoProps {
   translation: ITranslation;
+  footnotes: Footnotes;
 }
 
-const AppPromo = ({ translation }: AppPromoProps) => {
+// Ratings are strings in the bundle so each locale can use its own decimal
+// separator ("4.9" / "4,9"); parse for the star fill only.
+const starFills = (rating: string) => {
+  const value = Number(rating.replace(",", ".")) || 0;
+  return [0, 1, 2, 3, 4].map((i) => Math.max(0, Math.min(1, value - i)));
+};
+
+const RatingPill = ({
+  href,
+  badgeSrc,
+  badgeAlt,
+  rating,
+  count,
+  starsLabel,
+  idPrefix,
+}: {
+  href: string;
+  badgeSrc: string;
+  badgeAlt: string;
+  rating: string;
+  count: string;
+  starsLabel: string;
+  idPrefix: string;
+}) => (
+  <a className="hsw-rating-pill" href={href} target="_blank" rel="noreferrer">
+    <img className="hsw-rating-badge" src={badgeSrc} alt={badgeAlt} />
+    <span className="hsw-rating-score">{rating}</span>
+    <span className="hsw-rating-meta">
+      <span className="hsw-rating-stars" role="img" aria-label={starsLabel}>
+        {starFills(rating).map((fill, i) => (
+          <StarIcon key={i} fill={fill} id={`${idPrefix}-${i}`} />
+        ))}
+      </span>
+      <span className="hsw-rating-count">{count}</span>
+    </span>
+  </a>
+);
+
+const AppPromo = ({ translation, footnotes }: AppPromoProps) => {
   const isMobile = isMobileDevice();
+  const ctaHref = isMobile
+    ? isIOSDevice()
+      ? APP_STORE_URL
+      : GOOGLE_PLAY_URL
+    : APP_URL;
 
   return (
     <section className="hsw-app">
-      <div className="hsw-app-banner">
-        <div className="hsw-app-glow" aria-hidden="true" />
+      <div className="hsw-app-grid">
         <div className="hsw-app-phone">
           <img src={appScreen} alt={translation.appScreenAlt} />
         </div>
         <div className="hsw-app-content">
-          <span className="hsw-eyebrow hsw-app-eyebrow">{translation.appEyebrow}</span>
           <h2 className="hsw-app-title">{translation.appTitle}</h2>
-          <p className="hsw-app-body">{translation.appBody}</p>
-          <div className="hsw-store-btns">
-            {isMobile ? (
-              <>
-                <a
-                  className="hsw-store-btn is-primary"
-                  href={APP_STORE_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <AppStoreIcon />
-                  {translation.appStore}
-                </a>
-                <a
-                  className="hsw-store-btn is-secondary"
-                  href={GOOGLE_PLAY_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <GooglePlayIcon />
-                  {translation.googlePlay}
-                </a>
-              </>
-            ) : (
-              <a
-                className="hsw-store-btn is-primary"
-                href={APP_URL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {translation.appGetTheApp}
-              </a>
-            )}
+          <p className="hsw-app-body">
+            {withFootnote(translation.appBody, footnotes.reschedule)}
+          </p>
+          <div className="hsw-app-actions">
+            <a
+              className="hsw-btn hsw-btn-primary hsw-app-cta"
+              href={ctaHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {translation.appGetTheApp}
+            </a>
           </div>
+          <div className="hsw-ratings">
+            <RatingPill
+              href={APP_STORE_URL}
+              badgeSrc={appStoreBadge}
+              badgeAlt={translation.appStoreBadgeAlt}
+              rating={translation.appStoreRating}
+              count={translation.appStoreRatingsCount}
+              starsLabel={interpolate(translation.appRatingStarsLabel, {
+                rating: translation.appStoreRating,
+              })}
+              idPrefix="ios"
+            />
+            <RatingPill
+              href={GOOGLE_PLAY_URL}
+              badgeSrc={googlePlayBadge}
+              badgeAlt={translation.googlePlayBadgeAlt}
+              rating={translation.googlePlayRating}
+              count={translation.googlePlayRatingsCount}
+              starsLabel={interpolate(translation.appRatingStarsLabel, {
+                rating: translation.googlePlayRating,
+              })}
+              idPrefix="play"
+            />
+          </div>
+          <p className="hsw-ratings-asof">
+            {interpolate(translation.appRatingsAsOf, {
+              date: APP_RATINGS_AS_OF,
+            })}
+          </p>
         </div>
       </div>
     </section>

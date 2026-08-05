@@ -47,6 +47,7 @@ Add your `merchant_uuid`, adjust `theme` and `language` as per your website's re
 - `language` can either be `en` , `fr` or `es`.
 - `countryCode` is the viewer's two-letter country (e.g. `US`, `CA`). Defaults to `US`. In Canada (`CA`), Pay-in-5 and all long-term financing are hidden automatically.
 - `numberOfPayments` can be `4` or `5`. Defaults to `5` (the Pay-in-5 bi-weekly card shows above $50). Set `4` to never show the Pay-in-5 card. Forced to `4` in Canada.
+- `includeInStore` can be `true` or `false`. Defaults to `false`. Set `true` if shoppers can also pay with Sezzle at your register (via a Sezzle Virtual Card in the Sezzle app). The "How Sezzle Works" section then splits into two labelled groups of steps — "Pay later online" and "Pay later in-store" — instead of showing the online steps alone.
 
 ##### Long-term financing (only for merchants approved for Sezzle Long-term)
 
@@ -69,6 +70,7 @@ Insert the following code into your HTML file:
           language: "",
           countryCode: "US",
           numberOfPayments: 5,
+          includeInStore: false,
           // Long-term financing (only if approved). isLongTerm is the legacy
           // toggle; prefer LTgroup ("a" or "b") for new integrations.
           // LTgroup: "a",

@@ -32,6 +32,10 @@ export interface AppConfig {
   countryCode: string;
   // 4 or 5; defaults to 5. Forced to 4 in Canada.
   numberOfPayments: number;
+  // Merchant also accepts Sezzle at the register (via the app's virtual card).
+  // Defaults to false — online-only, the page's original behaviour. When true,
+  // "How Sezzle Works" splits into labelled online and in-store step groups.
+  includeInStore: boolean;
   // Bi-weekly price bounds (mirrors sezzle-widget-react minPrice/maxPrice).
   minPrice: number;
   maxPrice: number;
@@ -119,6 +123,7 @@ export const ConfigProvider = ({ children }: { children: ReactNode }) => {
           countryCode: event.data.countryCode || DEFAULT_COUNTRY_CODE,
           numberOfPayments:
             event.data.numberOfPayments || DEFAULT_NUMBER_OF_PAYMENTS,
+          includeInStore: event.data.includeInStore || false,
           minPrice: event.data.minPrice || 0,
           maxPrice: event.data.maxPrice || DEFAULT_MAX_PRICE,
           merchantName: event.data.merchantName,

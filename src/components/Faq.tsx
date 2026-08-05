@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ITranslation } from "../interface";
 import { interpolate } from "../utils/interpolate";
 import { FaqChevronIcon } from "./PaymentPlan/icons";
+import { Footnotes } from "./PaymentPlan/footnotes";
 
 interface FaqProps {
   translation: ITranslation;
@@ -11,14 +12,19 @@ interface FaqProps {
   // offered, the "or 8 weeks for Pay in 5" clause is dropped from the payments
   // answer rather than promising a plan that isn't available.
   showPI5: boolean;
+  footnotes: Footnotes;
 }
 
-const Faq = ({ translation, showPI5 }: FaqProps) => {
+const Faq = ({ translation, showPI5, footnotes }: FaqProps) => {
   const faq3A = interpolate(translation.faq3A, {
     faq3APi5: showPI5 ? translation.faq3APi5 : "",
   });
+  // The design sets this marker inline at body size rather than as a <sup>.
+  const faq1A = interpolate(translation.faq1A, {
+    sezzleUp: footnotes.sezzleUp,
+  });
   const items = [
-    { q: translation.faq1Q, a: translation.faq1A },
+    { q: translation.faq1Q, a: faq1A },
     { q: translation.faq2Q, a: translation.faq2A },
     { q: translation.faq3Q, a: faq3A },
     { q: translation.faq4Q, a: translation.faq4A },
@@ -30,7 +36,6 @@ const Faq = ({ translation, showPI5 }: FaqProps) => {
     <section className="hsw-faq">
       <div className="hsw-faq-inner">
         <div className="hsw-section-head">
-          <span className="hsw-eyebrow">{translation.faqEyebrow}</span>
           <h2 className="hsw-section-title">{translation.faqTitle}</h2>
         </div>
         <div className="hsw-faq-list">

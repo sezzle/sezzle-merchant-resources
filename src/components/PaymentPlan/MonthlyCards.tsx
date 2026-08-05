@@ -7,6 +7,7 @@ import {
 } from "../../utils/renderFunctions";
 import { selectTermsToShow, ResolvedLTConfig } from "../../utils/ltConfig";
 import { parsePrice, formatNumberForLocale } from "../../utils/price";
+import { Footnotes } from "./footnotes";
 
 interface MonthlyCardsProps {
   currency: string;
@@ -14,6 +15,7 @@ interface MonthlyCardsProps {
   ltConfig: ResolvedLTConfig;
   translation: ITranslation;
   lang: string;
+  footnotes: Footnotes;
 }
 
 const formatLTAmount = (currency: string, value: number) =>
@@ -26,6 +28,7 @@ const MonthlyCard = ({
   medianAPR,
   translation,
   lang,
+  footnotes,
 }: {
   months: number;
   currency: string;
@@ -33,6 +36,7 @@ const MonthlyCard = ({
   medianAPR: number;
   translation: ITranslation;
   lang: string;
+  footnotes: Footnotes;
 }) => {
   const monthly = calculateMonthlyWithInterest(priceString, months, medianAPR);
   const total = monthly * months;
@@ -41,19 +45,28 @@ const MonthlyCard = ({
 
   return (
     <div className="payment-card monthly-installment-card" data-months={months}>
+      {/* Same head shape as the bi-weekly blocks: term on the left, amount on
+          the right. */}
       <div className="plan-summary">
-        <div className="purple">
-          <div className="left">
-            <span className="price monthly-amount" data-months={months}>
+        <div className="purple hsw-plan-head">
+          <h3 className="hsw-plan-label">
+            {months} {translation.LTtermLength}
+          </h3>
+          <div className="hsw-plan-values">
+            <span
+              className="price monthly-amount hsw-plan-amount"
+              data-months={months}
+            >
               {formatLTAmount(currency, monthly)}
-            </span>
-            <span className="due" aria-label={translation.LTperMonth}>
-              <span aria-hidden="true">{translation.LTmonthlyAmount}</span>
-            </span>
-          </div>
-          <div className="right">
-            <span className="pill">
-              {months} {translation.LTtermLength}
+            </span>{" "}
+            <span
+              className="due hsw-plan-today"
+              aria-label={translation.LTperMonth}
+            >
+              <span aria-hidden="true">
+                {translation.LTmonthlyAmount}
+                <sup className="hsw-footnote-ref">{footnotes.lt}</sup>
+              </span>
             </span>
           </div>
         </div>
@@ -93,6 +106,7 @@ const MonthlyCards = ({
   ltConfig,
   translation,
   lang,
+  footnotes,
 }: MonthlyCardsProps) => {
   const terms = selectTermsToShow(parsePrice(priceString), ltConfig.termsToShow) || [];
 
@@ -107,6 +121,7 @@ const MonthlyCards = ({
           medianAPR={ltConfig.medianAPR}
           translation={translation}
           lang={lang}
+          footnotes={footnotes}
         />
       ))}
     </>

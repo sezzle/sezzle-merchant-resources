@@ -29,13 +29,14 @@ describe("Logo", () => {
         expect(container.querySelector("img")).toBeNull();
     });
 
-    // The logo is theme-driven only: light -> full-color "Buy Now, Pay Later"
-    // lockup, dark -> white "Buy Now, Pay Later" lockup. Language no longer
+    // The logo is theme-driven only: light -> the "sezzle / pay in 5" lockup
+    // from the design handoff, dark -> the white "Buy Now, Pay Later" lockup
+    // (no white pay-in-5 artwork ships with the handoff). Language no longer
     // affects which asset is used, so each language maps to the same asset.
     it.each([
-        ["light", "en", "sezzle-horizontal-full-color.png"],
-        ["light", "fr", "sezzle-horizontal-full-color.png"],
-        ["light", "es", "sezzle-horizontal-full-color.png"],
+        ["light", "en", "sezzle-pay-in-5.webp"],
+        ["light", "fr", "sezzle-pay-in-5.webp"],
+        ["light", "es", "sezzle-pay-in-5.webp"],
         ["dark", "en", "sezzle-horizontal-bnpl-white.png"],
         ["dark", "fr", "sezzle-horizontal-bnpl-white.png"],
         ["dark", "es", "sezzle-horizontal-bnpl-white.png"],
@@ -50,6 +51,7 @@ describe("Logo", () => {
             numberOfPayments: 5,
             minPrice: 0,
             maxPrice: 2500,
+            includeInStore: false,
         });
         // The image carries the localized alt text (sourced from translations).
         const img = container.querySelector("img") as HTMLImageElement;
@@ -72,9 +74,10 @@ describe("Logo", () => {
                 numberOfPayments: 5,
                 minPrice: 0,
                 maxPrice: 2500,
+                includeInStore: false,
             });
             const img = container.querySelector("img") as HTMLImageElement;
-            expect(img.src).toContain("sezzle-horizontal-full-color.png");
+            expect(img.src).toContain("sezzle-pay-in-5.webp");
         }
     );
 });
