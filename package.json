@@ -7,7 +7,7 @@
     "@babel/node": "^7.26.0",
     "@formatjs/cli": "^6.3.14",
     "@lokalise/node-api": "^15.0.0",
-    "adm-zip": "^0.5.16",
+    "adm-zip": "^0.6.0",
     "chalk": "^5.4.1",
     "css-select": "^5.1.0",
     "ejs": "^3.1.10",
