@@ -44,7 +44,10 @@ const Hero = ({
           {interpolate(translation.heroSubcopy, {
             heroSubPi5: showPI5 ? translation.heroSubPi5 : "",
           })}
+          {/* The repayment period is a trigger term, so it carries the
+              pay-later disclosure alongside the credit-check note. */}
           <sup className="hsw-footnote-ref">{footnotes.creditCheck}</sup>
+          <sup className="hsw-footnote-ref">{footnotes.payLater}</sup>
         </p>
         <div className="hsw-hero-actions">
           {/* target="_top" breaks out of the Sezzle iframe so the merchant's

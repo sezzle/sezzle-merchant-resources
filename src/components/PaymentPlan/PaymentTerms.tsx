@@ -14,6 +14,8 @@ interface PaymentTermsProps {
   ltConfig: ResolvedLTConfig;
   lang: string;
   footnotes: Footnotes;
+  // Pay-in-5 is hidden in Canada; its example line goes with it.
+  showPI5: boolean;
 }
 
 const Term = ({
@@ -36,6 +38,7 @@ const PaymentTerms = ({
   ltConfig,
   lang,
   footnotes,
+  showPI5,
 }: PaymentTermsProps) => {
   // APR range comes from the resolved LT config; term-month bounds derive from
   // the union of every termsToShow array. APR values render with the
@@ -54,12 +57,13 @@ const PaymentTerms = ({
       <Term marker={footnotes.creditCheck}>
         {translation.footnoteCreditCheck}
       </Term>
-      {footnotes.pi4 && (
-        <Term marker={footnotes.pi4}>{translation.footnotePayIn4}</Term>
-      )}
-      {footnotes.pi5 && (
-        <Term marker={footnotes.pi5}>{translation.footnotePayIn5}</Term>
-      )}
+      {/* The umbrella and its per-plan examples read as one disclosure, so
+          they sit in a tighter group under a single marker. */}
+      <div className="terms-group">
+        <Term marker={footnotes.payLater}>{translation.footnotePayLater}</Term>
+        <Term>{translation.footnotePayIn4}</Term>
+        {showPI5 && <Term>{translation.footnotePayIn5}</Term>}
+      </div>
       {footnotes.lt && (
         <Term marker={footnotes.lt} className="lt-terms">
           {ltTerms3}

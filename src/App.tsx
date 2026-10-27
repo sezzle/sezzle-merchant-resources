@@ -120,11 +120,6 @@ function App() {
   // Markers are allocated once, from the same flags that decide what renders,
   // and handed to every component that shows a marker or a disclosure.
   const footnotes = buildFootnotes({
-    // Both rows render whenever they're on the page, whether they show a
-    // schedule or an "available on orders …" note, so their disclosures are
-    // keyed to the row rather than to amount eligibility.
-    pi4: true,
-    pi5: showPI5Row,
     lt: eligibility.lt,
     virtualCard: config.includeInStore,
   });
@@ -192,6 +187,7 @@ function App() {
         ltConfig={ltConfig}
         lang={lang}
         footnotes={footnotes}
+        showPI5={showPI5Row}
       />
     </div>
   );

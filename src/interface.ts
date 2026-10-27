@@ -21,6 +21,8 @@ export interface ITranslation {
 
   // Footer disclosures, one per footnote marker, in footer order.
   footnoteCreditCheck: string;
+  // The pay-later umbrella; the two plan examples beneath it share its marker.
+  footnotePayLater: string;
   footnotePayIn4: string;
   footnotePayIn5: string;
   footnoteVirtualCard: string;
@@ -42,6 +44,7 @@ export interface ITranslation {
   heroSeeHow: string;
   calcTitle: string;
   calcSubtitle: string;
+  calcFeeNote: string;
   // Not rendered as visible text — the input's accessible name, since the
   // design has no visible field label.
   calcAmountLabel: string;
@@ -93,13 +96,11 @@ export interface ITranslation {
   faq1A: string;
   faq2Q: string;
   faq2A: string;
+  faq2APi5: string;
   faq3Q: string;
   faq3A: string;
-  faq3APi5: string;
   faq4Q: string;
   faq4A: string;
-  faq5Q: string;
-  faq5A: string;
   footerShopNow: string;
   footerCopyright: string;
 }

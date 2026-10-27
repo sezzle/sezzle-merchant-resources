@@ -16,19 +16,21 @@ interface FaqProps {
 }
 
 const Faq = ({ translation, showPI5, footnotes }: FaqProps) => {
-  const faq3A = interpolate(translation.faq3A, {
-    faq3APi5: showPI5 ? translation.faq3APi5 : "",
-  });
-  // The design sets this marker inline at body size rather than as a <sup>.
+  // The design sets these markers inline at body size rather than as a <sup>.
   const faq1A = interpolate(translation.faq1A, {
     sezzleUp: footnotes.sezzleUp,
   });
+  // The repayment period is a trigger term, so the answer carries the
+  // pay-later disclosure.
+  const faq2A = interpolate(translation.faq2A, {
+    faq2APi5: showPI5 ? translation.faq2APi5 : "",
+    payLater: footnotes.payLater,
+  });
   const items = [
     { q: translation.faq1Q, a: faq1A },
-    { q: translation.faq2Q, a: translation.faq2A },
-    { q: translation.faq3Q, a: faq3A },
+    { q: translation.faq2Q, a: faq2A },
+    { q: translation.faq3Q, a: translation.faq3A },
     { q: translation.faq4Q, a: translation.faq4A },
-    { q: translation.faq5Q, a: translation.faq5A },
   ];
   const [open, setOpen] = useState(0);
 

@@ -309,6 +309,15 @@
     margin: 6px 0 0;
     text-wrap: balance;
 }
+.hsw-calc-fee-note {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--fg-secondary);
+    margin: 8px 0 0;
+}
+.hsw-calc-fee-note .hsw-footnote-ref {
+    font-size: 0.8em;
+}
 .hsw-amount-input-wrap {
     margin-top: 16px;
     display: inline-flex;
@@ -784,6 +793,12 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
+}
+/* The pay-later umbrella and its per-plan examples. */
+.hsw-footer-disclosures .terms-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 /* 1.2 per the design. WCAG 1.4.12 (AA) governs whether the page survives a
    user-applied 1.5 line-height override, not the authored value — nothing here

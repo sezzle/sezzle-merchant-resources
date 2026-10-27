@@ -1,8 +1,8 @@
 // Footer: white logo + "Shop Now at {merchant}" CTA, then the legal
 // disclosures. Disclosures are driven by the existing PaymentTerms component so
-// the copy stays i18n- and rule-aware (PI4 vs PI5 example, long-term APR/term
-// range only when long-term is eligible), plus a merchant-personalized
-// copyright line.
+// the copy stays i18n- and rule-aware (PI5 example only where PI5 is offered,
+// long-term APR/term range only when long-term is eligible), plus a
+// merchant-personalized copyright line.
 import { ITranslation } from "../interface";
 import { ResolvedLTConfig } from "../utils/ltConfig";
 import { interpolate } from "../utils/interpolate";
@@ -19,6 +19,7 @@ interface FooterProps {
   ltConfig: ResolvedLTConfig;
   lang: string;
   footnotes: Footnotes;
+  showPI5: boolean;
 }
 
 const Footer = ({
@@ -28,6 +29,7 @@ const Footer = ({
   ltConfig,
   lang,
   footnotes,
+  showPI5,
 }: FooterProps) => (
   <footer className="hsw-footer">
     <div className="hsw-footer-inner">
@@ -50,6 +52,7 @@ const Footer = ({
           ltConfig={ltConfig}
           lang={lang}
           footnotes={footnotes}
+          showPI5={showPI5}
         />
         <p className="hsw-footer-copyright">
           {interpolate(translation.footerCopyright, { merchantName })}

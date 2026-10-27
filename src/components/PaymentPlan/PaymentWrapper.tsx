@@ -14,6 +14,7 @@ import { ITranslation } from "../../interface";
 import { ResolvedLTConfig } from "../../utils/ltConfig";
 import { PI5_MIN_PRICE } from "../../utils/renderFunctions";
 import { interpolate } from "../../utils/interpolate";
+import { withFootnote } from "../../utils/footnoteText";
 import BiweeklyCard from "./BiweeklyCard";
 import MonthlyCards from "./MonthlyCards";
 import { Footnotes } from "./footnotes";
@@ -50,7 +51,7 @@ const PlanNote = ({
   translation,
 }: {
   count: number;
-  marker?: string;
+  marker: string;
   message: string;
   translation: ITranslation;
 }) => (
@@ -98,6 +99,9 @@ const PaymentWrapper = ({
       <div className="hsw-calc-head">
         <h2 className="hsw-calc-title">{translation.calcTitle}</h2>
         <p className="hsw-calc-subtitle">{translation.calcSubtitle}</p>
+        <p className="hsw-calc-fee-note">
+          {withFootnote(translation.calcFeeNote, footnotes.payLater)}
+        </p>
         {/* The design has no visible field label, so the accessible name comes
             from aria-label rather than a rendered <span>. */}
         <span
@@ -133,7 +137,7 @@ const PaymentWrapper = ({
       ) : (
         <PlanNote
           count={4}
-          marker={footnotes.pi4}
+          marker={footnotes.payLater}
           message={pi4Note}
           translation={translation}
         />
@@ -152,7 +156,7 @@ const PaymentWrapper = ({
         ) : (
           <PlanNote
             count={5}
-            marker={footnotes.pi5}
+            marker={footnotes.payLater}
             message={pi5Note}
             translation={translation}
           />

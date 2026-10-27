@@ -1,5 +1,5 @@
 // Bi-weekly (Pay-in-4 / Pay-in-5) plan block: a header row pairing the plan
-// name (left, carrying the footnote marker for its WebBank example) with the
+// name (left, carrying the pay-later disclosure marker) with the
 // per-installment amount (right), above a progress track and the installment
 // schedule. The per-installment amount is price / numberOfPayments (never the
 // long-term monthly amount): passing minPriceLT/maxPriceLT = 0 to
@@ -24,7 +24,6 @@ const BiweeklyCard = ({
   translation,
   footnotes,
 }: BiweeklyCardProps) => {
-  const isPI5 = numberOfPayments === 5;
   const installmentPrice = getFormattedPrice(
     currency + priceString,
     numberOfPayments,
@@ -53,9 +52,7 @@ const BiweeklyCard = ({
           {interpolate(translation.calcPlanPayments, {
             count: numberOfPayments,
           })}
-          <sup className="hsw-footnote-ref">
-            {isPI5 ? footnotes.pi5 : footnotes.pi4}
-          </sup>
+          <sup className="hsw-footnote-ref">{footnotes.payLater}</sup>
         </h3>
         <div className="hsw-plan-values">
           <span className="hsw-plan-amount">{installmentPrice}</span>{" "}

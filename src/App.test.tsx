@@ -229,7 +229,7 @@ describe("App", () => {
         ).toBeInTheDocument();
         const first = screen.getByRole("button", { name: enTranslation.faq1Q });
         expect(first.getAttribute("aria-expanded")).toBe("true");
-        const last = screen.getByRole("button", { name: enTranslation.faq5Q });
+        const last = screen.getByRole("button", { name: enTranslation.faq4Q });
         expect(last.getAttribute("aria-expanded")).toBe("false");
     });
 
@@ -442,8 +442,8 @@ describe("App", () => {
         expect(container.querySelector(".payment-cards-monthly")).toBeNull();
     });
 
-    // Each plan block is titled "{n} Payments", which also carries the footnote
-    // marker for that plan's WebBank example.
+    // Each plan block is titled "{n} Payments", which also carries the
+    // pay-later disclosure marker.
     const planLabels = (container: HTMLElement) =>
         Array.from(container.querySelectorAll(".hsw-plan-label")).map(
             (p) => p.textContent ?? ""
@@ -485,30 +485,30 @@ describe("App", () => {
         const { container } = render(
             wrap({ ...baseConfig, includeInStore: true }, <App />)
         );
-        // credit check, Pay in 4, Pay in 5, virtual card, reschedule, Sezzle Up.
-        const expected = ["*", "†", "‡", "§", "**", "††"];
+        // credit check, pay later, virtual card, reschedule, Sezzle Up.
+        const expected = ["*", "†", "‡", "§", "**"];
         expect(markerDefs(container)).toEqual(expected);
         // Sezzle Up is referenced inline in the FAQ answer, not as a <sup>.
         expect(new Set(markerRefs(container))).toEqual(
-            new Set(expected.filter((m) => m !== "††"))
+            new Set(expected.filter((m) => m !== "**"))
         );
-        expect(container.textContent).toContain("Sezzle Up,††");
+        expect(container.textContent).toContain("Sezzle Up,**");
     });
 
-    // With Pay-in-5 hidden (Canada) and in-store off, the two disclosures in
-    // between drop out and the later markers shift up to close the gap.
+    // With in-store off, the virtual-card disclosure drops out and the later
+    // markers shift up to close the gap.
     it("shifts markers up when earlier disclosures drop out", () => {
         installFetchMock();
         const { container } = render(
             wrap({ ...baseConfig, countryCode: "CA" }, <App />)
         );
-        // credit check, Pay in 4, reschedule, Sezzle Up — no ‡ or § in play.
+        // credit check, pay later, reschedule, Sezzle Up.
         expect(markerDefs(container)).toEqual(["*", "†", "‡", "§"]);
         expect(new Set(markerRefs(container))).toEqual(new Set(["*", "†", "‡"]));
         expect(container.textContent).toContain("Sezzle Up,§");
     });
 
-    // Long-term slots in after Pay-in-5 and pushes the rest along.
+    // Long-term slots in after the pay-later disclosure and pushes the rest along.
     it("allocates a marker to the long-term disclosure when it renders", () => {
         installFetchMock();
         const { container } = render(
@@ -521,13 +521,12 @@ describe("App", () => {
             "§",
             "**",
             "††",
-            "‡‡",
         ]);
-        // The long-term paragraph took §, so the monthly amount carries it too.
+        // The long-term paragraph took ‡, so the monthly amount carries it too.
         expect(
             container.querySelector(".monthly-installment-card .hsw-footnote-ref")
                 ?.textContent
-        ).toBe("§");
+        ).toBe("‡");
     });
 
     it("includes the virtual-card disclosure only with the in-store flow", () => {
@@ -542,6 +541,35 @@ describe("App", () => {
         expect(both.container.textContent).toContain(
             "The Sezzle Virtual Card is issued by WebBank"
         );
+    });
+
+    // Both plan examples sit under the one pay-later marker; the Pay-in-5 line
+    // goes wherever Pay-in-5 itself is hidden.
+    it("lists the Pay-in-5 example under the pay-later disclosure only where offered", () => {
+        installFetchMock();
+        const us = render(wrap(baseConfig, <App />));
+        expect(us.container.textContent).toContain(enTranslation.footnotePayLater);
+        expect(us.container.textContent).toContain(enTranslation.footnotePayIn4);
+        expect(us.container.textContent).toContain(enTranslation.footnotePayIn5);
+        us.unmount();
+
+        const ca = render(wrap({ ...baseConfig, countryCode: "CA" }, <App />));
+        expect(ca.container.textContent).toContain(enTranslation.footnotePayIn4);
+        expect(ca.container.textContent).not.toContain(
+            enTranslation.footnotePayIn5
+        );
+    });
+
+    // The repayment period and service fees are trigger terms, so the copy
+    // stating them points at the pay-later disclosure.
+    it("marks the service-fee note and repayment period with the pay-later marker", () => {
+        installFetchMock();
+        const { container } = render(wrap(baseConfig, <App />));
+        expect(
+            container.querySelector(".hsw-calc-fee-note .hsw-footnote-ref")
+                ?.textContent
+        ).toBe("†");
+        expect(container.textContent).toContain("8 weeks for Pay in 5.†");
     });
 
     // Long-term raises the valid input ceiling well past the bi-weekly maxPrice,
