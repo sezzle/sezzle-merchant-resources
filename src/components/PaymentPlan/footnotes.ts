@@ -7,6 +7,12 @@
 // carrying a marker and the disclosure defining it can never disagree.
 const MARKER_SEQUENCE = ["*", "†", "‡", "§", "**", "††", "‡‡"];
 
+// DOM id of the footer disclosure a marker points at. Keyed on the marker's
+// position in the sequence, since the symbols themselves aren't valid in a
+// URL fragment.
+export const footnoteId = (marker: string): string =>
+  `hsw-fn-${MARKER_SEQUENCE.indexOf(marker) + 1}`;
+
 export interface FootnoteFlags {
   lt: boolean;
   virtualCard: boolean;

@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header = ({ translation, shopUrl }: HeaderProps) => (
   <header className="hsw-header">
-    <div className="sezzle-logo" aria-label={translation.logoAltText}>
+    <div className="sezzle-logo">
       <Logo />
     </div>
     {/* target="_top" breaks out of the Sezzle iframe so the merchant's own

@@ -113,6 +113,23 @@
     line-height: 0;
     margin-left: 1px;
 }
+.hsw-footnote-ref a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Visually hidden, still read by screen readers. */
+.hsw-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
 /* Brand: every button is pill-shaped, Satoshi Medium, min 44px touch target.
    Primary fill follows the background — Bold Plum on light, Bold Green on dark

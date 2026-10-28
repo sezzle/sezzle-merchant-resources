@@ -29,17 +29,17 @@ describe("Logo", () => {
         expect(container.querySelector("img")).toBeNull();
     });
 
-    // The logo is theme-driven only: light -> the "sezzle / pay in 5" lockup
-    // from the design handoff, dark -> the white "Buy Now, Pay Later" lockup
-    // (no white pay-in-5 artwork ships with the handoff). Language no longer
-    // affects which asset is used, so each language maps to the same asset.
+    // Light -> the "sezzle / pay in 5" lockup from the design handoff (where
+    // Pay in 5 is offered), dark -> the white "Buy Now, Pay Later" lockup (no
+    // white pay-in-5 artwork ships with the handoff). Language doesn't affect
+    // which asset is used, so each language maps to the same asset.
     it.each([
         ["light", "en", "sezzle-pay-in-5.webp"],
         ["light", "fr", "sezzle-pay-in-5.webp"],
         ["light", "es", "sezzle-pay-in-5.webp"],
-        ["dark", "en", "sezzle-horizontal-bnpl-white.png"],
-        ["dark", "fr", "sezzle-horizontal-bnpl-white.png"],
-        ["dark", "es", "sezzle-horizontal-bnpl-white.png"],
+        ["dark", "en", "sezzle-horizontal-bnpl-white.webp"],
+        ["dark", "fr", "sezzle-horizontal-bnpl-white.webp"],
+        ["dark", "es", "sezzle-horizontal-bnpl-white.webp"],
     ])("renders the %s/%s logo when configured", (theme, language, asset) => {
         const { container } = renderLogo({
             merchant_uuid: "x",
@@ -78,6 +78,32 @@ describe("Logo", () => {
             });
             const img = container.querySelector("img") as HTMLImageElement;
             expect(img.src).toContain("sezzle-pay-in-5.webp");
+        }
+    );
+
+    // Where Pay in 5 is hidden (Canada, or a 4-payment merchant), the header
+    // must not advertise it: light falls back to the generic BNPL lockup.
+    it.each([
+        ["US", 4],
+        ["CA", 5],
+        ["CA", 4],
+    ])(
+        "uses the generic light lockup when Pay in 5 is off (%s, %i payments)",
+        (countryCode, numberOfPayments) => {
+            const { container } = renderLogo({
+                merchant_uuid: "x",
+                theme: "light",
+                language: "en",
+                origin: "",
+                isLongTerm: false,
+                countryCode,
+                numberOfPayments,
+                minPrice: 0,
+                maxPrice: 2500,
+                includeInStore: false,
+            });
+            const img = container.querySelector("img") as HTMLImageElement;
+            expect(img.src).toContain("sezzle-horizontal-full-color.webp");
         }
     );
 });

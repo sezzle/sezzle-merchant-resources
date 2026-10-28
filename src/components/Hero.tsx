@@ -6,6 +6,7 @@ import { ITranslation } from "../interface";
 import { interpolate } from "../utils/interpolate";
 import { CheckIcon } from "./PaymentPlan/icons";
 import { Footnotes } from "./PaymentPlan/footnotes";
+import { FootnoteRef } from "../utils/footnoteText";
 
 interface HeroProps {
   translation: ITranslation;
@@ -46,8 +47,8 @@ const Hero = ({
           })}
           {/* The repayment period is a trigger term, so it carries the
               pay-later disclosure alongside the credit-check note. */}
-          <sup className="hsw-footnote-ref">{footnotes.creditCheck}</sup>
-          <sup className="hsw-footnote-ref">{footnotes.payLater}</sup>
+          <FootnoteRef marker={footnotes.creditCheck} />
+          <FootnoteRef marker={footnotes.payLater} />
         </p>
         <div className="hsw-hero-actions">
           {/* target="_top" breaks out of the Sezzle iframe so the merchant's

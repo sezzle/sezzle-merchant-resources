@@ -28,6 +28,9 @@ export interface ITranslation {
   footnoteVirtualCard: string;
   footnoteReschedule: string;
   footnoteSezzleUp: string;
+  // Accessible name for an in-body footnote marker link; `{marker}` is the
+  // symbol itself (*, †, ...).
+  footnoteRefLabel: string;
 
   // Stand-in for the merchant's name when the integration supplies neither
   // `merchantName` nor a usable parent origin, so personalized copy still reads
@@ -90,6 +93,8 @@ export interface ITranslation {
   googlePlayRatingsCount: string;
   appRatingsAsOf: string;
   appRatingStarsLabel: string;
+  // Screen-reader-only suffix for links that open in a new tab.
+  opensInNewTab: string;
 
   faqTitle: string;
   faq1Q: string;

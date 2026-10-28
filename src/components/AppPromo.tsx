@@ -43,6 +43,9 @@ const RatingPill = ({
   count,
   starsLabel,
   idPrefix,
+  badgeWidth,
+  badgeHeight,
+  newTabLabel,
 }: {
   href: string;
   badgeSrc: string;
@@ -51,10 +54,25 @@ const RatingPill = ({
   count: string;
   starsLabel: string;
   idPrefix: string;
+  badgeWidth: number;
+  badgeHeight: number;
+  newTabLabel: string;
 }) => (
   <a className="hsw-rating-pill" href={href} target="_blank" rel="noreferrer">
-    <img className="hsw-rating-badge" src={badgeSrc} alt={badgeAlt} />
-    <span className="hsw-rating-score">{rating}</span>
+    <img
+      className="hsw-rating-badge"
+      src={badgeSrc}
+      alt={badgeAlt}
+      width={badgeWidth}
+      height={badgeHeight}
+      loading="lazy"
+      decoding="async"
+    />
+    {/* The stars' label already announces the score, so the visible number is
+        hidden from assistive tech to avoid reading it twice. */}
+    <span className="hsw-rating-score" aria-hidden="true">
+      {rating}
+    </span>
     <span className="hsw-rating-meta">
       <span className="hsw-rating-stars" role="img" aria-label={starsLabel}>
         {starFills(rating).map((fill, i) => (
@@ -63,6 +81,7 @@ const RatingPill = ({
       </span>
       <span className="hsw-rating-count">{count}</span>
     </span>
+    <span className="hsw-sr-only">{newTabLabel}</span>
   </a>
 );
 
@@ -78,7 +97,16 @@ const AppPromo = ({ translation, footnotes }: AppPromoProps) => {
     <section className="hsw-app">
       <div className="hsw-app-grid">
         <div className="hsw-app-phone">
-          <img src={appScreen} alt={translation.appScreenAlt} />
+          {/* Below the fold: load lazily, and reserve the intrinsic ratio so
+              the section doesn't shift when the image decodes. */}
+          <img
+            src={appScreen}
+            alt={translation.appScreenAlt}
+            width={960}
+            height={1152}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="hsw-app-content">
           <h2 className="hsw-app-title">{translation.appTitle}</h2>
@@ -106,6 +134,9 @@ const AppPromo = ({ translation, footnotes }: AppPromoProps) => {
                 rating: translation.appStoreRating,
               })}
               idPrefix="ios"
+              badgeWidth={565}
+              badgeHeight={193}
+              newTabLabel={translation.opensInNewTab}
             />
             <RatingPill
               href={GOOGLE_PLAY_URL}
@@ -117,6 +148,9 @@ const AppPromo = ({ translation, footnotes }: AppPromoProps) => {
                 rating: translation.googlePlayRating,
               })}
               idPrefix="play"
+              badgeWidth={588}
+              badgeHeight={176}
+              newTabLabel={translation.opensInNewTab}
             />
           </div>
           <p className="hsw-ratings-asof">

@@ -7,7 +7,7 @@
 import { ITranslation } from "../../interface";
 import { ResolvedLTConfig, termMonthBounds } from "../../utils/ltConfig";
 import { formatNumberForLocale } from "../../utils/price";
-import { Footnotes } from "./footnotes";
+import { Footnotes, footnoteId } from "./footnotes";
 
 interface PaymentTermsProps {
   translation: ITranslation;
@@ -27,7 +27,10 @@ const Term = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <p className={`terms ${className}`.trim()}>
+  <p
+    className={`terms ${className}`.trim()}
+    id={marker ? footnoteId(marker) : undefined}
+  >
     {marker && <sup className="terms-marker">{marker}</sup>}
     {children}
   </p>

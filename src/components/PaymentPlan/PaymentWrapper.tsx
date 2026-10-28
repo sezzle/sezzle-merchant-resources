@@ -14,7 +14,7 @@ import { ITranslation } from "../../interface";
 import { ResolvedLTConfig } from "../../utils/ltConfig";
 import { PI5_MIN_PRICE } from "../../utils/renderFunctions";
 import { interpolate } from "../../utils/interpolate";
-import { withFootnote } from "../../utils/footnoteText";
+import { withFootnote, FootnoteRef } from "../../utils/footnoteText";
 import BiweeklyCard from "./BiweeklyCard";
 import MonthlyCards from "./MonthlyCards";
 import { Footnotes } from "./footnotes";
@@ -59,7 +59,7 @@ const PlanNote = ({
     <div className="hsw-plan-head">
       <h3 className="hsw-plan-label">
         {interpolate(translation.calcPlanPayments, { count })}
-        <sup className="hsw-footnote-ref">{marker}</sup>
+        <FootnoteRef marker={marker} />
       </h3>
       <div className="hsw-plan-values">
         <span className="hsw-plan-below">{message}</span>

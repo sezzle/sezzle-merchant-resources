@@ -201,6 +201,27 @@ describe("App", () => {
         ).toBeInTheDocument();
     });
 
+    // An opaque parent (sandboxed iframe, file://) reports origin "null". That
+    // must not throw during render: name and Shop Now both fall back.
+    it.each(["null", "file:///tmp/page.html"])(
+        "falls back instead of crashing for the unusable origin %j",
+        (origin) => {
+            installFetchMock();
+            render(wrap({ ...baseConfig, origin }, <App />));
+            expect(
+                screen.getByRole("heading", {
+                    level: 1,
+                    name: headlineName(enTranslation.merchantFallback),
+                })
+            ).toBeInTheDocument();
+            for (const link of screen.getAllByRole("link", {
+                name: enTranslation.heroShopNow,
+            })) {
+                expect(link.getAttribute("href")).toBe("https://sezzle.com");
+            }
+        }
+    );
+
     it("personalizes merchant-name copy and points Shop Now at the merchant origin, breaking out of the iframe", () => {
         installFetchMock();
         render(wrap({ ...baseConfig, merchantName: "Maple & Pine" }, <App />));
@@ -390,14 +411,16 @@ describe("App", () => {
         expect(container.querySelector(".hsw-calc-card .hsw-trusted")).toBeNull();
     });
 
-    it("labels the logo region with the localized alt text", () => {
+    // The logo's name comes from its <img> alt alone; the wrapper carries no
+    // aria-label (not valid on a generic div, and would double-announce).
+    it("names the header logo with the localized alt text", () => {
         installFetchMock();
         const { container } = render(wrap(baseConfig, <App />));
-        expect(
-            container.querySelector(
-                `.sezzle-logo[aria-label="${enTranslation.logoAltText}"]`
-            )
-        ).not.toBeNull();
+        const logo = container.querySelector(".hsw-header .sezzle-logo");
+        expect(logo?.hasAttribute("aria-label")).toBe(false);
+        expect(logo?.querySelector("img")?.getAttribute("alt")).toBe(
+            enTranslation.logoAltText
+        );
     });
 
     it("dispatches an about-sezzle onload event", async () => {
@@ -493,6 +516,29 @@ describe("App", () => {
             new Set(expected.filter((m) => m !== "**"))
         );
         expect(container.textContent).toContain("Sezzle Up,**");
+    });
+
+    // Each body marker is an in-page link to the disclosure that defines it.
+    it("links every footnote marker to its footer disclosure", () => {
+        installFetchMock();
+        const { container } = render(
+            wrap({ ...baseConfig, isLongTerm: true, includeInStore: true }, <App />)
+        );
+        const links = Array.from(
+            container.querySelectorAll<HTMLAnchorElement>(".hsw-footnote-ref a")
+        );
+        expect(links.length).toBeGreaterThan(0);
+        for (const link of links) {
+            const target = container.querySelector(link.getAttribute("href")!);
+            expect(
+                target?.querySelector(".terms-marker")?.textContent
+            ).toBe(link.textContent);
+            expect(link.getAttribute("aria-label")).toBe(
+                interpolate(enTranslation.footnoteRefLabel, {
+                    marker: link.textContent!,
+                })
+            );
+        }
     });
 
     // With in-store off, the virtual-card disclosure drops out and the later

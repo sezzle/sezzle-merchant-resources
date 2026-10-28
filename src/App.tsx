@@ -20,6 +20,7 @@ import {
   isInputAmountValid,
 } from "./utils/renderFunctions";
 import { getCurrency, normalizePriceString } from "./utils/price";
+import { parseParentOrigin } from "./utils/origin";
 
 const DEFAULT_INPUT_PRICE = 150;
 
@@ -124,11 +125,10 @@ function App() {
     virtualCard: config.includeInStore,
   });
 
-  const shopUrl = config.origin || "https://sezzle.com";
+  const parentUrl = parseParentOrigin(config.origin);
+  const shopUrl = parentUrl?.origin ?? "https://sezzle.com";
   const merchantName =
-    config.merchantName ||
-    (config.origin ? new URL(config.origin).hostname : "") ||
-    translation.merchantFallback;
+    config.merchantName || parentUrl?.hostname || translation.merchantFallback;
 
   return (
     <div

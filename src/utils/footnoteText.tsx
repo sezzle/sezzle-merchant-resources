@@ -2,8 +2,28 @@
 // real <sup> marker in its place. Keeping the token inline means the sentence
 // stays one translatable unit instead of being split around the marker.
 import { ReactNode } from "react";
+import { useConfig } from "../containers/ConfigProvider";
+import { footnoteId } from "../components/PaymentPlan/footnotes";
+import { interpolate } from "./interpolate";
 
 const TOKEN = "{footnote}";
+
+// A superscript marker that links to its footer disclosure, so the pairing is
+// navigable and announced ("Footnote †") rather than read as a bare symbol.
+export const FootnoteRef = ({ marker }: { marker?: string }) => {
+  const { translation } = useConfig();
+  if (!marker) return null;
+  return (
+    <sup className="hsw-footnote-ref">
+      <a
+        href={`#${footnoteId(marker)}`}
+        aria-label={interpolate(translation.footnoteRefLabel, { marker })}
+      >
+        {marker}
+      </a>
+    </sup>
+  );
+};
 
 export const withFootnote = (
   template: string,
@@ -17,7 +37,7 @@ export const withFootnote = (
   return (
     <>
       {before}
-      <sup className="hsw-footnote-ref">{marker}</sup>
+      <FootnoteRef marker={marker} />
       {after}
     </>
   );

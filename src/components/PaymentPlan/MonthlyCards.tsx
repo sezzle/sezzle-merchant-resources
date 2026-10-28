@@ -8,6 +8,7 @@ import {
 import { selectTermsToShow, ResolvedLTConfig } from "../../utils/ltConfig";
 import { parsePrice, formatNumberForLocale } from "../../utils/price";
 import { Footnotes } from "./footnotes";
+import { FootnoteRef } from "../../utils/footnoteText";
 
 interface MonthlyCardsProps {
   currency: string;
@@ -59,14 +60,10 @@ const MonthlyCard = ({
             >
               {formatLTAmount(currency, monthly)}
             </span>{" "}
-            <span
-              className="due hsw-plan-today"
-              aria-label={translation.LTperMonth}
-            >
-              <span aria-hidden="true">
-                {translation.LTmonthlyAmount}
-                <sup className="hsw-footnote-ref">{footnotes.lt}</sup>
-              </span>
+            <span className="due hsw-plan-today">
+              <span className="hsw-sr-only">{translation.LTperMonth}</span>
+              <span aria-hidden="true">{translation.LTmonthlyAmount}</span>
+              <FootnoteRef marker={footnotes.lt} />
             </span>
           </div>
         </div>

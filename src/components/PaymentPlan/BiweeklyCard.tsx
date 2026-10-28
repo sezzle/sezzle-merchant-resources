@@ -8,6 +8,7 @@ import { ITranslation } from "../../interface";
 import { getFormattedPrice } from "../../utils/renderFunctions";
 import { interpolate } from "../../utils/interpolate";
 import { Footnotes } from "./footnotes";
+import { FootnoteRef } from "../../utils/footnoteText";
 
 interface BiweeklyCardProps {
   numberOfPayments: number;
@@ -52,7 +53,7 @@ const BiweeklyCard = ({
           {interpolate(translation.calcPlanPayments, {
             count: numberOfPayments,
           })}
-          <sup className="hsw-footnote-ref">{footnotes.payLater}</sup>
+          <FootnoteRef marker={footnotes.payLater} />
         </h3>
         <div className="hsw-plan-values">
           <span className="hsw-plan-amount">{installmentPrice}</span>{" "}

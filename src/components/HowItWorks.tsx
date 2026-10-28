@@ -23,6 +23,9 @@ import { withFootnote } from "../utils/footnoteText";
 // itself rather than a generic phone glyph.
 import sezzleMark from "../assets/sezzle-mark-white.webp";
 
+// Module scope so it keeps a stable component identity across renders.
+const SezzleMarkIcon = () => <img src={sezzleMark} alt="" />;
+
 interface Step {
   Icon: () => ReactNode;
   title: string;
@@ -105,7 +108,7 @@ const HowItWorks = ({
 
   const inStoreSteps: Step[] = [
     {
-      Icon: () => <img src={sezzleMark} alt="" />,
+      Icon: SezzleMarkIcon,
       title: translation.hiwInStore1Title,
       body: interpolate(translation.hiwInStore1Body, { merchantName }),
       cta: (
