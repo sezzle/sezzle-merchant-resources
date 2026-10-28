@@ -71,7 +71,18 @@ describe("ConfigProvider", () => {
             language: "fr",
             isLongTerm: true,
         });
-        expect(typeof result.current.translation.ctaHeader).toBe("string");
+        expect(typeof result.current.translation.appTitle).toBe("string");
+    });
+
+    it("passes includeInStore through from the merchant config", () => {
+        const wrapper = ({ children }: { children: React.ReactNode }) => (
+            <ConfigProvider>{children}</ConfigProvider>
+        );
+        const { result } = renderHook(() => useConfig(), { wrapper });
+
+        postConfig({ merchant_uuid: "abc", includeInStore: true });
+
+        expect(result.current.config).toMatchObject({ includeInStore: true });
     });
 
     it("falls back to defaults when fields are missing", () => {
@@ -89,6 +100,7 @@ describe("ConfigProvider", () => {
             isLongTerm: false,
             countryCode: "US",
             numberOfPayments: 5,
+            includeInStore: false,
         });
         expect(result.current.effectiveNumberOfPayments).toBe(5);
         expect(result.current.isCA).toBe(false);
@@ -111,6 +123,31 @@ describe("ConfigProvider", () => {
         expect(result.current.isCA).toBe(true);
         expect(result.current.effectiveNumberOfPayments).toBe(4);
         expect(result.current.ltConfig.minPriceLT).toBe(0);
+    });
+
+    it("parses merchantName when provided", () => {
+        const wrapper = ({ children }: { children: React.ReactNode }) => (
+            <ConfigProvider>{children}</ConfigProvider>
+        );
+        const { result } = renderHook(() => useConfig(), { wrapper });
+
+        postConfig({
+            merchant_uuid: "abc",
+            merchantName: "Maple & Pine",
+        });
+
+        expect(result.current.config?.merchantName).toBe("Maple & Pine");
+    });
+
+    it("leaves merchantName undefined when omitted", () => {
+        const wrapper = ({ children }: { children: React.ReactNode }) => (
+            <ConfigProvider>{children}</ConfigProvider>
+        );
+        const { result } = renderHook(() => useConfig(), { wrapper });
+
+        postConfig({ merchant_uuid: "abc" });
+
+        expect(result.current.config?.merchantName).toBeUndefined();
     });
 
     it("enables long-term via isLongTerm alone (group a backcompat)", () => {

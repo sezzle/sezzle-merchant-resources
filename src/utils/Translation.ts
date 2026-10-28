@@ -7,7 +7,7 @@ import { ITranslation } from "../interface";
 
 class Translation {
   private language: string | null;
-  private translationsMap: Record<string, any>;
+  private translationsMap: Record<string, ITranslation>;
 
   constructor(language: string) {
     this.language = null;

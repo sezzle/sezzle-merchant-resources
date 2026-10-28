@@ -5,6 +5,7 @@ import { ConfigProvider } from "./containers/ConfigProvider";
 import enTranslation from "./translations/en.json";
 import frTranslation from "./translations/fr.json";
 import esTranslation from "./translations/es.json";
+import { interpolate } from "./utils/interpolate";
 
 // The only network call the widget makes is the about-sezzle onload event log.
 const installFetchMock = () => {
@@ -56,45 +57,47 @@ describe("how-sezzle-works widget (integration)", () => {
         expect(container.querySelector(".sezzle-container")).toBeNull();
     });
 
-    it("renders the English widget once config arrives", async () => {
+    it("renders the English page once config arrives", async () => {
         installFetchMock();
         renderWidget();
         postConfig({ ...BASE, theme: "dark", language: "en", isLongTerm: true });
 
         expect(
-            await screen.findByRole("heading", { name: enTranslation.ctaHeader })
+            await screen.findByRole("heading", { name: enTranslation.appTitle })
         ).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.MultiPlanheader)).toBeInTheDocument();
+        // Hero headline names the merchant — with no merchantName in the config
+        // that resolves to the hostname of the posting (merchant) origin.
         expect(
-            screen.getByRole("link", { name: enTranslation.ctaButton })
-        ).toHaveAttribute("href", "https://sezzle.com/app");
-        expect(screen.getByText(enTranslation.review1Header)).toBeInTheDocument();
-        expect(screen.getByText(enTranslation.review2Header)).toBeInTheDocument();
+            screen.getByRole("heading", {
+                level: 1,
+                name: interpolate(enTranslation.heroHeadline, {
+                    merchantName: "shop.example.com",
+                }).replace(/\n/g, " "),
+            })
+        ).toBeInTheDocument();
     });
 
-    it("renders the French widget when language=fr", async () => {
+    it("renders the French page when language=fr", async () => {
         installFetchMock();
         renderWidget();
         postConfig({ ...BASE, theme: "light", language: "fr", isLongTerm: false });
 
         expect(
-            await screen.findByRole("heading", { name: frTranslation.ctaHeader })
+            await screen.findByRole("heading", { name: frTranslation.appTitle })
         ).toBeInTheDocument();
-        expect(screen.getByText(frTranslation.MultiPlanheader)).toBeInTheDocument();
         expect(
-            screen.getByRole("link", { name: frTranslation.ctaButton })
+            screen.getByRole("heading", { name: frTranslation.faqTitle })
         ).toBeInTheDocument();
     });
 
-    it("renders the Spanish widget when language=es", async () => {
+    it("renders the Spanish page when language=es", async () => {
         installFetchMock();
         renderWidget();
         postConfig({ ...BASE, theme: "light", language: "es", isLongTerm: false });
 
         expect(
-            await screen.findByRole("heading", { name: esTranslation.ctaHeader })
+            await screen.findByRole("heading", { name: esTranslation.appTitle })
         ).toBeInTheDocument();
-        expect(screen.getByText(esTranslation.MultiPlanheader)).toBeInTheDocument();
     });
 
     it("applies the dark theme class when theme=dark", async () => {
@@ -102,7 +105,7 @@ describe("how-sezzle-works widget (integration)", () => {
         const { container } = renderWidget();
         postConfig({ ...BASE, theme: "dark", language: "en", isLongTerm: false });
 
-        await screen.findByRole("heading", { name: enTranslation.ctaHeader });
+        await screen.findByRole("heading", { name: enTranslation.appTitle });
         expect(container.querySelector(".sezzle-container-dark")).not.toBeNull();
     });
 
@@ -117,7 +120,7 @@ describe("how-sezzle-works widget (integration)", () => {
             countryCode: "CA",
         });
 
-        await screen.findByRole("heading", { name: enTranslation.ctaHeader });
+        await screen.findByRole("heading", { name: enTranslation.appTitle });
         expect(container.querySelector(".payment-cards-monthly")).toBeNull();
     });
 });

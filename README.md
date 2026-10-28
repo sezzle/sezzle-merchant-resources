@@ -10,27 +10,26 @@ How Sezzle Works is a dedicated page that merchants can add to their website to 
 
 To set up the page on Shopify, follow the steps below.
 
+#### Part 1: Create the Page
+
 1. Log in to your Shopify Store
-1. Navigate to "Online Store" "Themes"
-1. On the theme you want to edit, select "Actions" and then "Edit Code"
-1. Under the "Templates" folder, click "Add New Template", select template for "Page", template type "liquid", and name the page "Sezzle", then click Create Template
-1. Select the theme that best fits your store from the tabs listed.
-1. Copy the [code](#code-snippet) and paste it under {{page.content}} on the Shopify page.
-1. Save
-1. Navigate to "Pages"
-1. Add a new page, and give it a title - we recommend something like "How Sezzle Works" or "How to use Sezzle"
-1. Under "Theme Template" (in the bottom-right), select "sezzle"
-1. Save and view the page
+1. Under "Online Store", click "Pages"
+1. Click "Add Page", and give it a title - we recommend something like "How Sezzle Works" or "How to use Sezzle"
+1. Click "</>" (Show HTML)
+1. Copy the [code](#code-snippet) and paste it into the new template
+1. In the config, update the merchant_uuid value to your Sezzle merchant ID, then click "Save"
+    - See below for additional details
+1. Click "Save" then click "Preview" to confirm installation success.
+1. Return to the editor, change to "Visible" then click "Save"
 
-You can now add the page to your navigation:
+#### Part 2: Add to Navigation
 
-1. Go to "Online Store" "Navigation"
-1. Select the menu where you would like the Sezzle link to appear (ex: Main menu)
+1. Go to "Content" > "Menus"
+1. Select the menu you wish to edit (ex: Main menu, Footer menu)
 1. Click "Add menu item"
-1. Enter the text you wish to appear (ex: How Sezzle Works)
-1. Click the second box, select "Pages" then the page you just created
-1. Click Add
-1. Click Save Menu
+1. Enter the label as you want the link to appear
+1. Click into the "Link" box, select "Pages", then the new Sezzle page you created
+1. Click "Save"
 
 ### Other Platforms
 
@@ -48,6 +47,7 @@ Add your `merchant_uuid`, adjust `theme` and `language` as per your website's re
 - `language` can either be `en` , `fr` or `es`.
 - `countryCode` is the viewer's two-letter country (e.g. `US`, `CA`). Defaults to `US`. In Canada (`CA`), Pay-in-5 and all long-term financing are hidden automatically.
 - `numberOfPayments` can be `4` or `5`. Defaults to `5` (the Pay-in-5 bi-weekly card shows above $50). Set `4` to never show the Pay-in-5 card. Forced to `4` in Canada.
+- `includeInStore` can be `true` or `false`. Defaults to `false`. Set `true` if shoppers can also pay with Sezzle at your register (via a Sezzle Virtual Card in the Sezzle app). The "How Sezzle Works" section then splits into two labelled groups of steps — "Pay later online" and "Pay later in-store" — instead of showing the online steps alone.
 
 ##### Long-term financing (only for merchants approved for Sezzle Long-term)
 
@@ -70,6 +70,7 @@ Insert the following code into your HTML file:
           language: "",
           countryCode: "US",
           numberOfPayments: 5,
+          includeInStore: false,
           // Long-term financing (only if approved). isLongTerm is the legacy
           // toggle; prefer LTgroup ("a" or "b") for new integrations.
           // LTgroup: "a",
@@ -78,6 +79,13 @@ Insert the following code into your HTML file:
       const node = document.getElementById("how-sezzle-works");
       const iframe = document.createElement('iframe');
       iframe.src = 'https://media.sezzle.com/how-sezzle-works/v2/index.html';
+      // Accessible name for the frame, localized to match config.language.
+      const FRAME_TITLES = {
+          en: "How Sezzle Works",
+          fr: "Comment fonctionne Sezzle",
+          es: "Cómo funciona Sezzle",
+      };
+      iframe.title = FRAME_TITLES[config.language] || FRAME_TITLES.en;
       iframe.height = '2000px';
       iframe.width = '100%';
       iframe.style.border = 'none';

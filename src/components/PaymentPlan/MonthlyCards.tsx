@@ -1,7 +1,5 @@
-// Long-term monthly installment cards + the "See details" feature accordion,
-// ported from generateMonthlyCard / generateMonthlyInner in
-// sezzle-widget-react's MultiPlanModal.js.
-import { useState } from "react";
+// Long-term monthly installment cards, ported from generateMonthlyCard /
+// generateMonthlyInner in sezzle-widget-react's MultiPlanModal.js.
 import { ITranslation } from "../../interface";
 import {
   addDelimiters,
@@ -9,7 +7,8 @@ import {
 } from "../../utils/renderFunctions";
 import { selectTermsToShow, ResolvedLTConfig } from "../../utils/ltConfig";
 import { parsePrice, formatNumberForLocale } from "../../utils/price";
-import { FeatureCheckIcon, ChevronDownIcon, ChevronUpIcon } from "./icons";
+import { Footnotes } from "./footnotes";
+import { FootnoteRef } from "../../utils/footnoteText";
 
 interface MonthlyCardsProps {
   currency: string;
@@ -17,6 +16,7 @@ interface MonthlyCardsProps {
   ltConfig: ResolvedLTConfig;
   translation: ITranslation;
   lang: string;
+  footnotes: Footnotes;
 }
 
 const formatLTAmount = (currency: string, value: number) =>
@@ -29,6 +29,7 @@ const MonthlyCard = ({
   medianAPR,
   translation,
   lang,
+  footnotes,
 }: {
   months: number;
   currency: string;
@@ -36,6 +37,7 @@ const MonthlyCard = ({
   medianAPR: number;
   translation: ITranslation;
   lang: string;
+  footnotes: Footnotes;
 }) => {
   const monthly = calculateMonthlyWithInterest(priceString, months, medianAPR);
   const total = monthly * months;
@@ -44,19 +46,24 @@ const MonthlyCard = ({
 
   return (
     <div className="payment-card monthly-installment-card" data-months={months}>
+      {/* Same head shape as the bi-weekly blocks: term on the left, amount on
+          the right. */}
       <div className="plan-summary">
-        <div className="purple">
-          <div className="left">
-            <span className="price monthly-amount" data-months={months}>
+        <div className="purple hsw-plan-head">
+          <h3 className="hsw-plan-label">
+            {months} {translation.LTtermLength}
+          </h3>
+          <div className="hsw-plan-values">
+            <span
+              className="price monthly-amount hsw-plan-amount"
+              data-months={months}
+            >
               {formatLTAmount(currency, monthly)}
-            </span>
-            <span className="due" aria-label={translation.LTperMonth}>
+            </span>{" "}
+            <span className="due hsw-plan-today">
+              <span className="hsw-sr-only">{translation.LTperMonth}</span>
               <span aria-hidden="true">{translation.LTmonthlyAmount}</span>
-            </span>
-          </div>
-          <div className="right">
-            <span className="pill">
-              {months} {translation.LTtermLength}
+              <FootnoteRef marker={footnotes.lt} />
             </span>
           </div>
         </div>
@@ -90,72 +97,13 @@ const MonthlyCard = ({
   );
 };
 
-const FeaturesAccordion = ({ translation }: { translation: ITranslation }) => {
-  const [expanded, setExpanded] = useState(false);
-  const label = expanded ? translation.LThideDetails : translation.LTseeDetails;
-
-  return (
-    <div className="features-accordion">
-      <div className="accordion-title-bar">
-        <span className="accordion-title" aria-hidden="true">
-          {label}
-        </span>
-        <button
-          className="accordion-icon accordion-toggle"
-          aria-expanded={expanded}
-          aria-controls="features-drawer"
-          aria-label={label}
-          onClick={() => setExpanded((e) => !e)}
-        >
-          {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
-        </button>
-      </div>
-      <div
-        id="features-drawer"
-        className="features-drawer"
-        style={expanded ? undefined : { display: "none" }}
-      >
-        <div className="single-feature">
-          <div>
-            <FeatureCheckIcon />
-          </div>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: translation.LTsingleFeatureAffordable,
-            }}
-          />
-        </div>
-        <div className="single-feature">
-          <div>
-            <FeatureCheckIcon />
-          </div>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: translation.LTsingleFeaturePrequalify,
-            }}
-          />
-        </div>
-        <div className="single-feature">
-          <div>
-            <FeatureCheckIcon />
-          </div>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: translation.LTsingleFeatureTrusted,
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const MonthlyCards = ({
   currency,
   priceString,
   ltConfig,
   translation,
   lang,
+  footnotes,
 }: MonthlyCardsProps) => {
   const terms = selectTermsToShow(parsePrice(priceString), ltConfig.termsToShow) || [];
 
@@ -170,9 +118,9 @@ const MonthlyCards = ({
           medianAPR={ltConfig.medianAPR}
           translation={translation}
           lang={lang}
+          footnotes={footnotes}
         />
       ))}
-      <FeaturesAccordion translation={translation} />
     </>
   );
 };

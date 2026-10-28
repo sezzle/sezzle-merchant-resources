@@ -1,15 +1,30 @@
-import { DEFAULT_THEME } from "./constants";
+import { DEFAULT_THEME, ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
 import { useConfig, AppConfig } from "./containers/ConfigProvider";
-import { ITranslation } from "./interface";
 import "./stylesheets/styles.css";
-import trustPilot from "./assets/trustpilot.svg";
-import mobile from "./assets/mobile.svg";
-import fiveStar from "./assets/five-star.svg";
-import Logo from "./components/Logo";
-import PaymentPlan from "./components/PaymentPlan";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import HowItWorks from "./components/HowItWorks";
+import AppPromo from "./components/AppPromo";
+import Faq from "./components/Faq";
+import Footer from "./components/Footer";
+import PaymentWrapper, {
+  Eligibility,
+} from "./components/PaymentPlan/PaymentWrapper";
+import { buildFootnotes } from "./components/PaymentPlan/footnotes";
 import { sendEvent } from "./remote/api";
-import { ABOUT_SEZZLE_ONLOAD_EVENT } from "./constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  isProductEligibleLT,
+  isProductEligiblePI4,
+  isProductEligiblePI5,
+  isInputAmountValid,
+} from "./utils/renderFunctions";
+import { getCurrency, normalizePriceString } from "./utils/price";
+import { parseParentOrigin } from "./utils/origin";
+
+const DEFAULT_INPUT_PRICE = 150;
+
+const SANITIZE_REGEX = /[^0-9,.$€£₤₹]/g;
 
 const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
   const body = [
@@ -19,132 +34,161 @@ const dispatchEvent = (config: AppConfig | undefined, eventType: string) => {
       merchant_uuid: config?.merchant_uuid,
     },
   ];
-  // hooks are only accessible from inside a JSX element.
-  // So passing data from here, instead of directly getting them during api call.
-  // Some room for improvement.
   sendEvent(body);
 };
 
 function App() {
-  const ctx = useConfig();
-  const config = ctx.config;
-  const translation: ITranslation = ctx.translation;
+  const { config, translation, ltConfig, effectiveNumberOfPayments } =
+    useConfig();
 
-  // Fire the onload analytics event as a side effect after render — not during
-  // render — so it sends exactly once and stays safe under re-renders/StrictMode.
+  const initialPrice =
+    ltConfig.minPriceLT > 0 ? ltConfig.minPriceLT : DEFAULT_INPUT_PRICE;
+
+  const [currency, setCurrency] = useState("$");
+  const [priceString, setPriceString] = useState(String(initialPrice));
+  const [inputValue, setInputValue] = useState(`$${initialPrice}`);
+  const [hasError, setHasError] = useState(false);
+
   useEffect(() => {
     dispatchEvent(config, ABOUT_SEZZLE_ONLOAD_EVENT);
   }, [config]);
 
+  // Give the embedded document a localized name (used as the page/frame
+  // accessible name), sourced from the translation like the section headings.
+  useEffect(() => {
+    if (translation?.hiwTitle) {
+      document.title = translation.hiwTitle;
+    }
+  }, [translation]);
+
+  if (!config) return null;
+  const lang = config.language;
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = event.target.value.replace(SANITIZE_REGEX, "");
+    setInputValue(raw);
+
+    const nextCurrency = getCurrency(raw);
+    const nextPriceString = normalizePriceString(raw);
+
+    const valid = isInputAmountValid(
+      nextPriceString,
+      config.minPrice,
+      config.maxPrice,
+      ltConfig.minPriceLT,
+      ltConfig.maxPriceLT
+    );
+    if (!valid) {
+      setHasError(true);
+      return;
+    }
+    setHasError(false);
+    setCurrency(nextCurrency);
+    setPriceString(nextPriceString);
+  };
+
+  // Eligibility for the displayed cards relaxes minPrice to 0 so a bi-weekly
+  // card always shows (mirrors the modal's on-open render). Strict minPrice
+  // still gates user input via isInputAmountValid above.
+  const eligibility: Eligibility = {
+    pi4: isProductEligiblePI4(priceString, 0, config.maxPrice),
+    pi5: isProductEligiblePI5(
+      priceString,
+      config.maxPrice,
+      effectiveNumberOfPayments
+    ),
+    lt: isProductEligibleLT(
+      priceString,
+      ltConfig.minPriceLT,
+      ltConfig.maxPriceLT
+    ),
+  };
+
+  // Pay-in-5 is shown only outside Canada (where numberOfPayments is forced to
+  // 4). Below the $50 floor the row shows an "available on …" note instead.
+  const showPI5Row = effectiveNumberOfPayments === 5;
+
+  // This page runs inside an iframe served from Sezzle's CDN
+  // (media.sezzle.com), so window.location here is the iframe host — NOT the
+  // merchant. The merchant's site is the parent page's origin, captured as
+  // config.origin (= the postMessage event.origin, the same value reported as
+  // merchant_site in analytics). Use it for both the "Shop Now" link target and
+  // the merchant-name fallback. origin is scheme+host only (no path), so the
+  // link lands on the merchant's home page.
+  // Every merchant-personalized string interpolates this, so fall back to the
+  // localized "your store" rather than leaving a hole in the sentence when the
+  // integration supplies neither a name nor a usable parent origin.
+  // Markers are allocated once, from the same flags that decide what renders,
+  // and handed to every component that shows a marker or a disclosure.
+  const footnotes = buildFootnotes({
+    lt: eligibility.lt,
+    virtualCard: config.includeInStore,
+  });
+
+  const parentUrl = parseParentOrigin(config.origin);
+  const shopUrl = parentUrl?.origin ?? "https://sezzle.com";
+  const merchantName =
+    config.merchantName || parentUrl?.hostname || translation.merchantFallback;
+
   return (
     <div
       className={`sezzle-container ${
-        config && config.theme !== DEFAULT_THEME
-          ? "sezzle-container-dark"
-          : ""
+        config.theme !== DEFAULT_THEME ? "sezzle-container-dark" : ""
       }`}
     >
-      <div className="sezzle-logo" aria-label={translation.logoAltText}>
-        <Logo />
-      </div>
-      <PaymentPlan />
+      {/* The page's single <main> landmark is the mount node in index.html,
+          so this content renders inside it — do not add another <main> here. */}
+      <Header translation={translation} shopUrl={shopUrl} />
 
-      <div className="section-separator"></div>
+      <Hero
+        translation={translation}
+        merchantName={merchantName}
+        shopUrl={shopUrl}
+        showPI5={showPI5Row}
+        footnotes={footnotes}
+        calculator={
+          <PaymentWrapper
+            currency={currency}
+            priceString={priceString}
+            inputValue={inputValue}
+            hasError={hasError}
+            onChange={handleChange}
+            eligibility={eligibility}
+            showPI5Row={showPI5Row}
+            translation={translation}
+            ltConfig={ltConfig}
+            lang={lang}
+            footnotes={footnotes}
+            maxPrice={config.maxPrice}
+            ltOffered={ltConfig.minPriceLT > 0}
+          />
+        }
+      />
 
-      <div className="cta-area">
-        <div className="cta-main">
-          <h3 className="cta-header">{translation.ctaHeader}</h3>
-          <p className="cta-description">
-            {translation.ctaDescription}
-          </p>
-          <a
-            className="cta-button"
-            href="https://sezzle.com/app"
-            rel="noreferrer"
-            target="_blank"
-          >
-            {translation.ctaButton}
-          </a>
-        </div>
-        <div className="mobile-reviews">
-          <div className="mobile-app-img">
-            <img src={mobile} alt=""></img>
-          </div>
-          <div className="review-card-area">
-            <div className="review-card review-card-1">
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label="Five stars"
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-              <h4 className="review-header">
-                {translation.review1Header}
-              </h4>
-              <p className="review-description">
-                {translation.review1Description}
-              </p>
-              <div className="review-name">
-                {translation.reviewer1Name}{" "}
-                <span className="review-date">
-                  {translation.review1Date}
-                </span>
-              </div>
-            </div>
-            <div
-              className={`review-card ${
-                config &&
-                (config.language === "fr" ||
-                  config.language === "es")
-                  ? "review-card-2-fr-es"
-                  : "review-card-2"
-              }`}
-            >
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label={translation.ratingAltText}
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-              <h4 className="review-header">
-                {translation.review2Header}
-              </h4>
-              <p className="review-description">
-                {translation.review2Description}
-              </p>
-              <div className="review-name">
-                {translation.reviewer2Name}
-                <span className="review-date">
-                  {translation.review2Date}
-                </span>
-              </div>
-            </div>
-            <div className="review-card review-card-3">
-              <div className="trustpilot-group">
-                <div className="trustpilot">
-                  <img src={trustPilot} alt=""></img>
-                </div>
-                <div
-                  className="five-stars"
-                  aria-label={translation.ratingAltText}
-                >
-                  <img src={fiveStar} alt=""></img>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HowItWorks
+        translation={translation}
+        includeInStore={config.includeInStore}
+        merchantName={merchantName}
+        footnotes={footnotes}
+      />
+
+      <AppPromo translation={translation} footnotes={footnotes} />
+
+      <Faq
+        translation={translation}
+        showPI5={showPI5Row}
+        footnotes={footnotes}
+      />
+
+      <Footer
+        translation={translation}
+        merchantName={merchantName}
+        shopUrl={shopUrl}
+        ltConfig={ltConfig}
+        lang={lang}
+        footnotes={footnotes}
+        showPI5={showPI5Row}
+      />
     </div>
   );
 }

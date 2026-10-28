@@ -1,85 +1,30 @@
-// Bi-weekly (Pay-in-4 / Pay-in-5) payment card, ported from
-// generateBiweeklyCard in sezzle-widget-react's MultiPlanModal.js.
+// Bi-weekly (Pay-in-4 / Pay-in-5) plan block: a header row pairing the plan
+// name (left, carrying the pay-later disclosure marker) with the
+// per-installment amount (right), above a progress track and the installment
+// schedule. The per-installment amount is price / numberOfPayments (never the
+// long-term monthly amount): passing minPriceLT/maxPriceLT = 0 to
+// getFormattedPrice forces the non-LT branch even for LT-eligible prices.
 import { ITranslation } from "../../interface";
 import { getFormattedPrice } from "../../utils/renderFunctions";
-import { DotIcon } from "./icons";
+import { interpolate } from "../../utils/interpolate";
+import { Footnotes } from "./footnotes";
+import { FootnoteRef } from "../../utils/footnoteText";
 
 interface BiweeklyCardProps {
   numberOfPayments: number;
   currency: string;
   priceString: string;
   translation: ITranslation;
+  footnotes: Footnotes;
 }
-
-// One installment's connector graphic (left dash, dot, right dash). The dashes
-// hide at the ends and the middle ones grow taller, mirroring the modal.
-const InstallmentGraphic = ({
-  index,
-  numberOfPayments,
-  classModifier,
-  dashWidth,
-}: {
-  index: number;
-  numberOfPayments: number;
-  classModifier: string;
-  dashWidth: number;
-}) => {
-  const isFirst = index === 0;
-  const isLast = index === numberOfPayments - 1;
-  const isMiddle = index > 0 && index < numberOfPayments - 1;
-  const rectX = dashWidth === 30 ? "0.75" : "0.399994";
-  const rightHeight = isMiddle ? 16 : 2;
-
-  return (
-    <div className="graphic">
-      <div className={`dash left ${classModifier}`}>
-        <svg
-          width={dashWidth}
-          height="2"
-          viewBox={`0 0 ${dashWidth} 2`}
-          fill="#E8E8E8"
-          xmlns="http://www.w3.org/2000/svg"
-          style={isFirst ? { visibility: "hidden" } : undefined}
-        >
-          <rect x={rectX} width={dashWidth} height="2" fill="#E8E8E8" />
-        </svg>
-      </div>
-      <div className="dot">
-        <DotIcon />
-      </div>
-      <div className={`dash right ${classModifier}`}>
-        <svg
-          width={dashWidth}
-          height={rightHeight}
-          viewBox={`0 0 ${dashWidth} ${rightHeight}`}
-          fill="#E8E8E8"
-          xmlns="http://www.w3.org/2000/svg"
-          style={isLast ? { visibility: "hidden" } : undefined}
-        >
-          <rect
-            x={rectX}
-            y={isMiddle ? "7" : undefined}
-            width={dashWidth}
-            height="2"
-            fill="#E8E8E8"
-          />
-        </svg>
-      </div>
-    </div>
-  );
-};
 
 const BiweeklyCard = ({
   numberOfPayments,
   currency,
   priceString,
   translation,
+  footnotes,
 }: BiweeklyCardProps) => {
-  const classModifier = numberOfPayments === 4 ? "fourth" : "fifth";
-  const dashWidth = numberOfPayments === 4 ? 30 : 22;
-  // Biweekly cards always show the bi-weekly installment (price / numberOfPayments),
-  // never the long-term monthly amount. Passing minPriceLT/maxPriceLT = 0 forces
-  // getFormattedPrice down the non-LT branch even for LT-eligible prices.
   const installmentPrice = getFormattedPrice(
     currency + priceString,
     numberOfPayments,
@@ -89,56 +34,46 @@ const BiweeklyCard = ({
     null
   );
 
-  const installments = [];
+  const steps = [];
   for (let i = 0; i < numberOfPayments; i++) {
-    const isFirst = i === 0;
-    const weekNumber = i * 2;
-    const dueText = isFirst
-      ? translation.today
-      : `${weekNumber} ${translation.MultiPlanweeks}`;
-    installments.push(
-      <div className="installment" key={i}>
-        <InstallmentGraphic
-          index={i}
-          numberOfPayments={numberOfPayments}
-          classModifier={classModifier}
-          dashWidth={dashWidth}
-        />
-        <div className={`detail${isFirst ? " first-installment" : ""}`}>
-          <div className={`amount ${numberOfPayments}-pay-installment`}>
-            {installmentPrice}
-          </div>
-          <div className="due">{dueText}</div>
-        </div>
+    const when =
+      i === 0 ? translation.today : `${i * 2} ${translation.MultiPlanweeks}`;
+    steps.push(
+      <div className="hsw-step" key={i}>
+        <div className="hsw-step-amt">{installmentPrice}</div>
+        <div className="hsw-step-when">{when}</div>
       </div>
     );
   }
 
   return (
-    <div className={`payment-card ${numberOfPayments}-pay-installment-card`}>
-      <div className="plan-summary">
-        <div className="purple">
-          <div className="left">
-            <span className={`price ${numberOfPayments}-pay-installment`}>
-              {installmentPrice}
-            </span>
-            <span className="due">{translation.today}</span>
-          </div>
-          <div className="right">
-            <span className="pill">
-              {translation.MultiPlanpayIn} {numberOfPayments}
-              {numberOfPayments === 5 && <sup>TM</sup>}
-            </span>
-          </div>
-        </div>
-        <div className="grey">
-          <span className={`${numberOfPayments}-pay-installment`}>
-            {installmentPrice}
-          </span>{" "}
-          {translation.MultiPlanevery2Weeks}
+    <div className="hsw-plan">
+      <div className="hsw-plan-head">
+        <h3 className="hsw-plan-label">
+          {interpolate(translation.calcPlanPayments, {
+            count: numberOfPayments,
+          })}
+          <FootnoteRef marker={footnotes.payLater} />
+        </h3>
+        <div className="hsw-plan-values">
+          <span className="hsw-plan-amount">{installmentPrice}</span>{" "}
+          <span className="hsw-plan-today">{translation.calcTodayInline}</span>
         </div>
       </div>
-      <div className="payment-breakdown">{installments}</div>
+      {/* Only the first installment is paid now, so the track fills 1/n.
+          Decorative — the schedule below states the same thing in text. */}
+      <div className="hsw-progress" aria-hidden="true">
+        <div
+          className="hsw-progress-fill"
+          style={{ width: `${100 / numberOfPayments}%` }}
+        />
+      </div>
+      <div
+        className="hsw-plan-steps"
+        style={{ "--cols": numberOfPayments } as React.CSSProperties}
+      >
+        {steps}
+      </div>
     </div>
   );
 };
