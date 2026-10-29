@@ -5,6 +5,7 @@ import { ITranslation } from "../interface";
 import { interpolate } from "../utils/interpolate";
 import { FaqChevronIcon } from "./PaymentPlan/icons";
 import { Footnotes } from "./PaymentPlan/footnotes";
+import { withFootnote } from "../utils/footnoteText";
 
 interface FaqProps {
   translation: ITranslation;
@@ -17,15 +18,18 @@ interface FaqProps {
 
 const Faq = ({ translation, showPI5, footnotes }: FaqProps) => {
   // The design sets these markers inline at body size rather than as a <sup>.
-  const faq1A = interpolate(translation.faq1A, {
-    sezzleUp: footnotes.sezzleUp,
+  const faq1A = withFootnote(translation.faq1A, footnotes.sezzleUp, {
+    inline: true,
   });
   // The repayment period is a trigger term, so the answer carries the
   // pay-later disclosure.
-  const faq2A = interpolate(translation.faq2A, {
-    faq2APi5: showPI5 ? translation.faq2APi5 : "",
-    payLater: footnotes.payLater,
-  });
+  const faq2A = withFootnote(
+    interpolate(translation.faq2A, {
+      faq2APi5: showPI5 ? translation.faq2APi5 : "",
+    }),
+    footnotes.payLater,
+    { inline: true }
+  );
   const items = [
     { q: translation.faq1Q, a: faq1A },
     { q: translation.faq2Q, a: faq2A },

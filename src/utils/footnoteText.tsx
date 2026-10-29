@@ -10,24 +10,35 @@ const TOKEN = "{footnote}";
 
 // A superscript marker that links to its footer disclosure, so the pairing is
 // navigable and announced ("Footnote †") rather than read as a bare symbol.
-export const FootnoteRef = ({ marker }: { marker?: string }) => {
+// `inline` sets the marker at body size, for copy the design doesn't superscript.
+export const FootnoteRef = ({
+  marker,
+  inline = false,
+}: {
+  marker?: string;
+  inline?: boolean;
+}) => {
   const { translation } = useConfig();
   if (!marker) return null;
+  const Wrapper = inline ? "span" : "sup";
   return (
-    <sup className="hsw-footnote-ref">
+    <Wrapper
+      className={`hsw-footnote-ref${inline ? " hsw-footnote-ref-inline" : ""}`}
+    >
       <a
         href={`#${footnoteId(marker)}`}
         aria-label={interpolate(translation.footnoteRefLabel, { marker })}
       >
         {marker}
       </a>
-    </sup>
+    </Wrapper>
   );
 };
 
 export const withFootnote = (
   template: string,
-  marker: string | undefined
+  marker: string | undefined,
+  { inline = false }: { inline?: boolean } = {}
 ): ReactNode => {
   const [before, ...rest] = template.split(TOKEN);
   // No token (or no marker to place): render the copy as-is, minus any token.
@@ -37,7 +48,7 @@ export const withFootnote = (
   return (
     <>
       {before}
-      <FootnoteRef marker={marker} />
+      <FootnoteRef marker={marker} inline={inline} />
       {after}
     </>
   );

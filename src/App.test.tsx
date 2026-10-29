@@ -511,11 +511,11 @@ describe("App", () => {
         // credit check, pay later, virtual card, reschedule, Sezzle Up.
         const expected = ["*", "†", "‡", "§", "**"];
         expect(markerDefs(container)).toEqual(expected);
+        expect(new Set(markerRefs(container))).toEqual(new Set(expected));
         // Sezzle Up is referenced inline in the FAQ answer, not as a <sup>.
-        expect(new Set(markerRefs(container))).toEqual(
-            new Set(expected.filter((m) => m !== "**"))
-        );
-        expect(container.textContent).toContain("Sezzle Up,**");
+        const faqRef = container.querySelector(".hsw-faq .hsw-footnote-ref");
+        expect(faqRef?.tagName).toBe("SPAN");
+        expect(faqRef?.textContent).toBe("**");
     });
 
     // Each body marker is an in-page link to the disclosure that defines it.
@@ -550,7 +550,9 @@ describe("App", () => {
         );
         // credit check, pay later, reschedule, Sezzle Up.
         expect(markerDefs(container)).toEqual(["*", "†", "‡", "§"]);
-        expect(new Set(markerRefs(container))).toEqual(new Set(["*", "†", "‡"]));
+        expect(new Set(markerRefs(container))).toEqual(
+            new Set(["*", "†", "‡", "§"])
+        );
         expect(container.textContent).toContain("Sezzle Up,§");
     });
 
