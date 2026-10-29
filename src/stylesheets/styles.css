@@ -760,13 +760,20 @@
 .hsw-faq-q[aria-expanded="true"] svg {
     transform: rotate(180deg);
 }
+/* visibility keeps a closed answer's footnote link out of the tab order and
+   accessibility tree. It flips to hidden only after the collapse finishes, and
+   to visible immediately on open. */
 .hsw-faq-a {
     overflow: hidden;
     max-height: 0;
-    transition: max-height var(--dur-slow) var(--ease-out);
+    visibility: hidden;
+    transition: max-height var(--dur-slow) var(--ease-out),
+        visibility 0s linear var(--dur-slow);
 }
 .hsw-faq-a.is-open {
     max-height: 260px;
+    visibility: visible;
+    transition-delay: 0s;
 }
 .hsw-faq-a p {
     font-size: 16px;
