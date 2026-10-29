@@ -113,6 +113,17 @@ Insert the following code into your HTML file:
               event.data.height > 0) {
               iframe.style.height = event.data.height + 'px';
           }
+          // Scroll to a spot in the frame (footnote links): the frame is sized to fit,
+          // so it can't scroll itself.
+          if (event.source === iframe.contentWindow &&
+              event.data.key === "about_sezzle_scroll_to" &&
+              typeof event.data.top === "number") {
+              const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              window.scrollTo({
+                  top: iframe.getBoundingClientRect().top + window.scrollY + event.data.top,
+                  behavior: reduceMotion ? "auto" : "smooth"
+              });
+          }
       });
 
       // Also send on load as fallback

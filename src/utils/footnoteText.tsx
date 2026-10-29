@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { useConfig } from "../containers/ConfigProvider";
 import { footnoteId } from "../components/PaymentPlan/footnotes";
 import { interpolate } from "./interpolate";
+import { scrollParentTo } from "./parentFrame";
 
 const TOKEN = "{footnote}";
 
@@ -21,13 +22,21 @@ export const FootnoteRef = ({
   const { translation } = useConfig();
   if (!marker) return null;
   const Wrapper = inline ? "span" : "sup";
+  const id = footnoteId(marker);
   return (
     <Wrapper
       className={`hsw-footnote-ref${inline ? " hsw-footnote-ref-inline" : ""}`}
     >
+      {/* The default #hash navigation still runs (it moves the focus start
+          point to the disclosure); the parent does the scrolling, since a
+          fit-to-content frame has none of its own. */}
       <a
-        href={`#${footnoteId(marker)}`}
+        href={`#${id}`}
         aria-label={interpolate(translation.footnoteRefLabel, { marker })}
+        onClick={() => {
+          const disclosure = document.getElementById(id);
+          if (disclosure) scrollParentTo(disclosure);
+        }}
       >
         {marker}
       </a>

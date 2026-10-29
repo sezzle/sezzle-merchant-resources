@@ -1,5 +1,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { FRAME_HEIGHT_KEY, startFrameHeightReporting } from "./frameHeight";
+import {
+  FRAME_HEIGHT_KEY,
+  FRAME_SCROLL_KEY,
+  scrollParentTo,
+  startFrameHeightReporting,
+} from "./parentFrame";
 
 // jsdom has no layout or ResizeObserver: stub both, and drive resizes by hand.
 let resize: () => void;
@@ -88,5 +93,27 @@ describe("startFrameHeightReporting", () => {
     const observe = vi.spyOn(FakeResizeObserver.prototype, "observe");
     startFrameHeightReporting(window);
     expect(observe).not.toHaveBeenCalled();
+  });
+});
+
+describe("scrollParentTo", () => {
+  it("asks the parent to scroll to the element's offset within the page", () => {
+    const target = parent();
+    const el = document.createElement("p");
+    vi.spyOn(el, "getBoundingClientRect").mockReturnValue({
+      top: 3478.4,
+    } as DOMRect);
+    scrollParentTo(el, target);
+    expect(target.postMessage).toHaveBeenCalledWith(
+      { key: FRAME_SCROLL_KEY, top: 3478 },
+      "*"
+    );
+  });
+
+  // Opened directly, the page scrolls itself via the default #hash navigation.
+  it("does nothing outside a frame", () => {
+    const post = vi.spyOn(window, "postMessage");
+    scrollParentTo(document.body, window);
+    expect(post).not.toHaveBeenCalled();
   });
 });

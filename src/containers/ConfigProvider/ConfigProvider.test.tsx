@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { act, render, renderHook, screen } from "@testing-library/react";
 import { ConfigProvider, useConfig } from "./index";
-import * as frameHeight from "../../utils/frameHeight";
+import * as parentFrame from "../../utils/parentFrame";
 
 const postConfig = (data: Record<string, unknown>) => {
     act(() => {
@@ -178,7 +178,7 @@ describe("frame height reporting", () => {
     it("starts only once the config has rendered, and stops on unmount", () => {
         const stop = vi.fn();
         const start = vi
-            .spyOn(frameHeight, "startFrameHeightReporting")
+            .spyOn(parentFrame, "startFrameHeightReporting")
             .mockReturnValue(stop);
         const { unmount } = render(
             <ConfigProvider>

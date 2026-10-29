@@ -13,7 +13,7 @@ import {
   DEFAULT_MAX_PRICE,
 } from "../../constants";
 import Translation from "../../utils/Translation";
-import { startFrameHeightReporting } from "../../utils/frameHeight";
+import { startFrameHeightReporting } from "../../utils/parentFrame";
 import { ITranslation } from "../../interface";
 import {
   resolveLTConfig,
