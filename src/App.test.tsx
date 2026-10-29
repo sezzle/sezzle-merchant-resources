@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import App from "./App";
 import enTranslation from "./translations/en.json";
 import { interpolate } from "./utils/interpolate";
+import * as parentFrame from "./utils/parentFrame";
 import {
     ConfigContext,
     deriveConfigContext,
@@ -511,11 +512,11 @@ describe("App", () => {
         // credit check, pay later, virtual card, reschedule, Sezzle Up.
         const expected = ["*", "†", "‡", "§", "**"];
         expect(markerDefs(container)).toEqual(expected);
+        expect(new Set(markerRefs(container))).toEqual(new Set(expected));
         // Sezzle Up is referenced inline in the FAQ answer, not as a <sup>.
-        expect(new Set(markerRefs(container))).toEqual(
-            new Set(expected.filter((m) => m !== "**"))
-        );
-        expect(container.textContent).toContain("Sezzle Up,**");
+        const faqRef = container.querySelector(".hsw-faq .hsw-footnote-ref");
+        expect(faqRef?.tagName).toBe("SPAN");
+        expect(faqRef?.textContent).toBe("**");
     });
 
     // Each body marker is an in-page link to the disclosure that defines it.
@@ -541,6 +542,26 @@ describe("App", () => {
         }
     });
 
+    // The frame is sized to fit and can't scroll itself, so a marker click asks
+    // the parent to scroll to the disclosure it points at.
+    it("asks the parent to scroll to the disclosure when a marker is clicked", async () => {
+        installFetchMock();
+        const scroll = vi
+            .spyOn(parentFrame, "scrollParentTo")
+            .mockImplementation(() => {});
+        const { container } = render(
+            wrap({ ...baseConfig, includeInStore: true }, <App />)
+        );
+        const link = container.querySelector<HTMLAnchorElement>(
+            ".hsw-faq .hsw-footnote-ref a"
+        )!;
+        await userEvent.click(link);
+        expect(scroll).toHaveBeenCalledWith(
+            container.querySelector(link.getAttribute("href")!)
+        );
+        scroll.mockRestore();
+    });
+
     // With in-store off, the virtual-card disclosure drops out and the later
     // markers shift up to close the gap.
     it("shifts markers up when earlier disclosures drop out", () => {
@@ -550,7 +571,9 @@ describe("App", () => {
         );
         // credit check, pay later, reschedule, Sezzle Up.
         expect(markerDefs(container)).toEqual(["*", "†", "‡", "§"]);
-        expect(new Set(markerRefs(container))).toEqual(new Set(["*", "†", "‡"]));
+        expect(new Set(markerRefs(container))).toEqual(
+            new Set(["*", "†", "‡", "§"])
+        );
         expect(container.textContent).toContain("Sezzle Up,§");
     });
 

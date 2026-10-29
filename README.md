@@ -86,7 +86,11 @@ Insert the following code into your HTML file:
           es: "Cómo funciona Sezzle",
       };
       iframe.title = FRAME_TITLES[config.language] || FRAME_TITLES.en;
+      // Starting height only: the page reports its real height once it renders
+      // (and again whenever it changes, e.g. on resize), and the frame is sized to
+      // fit so it never scrolls on its own.
       iframe.height = '2000px';
+      iframe.scrolling = 'no';
       iframe.width = '100%';
       iframe.style.border = 'none';
 
@@ -102,6 +106,23 @@ Insert the following code into your HTML file:
       window.addEventListener("message", function(event) {
           if (event.data.key === "signal_about_sezzle_ready") {
               sendConfig();
+          }
+          // Resize the frame to the page's content height.
+          if (event.source === iframe.contentWindow &&
+              event.data.key === "about_sezzle_height" &&
+              event.data.height > 0) {
+              iframe.style.height = event.data.height + 'px';
+          }
+          // Scroll to a spot in the frame (footnote links): the frame is sized to fit,
+          // so it can't scroll itself.
+          if (event.source === iframe.contentWindow &&
+              event.data.key === "about_sezzle_scroll_to" &&
+              typeof event.data.top === "number") {
+              const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              window.scrollTo({
+                  top: iframe.getBoundingClientRect().top + window.scrollY + event.data.top,
+                  behavior: reduceMotion ? "auto" : "smooth"
+              });
           }
       });
 
