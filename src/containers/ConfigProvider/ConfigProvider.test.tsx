@@ -1,6 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { act, render, renderHook, screen } from "@testing-library/react";
 import { ConfigProvider, useConfig } from "./index";
+import * as frameHeight from "../../utils/frameHeight";
 
 const postConfig = (data: Record<string, unknown>) => {
     act(() => {
@@ -168,5 +169,27 @@ describe("useConfig", () => {
         expect(() => renderHook(() => useConfig())).toThrow(
             "useConfig must be used within a ConfigProvider"
         );
+    });
+});
+
+describe("frame height reporting", () => {
+    // Before the config arrives the page is empty; reporting that height would
+    // collapse the merchant's iframe before the real content renders.
+    it("starts only once the config has rendered, and stops on unmount", () => {
+        const stop = vi.fn();
+        const start = vi
+            .spyOn(frameHeight, "startFrameHeightReporting")
+            .mockReturnValue(stop);
+        const { unmount } = render(
+            <ConfigProvider>
+                <div />
+            </ConfigProvider>
+        );
+        expect(start).not.toHaveBeenCalled();
+        postConfig({ merchant_uuid: "abc" });
+        expect(start).toHaveBeenCalledTimes(1);
+        unmount();
+        expect(stop).toHaveBeenCalled();
+        start.mockRestore();
     });
 });

@@ -13,6 +13,7 @@ import {
   DEFAULT_MAX_PRICE,
 } from "../../constants";
 import Translation from "../../utils/Translation";
+import { startFrameHeightReporting } from "../../utils/frameHeight";
 import { ITranslation } from "../../interface";
 import {
   resolveLTConfig,
@@ -151,6 +152,13 @@ export const ConfigProvider = ({ children }: { children: ReactNode }) => {
       window.removeEventListener("message", handleMessage);
     };
   }, []);
+
+  // Report the content height once the page has rendered; before the config
+  // arrives the page is empty, and reporting that would collapse the frame.
+  useEffect(() => {
+    if (!aboutSezzleConfig) return;
+    return startFrameHeightReporting();
+  }, [aboutSezzleConfig]);
 
   // rendering only when the config is received. If not,
   // <App> renders twice, once with default config and
