@@ -11,7 +11,7 @@ image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/oven/bun:1.3.11-alpine
 variables:
   BUN_INSTALL_CACHE_DIR: "/tmp/bun-cache"
 
-  JIRA_PROJECT_NAME: "MINT"
+  JIRA_PROJECT_NAME: "MERCHANT"
   s3_bucket_production: "sezzlemedia/how-sezzle-works/v2"
   cf_dist_production: "EFV0KW59BE883"
 
