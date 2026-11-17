@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from "vitest";
 import {
   FRAME_HEIGHT_KEY,
   FRAME_SCROLL_KEY,
@@ -8,7 +8,7 @@ import {
 
 // jsdom has no layout or ResizeObserver: stub both, and drive resizes by hand.
 let resize: () => void;
-let disconnect: ReturnType<typeof vi.fn>;
+let disconnect: Mock<() => void>;
 let height: number;
 
 class FakeResizeObserver {
