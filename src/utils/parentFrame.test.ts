@@ -25,7 +25,7 @@ class FakeResizeObserver {
 
 const parent = () =>
   ({ postMessage: vi.fn() }) as unknown as Window & {
-    postMessage: ReturnType<typeof vi.fn>;
+    postMessage: Mock<Window["postMessage"]>;
   };
 
 beforeEach(() => {
